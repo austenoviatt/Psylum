@@ -26,4 +26,4 @@ class Tile {
   Coordinate coordinate;
 };
 
-#endif // WIDGET_H_INCLUDED
+#endif // Tile_H_INCLUDED
