@@ -3,15 +3,13 @@
  * Authors Austen Oviatt, Lambee Mangal, Troy Hatchard, Sarah Ren
 */
 
+#include "Item.h"
+#include <vector>
 
 /**
 * Data structure to store the items contained within a room
 * or held by a player
 */
-
-#include "Item.h"
-#include <vector>
-
 class Inventory {
   public:
     /**
