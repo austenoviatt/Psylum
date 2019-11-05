@@ -15,12 +15,12 @@ class Inventory {
     /**
     * Initialize an empty Inventory
     */
-    Inventory()
+    Inventory();
 
     /**
     * Initialize an inventory with a vector of items
     */
-    Inventory(vector<Item> items)
+    Inventory(vector<Item> items);
 
     /**
     * @return a vector of the current items in the inventory
