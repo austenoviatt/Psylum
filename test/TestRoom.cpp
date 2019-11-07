@@ -8,6 +8,10 @@
 #include <string>
 #include "gtest/gtest.h"
 
+#include <Coordinate.h>
+#include "KeyID.h"
+#include "Inventory.h"
+
 TEST(TestCoord, constructor_test_equal) {
   Coordinate c(2, 3, 3);
   Coordinate d(2, 3, 3);
