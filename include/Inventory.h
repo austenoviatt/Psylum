@@ -3,6 +3,9 @@
  * Authors Austen Oviatt, Lambee Mangal, Troy Hatchard, Sarah Ren
 */
 
+#ifndef INVENTORY_H
+#define INVENTORY_H
+
 #include "Item.h"
 #include <vector>
 
@@ -43,5 +46,6 @@ class Inventory {
     */
     vector<Item> itemsList;
 
+};
 
-}
+#endif

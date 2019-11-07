@@ -4,21 +4,51 @@
 */
 
 #include "KeyID.h"
+#include "Inventory.h"
+
+//nicole made suggestion to include Events in Room
 
 class Room
 {
 public:
-  Room(unsigned int x = 0, unsigned int y = 0, unsigned int z = 0) :x{x}, y{y}, z{z} {}
+  Room(Coordinate c, Inventory inventory, bool isLocked, KeyID keys): {}
 
+  /**
+  * Return the list of item currently in the room
+  */
+  Inventory getInventory();
 
+  /**
+  * Get the corresponding key ID that opens the room
+  */
+  KeyID getKeyID();
+
+  /**
+  * Return the locked status of the room
+  */
+  bool getLocked();
+
+  /**
+  * Change the locked status of the room
+  */
+  void setLocked();
 
 
 private:
+  /**
+  * The key that opens the room
+  */
   KeyID Keys;
 
-  bool isLocked(Coordinate c);
+  /**
+  * status of whether room is currently locked
+  */
+  bool isLocked;
 
-  Inventory
+  /**
+  * Inventory of the room
+  */
+  Inventory inventory;
 
 
 

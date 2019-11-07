@@ -4,4 +4,7 @@
 */
 
 
-enum Keys{red,green,blue,button1,button2,claw};
+ /**
+  * Enum that holds all the keys in the game
+  */
+enum Keys{none,red,green,blue,button1,button2,claw};
