@@ -5,6 +5,7 @@
 
 #include "KeyID.h"
 #include "Inventory.h"
+#include "Character.h"
 
 //nicole made suggestion to include Events in Room
 
@@ -61,6 +62,10 @@ class Room
     * The key that opens the room
     */
    KeyID Keys;
+
+   /**
+    * State of any events that occur in a room
+    */
    
    /**
     * Inventory of the room
