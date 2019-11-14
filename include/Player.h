@@ -38,7 +38,7 @@ class Player{
    moveToRoom();
 
   private:
-   
+
    Room currentRoom;
 };
 

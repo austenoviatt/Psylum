@@ -76,6 +76,7 @@ class Room
 
    std::vector<Room*> exits;
 
+
    /**
     * State of any events that occur in a room
     */
@@ -90,6 +91,7 @@ class Room
     * Characters in the room
     */
    Character characters;
+
 };
 
 #endif // ROOM_H

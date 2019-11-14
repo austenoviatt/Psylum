@@ -20,7 +20,7 @@ class Item{
     * @param name the name of the new item being created
     * @param description the description of the item
     * @param pickupable whether the item is able to be picked up or not
-    */   
+    */
    item(string name = "DEFAULT NAME", string description =
 	"DEFAULT DESCRIPTION", bool pickupable = false);
 
@@ -35,7 +35,7 @@ class Item{
    void use();
 
   private:
-   
+
    string name;
    string description;
    bool pickupable;

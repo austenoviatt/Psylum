@@ -9,6 +9,7 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
 
+
 /**
  * This class implements an inventory for the player and the rooms
  */
@@ -50,4 +51,3 @@ class Inventory{
 };
 
 #endif // INVENTORY_H
-
