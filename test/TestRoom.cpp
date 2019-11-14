@@ -10,5 +10,15 @@
 #include <vector>
 
 TEST(TestRoom, testLocked) {
-  Room
+  Inventory testInv;
+  Room("TestRoom", "This is the test room. ", false, )
 }
+
+TEST(TestRoom, testExits) {
+
+}
+
+TEST(TestRoom, testInventory) {
+
+}
+
