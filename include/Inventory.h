@@ -1,51 +1,52 @@
 /**
- * CPSC 2720 Fall 2019
- * Authors Austen Oviatt, Lambee Mangal, Troy Hatchard, Sarah Ren
-*/
+ * @author Troy Hatchard
+ * @author Lambee Mangal
+ * @author Austen Oviatt
+ * @author Sarah Ren
+ * @date November 13, 2019
+ */
 
 #ifndef INVENTORY_H
 #define INVENTORY_H
 
-#include "Item.h"
-#include <vector>
 
 /**
-* Data structure to store the items contained within a room
-* or held by a player
-*/
-class Inventory {
+ * This class implements an inventory for the player and the rooms
+ */
+#include <vector>
+#include "Item.h"
+
+class Inventory{
   public:
-    /**
-    * Initialize an empty Inventory
+   /**
+    * Default constructor
     */
-    Inventory();
+   Inventory();
 
-    /**
-    * Initialize an inventory with a vector of items
+   /**
+    * Default destructor
     */
-    Inventory(vector<Item> items);
+   virtual ~Inventory();
 
-    /**
-    * @return a vector of the current items in the inventory
+   /**
+    * Checks to see if an item exists in the inventory
+    * @return a bool of whether the item is in the inventory
     */
-    vector<Item> getItems();
+   bool hasItem();
 
-    /**
-    * Appends an item object to the end of the items vector
+   /**
+    * Adds an item to the inventory
     */
-    void addItem(Item item);
+   void addItem();
 
-    /**
-    * Removes an item from the items vector
+   /**
+    * Removes an Item from the inventory
     */
-    void removeItem(Item item);
+   void removeItem();
 
   private:
-    /**
-    * The list of items within the inventory
-    */
-    vector<Item> itemsList;
+   std::vector<Item> items;
 
 };
 
-#endif
+#endif // INVENTORY_H
