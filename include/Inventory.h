@@ -14,6 +14,7 @@
  */
 #include <vector>
 #include "Item.h"
+#include "keyItem.h"
 
 class Inventory{
   public:
@@ -49,4 +50,4 @@ class Inventory{
 };
 
 #endif // INVENTORY_H
-   
+
