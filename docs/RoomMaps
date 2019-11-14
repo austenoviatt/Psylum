@@ -10,38 +10,65 @@ Psylum Room Map
 -------------
 
 Note:
-sdesc (short description)
-ldesc (long description, attached to room)
-exits: north, east, south, west (accessible rooms)
+sdesc = string (short description)
+ldesc = string (long description, attached to room)
+exits = string (access to other Room(s): north, east, south, west)
+locked = bool (rooms initial state: false (unlocked) or true (locked))
+key = keyItem (key required to unlock a room)
+inventory = Inventory (items in the room - if (fixed), item belongs to room and can't be picked up)
+characters = Characters (non-player characters in a room)
+
+//Event dependent attributes are created, changed or deleted only in the case of an event.
+//This includes moving locations, using an item, completing a challenge etc.
+
+
 
 Level 3 (Top floor of building)
 -------------------------------------------------------------------
 startRoom: Room
 sdesc = "Patient 1's Room"
-lsdesc = " "
+lsdesc = “You have woken up in an unusual place.”
 
 north = l3Hallway1
 -----------------------------------
 l3Hallway1: Room
 sdesc = "Hallway"
-lsdesc = " "
+lsdesc = ""
 
 north = l3Hallway2
 east = closet
 south = startRoom
 west = patient2
+
+locked = false
+
+// events (second visit) = getCaughtByNurse, robNurseHilda
+// event dependent inventory (second visit) = sedative, patient2Key
+// event dependent characters (second visit) = nurseHilda
 -----------------------------------
 closet: Room
 sdesc = "Closet"
 lsdesc = " "
 
 west = l3Hallway1
+
+locked = false
+inventory = ratPoison
+
+events = hide, triggerNurseHilda
 -----------------------------------
 patient2: Room
 sdesc = "Annabelle's Room"
 lsdesc = " "
 
 east = l3Hallway1
+
+locked = true
+key = patient2Key
+fixedInventory = journal
+characters = annabelle
+
+events = sedateAnna, getSnitchedOn
 -----------------------------------
 l3Hallway2: Room
 sdesc = "Hallway"
@@ -50,21 +77,28 @@ lsdesc = " "
 north = elevator
 east = storageRoom
 south = l3Hallway1
+
+locked = false
 -----------------------------------
 storage: Room
 sdesc = "Storage Room"
 lsdesc = " "
 
 west = l3Hallway2
+
+locked = false 
+inventory = crowBar, button2 
 -----------------------------------
 elevator: Room
 sdesc = "Elevator"
 lsdesc = " "
 
 north = l1Hallway1
-east = skyrimRoom
+east = l0Hallway
 south = 31Hallway2
 west = l2Hallway1
+
+locked = false
 -----------------------------------
 
 Level 2 
@@ -77,18 +111,34 @@ north = forest
 east = elevator
 south = spaceship
 west = l2Hallway2
+
+locked = true
+key = button2
+
+events = unlockLevel2
 -----------------------------------
 spaceship: Room
 sdesc = "Spaceship Room"
 lsdesc = " "
 
 north = l2Hallway1
+
+locked = true
+key = passCode
+inventory = button1
 -----------------------------------
 forest: Room
 sdesc = "Fractal Forest"
 lsdesc = " "
 
 south = l2Hallway1
+
+locked = false
+inventory = mushrooms, worm
+characters = spirits, tree
+
+events = completeRiddle
+// event dependent inventory = clawKey
 -----------------------------------
 l2Hallway2: Room
 sdesc = "Hallway"
@@ -97,27 +147,41 @@ lsdesc = " "
 north = doctors
 east = l2Hallway1
 south = lounge
+
+locked = false
 -----------------------------------
 doctors: Room
 sdesc = "Doctor's Office"
 lsdesc = " "
 
 south = l2Hallway2
+
+locked = true
+key = crowBar
+inventory = labCoat, computer (fixedInventory)
+events = openOffice, unlockComputer, retrievePassCode
 -----------------------------------
 lounge: Room
 sdesc = "Employee's Lounge"
 lsdesc = " "
 
 north = l2Hallway2
+
+locked = false
+inventory = computerPass
+characters = doctor
+events = coffeePuzzle
 -----------------------------------
 elevator: Room
 sdesc = "Elevator"
 lsdesc = " "
 
 north = l1Hallway1
-east = skyrimRoom
+east = l0Hallway
 south = 31Hallway2
 west = l2Hallway1
+
+locked = false
 -----------------------------------
 
 Level 1
@@ -130,18 +194,33 @@ north = l1Hallway2
 east = patient3
 south = elevator
 west = kitchen
+
+locked = true
+key = button1
+
+events = unlockLevel1
 -----------------------------------
 patient3: Room
 sdesc = "Bonez's Room"
 lsdesc = " "
 
 east = l1Hallway1
+
+locked = true
+key = !labCoat
+characters = bonez
+events = goFishing
+
+// event dependent inventory = fishingRod
 -----------------------------------
 kitchen: Room
 sdesc = "Kitchen"
 lsdesc = " "
 
 west = l1Hallway1
+
+locked = false
+inventory = magnet
 -----------------------------------
 l1Hallway2: Room
 sdesc = "Hallway"
@@ -150,47 +229,93 @@ lsdesc = " "
 east = lobby
 south = l1Hallway1
 west = iceRoom
+
+locked = false
+inventory = window (fixedInventory), keyCard
+
+events = getKeyCard
+// event dependent locked = true (second visit)
+// event dependent key = mushrooms
 -----------------------------------
 lobby: Room
 sdesc = "Main Lobby"
 lsdesc = " "
 
 east = l1Hallway2
+
+locked = false
+characters = security
+
+events = getCaughtBySecurity
 -----------------------------------
 iceRoom: Room
 sdesc = "Ice Room"
 lsdesc = " "
 
 west = l1Hallway2
+
+locked = false
+
+events = lockL1Hallway2, freezeToDeath, mushroomEscape
 -----------------------------------
 elevator: Room
 sdesc = "Elevator"
 lsdesc = " "
 
 north = l1Hallway1
-east = skyrimRoom
+east = l0Hallway
 south = 31Hallway2
 west = l2Hallway1
+
+locked = false
 -----------------------------------
 
 Level 0 (Basement)
 -------------------------------------------------------------------
+l0Hallway: Room
+sdesc = "Small Hallway"
+lsdesc = " "
+
+east = skyrim
+west = elevator
+
+locked = true
+key = keyCard
+
+events = unlockLevel0
+-----------------------------------
+
 skyrim: Room
 sdesc = "Skyrim Room"
 lsdesc = " "
 
-east = sewerEndRoom
-west = elevator
+east = sewer
+west = l0Hallway
+
+locked = true
+key = clawKey
+inventory = ?
+characters = ?
+
+events = useClawKey
 -----------------------------------
 sewer: Room
 sdesc = "Sewers"
 lsdesc = " "
 
 east = endRoom
-west = skyrimRoom
+west = skyrim
+
+locked = false
+characters = farmer
+
+events = goatWolfLettuce
+//event dependent inventory = freedom ? 
 -----------------------------------
 endRoom: Room
 sdesc = "You've escaped!"
 lsdesc = " "
------------------------------------
 
+locked = true
+key = freedom
+-----------------------------------
