@@ -15,7 +15,7 @@
 #include <vector>
 #include "Item.h"
 
-class Inventroy{
+class Inventory{
   public:
    /**
     * Default constructor
