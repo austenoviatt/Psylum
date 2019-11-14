@@ -6,48 +6,53 @@
  * @date November 13, 2019
  */
 
-#ifndef INVENTORY_H
-#define INVENTORY_H
+#ifndef INVENTORY_H_INCLUDED
+#define INVENTORY_H_INCLUDED
 
-
-/**
- * This class implements an inventory for the player and the rooms
- */
+ /**
+  * This class implements an inventory for the player and the rooms
+  */
 #include <vector>
 #include "Item.h"
-#include "keyItem.h"
 
-class Inventory{
-  public:
-   /**
-    * Default constructor
-    */
-   Inventory();
+class Inventory {
+public:
+	/**
+	 * Default constructor
+	 */
+	Inventory();
 
-   /**
-    * Default destructor
-    */
-   virtual ~Inventory();
+	/**
+	 * Default destructor
+	 */
+	virtual ~Inventory() {}
 
-   /**
-    * Checks to see if an item exists in the inventory
-    * @return a bool of whether the item is in the inventory
-    */
-   bool hasItem();
+	/**
+	 * Checks to see if an item exists in the inventory
+	 * @return a bool of whether the item is in the inventory
+	 */
+	bool hasItem(Item I);
 
-   /**
-    * Adds an item to the inventory
-    */
-   void addItem();
+	/**
+	 * Adds an item to the inventory
+	 */
+	void addItem(Item I);
 
-   /**
-    * Removes an Item from the inventory
-    */
-   void removeItem();
+	/**
+	 * Removes an item from the inventory
+	 */
+	bool removeItem(Item I);
 
-  private:
-   std::vector<Item> items;
+	/**
+	* @return The item in the inventory
+	*/
+	std::vector<Item> getItems();
+
+
+private:
+	std::vector<Item> items;
 
 };
 
 #endif // INVENTORY_H
+
