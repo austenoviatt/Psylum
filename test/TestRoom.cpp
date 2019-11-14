@@ -1,45 +1,23 @@
 /**
  * CPSC 2720 Fall 2019
- * Authors Austen Oviatt, Lambee Mangal, Troy Hatchard, Sarah Ren
+ * @authors Sarah Ren, Troy Hatchard
+ * copyright Castor University of Lethbridge
 */
-/*
-#include "Coordinate.h"
-#include <sstream>
-#include <string>
+
 #include "gtest/gtest.h"
+#include "Room.h"
+#include <vector>
 
-#include <Coordinate.h>
-#include "KeyID.h"
-#include "Inventory.h"
-
-TEST(TestCoord, constructor_test_equal) {
-  Coordinate c(2, 3, 3);
-  Coordinate d(2, 3, 3);
-  Coordinate e(7, 8, 3);
-
-  //equal
-  EXPECT_TRUE(c == d);
-  EXPECT_FALSE(d == e);
+TEST(TestRoom, testLocked) {
+  Inventory testInv;
+  Room("TestRoom", "This is the test room. ", false, )
 }
 
-TEST(TESTCoord, constructor_test_notEqual) {
-  Coordinate c(2, 3, 3);
-  Coordinate d(2, 3, 3);
-  Coordinate e(7, 8, 3);
-
-  //not equal
-  EXPECT_TRUE(c != e);
-  EXPECT_FALSE(c != d);
+TEST(TestRoom, testExits) {
 
 }
 
-TEST(TestCoord, output_test) {
-  Coordinate c(2, 3, 3);
+TEST(TestRoom, testInventory) {
 
-  std::stringstream ss;
-  ss << c;
-  EXPECT_EQ("[2,3,3]", ss.str());
 }
 
-
-*/

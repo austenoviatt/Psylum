@@ -19,6 +19,13 @@ class Room
     */
   Room(): {}
 
+  /**
+  * Room constructor
+  */
+  Room::Room(string name, string description, bool locked, Inventory inventory,
+           keyItem key, std::vector<Room*> exits, std::vector<Events> events,
+           std::vector<Character> character)
+
    /**
     * Default room destructor
     */

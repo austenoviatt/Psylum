@@ -4,3 +4,4 @@
 *.cbp
 *.xml
 *.o
+*.gcno

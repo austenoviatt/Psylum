@@ -18,7 +18,6 @@ SRC_DIR = src
 GAME_SRC_DIR = src/game
 
 TEST_DIR = test
-TEST_OUTPUT_FILE = output/displayDottedFaces-actual.txt
 
 SRC_INCLUDE = include
 INCLUDE = -I $(SRC_INCLUDE)
