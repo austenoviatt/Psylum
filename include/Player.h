@@ -10,6 +10,7 @@
 #define PLAYER_H
 
 /**
+
  * This class is the player class
  */
 
@@ -38,7 +39,7 @@ class Player{
    moveToRoom();
 
   private:
-   
+
    Room currentRoom;
 };
 
