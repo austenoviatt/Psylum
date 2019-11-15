@@ -1,4 +1,4 @@
-/*#include "Room.h"
+#include "Room.h"
 #include "Character.h"
 #include "Inventory.h"
 #include "keyItem.h"
@@ -26,31 +26,48 @@ Room::~Room() {
   delete[] name;
 }
 
-Room::Room() {PLAYER_H
-string name = "DEFAULT ROOM NAME";
-string description = "DEFAULT ROOM DESCRIPTION";
-bool locked = false;
-inventory inv= nullptr;
-KeyItem key = 0;
-exits = nullptr;
-events = nullptr;
-characters = nullptr;
+Room::Room() {
+   string name = "DEFAULT ROOM NAME";
+   string description = "DEFAULT ROOM DESCRIPTION";
+   string doorDescription = "DEFAULT DOOR DESCRIPTION";
+   bool locked = false;
+   inventory inv= nullptr;
+   KeyItem key = 0;
+   exits = nullptr;
+   events = nullptr;
+   characters = nullptr;
 }
 
-Room::Room(string a, string b, bool c, std::vector<Inventory> d,
-           keyItem e, std::vector<Room*> f, std::vector<Events> g,
-           std::vector<Character> h){
-             name = name;
-             description = description;
-             locked = locked;
-             invnetory = d;
-             keyItem = e;
-             exits = f;
-             events = g;
-             characters = h;}
+Room::Room(string a, string b, string c, bool d, std::vector<Inventory> e,
+           keyItem f, std::vector<Room*> g, std::vector<Events> h,
+           std::vector<Character> i){
+             name = a;
+             description = b;
+	     doorDescription = c;
+             locked = d;
+             invnetory = e;
+             keyItem = f;
+             exits = g;
+             events = h;
+             characters = i;}
+	     
+}
 
+bool Room::setLocked(bool A) {
+   locked = A;
+}
 
+bool Room::hasExit(string A) {
 
+   for (auto x : exits)
+   {
+      if (x.name == A)
+	 return true;
+   }
+   return false;
+}
 
-           }
-*/
+Room Room::getExit() {
+   for (auto x : exits)
+      cout << x.doodDescription;
+}

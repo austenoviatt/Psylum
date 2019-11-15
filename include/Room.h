@@ -22,9 +22,9 @@ class Room
   /**
   * Room constructor
   */
-  Room::Room(string name, string description, bool locked, Inventory inventory,
-           keyItem key, std::vector<Room*> exits, std::vector<Events> events,
-           std::vector<Character> character)
+   Room::Room(string name, string description, string doorDescription, bool locked,
+	      Inventory inventory, keyItem key, std::vector<Room*> exits,
+	      std::vector<Events> events, std::vector<Character> character)
 
    /**
     * Default room destructor
@@ -49,18 +49,20 @@ class Room
 
    /**
     * Sets the locked status of the room
+    * @param bool Whether room will be locked or not
     * @return lock state of room
     */
-   bool setLock();
+   bool setLock(bool lockedState);
 
    /**
     * checks whether an exit exists
+    * @param string the room name we are checking for
     * @return does the room connect to desired room
     */
-   bool hasExit();
+   bool hasExit(string desiredRoom);
 
    /**
-    * sends player to room through exit
+    * Lists all rooms attached to current room
     * @return room on other side of exit
     */
    Room getExit();
@@ -75,6 +77,10 @@ class Room
    */
    string description;
 
+   /**
+    * Description of the doorway leading into the room
+    */
+   string doorDescription;
 
   private:
    /**
