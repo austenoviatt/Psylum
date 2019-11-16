@@ -13,8 +13,6 @@
 #include "Inventory.h"
 #include "Item.h"
 
-using namespace std;
-
 Inventory::Inventory() {
 
 }
@@ -27,7 +25,7 @@ bool Inventory::hasItem(Item I) {
 	bool ItemFound = false;
 	// Iterate over all elements in Vector
 	 //store the name of the item
-	string ItemName = I.getName();
+	std::string ItemName = I.getName();
 
 	//iterate all items in the inventory
 	for (auto x : items)
@@ -62,7 +60,7 @@ bool Inventory::removeItem(Item I) {
 	bool ItemFound = false;
 	int indexTracker = 0;
 
-	string ItemName = I.getName();
+	std::string ItemName = I.getName();
 
 	for (auto x : items)
 	{

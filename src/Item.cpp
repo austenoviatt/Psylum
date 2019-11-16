@@ -20,6 +20,13 @@ string Item::getName() {
 	return name;
 }
 
+bool Item::isPickup(){
+return pickupable;
+}
+
+std::string Item::getItemDesc(){
+return description;
+}
 
 //Usage unknown, will come back later
 void Item::use() {

@@ -34,10 +34,22 @@ public:
 	void use();
 
 	/**
+	* returns the name of the Item
    * @return the name of the Item
-	 Added by myself to make my code work
    */
 	std::string getName();
+
+	/**
+	*returns whether item is pickupable or not
+	* @return can pickup or not
+	*/
+	bool isPickup();
+
+	/**
+	* returns description of item
+	* @return Item description
+	*/
+	std::string getItemDesc();
 
 
 private:
