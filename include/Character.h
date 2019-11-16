@@ -40,7 +40,7 @@ public:
 	/**
 	 * This is the dialogue options for the character
 	 */
-	void talk(Character c);
+	void talk();
 
 	/**
 	* returns the character ID

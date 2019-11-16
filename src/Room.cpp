@@ -35,7 +35,7 @@ Room::Room() {
    characters = {};
 }
 
-Room::Room(std::string a, std::string b, std::string c, bool d, Inventory* e,
+Room::Room(std::string a, std::string b, std::string c, bool d, Inventory e,
            keyItem f, std::vector<Room*> g, std::vector<Events> h,
            std::vector<Character> i){
              name = a;
@@ -75,4 +75,8 @@ void Room::getExit() {
 void Room::setExit(std::vector<Room*> A)
 {
   exits.insert(exits.begin(), A.begin(), A.end());
+}
+
+std::string Room::getName() {
+return name;
 }

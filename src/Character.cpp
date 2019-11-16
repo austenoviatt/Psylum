@@ -65,7 +65,7 @@ void Character::increaseEventCounter() {
 	/**
 	* This is the dialogue options for the character
 	*/
-void Character::talk(Character c) {
+void Character::talk() {
 	if (isAlive == false) {
 		std::cout << name << " is dead.";
 	}

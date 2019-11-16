@@ -24,7 +24,7 @@ class Room
   /**
   * Room constructor
   */
-  Room(std::string, std::string, std::string, bool, Inventory*, keyItem,
+  Room(std::string, std::string, std::string, bool, Inventory, keyItem,
        std::vector<Room*>, std::vector<Events>, std::vector<Character>);
 
    /**
@@ -71,9 +71,10 @@ class Room
    bool getLocked();
 
    /**
-   * The name of the room
+   * Returns the name of the room
+   * @return string name of room
    */
-   std::string name;
+   std::string getName();
 
    /**
    * Description of the room
@@ -88,7 +89,7 @@ class Room
    /**
     * Inventory of the room
     */
-   Inventory* inventory;
+   Inventory inventory;
 
    /**
     * State of any events that occur in a room
@@ -106,13 +107,12 @@ class Room
     */
    keyItem key;
 
+   std::vector<Room*> exits;
 
-
- std::vector<Room*> exits;
-
-
-
-
+  /**
+   * The name of the room
+   */
+   std::string name;
 };
 
 #endif // ROOM_H

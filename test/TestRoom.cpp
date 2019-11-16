@@ -9,9 +9,11 @@
 #include <vector>
 
 TEST(TestRoom, TestAndSetLocked) {
+  Inventory I = {};
+
   Room R;
-  Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, {}, noKey, {}, {}, {});
-  Room R3("Desert", "It looks like it hasn't rained here in years.", "You see a door with a sign that says 'Water required'", true, {}, claw, {}, {}, {});
+  Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, I, noKey, {}, {}, {});
+  Room R3("Desert", "It looks like it hasn't rained here in years.", "You see a door with a sign that says 'Water required'", true, I, claw, {}, {}, {});
 
   EXPECT_FALSE(R.getLocked());
   EXPECT_FALSE(R2.getLocked());
@@ -56,20 +58,21 @@ TEST(TestRoom, testInventory) {
 
 
 
-  Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, &v, noKey, {}, {}, {});
+  Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, v, noKey, {}, {}, {});
 
  // std::cout << R2.inventory->getItems()[0].getName();
 
-  EXPECT_TRUE(R2.inventory->hasItem(I));
-  EXPECT_TRUE(R2.inventory->hasItem(I2));
-  EXPECT_FALSE(R2.inventory->hasItem(I3));
+  EXPECT_TRUE(R2.inventory.hasItem(I));
+  EXPECT_TRUE(R2.inventory.hasItem(I2));
+  EXPECT_FALSE(R2.inventory.hasItem(I3));
 
-  R2.inventory->addItem(I3);
-  EXPECT_EQ(I3.getName(), R2.inventory->getItems()[2].getName());
+  R2.inventory.addItem(I3);
+  EXPECT_EQ(I3.getName(), R2.inventory.getItems()[2].getName());
 
-  EXPECT_TRUE(R2.inventory->removeItem(I3));
-  EXPECT_TRUE(R2.inventory->removeItem(I2));
-  EXPECT_FALSE(R2.inventory->removeItem(I3));
+  EXPECT_TRUE(R2.inventory.removeItem(I3));
+  EXPECT_TRUE(R2.inventory.removeItem(I2));
+  EXPECT_FALSE(R2.inventory.removeItem(I3));
+  EXPECT_FALSE(v.hasItem(I3));
 
 }
 
@@ -107,17 +110,24 @@ TEST(TestRoom, Events){
 
 TEST(TestRoom, Character){
 
-    Character C;
     Character C2("Char2", "Douglas", "Doug is bald", true, 0, "Talk to me baby");
     Character C3("Char3", "JaMarcus", "JaMarcus is the dopest dead dude ever", false, 2, "No thanks!");
 
-    std::vector<Character> V = {C, C2, C3};
-    std::vector<Character> V2 = {C};
+    std::vector<Character> CC = {C2, C3};
 
-    Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, {}, noKey, {}, {}, V);
-    std::cout<< std::endl << C.getName() << std::endl << std::endl;
-    std::cout << V.size();
+    Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, {}, noKey, {}, {}, CC);
+//    std::cout<< std::endl << C.getName() << std::endl << std::endl;
+//    std::cout << R2.NPC.getName();
 
-//    EXPECT_EQ("Char2", R2.characters[0].getID());
+    EXPECT_EQ("Char2", R2.characters[0].getID());
+    EXPECT_EQ("Douglas", R2.characters[0].getName());
+    EXPECT_EQ("JaMarcus", R2.characters[1].getName());
+    EXPECT_EQ("Doug is bald", R2.characters[0].getDescription());
+    EXPECT_TRUE(R2.characters[0].getIsAlive());
+    EXPECT_EQ(0, R2.characters[0].getEventCounter());
+    R2.characters[0].increaseEventCounter();
+    EXPECT_EQ(1, R2.characters[0].getEventCounter());
+    R2.characters[0].killChara();
+    EXPECT_FALSE(R2.characters[0].getIsAlive());
 
 }
