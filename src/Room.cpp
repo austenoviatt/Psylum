@@ -24,12 +24,12 @@ Room::~Room() {
 //}
 
 Room::Room() {
-   name = "DEFAULT ROOM NAME";
-   description = "DEFAULT ROOM DESCRIPTION";
-   doorDescription = "DEFAULT DOOR DESCRIPTION";
-   locked = false;
+   name = "a wall";
+   description = "It's a wall.";
+   doorDescription = "";
+   locked = true;
    inventory = {};
-   key = noKey;
+   key = wall;
    exits = {};
    events = {};
    characters = {};
@@ -69,7 +69,7 @@ return locked;
 
 void Room::getExit() {
    for (auto x : exits)
-      std::cout << x->doorDescription;
+      std::cout << x->doorDescription;Room R3("Desert", "It looks like it hasn't rained here in years.", "You see a door with a sign that says 'Water required'", true, {}, claw, {}, {}, {});
 }
 
 void Room::setExit(std::vector<Room*> A)
