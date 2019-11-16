@@ -4,10 +4,12 @@
 */
 #ifndef ROOM_H
 #define ROOM_H
-#include "KeyID.h"
+#include "KeyItem.h"
 #include "Inventory.h"
 #include "Character.h"
+#include "Events.h"
 #include <vector>
+#include <string>
 
 //nicole made suggestion to include Events in Room
 
@@ -17,14 +19,13 @@ class Room
    /**
     * Default room constructor
     */
-  Room(): {}
+ Room();
 
   /**
   * Room constructor
   */
-  Room::Room(string name, string description, bool locked, Inventory inventory,
-           keyItem key, std::vector<Room*> exits, std::vector<Events> events,
-           std::vector<Character> character)
+  Room(std::string, std::string, std::string, bool, Inventory, keyItem,
+       std::vector<Room*>, std::vector<Events>, std::vector<Character>);
 
    /**
     * Default room destructor
@@ -38,57 +39,52 @@ class Room
    bool locked;
 
    /**
-    * All the items in the room
-    */
-   Inventory inventory;
-
-   /**
-    * The key required to unlock a room
-    */
-   KeyItem key;
-
-   /**
     * Sets the locked status of the room
+    * @param bool Whether room will be locked or not
     * @return lock state of room
     */
-   bool setLock();
+   bool setLock(bool lockedState);
+
+   /**
+   * sets exits for rooms
+   * @param room* the rooms being added
+   */
+   void setExit(std::vector<Room*>);
 
    /**
     * checks whether an exit exists
+    * @param string the room name we are checking for
     * @return does the room connect to desired room
     */
-   bool hasExit();
+   bool hasExit(std::string desiredRoom);
 
    /**
-    * sends player to room through exit
+    * Lists all rooms attached to current room
     * @return room on other side of exit
     */
-   Room getExit();
+   void getExit();
 
    /**
-   * The name of the room
+   * Returns whether the door is locked or not
+   * @return bool door locked is true or not
    */
-   string name;
+   bool getLocked();
+
+   /**
+   * Returns the name of the room
+   * @return string name of room
+   */
+   std::string getName();
 
    /**
    * Description of the room
    */
-   string description;
-
-
-  private:
-   /**
-    * The key that opens the room
-    */
-   KeyItem key;
-
-   std::vector<Room*> exits;
-
+   std::string description;
 
    /**
-    * State of any events that occur in a room
+    * Description of the doorway leading into the room
     */
-    std::vector<Events> events;
+   std::string doorDescription;
 
    /**
     * Inventory of the room
@@ -96,10 +92,27 @@ class Room
    Inventory inventory;
 
    /**
+    * State of any events that occur in a room
+    */
+    std::vector<Events> events;
+
+   /**
     * Characters in the room
     */
-   Character characters;
+   std::vector<Character> characters;
 
+  private:
+   /**
+    * The key that opens the room
+    */
+   keyItem key;
+
+   std::vector<Room*> exits;
+
+  /**
+   * The name of the room
+   */
+   std::string name;
 };
 
 #endif // ROOM_H

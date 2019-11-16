@@ -1,56 +1,83 @@
-/*#include "Room.h"
+
+
+#include "Room.h"
 #include "Character.h"
 #include "Inventory.h"
-#include "keyItem.h"
+#include "KeyItem.h"
+
 #include <string>
 #include <vector>
+#include <iostream>
 
 Room::~Room() {
-  for (uint i = 0; i < characters.size(); i++) {
-    delete[] contents[i];
-    contents[i] = nullptr;
+//  for (uint i = 0; i < events.size(); i++){
+//   delete[] events[i];
+//    events[i] = nullptr;
+//  }
+//  for (uint i = 0; i < exits.size(); i++){
+//   delete[] exits[i];
+//    exits[i] = nullptr;
   }
-  for (uint i = 0; i < events.size(); i++){
-    delete[] contents[i];
-    contents[i] = nullptr;
-  }
-  for (uint i = 0; i < exits.size(); i++){
-    delete[] contents[i];
-    contents[i] = nullptr;
-  }
-  for (uint i = 0; i < inventory.size(); i++){
-    delete[] contents[i];
-    contents[i] = nullptr;
-  }
-  delete[] description;
-  delete[] name;
+//  for (uint i = 0; i < inventory.size(); i++){
+//    delete[] inventory[i];
+//    inventory[i] = nullptr;
+//  }
+//}
+
+Room::Room() {
+   name = "DEFAULT ROOM NAME";
+   description = "DEFAULT ROOM DESCRIPTION";
+   doorDescription = "DEFAULT DOOR DESCRIPTION";
+   locked = false;
+   inventory = {};
+   key = noKey;
+   exits = {};
+   events = {};
+   characters = {};
 }
 
-Room::Room() {PLAYER_H
-string name = "DEFAULT ROOM NAME";
-string description = "DEFAULT ROOM DESCRIPTION";
-bool locked = false;
-inventory inv= nullptr;
-KeyItem key = 0;
-exits = nullptr;
-events = nullptr;
-characters = nullptr;
+Room::Room(std::string a, std::string b, std::string c, bool d, Inventory e,
+           keyItem f, std::vector<Room*> g, std::vector<Events> h,
+           std::vector<Character> i){
+             name = a;
+             description = b;
+             doorDescription = c;
+             locked = d;
+             inventory = e;
+             key = f;
+             exits = g;
+             events = h;
+             characters = i;
 }
 
-Room::Room(string a, string b, bool c, std::vector<Inventory> d,
-           keyItem e, std::vector<Room*> f, std::vector<Events> g,
-           std::vector<Character> h){
-             name = name;
-             description = description;
-             locked = locked;
-             invnetory = d;
-             keyItem = e;
-             exits = f;
-             events = g;
-             characters = h;}
+bool Room::setLock(bool A) {
+   return locked = A;
+}
 
+bool Room::hasExit(std::string A) {
 
+   for (auto x : exits)
+   {
+      if (x->name == A)
+	 return true;
+   }
+   return false;
+}
 
+bool Room::getLocked() {
+return locked;
+}
 
-           }
-*/
+void Room::getExit() {
+   for (auto x : exits)
+      std::cout << x->doorDescription;
+}
+
+void Room::setExit(std::vector<Room*> A)
+{
+  exits.insert(exits.begin(), A.begin(), A.end());
+}
+
+std::string Room::getName() {
+return name;
+}

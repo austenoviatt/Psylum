@@ -14,4 +14,4 @@
 */
 enum keyItem { noKey, room2Key, button2, button1, keycard, claw};
 
-#endif KEYITEM_H
+#endif

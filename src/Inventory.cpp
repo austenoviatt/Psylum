@@ -13,10 +13,7 @@
 #include "Inventory.h"
 #include "Item.h"
 
-using namespace std;
-
 Inventory::Inventory() {
-
 }
 /**
    * Checks to see if an item exists in the inventory
@@ -27,7 +24,7 @@ bool Inventory::hasItem(Item I) {
 	bool ItemFound = false;
 	// Iterate over all elements in Vector
 	 //store the name of the item
-	string ItemName = I.getName();
+	std::string ItemName = I.getName();
 
 	//iterate all items in the inventory
 	for (auto x : items)
@@ -52,6 +49,7 @@ bool Inventory::hasItem(Item I) {
  */
 void Inventory::addItem(Item I) {
 	items.push_back(I);
+	invCount++;
 }
 
 /**
@@ -62,7 +60,7 @@ bool Inventory::removeItem(Item I) {
 	bool ItemFound = false;
 	int indexTracker = 0;
 
-	string ItemName = I.getName();
+	std::string ItemName = I.getName();
 
 	for (auto x : items)
 	{
@@ -72,7 +70,7 @@ bool Inventory::removeItem(Item I) {
 			//change the status and delete the item from the inventory vector
 			ItemFound = true;
 			items.erase(items.begin() + indexTracker);
-
+      invCount--;
 			return true;
 		}
 		indexTracker++;
@@ -90,5 +88,13 @@ bool Inventory::removeItem(Item I) {
 std::vector<Item> Inventory::getItems() {
 	return items;
 }
+
+	/**
+	* @return The num of items in inventory
+	*/
+	int Inventory::getInvCount() {
+    return invCount;
+	}
+
 
 
