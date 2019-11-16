@@ -11,6 +11,7 @@ Psylum Room Map
 -------------
 
 Attributes:
+//*****************************************************************************
 sdesc = string (short description of room)
 ldesc = string (long description of room)
 exits = string (access to other Room(s): north, east, south, west)
@@ -19,12 +20,12 @@ key = keyItem (key required to unlock a room)
 inventory = Inventory (items in the room - if (fixed), item belongs to room and can't be picked up)
 characters = Characters (non-player characters in a room)
 
-
 Note:
 //Event dependent attributes are created, changed or deleted only in the case of an event.
 //This includes moving locations, using an item, completing a challenge etc.
+//*****************************************************************************
 
-
+-------------------------------------------------------------------
 Level 3 (Top floor of building)
 -------------------------------------------------------------------
 startRoom: Room
@@ -44,7 +45,7 @@ west = patient2
 
 locked = false
 
-// events (second visit) = getCaughtByNurse, robNurse
+// events (second visit) = triggerNurse, getCaughtByNurse, robNurse
 // event dependent inventory (second visit) = sedative, patient2Key
 // event dependent characters (second visit) = nurseHilda
 -----------------------------------
@@ -57,7 +58,7 @@ west = l3Hallway1
 locked = false
 inventory = ratPoison
 
-events = triggerNurseHilda
+events = triggerNurse
 -----------------------------------
 patient2: Room
 sdesc = "Annabelle's Room"
@@ -70,7 +71,7 @@ key = patient2Key
 fixedInventory = journal
 characters = annabelle
 
-events = unlockPatient2, sedateAnna, getSnitchedOn
+events = unlockPatient2, sedateAnna, annaSnitches
 -----------------------------------
 l3Hallway2: Room
 sdesc = "Hallway"
@@ -93,7 +94,7 @@ inventory = crowBar, button2
 -----------------------------------
 elevator: Room
 sdesc = "Elevator"
-lsdesc = "You've entered the elevator and the doors shut behind you. There's four floors: 3, 2, 1 and 0. Where would you like to go?"
+lsdesc = "You've entered the elevator and the doors shut behind you. There are four floors: 3, 2, 1 and 0. The buttons are missing for 2 and 1 and a key is required for 0. What do you want to do?"
 
 north = l1Hallway1
 east = l0Hallway
@@ -101,8 +102,9 @@ south = 31Hallway2
 west = l2Hallway1
 
 locked = false
------------------------------------
+events = useButton2
 
+-------------------------------------------------------------------
 Level 2 
 -------------------------------------------------------------------
 l2Hallway1: Room
@@ -117,7 +119,7 @@ west = l2Hallway2
 locked = true
 key = button2
 
-events = useButton2
+events = unlock2
 -----------------------------------
 spaceship: Room
 sdesc = "Spaceship Room"
@@ -126,8 +128,10 @@ lsdesc = "Hundreds of flickering lights, buttons, levers, switches and geometric
 north = l2Hallway1
 
 locked = true
-key = passCode
+key = spaceCode
 inventory = button1
+
+events = unlockSpaceship
 -----------------------------------
 forest: Room
 sdesc = "Fractal Forest"
@@ -160,8 +164,8 @@ south = l2Hallway2
 
 locked = true
 key = crowBar
-inventory = labCoat, computer (fixedInventory)
-events = openOffice, unlockComputer, retrievePassCode
+inventory = labCoat, computer (fixed) // computer may be NPC
+events = openOffice, unlockComputer, getPassCode
 -----------------------------------
 lounge: Room
 sdesc = "Employee's Lounge"
@@ -170,13 +174,13 @@ lsdesc = "As the doors open, the smell of a medicine cabinet and coffee comes wa
 north = l2Hallway2
 
 locked = false
-inventory = computerPass
+inventory = computerPass	//may not need
 characters = doctor
 events = coffeePuzzle
 -----------------------------------
 elevator: Room
 sdesc = "Elevator"
-lsdesc = "You've entered the elevator and the doors shut behind you. There's four floors: 3, 2, 1 and 0. Where would you like to go?"
+lsdesc = "You've entered the elevator and the doors shut behind you. There are four floors: 3, 2, 1 and 0. The button is missing for 2 and a key is required for 0. Where do you want to go?"
 
 north = l1Hallway1
 east = l0Hallway
@@ -184,8 +188,8 @@ south = 31Hallway2
 west = l2Hallway1
 
 locked = false
------------------------------------
 
+-------------------------------------------------------------------
 Level 1
 -------------------------------------------------------------------
 l1Hallway1: Room
@@ -200,7 +204,7 @@ west = kitchen
 locked = true
 key = button1
 
-events = unlockLevel1
+events = unlock1
 -----------------------------------
 patient3: Room
 sdesc = "Bonez's Room"
@@ -233,11 +237,11 @@ south = l1Hallway1
 west = iceRoom
 
 locked = false
-inventory = window (fixedInventory), keyCard
+inventory = window (fixed), keyCard
 
 events = getKeyCard
 // event dependent locked = true (second visit)
-// event dependent key = mushrooms
+// event dependent key = mushrooms (lock hall after moving to ice room, unlock using mushrooms?)
 -----------------------------------
 lobby: Room
 sdesc = "Main Lobby"
@@ -262,7 +266,7 @@ events = lockL1Hallway2, freezeToDeath, mushroomEscape
 -----------------------------------
 elevator: Room
 sdesc = "Elevator"
-lsdesc = "You've entered the elevator and the doors shut behind you. There's four floors: 3, 2, 1 and 0. Where would you like to go?"
+lsdesc = "You've entered the elevator and the doors shut behind you. There are four floors: 3, 2, 1 and 0. A key is required for 0. Where do you want to go?"
 
 north = l1Hallway1
 east = l0Hallway
@@ -270,35 +274,20 @@ south = 31Hallway2
 west = l2Hallway1
 
 locked = false
------------------------------------
 
+-------------------------------------------------------------------
 Level 0 (Basement)
 -------------------------------------------------------------------
+
 skyrim: Room
 sdesc = "Skyrim Room"
-lsdesc = "You're in the basement, surrounded by four narrow concrete walls. In front of you is a large iron gate
-
- There's a sliding door in front of you."
+lsdesc = "You step out of the elevator and into a basement. There's two flickering lights at the end of a dark tunnel. You walk towards the lights and find an unusual large iron door surrounded with stone walls and skeletons on the ground. The door is made with ancient designs and carvings and in the middle is what appears to be a space for a claw.
 
 east = sewer
 west = elevator
 
 locked = true
 key = keyCard
-
-events = unlockLevel0
------------------------------------
-skyrim: Room
-sdesc = "Skyrim Room"
-lsdesc = "You step out of the elevator and into a basement. There's two flickering lights at the end of a dark tunnel. You walk towards the lights and find an unusual large iron door surrounded with stone walls and skeletons on the ground. The door is made with ancient designs and carvings and in the middle is what appears to be a space for a claw.
-
-east = sewer
-west = l0Hallway
-
-locked = true
-key = clawKey
-inventory = ?
-characters = ?
 
 events = useClawKey
 -----------------------------------
@@ -309,11 +298,12 @@ lsdesc = "The air around you smells of rotten eggs! You step out into filthy slu
 east = endRoom
 west = skyrim
 
-locked = false
+locked = true
+key = clawKey
 characters = farmer
 
-events = goatWolfLettuce
-//event dependent inventory = freedom ? 
+events = helpFarmer
+//event dependent inventory = freedom (earned by completing event?)
 -----------------------------------
 endRoom: Room
 sdesc = "You've escaped!"
