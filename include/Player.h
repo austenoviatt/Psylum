@@ -37,20 +37,22 @@ public:
 
 
 	/**
-	 * changes the room the player is in
+	 * changes the room the player is in, increments roomCount
 	 */
 	void moveToRoom(Room* nextRoom);
 
 	/**
-	* returns how many times player has changed rooms
-	* @return room count
+	* how many rooms the player has entered
+	* @return int number of rooms visited
 	*/
 	int getRoomCount();
+
 
   Room* currentRoom;
 private:
 
 int roomCount;
+
 
 
 };

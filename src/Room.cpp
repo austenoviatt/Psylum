@@ -25,12 +25,12 @@ Room::~Room() {
 //}
 
 Room::Room() {
-   name = "DEFAULT ROOM NAME";
-   description = "DEFAULT ROOM DESCRIPTION";
-   doorDescription = "DEFAULT DOOR DESCRIPTION";
-   locked = false;
+   name = "a wall";
+   description = "It's a wall.";
+   doorDescription = "";
+   locked = true;
    inventory = {};
-   key = noKey;
+   key = wall;
    exits = {};
    events = {};
    characters = {};

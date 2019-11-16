@@ -22,6 +22,11 @@ void Player::moveToRoom(Room* nextRoom) {
 	roomCount++;
 }
 
-int Player::getRoomCount() {
-return roomCount;
-}
+/**
+	* how many rooms the player has entered
+	* @return int number of rooms visited
+	*/
+	int Player::getRoomCount() {
+	return roomCount;
+	}
+

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * @author Troy Hatchard
  * @author Lambee Mangal
@@ -107,7 +108,4 @@
    string talk() {
 
    }
-
-
-
 
