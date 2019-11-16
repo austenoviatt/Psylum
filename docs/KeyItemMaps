@@ -1,0 +1,91 @@
+keyItemMap
+
+Attributes:
+//*****************************************************************************
+sdesc = string (short description of keyItem)
+ldesc = string (long description of keyItem)
+location = Room (the location where the keyItem is constructed)
+room = Room (the room where the keyItem is used)
+events = Event (the event caused by the use of the keyItem)
+//*****************************************************************************
+
+
+-------------------------------------------------------------------
+Level 3 (Top floor of building)
+-------------------------------------------------------------------
+patient2Key: keyItem
+sdesc = "Keycard"
+ldesc = "A magnetic key card used to access patient rooms."
+location = l3Hallway1
+room = patient2
+events = triggerNurse
+-----------------------------------
+button2: keyItem
+sdesc = "Button"
+ldesc = "A strange round metal button with the number 2 on it."
+location = storage
+room = l2Hallway1
+events = useButton2
+-----------------------------------
+button1: keyItem
+sdesc = "Button"
+ldesc = "A strange round metal button with the number 1 on it."
+location = spaceship
+room = elevator
+events = unlock1
+-----------------------------------
+spaceCode: keyItem	// might not need 
+sdesc = "Code"
+ldesc = "A four digit code."
+location = doctors
+room = spaceship
+events = unlockSpaceship
+
+-------------------------------------------------------------------
+Level 2 
+-------------------------------------------------------------------
+clawKey: keyItem
+sdesc = "Claw Key"
+ldesc = "A unique golden key shaped like a claw."
+location = forest
+room = skyrim
+events = unlockSewer
+-----------------------------------
+computerPass: keyItem	// might not need
+sdesc = ""
+ldesc = ""
+location = lounge
+room = doctors
+events = unlockComputer
+-----------------------------------
+mushrooms: keyItem	 //could be keyItem to escape iceRoom (unlock hallway)
+sdesc = "Magic Mushrooms"
+ldesc = "These mushrooms contain hallucinogens such as psilocybin and psilocin and an extra special ingredient to spice things up."
+location = forest
+room = iceRoom
+events = unlockl1Hallway2
+
+-------------------------------------------------------------------
+Level 1
+-------------------------------------------------------------------
+keyCard: keyItem
+sdesc = "Key card"
+ldesc = "A magnetic key card used to access restricted areas."
+location = window
+room = elevator
+events = unlockSkyrim
+
+-------------------------------------------------------------------
+Level 0 (Basement)
+-------------------------------------------------------------------
+freedom: keyItem
+sdesc = "Freedom Key"
+ldesc = "This key grants you freedom!"
+location = sewer
+room = endRoom
+events = gameEnd
+-----------------------------------
+
+
+
+
