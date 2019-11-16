@@ -79,8 +79,8 @@ TEST(TestRoom, testInventory) {
 
 TEST(TestRoom, Events){
 
-  Events A("Tree Riddle", "As you walk into the room, a gnarled tree beckons you toward it with a finger-like branch", 0);
-  Events B("Quest for bait", "I need bait to catch my toilet fish!", 2);
+  Events A("Tree Riddle", "As you walk into the room, a gnarled tree beckons you toward it with a finger-like branch");
+  Events B("Quest for bait", "I need bait to catch my toilet fish!");
   std::string nameA = "Tree Riddle";
   std::string nameB = "Quest for bait";
   std::string descA = "As you walk into the room, a gnarled tree beckons you toward it with a finger-like branch";
@@ -98,14 +98,6 @@ TEST(TestRoom, Events){
     EXPECT_EQ(descA, R2.events[0].getDesc());
     EXPECT_EQ(descB, R2.events[1].getDesc());
 
-    EXPECT_EQ(0, R2.events[0].getStage());
-    EXPECT_EQ(2, R2.events[1].getStage());
-
-    R2.events[0].increaseStageCounter();
-    R2.events[1].increaseStageCounter();
-
-    EXPECT_EQ(1, R2.events[0].getStage());
-    EXPECT_EQ(3, R2.events[1].getStage());
 }
 TEST(Room, Inventory){
   Item I("Magic Mushroom", "Will have hallucination when consumed, may die from overdose", true);
