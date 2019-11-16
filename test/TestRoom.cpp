@@ -48,23 +48,17 @@ TEST(TestRoom, HasExit) {
 }
 
 TEST(TestRoom, testInventory) {
-  std::cout << 1;
   Item I("Magic Mushroom", "Will have hallucination when consumed, may die from overdose", true);
-  std::cout << 2;
   Item I2("Lab Coat", "Normal looking lab coat, stolen from the lab", true);
-  std::cout << 3;
   Item I3("DECOY ITEM!!", "THIS ITEM DOESN'T EXIST, IT IS A DECOY", false);
-  std::cout << 4;
+
   Inventory v;
-  std::cout << 5;
   v.addItem(I);
-  std::cout << 6;
   v.addItem(I2);
 
 
 
   Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, v, noKey, {}, {}, {});
-  std::cout << "after";
  // std::cout << R2.inventory->getItems()[0].getName();
 
   EXPECT_TRUE(R2.inventory.hasItem(I));

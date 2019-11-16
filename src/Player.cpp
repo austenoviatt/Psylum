@@ -10,7 +10,7 @@ using namespace std;
 #include "Inventory.h"
 #include "Player.h"
 
-Player::Player(Room* currentRoom, Inventory inventory) : currentRoom{ currentRoom }, inventory {inventory} {
+Player::Player(Room* currentRoom, Inventory inventory, int roomCount) : currentRoom{ currentRoom }, inventory {inventory}, roomCount{ roomCount } {
 
 }
 
@@ -19,5 +19,9 @@ Player::Player(Room* currentRoom, Inventory inventory) : currentRoom{ currentRoo
 	 */
 void Player::moveToRoom(Room* nextRoom) {
 	currentRoom = nextRoom;
+	roomCount++;
 }
 
+int Player::getRoomCount() {
+return roomCount;
+}

@@ -23,7 +23,7 @@ public:
 	/**
 	 * Default constructor
 	 */
-	Player(Room* currentRoom, Inventory inventory);
+	Player(Room* currentRoom, Inventory inventory, int roomCount);
 
 	/**
 	 * Default destructor
@@ -41,11 +41,16 @@ public:
 	 */
 	void moveToRoom(Room* nextRoom);
 
+	/**
+	* returns how many times player has changed rooms
+	* @return room count
+	*/
+	int getRoomCount();
 
   Room* currentRoom;
 private:
 
-
+int roomCount;
 
 
 };
