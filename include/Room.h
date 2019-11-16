@@ -2,7 +2,8 @@
  * CPSC 2720 Fall 2019
  * @authors Austen Oviatt, Lambee Mangal, Troy Hatchard, Sarah Ren
 */
-
+#ifndef ROOM_H
+#define ROOM_H
 #include "KeyID.h"
 #include "Inventory.h"
 #include "Character.h"

@@ -1,4 +1,4 @@
-#include "Room.h"
+/*#include "Room.h"
 #include "Character.h"
 #include "Inventory.h"
 #include "keyItem.h"
@@ -26,7 +26,7 @@ Room::~Room() {
   delete[] name;
 }
 
-Room::Room() {
+Room::Room() {PLAYER_H
 string name = "DEFAULT ROOM NAME";
 string description = "DEFAULT ROOM DESCRIPTION";
 bool locked = false;
@@ -37,9 +37,20 @@ events = nullptr;
 characters = nullptr;
 }
 
-Room::Room(string name, string description, bool locked, Inventory inventory,
-           keyItem key, std::vector<Room*> exits, std::vector<Events> events,
-           std::vector<Character> character){
+Room::Room(string a, string b, bool c, std::vector<Inventory> d,
+           keyItem e, std::vector<Room*> f, std::vector<Events> g,
+           std::vector<Character> h){
+             name = name;
+             description = description;
+             locked = locked;
+             invnetory = d;
+             keyItem = e;
+             exits = f;
+             events = g;
+             characters = h;}
+
+
 
 
            }
+*/

@@ -4,7 +4,6 @@
  * copyright Castor University of Lethbridge
 */
 
-
 #include "gtest/gtest.h"
 #include "Room.h"
 #include <vector>
