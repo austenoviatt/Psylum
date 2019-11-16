@@ -26,7 +26,7 @@ class Game{
    /**
     * Default destructor
     */
-   virtual ~Game();
+   virtual ~Game() {}
 
    /**
     * creates a new game at starting point

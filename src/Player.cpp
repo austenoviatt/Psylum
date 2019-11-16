@@ -10,6 +10,12 @@ using namespace std;
 #include "Inventory.h"
 #include "Player.h"
 
+Player::Player(){
+currentRoom = {};
+inventory = {};
+roomCount = 0;
+}
+
 Player::Player(Room* currentRoom, Inventory inventory, int roomCount) : currentRoom{ currentRoom }, inventory {inventory}, roomCount{ roomCount } {
 
 }

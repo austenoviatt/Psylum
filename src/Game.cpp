@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /**
  * @author Troy Hatchard
  * @author Lambee Mangal
@@ -14,9 +13,9 @@
 #include "Player.h"
 #include "Game.h"
 
-//Game::Game() {
+Game::Game() {
+}
 
-//}
 
     /**
     * creates a new game at starting point

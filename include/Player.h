@@ -23,6 +23,11 @@ public:
 	/**
 	 * Default constructor
 	 */
+	 Player();
+
+   /**
+   * Constructor
+   */
 	Player(Room* currentRoom, Inventory inventory, int roomCount);
 
 	/**
