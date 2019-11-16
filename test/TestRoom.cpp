@@ -30,11 +30,12 @@ TEST(TestRoom, TestAndSetLocked) {
 
 TEST(TestRoom, HasExit) {
 
+  Room NONE("NO DOOR", "", "", true, {}, keycard, {}, {}, {});
   Room R;
   Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, {}, noKey, {}, {}, {});
   Room R3("Desert", "It looks like it hasn't rained here in years.", "You see a door with a sign that says 'Water required'", true, {}, claw, {}, {}, {});
 
-  std::vector<Room*> R2Exit = {&R, &R3};
+  std::vector<Room*> R2Exit= {&R, &NONE, &NONE, &R3};
   std::vector<Room*> R3Exit = {&R, &R2};
 
   R2.setExit(R2Exit);
@@ -60,7 +61,7 @@ TEST(TestRoom, testInventory) {
 
   Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, v, noKey, {}, {}, {});
 
- // std::cout << R2.inventory->getItems()[0].getName();
+ //std::cout << R2.inventory.getItems()[0].getName();
 
   EXPECT_TRUE(R2.inventory.hasItem(I));
   EXPECT_TRUE(R2.inventory.hasItem(I2));
