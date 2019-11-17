@@ -53,9 +53,9 @@ public:
 	*/
 	int getInvCount();
 
-
+std::vector<Item> items;
 private:
-	std::vector<Item> items;
+
 	int invCount;
 
 };

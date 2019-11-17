@@ -49,7 +49,7 @@ class Game{
     * Processes user input into game commands
     * @return string of command the program can understand
     */
-    void processCommand(string userInput);
+    string processCommand(string userInput);
 
    /**
     * removes an item from an inventory
@@ -112,6 +112,8 @@ class Game{
      {"talk", "speak"},
      {"help"},
      {"inventory", "show"},
+     {}
+
    };
 
 

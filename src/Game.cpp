@@ -16,7 +16,6 @@
 
 Game::Game() {
 }
-
     /**
     * creates a new game at starting point
     */
@@ -44,7 +43,7 @@ Game::Game() {
     * Processes user input into game commands
     * @return string of command the program can understand
     */
-   void Game::processCommand(string userInput) {
+   string Game::processCommand(string userInput) {
       string input = userInput;
       //convert userInput into lowercase letters
       transform(input.begin(), input.end(), input.begin(), ::tolower);
@@ -96,6 +95,8 @@ Game::Game() {
             }
         }
       }
+      //did not find the corresponding command
+      return "Input Invalid";
 
    }
 
@@ -103,7 +104,7 @@ Game::Game() {
     * removes an item from an inventory
     * @return a string explaining what happened
     */
-   //string Game::drop() {
+   //string Game::drop(vector<string> result) {
 
    //}
 
@@ -112,6 +113,21 @@ Game::Game() {
     * @return a string explaining what happened
     */
    string Game::go(vector<string> result) {
+      //grab player's current location
+      Room* currentRoom = player.currentRoom;
+
+      if (result[1] == "forward" || result[1] == "front") {
+
+      }
+      else if (result[1] == "left") {
+
+      }
+      else if (result[1] == "right") {
+
+      }
+      else if (result[1] == "backward" || result[1] == "back") {
+
+      }
 
    }
 
@@ -155,10 +171,10 @@ Game::Game() {
     */
    string Game::look(vector<string> result) {
       int inputSize = result.size();
+      string lookType;
       //grab player's current location
       Room* currentRoom = player.currentRoom;
-
-      //process the second word
+      //process the second word, what type of word?
 
 
       if (inputSize == 1) {
@@ -175,9 +191,9 @@ Game::Game() {
           }
           std::cout << "\n";
         }
-        else {
+        //else if (result[1] == ) {
 
-        }
+        //}
       }
       else {
         return "Input Invalid";
@@ -189,7 +205,16 @@ Game::Game() {
     * @return a string explaining what happened
     */
    string Game::take(vector<string> result) {
+      //grab player's current location
+      Room* currentRoom = player.currentRoom;
 
+      for (int i = 0; i < currentRoom->inventory.items.size();i++) {
+        if (result[1] == currentRoom->inventory.items[i].getName()) {
+         //item found, pickup item
+
+        }
+      }
+      return "Input Invalid";
    }
 
    /**
@@ -197,6 +222,16 @@ Game::Game() {
     * @return a string explaining what happened
     */
    string Game::talk(vector<string> result) {
+      //grab player's current location
+      Room* currentRoom = player.currentRoom;
+
+      for (int i = 0; i < currentRoom->characters.size(); i++) {
+        if (result[1] == currentRoom->characters[i].getName()) {
+          //npc found
+          return "talk to " + currentRoom->characters[i].getName();
+        }
+      }
+      return "Input Invalid";
 
    }
 
