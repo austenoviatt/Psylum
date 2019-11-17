@@ -199,11 +199,19 @@ Game::Game() {
     * @return a string explaining what happened
     */
    string Game::inventory(vector<string> result) {
+      if (player.inventory.getInvCount() != 0) {
+          std::cout << "In your inventory you have: " << "\n";
+        for (int i = 0; i < player.inventory.getInvCount(); i++) {
 
-      for (int i = 0; i < player.inventory.getInvCount(); i++) {
-        std::cout<< player.inventory.getItems()[i].getName() << " ";
+        std::cout<< player.inventory.getItems()[i].getName() << ", ";
       }
       std::cout << "\n";
+      }
+      else {
+        std::cout << "Your inventory is empty." << "\n";
+      }
+
+
    }
 
    /**
