@@ -231,22 +231,36 @@ Game::Game() {
       }
       else if (inputSize == 2) {
         //index 1 is important here
-        if (result[1] == "around") {
+        if (result[1] == "around" || "room") {
           return currentRoom->description + "\n" + currentRoom->getDoorDesc();
         }
         else if (result[1] == "inventory") {
-          for (int i = 0; i < player.inventory.getInvCount(); i++) {
-            std::cout<< player.inventory.getItems()[i].getName() << " ";
-          }
-          std::cout << "\n";
+          return inventory(result);
         }
-        //else if (result[1] == ) {
+        //looping through item on player
+        for (int i = 0; i < player.inventory.items.size(); i++) {
+          if (result[1] == player.inventory.getItems()[i].getName()) {
+            return player.inventory.getItems()[i].getItemDesc();
+          }
+        }
+        //looping through item in room
+        for (int i = 0; i < currentRoom.inventory.items.size(); i++) {
+          if (result[1] == currentRoom.inventory.getItems()[i].getName()) {
+            return currentRoom.inventory.getItems()[i].getItemDesc();
+          }
+        }
 
-        //}
+        //looping through the npc in the room
+        for (int i = 0; i < currentRoom.characters.size(); i++) {
+          if (result[1] == currentRoom.characters[i].getName()) {
+            return currentRoom.characters[i].getDescription();
+          }
+        }
       }
       else {
         return "Input Invalid";
       }
+      return "Input Invalid";
    }
 
    /**
@@ -259,8 +273,11 @@ Game::Game() {
 
       for (int i = 0; i < currentRoom->inventory.items.size();i++) {
         if (result[1] == currentRoom->inventory.items[i].getName()) {
-         //item found, pickup item
-
+         //item found, pickup item, remove item from room inventory and add it to player inventory
+         string output = currentRoom->inventory.items[i];
+         player.inventory.addItem(currentRoom->inventory.items[i]);
+         currentRoom.inventory.removeItem(currentRoom->inventory.items[i]);
+          return "You picked up " + output + " and put it into your pocket.";
         }
       }
       return "Input Invalid";
