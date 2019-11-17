@@ -14,7 +14,6 @@
 #include "Item.h"
 
 Inventory::Inventory() {
-
 }
 /**
    * Checks to see if an item exists in the inventory
@@ -50,6 +49,7 @@ bool Inventory::hasItem(Item I) {
  */
 void Inventory::addItem(Item I) {
 	items.push_back(I);
+	invCount++;
 }
 
 /**
@@ -70,7 +70,7 @@ bool Inventory::removeItem(Item I) {
 			//change the status and delete the item from the inventory vector
 			ItemFound = true;
 			items.erase(items.begin() + indexTracker);
-
+      invCount--;
 			return true;
 		}
 		indexTracker++;
@@ -90,5 +90,13 @@ std::vector<Item> Inventory::getItems() {
 
 
 }
+
+	/**
+	* @return The num of items in inventory
+	*/
+	int Inventory::getInvCount() {
+    return invCount;
+	}
+
 
 

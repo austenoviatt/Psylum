@@ -48,9 +48,14 @@ public:
 	*/
 	std::vector<Item> getItems();
 
+	/**
+	* @return The num of items in inventory
+	*/
+	int getInvCount();
 
+std::vector<Item> items;
 private:
-	std::vector<Item> items;
+
 	int invCount;
 
 };

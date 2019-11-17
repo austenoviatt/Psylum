@@ -33,6 +33,7 @@ TEST(Player, Inventory){
 TEST(Player, Room){
 
   Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, {}, noKey, {}, {}, {});
+
   Room R3("Desert", "It looks like it hasn't rained here in years.", "You see a door with a sign that says 'Water required'", true, {}, claw, {}, {}, {});
   std::string nameR2 = "Forest";
   std::string nameR3 = "Desert";

@@ -4,6 +4,7 @@
 #include "Character.h"
 #include "Inventory.h"
 #include "KeyItem.h"
+
 #include <string>
 #include <vector>
 #include <iostream>
@@ -66,6 +67,7 @@ bool Room::hasExit(std::string A) {
 bool Room::getLocked() {
 return locked;
 }
+
 
 std::string Room::getExit() {
   std::string allDoorDesc;
