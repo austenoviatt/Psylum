@@ -10,7 +10,7 @@
 void loadGame(std::string filename);
 
 int main() {
-  loadGame("testSave.csv");
+  loadGame("testSave2.csv");
 
   return 0;
 }
@@ -40,13 +40,8 @@ void loadGame(std::string filename) {
       rowVec.clear();
 
       while(s >> std::ws) {
-        if (s.peek() == '"') {
-          s >> quoted(cell);
-          std::string discard;
-          std::getline(s, discard, ',')
-        } else {
-          getline(s, cell, ',');
-        }
+          getline(s, cell, '|');
+
         rowVec.push_back(cell);
       }
       std::cout << "Row" << rowCount;
@@ -54,9 +49,10 @@ void loadGame(std::string filename) {
         std::cout << "|Cell" << i << ": " << rowVec[i-1];
       }
 
+      if rowVec[]
 
-
-      std::cout << line << std::endl;
+      std::cout << std::endl;
+      //std::cout << line << std::endl;
    //   std::cout << saveFile.eof();
 //   std::cin >> ignore.
       rowCount++;
