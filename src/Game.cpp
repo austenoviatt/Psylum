@@ -326,6 +326,34 @@ Game::Game() {
     * @return a string explaining what happened
     */
    string Game::use(vector<string> result) {
+     int inputSize = result.size();
+
+     if (inputSize == 2) {
+        for (int i= 0; i < player.inventory.getInvCount(); i++) {
+        if (result[1] == player.inventory.getItems()[i].getName()) {
+          return player.inventory.getItems()[i].use(result);
+
+        }
+     }
+     }
+     else if (inputSize >= 3) {
+        for (int i= 0; i < player.inventory.getInvCount(); i++) {
+        if (result[1] == player.inventory.getItems()[i].getName()) {
+          return player.inventory.getItems()[i].use(result);
+        }
+        }
+        for (int i= 0; i < player.inventory.getInvCount(); i++) {
+        if (result[2] == player.inventory.getItems()[i].getName()) {
+          return player.inventory.getItems()[i].use(result);
+        }
+        }
+        result[1] = result[1] + result[2];
+        //erase the second item name
+        result.erase(result.begin() + 2);
+        use(result);
+     }
+
+     return "Input Invalid";
 
    }
 
