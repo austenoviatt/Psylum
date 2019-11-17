@@ -1,0 +1,53 @@
+*|Items|||||||
+name|description|fixed||||||
+ratpoison|Half a bag of extremely poisonous substances! Ingredients include arsenic, barium, and thallium.|false||||||
+annabellesjournal|They call it a hospital, but I know better. The pills and the needles keep coming, as does the cold and boring food. There is no rest from the screams of others but at least it keeps me company. Sometimes in my dreams, I hear whispers telling me there's light at the end of the tunnel. Is that where my friends have gone? The doctors and nurses promise they will fix me if I cooperate. HAHAHA! I will show them, I don't need fixing....|true||||||
+sedative|An injectable drug to calm down patients.|false||||||
+crowbar|A metal bar with a single curve end and flattened points with a small fissure for removing nails on the other.|false||||||
+magicmushrooms|These mushrooms contain hallucinogens such as psilocybin and psilocin and an extra special ingredient to spice things up.|false||||||
+worm|A soft, slender and tube-like insect with no limbs or eyes. Yum!|false||||||
+labcoat|A loose-fitting white coat worn by doctors in a laboratory or medical facility.|false||||||
+window|A small window at the end of the hallway on floor 1. This bad boy is cracked open!|true||||||
+magnet|A small refrigerator magnet which attracts iron and some other materials.|false||||||
+fishingrod|A long and slender rod with a link and hook used to reel in fish...or other things.|false||||||
+magnetrod|A fishing rod with a fridge magnet in place of the hook|false||||||
+coffee|Mmmmm… Coffee|false||||||
+poisoncoffee|A cup of poison coffee. Better not drink this!|false||||||
+roomkey|An employee key card. This looks like it could get you into some secured rooms.|false||||||
+button2|A button with the number 2 on it. There are some wires sticking out of the back.|false||||||
+button1|A button with the number 1 on it. There are some wires sticking out of the back.|false||||||
+keycard|A key card with the word “CLASSIFIED” plastered on the back. I wonder what this will open?|false||||||
+claw|There are three animals on the claw, a wolf, a goat and… a cabbage?. It looks like it might fit in somewhere. |false||||||
+||||||||
+*|Inventory|||||||
+InventoryName|Items|||||||
+closetInv|ratpoison|||||||
+patient2roomInv|annabellesjournal|||||||
+storageInv|crowbar|button2||||||
+l3Hallway2Inv|sedative|roomkey||||||
+forestInv|magicmushrooms|worms|claw|||||
+doctorsInv|labcoat|||||||
+l1Hallway2Inv|window|magnet|keycard|||||
+spaceshipInv|button1|||||||
+playerInv||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+*|Room|||||||
+name|description|doorDescription|locked|inventory|key|exits|events|characters
+startRoom|"You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your head is throbbing. Your nostrils fill with a stagnant smell. As you begin to slowly move yours eyes around the room, you notice something strange...there's no windows or natural light. You pull yourself up and notice a small metal rolling tray beside your bed, a chair in the corner and crack of light coming from the hallway. You place your feet on the hard cold floor. You limp out of the bed, holding one hand over the sharp shooting pain in your stomach, and using the other for balance. You push yourself off the wall near the door and suddenly, you feel you're hand is wet...it's a patch of fresh white paint. You take a closer look and notice the words written beneath it...""GET OUT BEFORE YOU LOSE YOURSELF!"""|White door|false|||l3Hallway1|Escaped|

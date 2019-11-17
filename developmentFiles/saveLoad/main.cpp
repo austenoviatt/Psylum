@@ -29,6 +29,7 @@ void loadGame(std::string filename) {
 
     std::string line, cell;
     std::vector<std::string> rowVec;
+    std::string object;
     int rowCount = 1;
 
     while(!saveFile.eof()) {
@@ -49,7 +50,21 @@ void loadGame(std::string filename) {
         std::cout << "|Cell" << i << ": " << rowVec[i-1];
       }
 
-      if rowVec[]
+      if (rowVec[0] == '*') {
+        object = rowVec[1];
+      } else {
+
+        switch(object) {
+        case "Items":
+          {
+
+          }
+
+
+      }
+
+      }
+
 
       std::cout << std::endl;
       //std::cout << line << std::endl;
@@ -59,3 +74,6 @@ void loadGame(std::string filename) {
     }
   } else std::cout << "Error: File doesn't exist!";
 }
+
+
+void buildItems()
