@@ -99,6 +99,11 @@ class Game{
     */
    string use(vector<string> result);
 
+   /**
+    * display a page of text to give player all the possible commands in the game
+    */
+   string displayHelp();
+
   private:
 
    std::vector<Room> locations;
@@ -108,12 +113,10 @@ class Game{
      {"go"},
      {"look", "check", "inspect", "see"},
      {"take", "get", "grab"},
-     {"use"},
+     {"use", "give", "add"},
      {"talk", "speak"},
      {"help"},
-     {"inventory", "show"},
-
-
+     {"inventory", "inv", "i"},
    };
 
 

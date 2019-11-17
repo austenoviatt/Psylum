@@ -211,11 +211,11 @@ Game::Game() {
       int inputSize = result.size();
       std::string returnStatement;
       if (inputSize == 1) {
-        //pop the help page
+        return displayHelp();
       }
       else if (inputSize == 2) {
         if (result[1] == "me") {
-           //pop the help page
+           return displayHelp();
         }
         else {
           returnStatement = strcat("Input Invalid","\n");
@@ -402,9 +402,21 @@ Game::Game() {
         result.erase(result.begin() + 2);
         use(result);
      }
-
      returnStatement = strcat("Input Invalid","\n");
       return returnStatement;
+   }
+
+   string Game:displayHelp() {
+     std::stringstream ss;
+      ss << "HELP PAGE" << "\n" << "\n"
+      << "Available Commands:" << "\n"
+      << "Move around: go forward, go right, go left, go back OR go red door, go blue door……" << "\n"
+      << "Look around: look, look <npc>" << "\n"
+      << "Items: look <Item>, take <Item>, give <Item>, use <Item>, use <Item1> with <Item2>, use <Item> on <npc>, add <Item1> to <Item2>" << "\n"
+      << "Talk to npc: talk <npc>" << "\n"
+      << "Inventory: inventory, inv, i" << "\n";
+      ss = ss.str();
+      return ss;
 
    }
 
