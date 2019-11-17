@@ -125,7 +125,7 @@ Game::Game() {
       else if (result[1] == "right") {
 
       }
-      else if (result[1] == "backward" || result[1] == "back") {
+      else if (result[1] == "backward" || result[1] == "back" || result[1] == "behind") {
 
       }
 
