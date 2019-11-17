@@ -45,6 +45,7 @@ Game::Game() {
     * @return string of command the program can understand
     */
    string Game::processCommand(string userInput) {
+     std::string returnStatement;
       string input = userInput;
       //convert userInput into lowercase letters
       transform(input.begin(), input.end(), input.begin(), ::tolower);
@@ -97,7 +98,8 @@ Game::Game() {
         }
       }
       //did not find the corresponding command
-      return "Input Invalid";
+      returnStatement = strcat("Input Invalid","\n");
+      return returnStatement;
 
    }
 
@@ -224,10 +226,7 @@ Game::Game() {
       else {
           returnStatement = strcat("Your inventory is empty.","\n");
           return returnStatement;
-
       }
-
-
    }
 
    /**
