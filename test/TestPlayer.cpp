@@ -21,7 +21,7 @@ TEST(Player, Inventory){
 
   Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, v, noKey, {}, {}, {});
 
-  Player P(&R2, v2);
+  Player P(&R2, v2, 0);
 
   EXPECT_TRUE(P.inventory.hasItem(I3));
   EXPECT_TRUE(P.inventory.removeItem(I3));

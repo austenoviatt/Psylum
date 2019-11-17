@@ -9,14 +9,6 @@ using namespace std;
 
 #include "Inventory.h"
 #include "Player.h"
-<<<<<<< HEAD
-Player::Player() {
-  currentRoom = {};
-  inventory = {};
-
-}
-Player::Player(Room* currentRoom, Inventory inventory) : currentRoom{ currentRoom }, inventory {inventory} {
-=======
 
 Player::Player(){
 currentRoom = {};
@@ -25,7 +17,7 @@ roomCount = 0;
 }
 
 Player::Player(Room* currentRoom, Inventory inventory, int roomCount) : currentRoom{ currentRoom }, inventory {inventory}, roomCount{ roomCount } {
->>>>>>> abf7186e3ddf297ad5551ddc525b15d5a5af231d
+
 
 }
 
