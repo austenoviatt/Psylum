@@ -112,7 +112,7 @@ class Game{
      {"talk", "speak"},
      {"help"},
      {"inventory", "show"},
-     {}
+
 
    };
 
