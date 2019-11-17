@@ -48,6 +48,23 @@ TEST(TestRoom, HasExit) {
 
 }
 
+TEST(testRoom, testGetExit){
+  Room NONE("NO DOOR", "", "", true, {}, keycard, {}, {}, {});
+  Room R;
+  Room R2("Forest", "It's a huge forest!", "red door", false, {}, noKey, {}, {}, {});
+  Room R3("Desert", "It looks like it hasn't rained here in years.", "green door", true, {}, claw, {}, {}, {});
+
+  std::vector<Room*> R2Exit= {&R, &NONE, &NONE, &R3};
+  std::vector<Room*> R3Exit = {&R, &R2};
+  std::vector<Room*> RExit = {&R2, &R, &R, &R3};
+
+  R2.setExit(R2Exit);
+  R3.setExit(R3Exit);
+  R.setExit(RExit);
+
+  //std::cout << R.getExit();
+
+}
 TEST(TestRoom, testInventory) {
 
   Item I("Magic Mushroom", "Will have hallucination when consumed, may die from overdose", true);

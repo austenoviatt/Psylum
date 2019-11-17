@@ -67,9 +67,34 @@ bool Room::getLocked() {
 return locked;
 }
 
-void Room::getExit() {
-   for (auto x : exits)
-      std::cout << x->doorDescription;Room R3("Desert", "It looks like it hasn't rained here in years.", "You see a door with a sign that says 'Water required'", true, {}, claw, {}, {}, {});
+std::string Room::getExit() {
+  std::string allDoorDesc;
+  for (int i = 0; i < exits.size(); i++){
+      if (i == 0 && exits[i]->getDoorDesc() != ""){
+        allDoorDesc += "There is a ";
+        allDoorDesc += exits[i]->getDoorDesc();
+        allDoorDesc += " in front of you. ";
+      }
+      else if (i == 1 && exits[i]->getDoorDesc() != ""){
+        allDoorDesc += "There is a ";
+        allDoorDesc += exits[i]->getDoorDesc();
+        allDoorDesc += " to your right. ";
+      }
+      else if (i == 3 && exits[i]->getDoorDesc() != ""){
+        allDoorDesc += "There is a ";
+        allDoorDesc += exits[i]->getDoorDesc();
+        allDoorDesc += " behind you. ";
+      }
+      else if (i == 4 && exits[i]->getDoorDesc() != ""){
+        allDoorDesc += "There is a ";
+        allDoorDesc += exits[i]->getDoorDesc();
+        allDoorDesc += " to your left. ";
+      }
+
+      //allDoorDesc += exits[i]->getDoorDesc();//Room R3("Desert", "It looks like it hasn't rained here in years.", "You see a door with a sign that says 'Water required'", true, {}, claw, {}, {}, {});
+  }
+      return allDoorDesc;
+
 }
 
 void Room::setExit(std::vector<Room*> A)
@@ -80,3 +105,6 @@ void Room::setExit(std::vector<Room*> A)
 std::string Room::getName() {
 return name;
 }
+
+std::string Room::getDoorDesc(){
+return doorDescription;}
