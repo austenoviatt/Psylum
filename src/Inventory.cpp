@@ -87,6 +87,8 @@ bool Inventory::removeItem(Item I) {
 */
 std::vector<Item> Inventory::getItems() {
 	return items;
+
+
 }
 
 	/**

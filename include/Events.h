@@ -20,7 +20,7 @@
    * @param name the name of the event
    * @param stage what stage in the event the player is
    */
-   Events(std::string name = "DEFAULT EVENT NAME", std::string eventDescription = "DEFAULT EVENT DESCRIPTION", uint stage = 0);
+   Events(std::string name = "DEFAULT EVENT NAME", std::string eventDescription = "DEFAULT EVENT DESCRIPTION");
 
    /**
    * Default destructor
@@ -34,25 +34,13 @@
    std::string getName();
 
    /**
-   * returns what point in the event the player is current at
-   * @return uint the stage of the event
-   */
-   uint getStage();
-
-   /**
    * prints the description of the event
    */
    std::string getDesc();
 
-   /**
-   * increments stage by 1
-   */
-   void increaseStageCounter();
-
  private:
    std::string name;
    std::string eventDescription;
-   uint stage;
  };
 
  #endif // EVENTS_H

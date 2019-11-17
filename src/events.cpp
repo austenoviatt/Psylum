@@ -6,10 +6,9 @@
 
  #include "Events.h"
 
- Events::Events(std::string a, std::string b, uint c){
+ Events::Events(std::string a, std::string b){
    name = a;
    eventDescription = b;
-   stage = c;
  }
 
  Events::~Events(){}
@@ -20,12 +19,4 @@
 
  std::string Events::getDesc(){
  return eventDescription;
- }
-
- uint Events::getStage(){
- return stage;
- }
-
- void Events::increaseStageCounter(){
- ++stage;
  }

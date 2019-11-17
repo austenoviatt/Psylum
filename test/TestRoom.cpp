@@ -15,7 +15,7 @@ TEST(TestRoom, TestAndSetLocked) {
   Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, I, noKey, {}, {}, {});
   Room R3("Desert", "It looks like it hasn't rained here in years.", "You see a door with a sign that says 'Water required'", true, I, claw, {}, {}, {});
 
-  EXPECT_FALSE(R.getLocked());
+  EXPECT_TRUE(R.getLocked());
   EXPECT_FALSE(R2.getLocked());
   EXPECT_TRUE(R3.getLocked());
 
@@ -30,18 +30,20 @@ TEST(TestRoom, TestAndSetLocked) {
 
 TEST(TestRoom, HasExit) {
 
+
+  Room NONE("NO DOOR", "", "", true, {}, keycard, {}, {}, {});
   Room R;
   Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, {}, noKey, {}, {}, {});
   Room R3("Desert", "It looks like it hasn't rained here in years.", "You see a door with a sign that says 'Water required'", true, {}, claw, {}, {}, {});
 
-  std::vector<Room*> R2Exit = {&R, &R3};
+  std::vector<Room*> R2Exit= {&R, &NONE, &NONE, &R3};
   std::vector<Room*> R3Exit = {&R, &R2};
 
   R2.setExit(R2Exit);
   R3.setExit(R3Exit);
 
   EXPECT_TRUE(R2.hasExit("Desert"));
-  EXPECT_TRUE(R2.hasExit("DEFAULT ROOM NAME"));
+  EXPECT_TRUE(R2.hasExit("a wall"));
   EXPECT_FALSE(R.hasExit("Forest"));
   EXPECT_TRUE(R3.hasExit("Forest"));
 
@@ -49,9 +51,11 @@ TEST(TestRoom, HasExit) {
 
 TEST(TestRoom, testInventory) {
 
+
   Item I("Magic Mushroom", "Will have hallucination when consumed, may die from overdose", true);
   Item I2("Lab Coat", "Normal looking lab coat, stolen from the lab", true);
   Item I3("DECOY ITEM!!", "THIS ITEM DOESN'T EXIST, IT IS A DECOY", false);
+
   Inventory v;
   v.addItem(I);
   v.addItem(I2);
@@ -78,8 +82,8 @@ TEST(TestRoom, testInventory) {
 
 TEST(TestRoom, Events){
 
-  Events A("Tree Riddle", "As you walk into the room, a gnarled tree beckons you toward it with a finger-like branch", 0);
-  Events B("Quest for bait", "I need bait to catch my toilet fish!", 2);
+  Events A("Tree Riddle", "As you walk into the room, a gnarled tree beckons you toward it with a finger-like branch");
+  Events B("Quest for bait", "I need bait to catch my toilet fish!");
   std::string nameA = "Tree Riddle";
   std::string nameB = "Quest for bait";
   std::string descA = "As you walk into the room, a gnarled tree beckons you toward it with a finger-like branch";
@@ -97,14 +101,32 @@ TEST(TestRoom, Events){
     EXPECT_EQ(descA, R2.events[0].getDesc());
     EXPECT_EQ(descB, R2.events[1].getDesc());
 
-    EXPECT_EQ(0, R2.events[0].getStage());
-    EXPECT_EQ(2, R2.events[1].getStage());
+}
+TEST(Room, Inventory){
+  Item I("Magic Mushroom", "Will have hallucination when consumed, may die from overdose", true);
+  Item I2("Lab Coat", "Normal looking lab coat, stolen from the lab", true);
+  Item I3("DECOY ITEM!!", "THIS ITEM DOESN'T EXIST, IT IS A DECOY", false);
+  Inventory v;
+  v.addItem(I);
+  v.addItem(I2);
 
-    R2.events[0].increaseStageCounter();
-    R2.events[1].increaseStageCounter();
 
-    EXPECT_EQ(1, R2.events[0].getStage());
-    EXPECT_EQ(3, R2.events[1].getStage());
+
+  Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, v, noKey, {}, {}, {});
+
+ //std::cout << R2.inventory.getItems()[0].getName();
+
+  EXPECT_TRUE(R2.inventory.hasItem(I));
+  EXPECT_TRUE(R2.inventory.hasItem(I2));
+  EXPECT_FALSE(R2.inventory.hasItem(I3));
+
+  R2.inventory.addItem(I3);
+  EXPECT_EQ(I3.getName(), R2.inventory.getItems()[2].getName());
+
+  EXPECT_TRUE(R2.inventory.removeItem(I3));
+  EXPECT_TRUE(R2.inventory.removeItem(I2));
+  EXPECT_FALSE(R2.inventory.removeItem(I3));
+  EXPECT_FALSE(v.hasItem(I3));
 
 }
 

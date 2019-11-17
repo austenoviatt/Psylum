@@ -15,8 +15,13 @@
 #include<bits/stdc++.h>
 
 Game::Game() {
+<<<<<<< HEAD
 
 }
+=======
+}
+
+>>>>>>> abf7186e3ddf297ad5551ddc525b15d5a5af231d
 
     /**
     * creates a new game at starting point
@@ -208,7 +213,4 @@ Game::Game() {
    string Game::use(vector<string> result) {
 
    }
-
-
-
 
