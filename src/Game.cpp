@@ -7,6 +7,7 @@
  */
 
 #include <string>
+#include <sstream>
 #include <vector>
 #include <iostream>
 #include "Room.h"
@@ -115,15 +116,18 @@ Game::Game() {
    string Game::go(vector<string> result) {
       //grab player's current location
       Room* currentRoom = player.currentRoom;
+      std::string returnStatement;
 
       for (int i = 0; i < currentRoom->exits.size(); i++) {
           if (currentRoom->exits[i]->getDoorDesc() == result[1]) {
             if (currentRoom->exits[i]->getLocked() == false) {
               player.moveToRoom(currentRoom->exits[i]);
-              return currentRoom->getDoorDesc();
+              returnStatement = currentRoom->getDoorDesc();
+              return returnStatement;
             }
             else if (currentRoom->exits[i]->getLocked() == true) {
-              return "the room is locked" << "\n";
+              returnStatement = strcat("the room is locked","\n");
+              return returnStatement;
             }
           }
       }
@@ -133,7 +137,8 @@ Game::Game() {
               return currentRoom->getDoorDesc();
           }
           else if (currentRoom->exits[0]->getLocked() == true) {
-              return "the room is locked" << "\n";
+              returnStatement = strcat("the room is locked","\n");
+              return returnStatement;
           }
       }
 
@@ -144,7 +149,8 @@ Game::Game() {
               return currentRoom->getDoorDesc();
           }
           else if (currentRoom->exits[1]->getLocked() == true) {
-              return "the room is locked" << "\n";
+              returnStatement = strcat("the room is locked","\n");
+              return returnStatement;
           }
 
       }
@@ -154,7 +160,8 @@ Game::Game() {
               return currentRoom->getDoorDesc();
           }
           else if (currentRoom->exits[2]->getLocked() == true) {
-              return "the room is locked" << "\n";
+              returnStatement = strcat("the room is locked","\n");
+              return returnStatement;
 
           }
       }
@@ -164,12 +171,15 @@ Game::Game() {
               return currentRoom->getDoorDesc();
           }
           else if (currentRoom->exits[3]->getLocked() == true) {
-              return "the room is locked" << "\n";
+              returnStatement = strcat("the room is locked","\n");
+              return returnStatement;
 
           }
       }
 
-      return "Input Invalid";
+      returnStatement = strcat("Input Invalid","\n");
+      return returnStatement;
+
    }
 
    /**
@@ -178,6 +188,7 @@ Game::Game() {
     */
    string Game::help(vector<string> result) {
       int inputSize = result.size();
+      std::string returnStatement;
       if (inputSize == 1) {
         //pop the help page
       }
@@ -186,11 +197,13 @@ Game::Game() {
            //pop the help page
         }
         else {
-          return "Input Invalid" << "\n";
+          returnStatement = strcat("Input Invalid","\n");
+          return returnStatement;
         }
       }
       else {
-        return "Input Invalid" << "\n";
+        returnStatement = strcat("Input Invalid","\n");
+        return returnStatement;
       }
    }
 
@@ -199,16 +212,19 @@ Game::Game() {
     * @return a string explaining what happened
     */
    string Game::inventory(vector<string> result) {
+     std::string returnStatement;
       if (player.inventory.getInvCount() != 0) {
           std::cout << "In your inventory you have: " << "\n";
         for (int i = 0; i < player.inventory.getInvCount(); i++) {
 
-        std::cout<< player.inventory.getItems()[i].getName() << ", ";
+        std::cout<< player.inventory.getItems()[i].getName() + ", ";
       }
       std::cout << "\n";
       }
       else {
-        std::cout << "Your inventory is empty." << "\n";
+          returnStatement = strcat("Your inventory is empty.","\n");
+          return returnStatement;
+
       }
 
 
@@ -219,20 +235,19 @@ Game::Game() {
     * @return a string explaining what happened
     */
    string Game::look(vector<string> result) {
+     std::string returnStatement;
       int inputSize = result.size();
 
       //grab player's current location
       Room* currentRoom = player.currentRoom;
-      //process the second word, what type of word?
-
 
       if (inputSize == 1) {
-        return currentRoom->description + "\n" + currentRoom->getDoorDesc();
+        return currentRoom->description + "\n" + currentRoom->getDoorDesc() + "\n";;
       }
       else if (inputSize == 2) {
         //index 1 is important here
         if (result[1] == "around" || "room") {
-          return currentRoom->description + "\n" + currentRoom->getDoorDesc();
+          return currentRoom->description + "\n" + currentRoom->getDoorDesc() + "\n";;
         }
         else if (result[1] == "inventory") {
           return inventory(result);
@@ -240,20 +255,20 @@ Game::Game() {
         //looping through item on player
         for (int i = 0; i < player.inventory.items.size(); i++) {
           if (result[1] == player.inventory.getItems()[i].getName()) {
-            return player.inventory.getItems()[i].getItemDesc();
+            return player.inventory.getItems()[i].getItemDesc() + "\n";
           }
         }
         //looping through item in room
         for (int i = 0; i < currentRoom->inventory.items.size(); i++) {
           if (result[1] == currentRoom->inventory.getItems()[i].getName()) {
-            return currentRoom->inventory.getItems()[i].getItemDesc();
+            return currentRoom->inventory.getItems()[i].getItemDesc() + "\n";;
           }
         }
 
         //looping through the npc in the room
         for (int i = 0; i < currentRoom->characters.size(); i++) {
           if (result[1] == currentRoom->characters[i].getName()) {
-            return currentRoom->characters[i].getDescription();
+            return currentRoom->characters[i].getDescription() + "\n";;
           }
         }
       }
@@ -265,9 +280,11 @@ Game::Game() {
         look(result);
       }
       else {
-        return "Input Invalid" << "\n";
+        returnStatement = strcat("Input Invalid","\n");
+        return returnStatement;
       }
-      return "Input Invalid" << "\n";
+      returnStatement = strcat("Input Invalid","\n");
+      return returnStatement;
    }
 
    /**
@@ -275,12 +292,15 @@ Game::Game() {
     * @return a string explaining what happened
     */
    string Game::take(vector<string> result) {
+     std::string returnStatement;
      int inputSize = result.size();
       //grab player's current location
       Room* currentRoom = player.currentRoom;
 
       if (inputSize == 1) {
-        return "take what?" << "\n";
+        returnStatement = strcat("take what?","\n");
+        return returnStatement;
+
       }
       else if (inputSize == 2) {
         for (int i = 0; i < currentRoom->inventory.items.size();i++) {
@@ -289,7 +309,11 @@ Game::Game() {
          string output = currentRoom->inventory.items[i].getName();
          player.inventory.addItem(currentRoom->inventory.items[i]);
          currentRoom->inventory.removeItem(currentRoom->inventory.items[i]);
-          return "You picked up " + output + " and put it into your pocket." << "\n";
+         returnStatement = strcat("take what?","\n");
+         std::stringstream ss;
+          ss << "You picked up " << output << " and put it into your pocket." << "\n";
+          returnStatement = ss.str();
+          return returnStatement;
         }
       }
       }
@@ -300,7 +324,8 @@ Game::Game() {
         result.erase(result.begin() + 2);
         take(result);
       }
-      return "Input Invalid" << "\n";
+      returnStatement = strcat("Input Invalid","\n");
+      return returnStatement;
    }
 
    /**
@@ -308,16 +333,21 @@ Game::Game() {
     * @return a string explaining what happened
     */
    string Game::talk(vector<string> result) {
+     std::string returnStatement;
       //grab player's current location
       Room* currentRoom = player.currentRoom;
 
       for (int i = 0; i < currentRoom->characters.size(); i++) {
         if (result[1] == currentRoom->characters[i].getName()) {
           //npc found
-          return "talk to " + currentRoom->characters[i].getName() + << "\n";
+          std::stringstream ss;
+          ss << "talk to " << currentRoom->characters[i].getName() << "\n";
+          returnStatement = ss.str();
+          return returnStatement;
         }
       }
-      return "Input Invalid" << "\n";
+      returnStatement = strcat("Input Invalid","\n");
+      return returnStatement;
 
    }
 
@@ -326,6 +356,7 @@ Game::Game() {
     * @return a string explaining what happened
     */
    string Game::use(vector<string> result) {
+     std::string returnStatement;
      int inputSize = result.size();
 
      if (inputSize == 2) {
@@ -353,7 +384,8 @@ Game::Game() {
         use(result);
      }
 
-     return "Input Invalid" << "\n";
+     returnStatement = strcat("Input Invalid","\n");
+      return returnStatement;
 
    }
 
