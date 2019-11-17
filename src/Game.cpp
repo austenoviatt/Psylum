@@ -123,7 +123,7 @@ Game::Game() {
               return currentRoom->getDoorDesc();
             }
             else if (currentRoom->exits[i]->getLocked() == true) {
-              return "the room is locked";
+              return "the room is locked" << "\n";
             }
           }
       }
@@ -133,7 +133,7 @@ Game::Game() {
               return currentRoom->getDoorDesc();
           }
           else if (currentRoom->exits[0]->getLocked() == true) {
-              return "the room is locked";
+              return "the room is locked" << "\n";
           }
       }
 
@@ -144,7 +144,7 @@ Game::Game() {
               return currentRoom->getDoorDesc();
           }
           else if (currentRoom->exits[1]->getLocked() == true) {
-              return "the room is locked";
+              return "the room is locked" << "\n";
           }
 
       }
@@ -154,7 +154,7 @@ Game::Game() {
               return currentRoom->getDoorDesc();
           }
           else if (currentRoom->exits[2]->getLocked() == true) {
-              return "the room is locked";
+              return "the room is locked" << "\n";
 
           }
       }
@@ -164,7 +164,7 @@ Game::Game() {
               return currentRoom->getDoorDesc();
           }
           else if (currentRoom->exits[3]->getLocked() == true) {
-              return "the room is locked";
+              return "the room is locked" << "\n";
 
           }
       }
@@ -186,11 +186,11 @@ Game::Game() {
            //pop the help page
         }
         else {
-          return "Input Invalid";
+          return "Input Invalid" << "\n";
         }
       }
       else {
-        return "Input Invalid";
+        return "Input Invalid" << "\n";
       }
    }
 
@@ -265,9 +265,9 @@ Game::Game() {
         look(result);
       }
       else {
-        return "Input Invalid";
+        return "Input Invalid" << "\n";
       }
-      return "Input Invalid";
+      return "Input Invalid" << "\n";
    }
 
    /**
@@ -280,7 +280,7 @@ Game::Game() {
       Room* currentRoom = player.currentRoom;
 
       if (inputSize == 1) {
-        return "take what?";
+        return "take what?" << "\n";
       }
       else if (inputSize == 2) {
         for (int i = 0; i < currentRoom->inventory.items.size();i++) {
@@ -289,7 +289,7 @@ Game::Game() {
          string output = currentRoom->inventory.items[i].getName();
          player.inventory.addItem(currentRoom->inventory.items[i]);
          currentRoom->inventory.removeItem(currentRoom->inventory.items[i]);
-          return "You picked up " + output + " and put it into your pocket.";
+          return "You picked up " + output + " and put it into your pocket." << "\n";
         }
       }
       }
@@ -300,7 +300,7 @@ Game::Game() {
         result.erase(result.begin() + 2);
         take(result);
       }
-      return "Input Invalid";
+      return "Input Invalid" << "\n";
    }
 
    /**
@@ -314,10 +314,10 @@ Game::Game() {
       for (int i = 0; i < currentRoom->characters.size(); i++) {
         if (result[1] == currentRoom->characters[i].getName()) {
           //npc found
-          return "talk to " + currentRoom->characters[i].getName();
+          return "talk to " + currentRoom->characters[i].getName() + << "\n";
         }
       }
-      return "Input Invalid";
+      return "Input Invalid" << "\n";
 
    }
 
@@ -353,7 +353,7 @@ Game::Game() {
         use(result);
      }
 
-     return "Input Invalid";
+     return "Input Invalid" << "\n";
 
    }
 
