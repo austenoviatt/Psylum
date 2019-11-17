@@ -1,0 +1,5 @@
+
+
+name,description,doorDescription,locked,inventory,key,exits,events,characters
+startRoom,"You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your head is throbbing. Your nostrils fill with a stagnant smell. As you begin to slowly move yours eyes around the room, you notice something strange...there's no windows or natural light. You pull yourself up and notice a small metal rolling tray beside your bed, a chair in the corner and crack of light coming from the hallway. You place your feet on the hard cold floor. You limp out of the bed, holding one hand over the sharp shooting pain in your stomach, and using the other for balance. You push yourself off the wall near the door and suddenly, you feel you're hand is wet...it's a patch of fresh white paint. You take a closer look and notice the words written beneath it...""GET OUT BEFORE YOU LOSE YOURSELF!""",White door,false,,,l3Hallway1,Escaped,
+
