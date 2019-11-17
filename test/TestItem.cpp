@@ -22,8 +22,8 @@ TEST(Item, pickupable)
   Item I2("Lab Coat", "Normal looking lab coat, stolen from the lab", true);
   Item I3("DECOY ITEM!!", "THIS ITEM DOESN'T EXIST, IT IS A DECOY", false);
 
-  EXPECT_TRUE(I.isPickup());
-  EXPECT_FALSE(I3.isPickup());
+  EXPECT_TRUE(I.isFixed());
+  EXPECT_FALSE(I3.isFixed());
 }
 
 TEST(Item, description)

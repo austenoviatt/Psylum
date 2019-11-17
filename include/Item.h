@@ -40,10 +40,10 @@ public:
 	std::string getName();
 
 	/**
-	*returns whether item is pickupable or not
+	*returns whether item is fixedratpo or not
 	* @return can pickup or not
 	*/
-	bool isPickup();
+	bool isFixed();
 
 	/**
 	* returns description of item
@@ -56,7 +56,7 @@ private:
 
 	std::string name;
 	std::string description;
-	bool pickupable;
+	bool fixed;
 };
 
 #endif //ITEM_H

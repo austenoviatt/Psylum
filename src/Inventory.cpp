@@ -25,13 +25,13 @@ bool Inventory::hasItem(Item I) {
 	bool ItemFound = false;
 	// Iterate over all elements in Vector
 	 //store the name of the item
-	std::string ItemName = I.getName();
+  std::string itemName = I.getName();
 
 	//iterate all items in the inventory
 	for (auto x : items)
 	{
 		//found the item
-		if (x.getName() == ItemName)
+		if (x.getName() == itemName)
 		{
 			ItemFound = true;
 			break;

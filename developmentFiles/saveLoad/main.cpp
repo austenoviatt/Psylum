@@ -21,15 +21,19 @@ void loadGame(std::string filename) {
   if(!saveFile.fail()){
     getline(saveFile, headers);
     std::cout << "These are the headers: " << headers << std::endl;
-    
+
 
 
     std::string line;
 
     while(!saveFile.eof()) {
-      getline(saveFile, line);
+      saveFile >> line;
+      //getline(saveFile, line);
+      //std::cin >> (saveFile, line);
+
       std::cout << line << std::endl;
-      std::cout << saveFile.eof();
+   //   std::cout << saveFile.eof();
+//   std::cin >> ignore.
     }
   } else std::cout << "Error: File doesn't exist!";
 }

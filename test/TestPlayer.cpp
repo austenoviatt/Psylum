@@ -42,7 +42,7 @@ TEST(Player, Room){
   EXPECT_EQ(nameR2, P.currentRoom->getName());
   P.moveToRoom(&R3);
   EXPECT_EQ(nameR3, P.currentRoom->getName());
-  std::cout<<P.getRoomCount();
+  //std::cout<<P.getRoomCount();
   EXPECT_EQ(1, P.getRoomCount());
 
 }

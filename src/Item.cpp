@@ -12,7 +12,7 @@
 
 using namespace std;
 
-Item::Item(std::string name, std::string description, bool pickupable) : name{ name }, description{ description }, pickupable{ pickupable } {
+Item::Item(std::string name, std::string description, bool fixed) : name{ name }, description{ description }, fixed{ fixed } {
 
 }
 
@@ -20,8 +20,8 @@ string Item::getName() {
 	return name;
 }
 
-bool Item::isPickup(){
-return pickupable;
+bool Item::isFixed(){
+return fixed;
 }
 
 std::string Item::getItemDesc(){

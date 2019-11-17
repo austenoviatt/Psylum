@@ -15,7 +15,7 @@ TEST(TestRoom, TestAndSetLocked) {
   Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, I, noKey, {}, {}, {});
   Room R3("Desert", "It looks like it hasn't rained here in years.", "You see a door with a sign that says 'Water required'", true, I, claw, {}, {}, {});
 
-  EXPECT_FALSE(R.getLocked());
+  EXPECT_TRUE(R.getLocked());
   EXPECT_FALSE(R2.getLocked());
   EXPECT_TRUE(R3.getLocked());
 
@@ -42,7 +42,7 @@ TEST(TestRoom, HasExit) {
   R3.setExit(R3Exit);
 
   EXPECT_TRUE(R2.hasExit("Desert"));
-  EXPECT_TRUE(R2.hasExit("DEFAULT ROOM NAME"));
+  EXPECT_TRUE(R2.hasExit("a wall"));
   EXPECT_FALSE(R.hasExit("Forest"));
   EXPECT_TRUE(R3.hasExit("Forest"));
 
