@@ -58,7 +58,7 @@ Game::Game() {
 
       //clean up unnecessary word
       for (int i = 0; i < result.size(); i++) {
-        if (result[i] == "with" || result[i] == "to" || result[i] == "at" || result[i] == "the" || result[i] == "on" || result[i] == "door") {
+        if (result[i] == "with" || "to" || "at" || "the" || "on" || "door") {
           result.erase(result.begin() + i);
         }
       }
@@ -169,7 +169,7 @@ Game::Game() {
           }
       }
 
-
+      return "Input Invalid";
    }
 
    /**
@@ -220,7 +220,7 @@ Game::Game() {
     */
    string Game::look(vector<string> result) {
       int inputSize = result.size();
-      string lookType;
+
       //grab player's current location
       Room* currentRoom = player.currentRoom;
       //process the second word, what type of word?
@@ -257,6 +257,13 @@ Game::Game() {
           }
         }
       }
+      //concat two item name and see if there is a match
+      else if (inputSize == 3) {
+        result[1] = result[1] + result[2];
+        //erase the second item name
+        result.erase(result.begin() + 2);
+        look(result);
+      }
       else {
         return "Input Invalid";
       }
@@ -268,10 +275,15 @@ Game::Game() {
     * @return a string explaining what happened
     */
    string Game::take(vector<string> result) {
+     int inputSize = result.size();
       //grab player's current location
       Room* currentRoom = player.currentRoom;
 
-      for (int i = 0; i < currentRoom->inventory.items.size();i++) {
+      if (inputSize == 1) {
+        return "take what?";
+      }
+      else if (inputSize == 2) {
+        for (int i = 0; i < currentRoom->inventory.items.size();i++) {
         if (result[1] == currentRoom->inventory.items[i].getName()) {
          //item found, pickup item, remove item from room inventory and add it to player inventory
          string output = currentRoom->inventory.items[i].getName();
@@ -279,6 +291,14 @@ Game::Game() {
          currentRoom->inventory.removeItem(currentRoom->inventory.items[i]);
           return "You picked up " + output + " and put it into your pocket.";
         }
+      }
+      }
+      //concat two item name and see if there is a match
+      else if (inputSize == 3) {
+        result[1] = result[1] + result[2];
+        //erase the second item name
+        result.erase(result.begin() + 2);
+        take(result);
       }
       return "Input Invalid";
    }
