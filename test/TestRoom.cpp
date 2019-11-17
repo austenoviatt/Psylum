@@ -51,8 +51,8 @@ TEST(TestRoom, HasExit) {
 TEST(testRoom, testGetExit){
   Room NONE("NO DOOR", "", "", true, {}, keycard, {}, {}, {});
   Room R;
-  Room R2("Forest", "It's a huge forest!", "red door", false, {}, noKey, {}, {}, {});
-  Room R3("Desert", "It looks like it hasn't rained here in years.", "green door", true, {}, claw, {}, {}, {});
+  Room R2("Forest", "It's a huge forest!", "red", false, {}, noKey, {}, {}, {});
+  Room R3("Desert", "It looks like it hasn't rained here in years.", "green", true, {}, claw, {}, {}, {});
 
   std::vector<Room*> R2Exit= {&R, &NONE, &NONE, &R3};
   std::vector<Room*> R3Exit = {&R, &R2};

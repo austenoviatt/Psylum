@@ -70,26 +70,48 @@ return locked;
 std::string Room::getExit() {
   std::string allDoorDesc;
   for (int i = 0; i < exits.size(); i++){
-      if (i == 0 && exits[i]->getDoorDesc() != ""){
+
+      if (i == 0 && exits[i]->getDoorDesc() != "" || "elevator" || "hallway"){
         allDoorDesc += "There is a ";
         allDoorDesc += exits[i]->getDoorDesc();
-        allDoorDesc += " in front of you. ";
+        allDoorDesc += " door in front of you. ";
       }
-      else if (i == 1 && exits[i]->getDoorDesc() != ""){
+      else if (i == 0 && exits[i]->getDoorDesc() == "elevator"){
+        allDoorDesc += "The ";
+        allDoorDesc += exits[i]->getDoorDesc();
+        allDoorDesc += " is in front of you. ";
+      }
+      else if (i == 0 && exits[i]->getDoorDesc() == "hallway"){
+        allDoorDesc += "The ";
+        allDoorDesc += exits[i]->getDoorDesc();
+        allDoorDesc += " is in front of you. ";
+      }
+      else if (i == 1 && exits[i]->getDoorDesc() != "" || "elevator" || "hallway"){
         allDoorDesc += "There is a ";
         allDoorDesc += exits[i]->getDoorDesc();
-        allDoorDesc += " to your right. ";
+        allDoorDesc += " door to your right. ";
       }
-      else if (i == 3 && exits[i]->getDoorDesc() != ""){
+      else if (i == 2 && exits[i]->getDoorDesc() != "" || "elevator" || "hallway"){
         allDoorDesc += "There is a ";
         allDoorDesc += exits[i]->getDoorDesc();
-        allDoorDesc += " behind you. ";
+        allDoorDesc += " door behind you. ";
       }
-      else if (i == 4 && exits[i]->getDoorDesc() != ""){
+      else if (i == 2 && exits[i]->getDoorDesc() == "elevator"){
+        allDoorDesc += "The ";
+        allDoorDesc += exits[i]->getDoorDesc();
+        allDoorDesc += " is behind you. ";
+      }
+      else if (i == 2 && exits[i]->getDoorDesc() == "hallway"){
+        allDoorDesc += "The ";
+        allDoorDesc += exits[i]->getDoorDesc();
+        allDoorDesc += " is behind you. ";
+      }
+      else if (i == 3 && exits[i]->getDoorDesc() != "" || "elevator" || "hallway"){
         allDoorDesc += "There is a ";
         allDoorDesc += exits[i]->getDoorDesc();
-        allDoorDesc += " to your left. ";
+        allDoorDesc += " door to your left. ";
       }
+
 
       //allDoorDesc += exits[i]->getDoorDesc();//Room R3("Desert", "It looks like it hasn't rained here in years.", "You see a door with a sign that says 'Water required'", true, {}, claw, {}, {}, {});
   }
