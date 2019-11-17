@@ -3,6 +3,8 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include <sstream>
 
 void loadGame(std::string filename);
 
@@ -19,17 +21,27 @@ void loadGame(std::string filename) {
   saveFile.open(filename);
 
   if(!saveFile.fail()){
-    getline(saveFile, headers);
-    std::cout << "These are the headers: " << headers << std::endl;
+    //getline(saveFile, headers);
+    //std::cout << "These are the headers: " << headers << std::endl;
 
 
 
-    std::string line;
+    std::string line, cell;
+    std::vector<std::string> rowVec;
 
     while(!saveFile.eof()) {
-      saveFile >> line;
-      //getline(saveFile, line);
+      //saveFile >> line;
+      getline(saveFile, line);
       //std::cin >> (saveFile, line);
+      std::stringstream s(line);
+      int cellCount = 0;
+      while(getline(s, cell, ',')) {
+        rowVec.push_back(cell);
+        std::cout << "Cell " << cellCount;
+        cellCount++;
+      }
+      std::cout << rowVec[0] << std::endl;
+
 
       std::cout << line << std::endl;
    //   std::cout << saveFile.eof();
