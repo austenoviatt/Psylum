@@ -148,7 +148,7 @@ Game::Game() {
           }
 
       }
-      else if (result[1] == "backward" || result[1] == "back" || result[1] == "behind" && currentRoom->exits[2]->getName() != "a wall") {
+      else if (result[1] == "backward" || "back" || "behind" && currentRoom->exits[2]->getName() != "a wall") {
           if (currentRoom->exits[2]->getLocked() == false) {
               player.moveToRoom(currentRoom->exits[2]);
               return currentRoom->getDoorDesc();

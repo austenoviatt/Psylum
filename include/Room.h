@@ -100,7 +100,7 @@ class Room
     * Characters in the room
     */
    std::vector<Character> characters;
-
+    std::vector<Room*> exits;
   private:
    /**
     * Description of the doorway leading into the room
@@ -112,7 +112,7 @@ class Room
     */
    keyItem key;
 
-   std::vector<Room*> exits;
+
 
   /**
    * The name of the room
