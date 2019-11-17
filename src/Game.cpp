@@ -124,7 +124,10 @@ Game::Game() {
           if (currentRoom->exits[i]->getDoorDesc() == result[1]) {
             if (currentRoom->exits[i]->getLocked() == false) {
               player.moveToRoom(currentRoom->exits[i]);
-              returnStatement = currentRoom->getDoorDesc();
+
+              std::stringstream ss;
+              ss << currentRoom->getDoorDesc() << "\n";
+              returnStatement = ss.str();
               return returnStatement;
             }
             else if (currentRoom->exits[i]->getLocked() == true) {
@@ -136,7 +139,11 @@ Game::Game() {
       if (result[1] == "forward" || "front" && currentRoom->exits[0]->getName() != "a wall"){
           if (currentRoom->exits[0]->getLocked() == false) {
               player.moveToRoom(currentRoom->exits[0]);
-              return currentRoom->getDoorDesc();
+
+              std::stringstream ss;
+              ss << currentRoom->getDoorDesc() << "\n";
+              returnStatement = ss.str();
+              return returnStatement;
           }
           else if (currentRoom->exits[0]->getLocked() == true) {
               returnStatement = strcat("the room is locked","\n");
@@ -148,7 +155,11 @@ Game::Game() {
       else if (result[1] == "right" && currentRoom->exits[1]->getName() != "a wall") {
           if (currentRoom->exits[1]->getLocked() == false) {
               player.moveToRoom(currentRoom->exits[1]);
-              return currentRoom->getDoorDesc();
+
+              std::stringstream ss;
+              ss << currentRoom->getDoorDesc() << "\n";
+              returnStatement = ss.str();
+              return returnStatement;
           }
           else if (currentRoom->exits[1]->getLocked() == true) {
               returnStatement = strcat("the room is locked","\n");
@@ -159,7 +170,11 @@ Game::Game() {
       else if (result[1] == "backward" || "back" || "behind" && currentRoom->exits[2]->getName() != "a wall") {
           if (currentRoom->exits[2]->getLocked() == false) {
               player.moveToRoom(currentRoom->exits[2]);
-              return currentRoom->getDoorDesc();
+
+              std::stringstream ss;
+              ss << currentRoom->getDoorDesc() << "\n";
+              returnStatement = ss.str();
+              return returnStatement;
           }
           else if (currentRoom->exits[2]->getLocked() == true) {
               returnStatement = strcat("the room is locked","\n");
@@ -170,7 +185,11 @@ Game::Game() {
       else if (result[1] == "right" && currentRoom->exits[3]->getName() != "a wall") {
           if (currentRoom->exits[3]->getLocked() == false) {
               player.moveToRoom(currentRoom->exits[3]);
-              return currentRoom->getDoorDesc();
+
+              std::stringstream ss;
+              ss << currentRoom->getDoorDesc() << "\n";
+              returnStatement = ss.str();
+              return returnStatement;
           }
           else if (currentRoom->exits[3]->getLocked() == true) {
               returnStatement = strcat("the room is locked","\n");
@@ -241,12 +260,12 @@ Game::Game() {
       Room* currentRoom = player.currentRoom;
 
       if (inputSize == 1) {
-        return currentRoom->description + "\n" + currentRoom->getDoorDesc() + "\n";;
+        return currentRoom->description + "\n" + currentRoom->getDoorDesc() + "\n";
       }
       else if (inputSize == 2) {
         //index 1 is important here
         if (result[1] == "around" || "room") {
-          return currentRoom->description + "\n" + currentRoom->getDoorDesc() + "\n";;
+          return currentRoom->description + "\n" + currentRoom->getDoorDesc() + "\n";
         }
         else if (result[1] == "inventory") {
           return inventory(result);
@@ -306,9 +325,10 @@ Game::Game() {
         if (result[1] == currentRoom->inventory.items[i].getName()) {
          //item found, pickup item, remove item from room inventory and add it to player inventory
          string output = currentRoom->inventory.items[i].getName();
+
          player.inventory.addItem(currentRoom->inventory.items[i]);
          currentRoom->inventory.removeItem(currentRoom->inventory.items[i]);
-         returnStatement = strcat("take what?","\n");
+
          std::stringstream ss;
           ss << "You picked up " << output << " and put it into your pocket." << "\n";
           returnStatement = ss.str();
