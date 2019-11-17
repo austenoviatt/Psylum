@@ -58,11 +58,14 @@ class Room
     */
    bool hasExit(std::string desiredRoom);
 
+
+   std::string getDoorDesc();
+
    /**
     * Lists all rooms attached to current room
     * @return room on other side of exit
     */
-   void getExit();
+   std::string getExit();
 
    /**
    * Returns whether the door is locked or not
@@ -81,10 +84,7 @@ class Room
    */
    std::string description;
 
-   /**
-    * Description of the doorway leading into the room
-    */
-   std::string doorDescription;
+
 
    /**
     * Inventory of the room
@@ -102,6 +102,11 @@ class Room
    std::vector<Character> characters;
 
   private:
+   /**
+    * Description of the doorway leading into the room
+    */
+   std::string doorDescription;
+
    /**
     * The key that opens the room
     */

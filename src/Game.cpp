@@ -116,18 +116,59 @@ Game::Game() {
       //grab player's current location
       Room* currentRoom = player.currentRoom;
 
-      if (result[1] == "forward" || result[1] == "front") {
+      for (int i = 0; i < currentRoom->exits.size(); i++) {
+          if (currentRoom->exits[i]->getDoorDesc() == result[1]) {
+            if (currentRoom->exits[i]->getLocked() == false) {
+              player.moveToRoom(currentRoom->exits[i]);
+              return currentRoom->getDoorDesc();
+            }
+            else if (currentRoom->exits[i]->getLocked() == true) {
+              return "the room is locked";
+            }
+          }
+      }
+      if (result[1] == "forward" || "front" && currentRoom->exits[0]->getName() != "a wall"){
+          if (currentRoom->exits[0]->getLocked() == false) {
+              player.moveToRoom(currentRoom->exits[0]);
+              return currentRoom->getDoorDesc();
+          }
+          else if (currentRoom->exits[0]->getLocked() == true) {
+              return "the room is locked";
+          }
+      }
+
+
+      else if (result[1] == "right" && currentRoom->exits[1]->getName() != "a wall") {
+          if (currentRoom->exits[1]->getLocked() == false) {
+              player.moveToRoom(currentRoom->exits[1]);
+              return currentRoom->getDoorDesc();
+          }
+          else if (currentRoom->exits[1]->getLocked() == true) {
+              return "the room is locked";
+          }
 
       }
-      else if (result[1] == "left") {
+      else if (result[1] == "backward" || result[1] == "back" || result[1] == "behind" && currentRoom->exits[2]->getName() != "a wall") {
+          if (currentRoom->exits[2]->getLocked() == false) {
+              player.moveToRoom(currentRoom->exits[2]);
+              return currentRoom->getDoorDesc();
+          }
+          else if (currentRoom->exits[2]->getLocked() == true) {
+              return "the room is locked";
 
+          }
       }
-      else if (result[1] == "right") {
+      else if (result[1] == "right" && currentRoom->exits[3]->getName() != "a wall") {
+          if (currentRoom->exits[3]->getLocked() == false) {
+              player.moveToRoom(currentRoom->exits[3]);
+              return currentRoom->getDoorDesc();
+          }
+          else if (currentRoom->exits[3]->getLocked() == true) {
+              return "the room is locked";
 
+          }
       }
-      else if (result[1] == "backward" || result[1] == "back" || result[1] == "behind") {
 
-      }
 
    }
 
@@ -178,12 +219,12 @@ Game::Game() {
 
 
       if (inputSize == 1) {
-        return currentRoom->description + "\n" + currentRoom->doorDescription;
+        return currentRoom->description + "\n" + currentRoom->getDoorDesc();
       }
       else if (inputSize == 2) {
         //index 1 is important here
         if (result[1] == "around") {
-          return currentRoom->description + "\n" + currentRoom->doorDescription;
+          return currentRoom->description + "\n" + currentRoom->getDoorDesc();
         }
         else if (result[1] == "inventory") {
           for (int i = 0; i < player.inventory.getInvCount(); i++) {

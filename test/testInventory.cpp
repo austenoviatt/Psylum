@@ -2,6 +2,7 @@
 #include <string>
 #include "Inventory.h"
 #include "Item.h"
+#include "KeyItem.h"
 #include "gtest/gtest.h"
 
 
@@ -28,15 +29,18 @@ TEST(Inventory, removeItem)
       Item I("Magic Mushroom", "Will have hallucination when consumed, may die from overdose", true);
 			Item I2("Lab Coat", "Normal looking lab coat, stolen from the lab", true);
 			Item I3("DECOY ITEM!!", "THIS ITEM DOESN'T EXIST, IT IS A DECOY", false);
+ //     keyItem claw;
 
 			Inventory v;
 			v.addItem(I);
 			v.addItem(I2);
+//			v.addItem(claw);
 
 			EXPECT_TRUE(v.removeItem(I));
 			EXPECT_FALSE(v.removeItem(I));
 			EXPECT_FALSE(v.removeItem(I3));
 			EXPECT_TRUE(v.removeItem(I2));
+//			EXPECT_TRUE(v.removeItem(claw));
 
 			v.addItem(I2);
 
