@@ -9,7 +9,11 @@ using namespace std;
 
 #include "Inventory.h"
 #include "Player.h"
+Player::Player() {
+  currentRoom = {};
+  inventory = {};
 
+}
 Player::Player(Room* currentRoom, Inventory inventory) : currentRoom{ currentRoom }, inventory {inventory} {
 
 }

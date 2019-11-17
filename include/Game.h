@@ -26,7 +26,7 @@ class Game{
    /**
     * Default destructor
     */
-   virtual ~Game();
+   virtual ~Game() {}
 
    /**
     * creates a new game at starting point
@@ -49,7 +49,7 @@ class Game{
     * Processes user input into game commands
     * @return string of command the program can understand
     */
-   string processCommand();
+    void processCommand(string userInput);
 
    /**
     * removes an item from an inventory
@@ -61,42 +61,49 @@ class Game{
     * moves player to specified room
     * @return a string explaining what happened
     */
-   string go();
+   string go(vector<string> result);
 
    /**
     * prints the list of actions in case the player gets stuck
     * @return a string explaining what happened
     */
-   string help();
+   string help(vector<string> result);
 
    /**
     * prints all items in players inventory
     * @return a string explaining what happened
     */
-   string inventory();
+   string inventory(vector<string> result);
 
    /**
     * prints out description of a room or item or NPC
     * @return a string explaining what happened
     */
-   string look();
+   string look(vector<string> result);
 
    /**
     * add an item to players inventory
     * @return a string explaining what happened
     */
-   string take();
+   string take(vector<string> result);
 
    /**
     * initiate dialogue options with an NPC
     * @return a string explaining what happened
     */
-   string talk();
+   string talk(vector<string> result);
+
+   /**
+    * use an item inside the inventory
+    * @return a string explaining what happened
+    */
+   string use(vector<string> result);
 
   private:
 
    std::vector<Room> locations;
    std::vector<Item> items;
+   std::vector<string> result;
    std::vector<vector<string>> command {
      {"go"},
      {"look", "check", "inspect", "see"},

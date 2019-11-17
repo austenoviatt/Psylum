@@ -20,6 +20,7 @@ using namespace std;
 
 class Player {
 public:
+  Player();
 	/**
 	 * Default constructor
 	 */

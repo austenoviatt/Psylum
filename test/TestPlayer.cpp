@@ -21,7 +21,7 @@ TEST(Player, Inventory){
 
   Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, v, noKey, {}, {}, {});
 
-  Player P(&R2, v2, 0);
+  Player P(&R2, v2);
 
   EXPECT_TRUE(P.inventory.hasItem(I3));
   EXPECT_TRUE(P.inventory.removeItem(I3));
@@ -33,15 +33,12 @@ TEST(Player, Inventory){
 TEST(Player, Room){
 
   Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, {}, noKey, {}, {}, {});
-  Room R3("Desert", "It looks like it hasn't rained here in years.", "You see a door with a sign that says 'Water required'", true, {}, claw, {}, {}, {});
-  std::string nameR2 = "Forest";
-  std::string nameR3 = "Desert";
 
-  Player P(&R2, {}, 0);
-  EXPECT_EQ(0, P.getRoomCount());
-  EXPECT_EQ(nameR2, P.currentRoom->getName());
-  P.moveToRoom(&R3);
-  EXPECT_EQ(nameR3, P.currentRoom->getName());
-  EXPECT_EQ(1, P.getRoomCount());
+  std::string nameR = "Forest";
+
+  Player P(&R2, {});
+
+  EXPECT_EQ(nameR, P.currentRoom->getName());
+
 
 }
