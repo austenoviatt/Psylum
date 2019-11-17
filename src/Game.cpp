@@ -244,16 +244,16 @@ Game::Game() {
           }
         }
         //looping through item in room
-        for (int i = 0; i < currentRoom.inventory.items.size(); i++) {
-          if (result[1] == currentRoom.inventory.getItems()[i].getName()) {
-            return currentRoom.inventory.getItems()[i].getItemDesc();
+        for (int i = 0; i < currentRoom->inventory.items.size(); i++) {
+          if (result[1] == currentRoom->inventory.getItems()[i].getName()) {
+            return currentRoom->inventory.getItems()[i].getItemDesc();
           }
         }
 
         //looping through the npc in the room
-        for (int i = 0; i < currentRoom.characters.size(); i++) {
-          if (result[1] == currentRoom.characters[i].getName()) {
-            return currentRoom.characters[i].getDescription();
+        for (int i = 0; i < currentRoom->characters.size(); i++) {
+          if (result[1] == currentRoom->characters[i].getName()) {
+            return currentRoom->characters[i].getDescription();
           }
         }
       }
@@ -274,9 +274,9 @@ Game::Game() {
       for (int i = 0; i < currentRoom->inventory.items.size();i++) {
         if (result[1] == currentRoom->inventory.items[i].getName()) {
          //item found, pickup item, remove item from room inventory and add it to player inventory
-         string output = currentRoom->inventory.items[i];
+         string output = currentRoom->inventory.items[i].getName();
          player.inventory.addItem(currentRoom->inventory.items[i]);
-         currentRoom.inventory.removeItem(currentRoom->inventory.items[i]);
+         currentRoom->inventory.removeItem(currentRoom->inventory.items[i]);
           return "You picked up " + output + " and put it into your pocket.";
         }
       }
