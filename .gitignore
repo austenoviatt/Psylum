@@ -3,3 +3,6 @@
 *.bak
 *.cbp
 *.xml
+*.o
+*.gcno
+bin

@@ -9,38 +9,57 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-/**
+using namespace std;
 
- * This class is the player class
- */
+ /**
+  * This class is the player class
+  */
 
 #include "Inventory.h"
+#include "Room.h"
 
-class Player{
-  public:
-   /**
-    * Default constructor
-    */
-   Player(Room currentRoom = startRoom, Inventory inventory = 0);
-
-   /**
-    * Default destructor
-    */
-   virtual ~Player();
+class Player {
+public:
+	/**
+	 * Default constructor
+	 */
+	 Player();
 
    /**
+   * Constructor
+   */
+	Player(Room* currentRoom, Inventory inventory, int roomCount);
+
+	/**
+	 * Default destructor
+	 */
+	virtual ~Player() {}
+
+	/**
     * Players inventory
     */
-   Inventory inventory;
+	Inventory inventory;
 
-   /**
-    * changes the room the player is in
-    */
-   moveToRoom();
 
-  private:
+	/**
+	 * changes the room the player is in, increments roomCount
+	 */
+	void moveToRoom(Room* nextRoom);
 
-   Room currentRoom;
+	/**
+	* how many rooms the player has entered
+	* @return int number of rooms visited
+	*/
+	int getRoomCount();
+
+
+  Room* currentRoom;
+private:
+
+int roomCount;
+
+
+
 };
 
 #endif // PLAYER_H

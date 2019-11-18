@@ -1,0 +1,105 @@
+Item Map
+
+Attributes:
+//*****************************************************************************
+sdesc = string (short description of item)
+ldesc = string (long description of item)
+
+fixedItem = bool (true = attached to room, can't pick up; false = item can be picked up)
+location = Room (the location of the item when first constructed)
+events = Event (event required to create the item)
+
+Notes:
+//Event dependent attributes are created, changed or deleted in the case of an event.
+//This includes moving locations, using an item, completing a challenge etc.
+//Refer to eventsMap 
+//*****************************************************************************
+
+
+-------------------------------------------------------------------
+Level 3 (Top floor of building)
+-------------------------------------------------------------------
+ratPosion: Item
+sdesc = "Old Rat Poison"
+lsdesc = "Half a bag of extremely poisonous substances! Ingredients include arsenic, barium, and thallium.
+
+fixedItem = false
+location = closet
+-----------------------------------
+journal: Item 
+sdesc = "Annabelle's Journal"
+lsdesc = "They call it a hospital, but I know better. The pills and the needles keep coming, as does the cold and boring food. There is no rest from the screams of others but at least it keeps me company. Sometimes in my dreams, I hear whispers telling me there's light at the end of the tunnel. Is that where my friends have gone? The doctors and nurses promise they will fix me if I cooperate. HAHAHA! I will show them, I don't need fixing...."
+
+fixedItem = true
+location = patient2
+-----------------------------------
+sedative: Item
+sdesc = "Sedadtive"
+lsdesc = "An injectable drug to calm down patients."
+
+fixedItem = false
+location = l3Hallway1
+events = triggerNurse
+-----------------------------------
+crowBar: Item
+sdesc = "Crowbar"
+lsdesc = "A metal bar with a single curve end and flattened points with a small fissure for removing nails on the other. "
+
+fixedItem = false
+location = storage
+
+-------------------------------------------------------------------
+Level 2 
+-------------------------------------------------------------------
+mushrooms: Item		// could be keyItem - used to escape iceRoom (unlock hall)
+sdesc = "Magic Mushrooms"
+lsdesc = "These mushrooms contain hallucinogens such as psilocybin and psilocin and an extra special ingredient to spice things up."
+
+fixedItem = false
+location = forest
+-----------------------------------
+worm: Item
+sdesc = "Worm"
+lsdesc = "A soft, slender and tube-like insect with no limbs or eyes. Yum!"
+
+fixedItem = false
+location = forest
+-----------------------------------
+labCoat: Item
+sdesc = "Lab Coat"
+lsdesc = "A loose-fitting white coat worn by doctors in a laboratory or medical facility."
+
+fixedItem = false
+location = doctors
+-----------------------------------
+computer: Item		// may be a NPC
+sdesc = "Computer"
+lsdesc = "A locked desktop computer belonging to the Doctor."
+
+fixedItem = true
+location = doctors
+
+-------------------------------------------------------------------
+Level 1
+-------------------------------------------------------------------
+window: Item
+sdesc = "Window"
+lsdesc = "A small window at the end of the hallway on floor 1. This bad boy is cracked open!"
+
+fixedItem = true
+location = l1Hallway2
+-----------------------------------
+magnet: Item
+sdesc = "Magnet"
+lsdesc = "A small refrigerator magnet which attracts iron and some other materials."
+
+fixedItem = false 
+location = kitchen
+-----------------------------------
+fishingRod: Item
+sdesc = "Fishing Rod"
+lsdesc = "A long and slender rod with a link and hook used to reel in fish...or other things."
+
+fixedItem = false
+location = patient3
+-----------------------------------

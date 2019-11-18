@@ -1,0 +1,269 @@
+eventMap
+
+Attributes & Notes:
+//*****************************************************************************
+// there may be multiple events that take place in a location
+location = Room 	 (the location that the event takes place)
+eventName: Event 	 (name of the event as specified in RoomMaps)
+
+// the requirements for or cause of an event
+inventory = Inventory 	(items needed in inventory or to be used by player)
+key = KeyItem		(key item needed)
+freq = int		 (special case; # of room visits to cause the events of that room)
+
+// the changes caused by an event
+ldesc = string 	      	 (the new description for room/item in the case of the event)
+locked = bool 		 (change in room state, if any: false = unlocked, true = locked)
+key = KeyItem		 (key item, if any, created by the event)
+addItem = Item 		 (non-fixed items to be added to room/player inventory)
+removeItem = Item 	 (non-fixed items to be removed from room/player inventory)
+character = Characters 	 (non-player characters to be added/removed in room)
+dies = bool 		 (if the event causes player to die)
+//*****************************************************************************
+
+-------------------------------------------------------------------
+location = l3Hallway1	
+-------------------------------------------------------------------
+-----------------------------------
+triggerNurse: Event	
+-----------------------------------
+freq = 2			// second visit to l3Hallway1 will cause the event
+
+ldesc = "You peak out the closet and see a medical cart with supplies parked in the hallway and a nurse entering your room. Attached to her hip is a key card on a retractable key holder. Do you steal it or do you run?" 
+
+key = patient2Key (to room)
+addItem (room) = sedative (to room)
+characters = nurseHilda (to room)
+
+-----------------------------------
+getCaughtByNurse: Event		
+-----------------------------------
+ldesc = "Oh no! You've been spotted! Off to bed you go."	
+die = true
+-----------------------------------
+robNurse: Event 
+-----------------------------------
+ldesc = "You've pulled the retractable keycard holder from her hip while pushing and locking her in the room! Nice work! What other goodies does this nurse have on her cart?"
+
+keyCreated = patient2Key
+addItem = patient2Key (to player), sedative (to player)
+character = nurseHilda 	  	   //(remove)?
+
+-------------------------------------------------------------------
+location = patient2	
+-------------------------------------------------------------------
+-----------------------------------
+unlockPatient2: Event	
+-----------------------------------
+key = patient2Key
+
+locked = false
+-----------------------------------
+sedateAnna: Event 
+-----------------------------------
+inventory = sedative
+
+ldesc = "Looks like Annabelle's been knocked out by your sedatives. I guess snitches get stitches! Nighty night Annabelle!" 
+
+removeItem = sedative (player)
+-----------------------------------
+annaSnitches: Event 
+-----------------------------------
+ldesc = "You use the keycard to help Annabelle escape her room. "Follow me, I know the way out!" she says. As the elevator dings and the doors open, you see two security guards and a doctor. Annabelle quickly stands back with a nasty smile on her face. You've been tricked!"  
+
+die = true
+-------------------------------------------------------------------
+location = elevator	
+-------------------------------------------------------------------
+-----------------------------------
+useButton2: Event				// changes script but doesn't unlock
+-----------------------------------		// also event unlock2. pointer to pointer?
+key = button2
+
+ldesc = "You've entered the elevator and the doors shut behind you. There are four floors: 3, 2, 1 and 0 but the button is missing for 1 and a key is required for 0. Where would you like to go?"" 
+
+-----------------------------------
+useButton1: Event
+-----------------------------------
+key = button1
+
+ldesc = "You've entered the elevator and the doors shut behind you. There are four floors: 3, 2, 1 and 0. A key is required for 0. Where do you want to go?"
+
+-----------------------------------
+useKeyCard: Event
+-----------------------------------
+event = keyCard
+      
+ldesc = "You've entered the elevator and the doors shut behind you. There are four floors: 3, 2, 1 and 0. Where do you want to go?
+
+-------------------------------------------------------------------
+location = spaceship	
+-------------------------------------------------------------------
+-----------------------------------
+unlockSpaceship: Event 
+-----------------------------------
+key = spaceCode		// doesn't need to be a keyItem
+      			// if removed, change in RoomMaps and keyItemMap as well
+locked = false
+
+-------------------------------------------------------------------
+location = forest	
+-------------------------------------------------------------------
+-----------------------------------
+completeRiddle: Event 
+-----------------------------------
+ldesc = "You've done well, young Padawan. My creatures and I leave you with two things. First, a golden Claw Key to help you on your journey. Second, an urge to be mindful - to your surroundings, to your body and soul, and to this beautiful planet which brings you life." 
+
+      		     	   	 	   //if player fails riddle, dialogue =
+addItem = clawKey (to player)	      	   //"You have much to learn, young Padawan"
+removeItem = clawKey (from room)
+					// possibility of dying?
+-------------------------------------------------------------------
+location = doctors	
+-------------------------------------------------------------------
+-----------------------------------
+openOffice: Event 
+-----------------------------------
+inventory = crowBar		
+key = crowBar				//could be keyItem instead
+
+ldesc = "Nice work! You've busted open the door! I'd hire you any day."	
+locked = false
+-----------------------------------
+unlockComputer: Event 
+-----------------------------------
+inventory = labCoat			//so people don't just sit there and guess
+key = computerPass		 	// doesn't have to be a physical object
+
+
+addItem = spaceCode 		      // possibly? 
+character = computer (NPC to room)
+-----------------------------------
+getSpaceCode: Event 
+-----------------------------------
+key = computerPass
+
+-------------------------------------------------------------------
+location = lounge	
+-------------------------------------------------------------------
+-----------------------------------
+coffeePuzzle: Event	
+-----------------------------------
+inventory = ratPoison, labCoat
+
+ldesc = "You need to get into the doctor's computer and he's the only one who has access. Hurry, think! Where do people write valuable things?" 
+
+-----------------------------------
+doctorKilled: Event 
+-----------------------------------
+ldesc = "That bag of rat poison is no joke! "Extremely poisonous substances". I think you gave the doc a little too much. Now go! Before somebody sees you." 
+
+addItem = computerPass (to player)
+removeItem = ratPoison (from player)
+character = doctor (remove from room)
+
+-------------------------------------------------------------------
+location = patient3	
+-------------------------------------------------------------------
+-----------------------------------
+goFishing: Event 
+-----------------------------------
+inventory = worm
+key = !labCoat	
+
+ldesc = ""			// unsure - still needs to be completed	
+
+addItem = fishingRod (to player)
+removeItem = worm (from player once used)
+
+-------------------------------------------------------------------
+location = l1Hallway2	
+-------------------------------------------------------------------
+-----------------------------------
+getKeyCard: Event	
+-----------------------------------
+inventory = fishingRod
+
+ldesc = " "			// unsure - still needs to be completed
+
+addItem = keyCard (to player)
+
+-------------------------------------------------------------------
+location = lobby	
+-------------------------------------------------------------------
+-----------------------------------
+getCaughtBySecurity: Event 
+-----------------------------------
+ldesc = "You've been busted by the fake po-po! Should've known better."	
+
+die = true
+-------------------------------------------------------------------
+location = iceRoom	
+-------------------------------------------------------------------
+-----------------------------------
+lock1Hallway2: Event 
+-----------------------------------
+freq = 1	
+locked = false
+-------------------------------------------------------------------
+location = l1Hallway2	
+-------------------------------------------------------------------
+-----------------------------------
+freezeToDeath: Event 
+-----------------------------------
+ldesc = "You've froze to death! What an unfortunate way to go..."	
+locked = true
+die = true
+-----------------------------------
+mushroomEscape: Event 
+-----------------------------------
+inventory = mushrooms		
+key = mushrooms			// could be a key item to unlock hallway
+
+ldesc = "Hot magic mushroom tamales! You've managed to get out of the ice room!" 
+locked = false
+removeItem = mushrooms (from player)
+
+-------------------------------------------------------------------
+location = skyrim	
+-------------------------------------------------------------------
+-----------------------------------
+useClawKey: Event 
+-----------------------------------
+inventory = clawKey
+key = clawKey
+
+ldesc = "Surrounding the centre of the door, are three large rings. One by one you turn them, starting with the outer ring, radiating the sound of stone gears. The symbols match up. As you insert the Claw key into the centre and turn it, audible clicks begin to echo and through the door. Dust mists out through the cracks. And suddenly, a subdued ker-chunk sound...the door is now unlocked!" 
+
+locked = false
+-------------------------------------------------------------------
+location = sewer	
+-------------------------------------------------------------------
+-----------------------------------
+unlockSewer: Event 
+-----------------------------------
+inventory = clawKey
+
+ldesc = "Look! The door is unlocking. Taking quite some time to be honest, but then again...it's quite the fancy door."	
+locked = false
+
+-----------------------------------
+helpFarmer: Event 
+-----------------------------------
+ldesc = "Brilliant! You've helped the stingy farmer and he's on his way. He thanks you. His goat thanks you. His wolf thanks you. Even his lettuce thanks you and they've left you a little something in the next room... " 
+locked = false
+addItem = freedom (to player)
+
+-----------------------------------
+getThrown: Event 
+-----------------------------------
+inventory =
+key = 
+freq =
+
+ldesc = "Do you taste salt? Cause I taste salt. I guess it's wolf eats goat eats lettuce and farmer throws you type of world. Would you like to try again?" 
+locked =    	      // farmer dialogue: "You imbecil! How dare you!  
+       		      	 	// and off you go!
+die = true
+
+-----------------------------------
