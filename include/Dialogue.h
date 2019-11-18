@@ -2,6 +2,7 @@
 #define DIALOGUE_H
 
 #include <string>
+#include "Events.h"
 
 class Dialogue {
 public:

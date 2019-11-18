@@ -12,6 +12,7 @@
  */
 
  #include <string>
+ #include <vector>
 
  class Events{
  public:
@@ -20,7 +21,7 @@
    * @param name the name of the event
    * @param stage what stage in the event the player is
    */
-   Events(std::string name = "DEFAULT EVENT NAME", std::string eventDescription = "DEFAULT EVENT DESCRIPTION");
+   Events(std::string name = "DEFAULT EVENT NAME", std::string eventDescription = "DEFAULT EVENT DESCRIPTION", int eventCounter = 0);
 
    /**
    * Default destructor
@@ -42,12 +43,17 @@
    * returns status of the event
    * @return event status of event
    */
-   //unsigned int getEventCounter();
+   int getEventCounter();
+
+   /**
+   * increase eventCounter by 1
+   */
+    void addEventCounter();
 
  private:
    std::string name;
    std::string eventDescription;
-   //unsigned int eventCounter;
+   int eventCounter;
  };
 
  #endif // EVENTS_H

@@ -1,5 +1,6 @@
 #include "Dialogue.h"
 
+
 #include <iostream>
 
 using namespace std;
@@ -9,6 +10,7 @@ Dialogue::Dialogue() {
 
 void Dialogue::talk(std::string chaID) {
   unsigned int input;
+            //
             if (chaID == "patient2") {
 
                 cout << "It’s not nice to look through people’s stuff….what are you doing here?" << endl;
