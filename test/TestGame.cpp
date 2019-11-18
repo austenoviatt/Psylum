@@ -5,6 +5,7 @@
 #include "Room.h"
 #include "Inventory.h"
 #include "Item.h"
+#include "Dialogue.h"
 
 #include <vector>
 #include <string>
@@ -33,16 +34,23 @@ TEST(TestGame, processCommand) {
   Room R2("Forest", "It's a huge forest!", "red door", false, v, noKey, {}, {}, {C3});
   Room R3("testRoom", "Is a test room", "fsss", false, n, noKey, {}, {}, {C2});
 
-  Player player(&R2, {}, 0);
+  //Player player(&R2, {}, 0);
   Game g;
 
   //EXPECT_EQ("snitch",g.talk(result));
 //g.processCommand("talk patient yyy");
-  std:: cout << g.processCommand("help mrrre");
+
+  //std:: cout << g.processCommand("");
 
 }
 
-//TEST(Character, getID) {
-  //Character c;
-//}
+TEST(TestGame, dialogue) {
+  Dialogue d;
+  //d.talk("patient2");
+  d.talk("forestspirit");
+}
+
+
+
+
 

@@ -84,8 +84,6 @@ class Room
    */
    std::string description;
 
-
-
    /**
     * Inventory of the room
     */
@@ -111,8 +109,6 @@ class Room
     * The key that opens the room
     */
    keyItem key;
-
-
 
   /**
    * The name of the room

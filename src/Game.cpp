@@ -153,8 +153,6 @@ Game::Game() {
               return "the room is locked\n";
           }
       }
-
-
       else if (result[1] == "right" && currentRoom->exits[1]->getName() != "a wall") {
           if (currentRoom->exits[1]->getLocked() == false) {
               player.moveToRoom(currentRoom->exits[1]);

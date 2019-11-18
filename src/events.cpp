@@ -6,9 +6,10 @@
 
  #include "Events.h"
 
- Events::Events(std::string a, std::string b){
+ Events::Events(std::string a, std::string b, unsigned int c){
    name = a;
    eventDescription = b;
+   eventCounter = c;
  }
 
  Events::~Events(){}
@@ -19,4 +20,8 @@
 
  std::string Events::getDesc(){
  return eventDescription;
+ }
+
+ unsigned int Events::getEventCounter() {
+return eventCounter;
  }

@@ -10,8 +10,8 @@
 
 TEST(Events, getName){
 
-  Events A("Tree Riddle", "As you walk into the room, a gnarled tree beckons you toward it with a finger-like branch");
-  Events B("Quest for bait", "I need bait to catch my toilet fish!");
+  Events A("Tree Riddle", "As you walk into the room, a gnarled tree beckons you toward it with a finger-like branch", 0);
+  Events B("Quest for bait", "I need bait to catch my toilet fish!", 0);
   std::string nameA = "Tree Riddle";
   std::string nameB = "Quest for bait";
   std::string descA = "As you walk into the room, a gnarled tree beckons you toward it with a finger-like branch";
@@ -24,8 +24,8 @@ TEST(Events, getName){
 
 TEST(Events, getDesc){
 
-  Events A("Tree Riddle", "As you walk into the room, a gnarled tree beckons you toward it with a finger-like branch");
-  Events B("Quest for bait", "I need bait to catch my toilet fish!");
+  Events A("Tree Riddle", "As you walk into the room, a gnarled tree beckons you toward it with a finger-like branch", 0);
+  Events B("Quest for bait", "I need bait to catch my toilet fish!", 0);
   std::string nameA = "Tree Riddle";
   std::string nameB = "Quest for bait";
   std::string descA = "As you walk into the room, a gnarled tree beckons you toward it with a finger-like branch";
