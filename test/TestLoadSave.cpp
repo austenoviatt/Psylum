@@ -4,6 +4,11 @@
  * copyright Castor - University of Lethbridge
 */
 
-//function to populate a new game with rooms, events, characters and items
+#include "gtest/gtest.h"
+#include "LoadSave.h"
 
-//std::map<std::string
+TEST(LoadSave, testLoad) {
+  LoadSave ls();
+
+
+}
