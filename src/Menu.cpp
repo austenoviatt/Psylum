@@ -1,21 +1,16 @@
-/**
- * @author Troy Hatchard
- * @author Lambee Mangal
- * @author Austen Oviatt
- * @author Sarah Ren
- * @date November 13, 2019
- */
+//Test program for menu and ascii art
 
-#include "../../include/Game.h"
-#include <string>
-#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 #include <fstream>
-#include<bits/stdc++.h>
+#include <iostream>
+#include <unistd.h>
 
 using namespace std;
 
 int main() {
 
+// system("color 8B");
   int option;
   Game g;
   ifstream infile("logo.txt");
@@ -40,7 +35,7 @@ int main() {
   case 1:
     g.create();
   case 2:
-    g.loadGame("testSave.csv");
+    g.load();
   case 3:
     return -1;
   }

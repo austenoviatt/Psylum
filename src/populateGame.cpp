@@ -5,5 +5,5 @@
 */
 
 //function to populate a new game with rooms, events, characters and items
-
-std::map<std::string
+/*
+std::map<std::string*/
