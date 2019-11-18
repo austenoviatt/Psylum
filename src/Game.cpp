@@ -57,12 +57,11 @@ Game::Game() {
       while(std::getline(ss, token, ' ')) {
         result.push_back(token);
       }
-      for (int i = 0; i < result.size(); i++){
-        std::cout << result[i] << std::endl;
-      }
+      //for (int i = 0; i < result.size(); i++){
+      //  std::cout << result[i] << std::endl;
+      //}
       std::string firstWord = result[0];
 
-      std::cout << "this is working";
       //clean up unnecessary word
       for (int i = 0; i < result.size(); i++) {
         if (result[i] == "with" || result[i] == "to" || result[i] == "at" || result[i] == "the" || result[i] == "on" || result[i] == "door") {
@@ -77,26 +76,26 @@ Game::Game() {
               //found the command, return value of set of command
               switch(i) {
               case 0:
-                go(result);
+                return go(result);
                 break;
               case 1:
-                look(result);
+                return look(result);
                 break;
               case 2:
-                take(result);
+                return take(result);
                 break;
               case 3:
-                use(result);
+                return use(result);
                 break;
               case 4:
-                return firstWord;
-                talk(result);
+                std::cout << "talk!!!!!!!!!";
+                return talk(result);
                 break;
               case 5:
-                help(result);
+                return help(result);
                 break;
               case 6:
-                inventory(result);
+                return inventory(result);
                 break;
 
               }
@@ -137,8 +136,7 @@ Game::Game() {
               return returnStatement;
             }
             else if (currentRoom->exits[i]->getLocked() == true) {
-              returnStatement = strcat("the room is locked","\n");
-              return returnStatement;
+              return "the room is locked\n";
             }
           }
       }
@@ -152,8 +150,7 @@ Game::Game() {
               return returnStatement;
           }
           else if (currentRoom->exits[0]->getLocked() == true) {
-              returnStatement = strcat("the room is locked","\n");
-              return returnStatement;
+              return "the room is locked\n";
           }
       }
 
@@ -168,8 +165,7 @@ Game::Game() {
               return returnStatement;
           }
           else if (currentRoom->exits[1]->getLocked() == true) {
-              returnStatement = strcat("the room is locked","\n");
-              return returnStatement;
+              return "the room is locked\n";
           }
 
       }
@@ -183,9 +179,7 @@ Game::Game() {
               return returnStatement;
           }
           else if (currentRoom->exits[2]->getLocked() == true) {
-              returnStatement = strcat("the room is locked","\n");
-              return returnStatement;
-
+              return "the room is locked\n";
           }
       }
       else if (result[1] == "right" && currentRoom->exits[3]->getName() != "a wall") {
@@ -198,17 +192,11 @@ Game::Game() {
               return returnStatement;
           }
           else if (currentRoom->exits[3]->getLocked() == true) {
-              returnStatement = strcat("the room is locked","\n");
-              return returnStatement;
-
+              return "the room is locked\n";
           }
       }
-
-      returnStatement = strcat("Input Invalid","\n");
-      return returnStatement;
-
+      return "Input Invalid\n";
    }
-
    /**
     * prints the list of actions in case the player gets stuck
     * @return a string explaining what happened
@@ -224,14 +212,13 @@ Game::Game() {
            return displayHelp();
         }
         else {
-          returnStatement = strcat("Input Invalid","\n");
-          return returnStatement;
+          return "Input Invalid\n";
         }
       }
       else {
-        returnStatement = strcat("Input Invalid","\n");
-        return returnStatement;
+        return "Input Invalid\n";
       }
+      return "Input Invalid\n";
    }
 
    /**
@@ -249,8 +236,7 @@ Game::Game() {
       std::cout << "\n";
       }
       else {
-          returnStatement = strcat("Your inventory is empty.","\n");
-          return returnStatement;
+          return "Your inventory is empty.\n";
       }
    }
 
@@ -304,11 +290,9 @@ Game::Game() {
         look(result);
       }
       else {
-        returnStatement = strcat("Input Invalid","\n");
-        return returnStatement;
+        return "Input Invalid\n";
       }
-      returnStatement = strcat("Input Invalid","\n");
-      return returnStatement;
+      return "Input Invalid\n";
    }
 
    /**
@@ -320,27 +304,21 @@ Game::Game() {
      int inputSize = result.size();
       //grab player's current location
       Room* currentRoom = player.currentRoom;
-
-      if (inputSize == 1) {
-        returnStatement = strcat("take what?","\n");
-        return returnStatement;
-
-      }
-      else if (inputSize == 2) {
+      if (inputSize == 2) {
         for (int i = 0; i < currentRoom->inventory.items.size();i++) {
-        if (result[1] == currentRoom->inventory.items[i].getName()) {
-         //item found, pickup item, remove item from room inventory and add it to player inventory
-         string output = currentRoom->inventory.items[i].getName();
+          if (result[1] == currentRoom->inventory.items[i].getName()) {
+           //item found, pickup item, remove item from room inventory and add it to player inventory
+           string output = currentRoom->inventory.items[i].getName();
 
-         player.inventory.addItem(currentRoom->inventory.items[i]);
-         currentRoom->inventory.removeItem(currentRoom->inventory.items[i]);
+           player.inventory.addItem(currentRoom->inventory.items[i]);
+           currentRoom->inventory.removeItem(currentRoom->inventory.items[i]);
 
-         std::stringstream ss;
-          ss << "You picked up " << output << " and put it into your pocket." << "\n";
-          returnStatement = ss.str();
-          return returnStatement;
+           std::stringstream ss;
+            ss << "You picked up " << output << " and put it into your pocket." << "\n";
+            returnStatement = ss.str();
+            return returnStatement;
+          }
         }
-      }
       }
       //concat two item name and see if there is a match
       else if (inputSize == 3) {
@@ -349,8 +327,7 @@ Game::Game() {
         result.erase(result.begin() + 2);
         take(result);
       }
-      returnStatement = strcat("Input Invalid","\n");
-      return returnStatement;
+      return "Input Invalid\n";
    }
 
    /**
@@ -362,7 +339,6 @@ Game::Game() {
      //std::cout << "ok so far";
       //grab player's current location
       Room* currentRoom = player.currentRoom;
-
 
       for (int i = 0; i < currentRoom->characters.size(); i++) {
         if (result[1] == currentRoom->characters[i].getName()) {
@@ -392,8 +368,7 @@ Game::Game() {
         }
       }
       //npc not found
-      returnStatement = strcat("Input Invalid","\n");
-      return returnStatement;
+      return "Input Invalid\n";
    }
 
     /**
@@ -403,6 +378,8 @@ Game::Game() {
    string Game::use(vector<string> result) {
      std::string returnStatement;
      int inputSize = result.size();
+
+     //return 0 for now because use() is not available.
 
      if (inputSize == 2) {
         for (int i= 0; i < player.inventory.getInvCount(); i++) {
@@ -430,19 +407,18 @@ Game::Game() {
         result.erase(result.begin() + 2);
         //use(result);
      }
-     returnStatement = strcat("Input Invalid","\n");
-      return returnStatement;
+     return "Input Invalid\n";
    }
 
    string Game::displayHelp() {
      std::stringstream ss;
       ss << "HELP PAGE" << "\n" << "\n"
       << "Available Commands:" << "\n"
-      << "Move around: go forward, go right, go left, go back OR go red door, go blue door……" << "\n"
-      << "Look around: look, look <npc>" << "\n"
-      << "Items: look <Item>, take <Item>, give <Item>, use <Item>, use <Item1> with <Item2>, use <Item> on <npc>, add <Item1> to <Item2>" << "\n"
-      << "Talk to npc: talk <npc>" << "\n"
-      << "Inventory: inventory, inv, i" << "\n";
+      << "Move around: go forward, go right, go left, go back OR go red door, go blue door……" << "\n\n"
+      << "Look around: look, look <npc>" << "\n\n"
+      << "Items: look <Item>, take <Item>, give <Item>, use <Item>, use <Item1> with <Item2>, use <Item> on <npc>, add <Item1> to <Item2>" << "\n\n"
+      << "Talk to npc: talk <npc>" << "\n\n"
+      << "Inventory: inventory, inv, i" << "\n\n";
 
       return ss.str();
 
