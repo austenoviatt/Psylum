@@ -53,8 +53,10 @@ TEST(testRoom, testGetExit){
   Events A("Tree Riddle", "As you walk into the room, a gnarled tree beckons you toward it with a finger-like branch", 0);
   Room NONE("NO DOOR", "", "", true, {}, keycard, {}, A, {});
   Room R;
+
   Room R2("Forest", "It's a huge forest!", "red door", false, {}, noKey, {}, A, {});
   Room R3("Desert", "It looks like it hasn't rained here in years.", "green door", true, {}, claw, {}, A, {});
+
 
   std::vector<Room*> R2Exit= {&R, &NONE, &NONE, &R3};
   std::vector<Room*> R3Exit = {&R, &R2};

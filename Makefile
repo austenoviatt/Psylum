@@ -60,9 +60,9 @@ $(PROGRAM_GAME): $(GAME_SRC_DIR) $(SRC_DIR)
 compile: $(PROGRAM_GAME)
 	$(PROGRAM_GAME)
 
-test: $(PROGRAM_TEST)
+tests: $(PROGRAM_TEST)
 	$(PROGRAM_TEST)
-	diff -s $(TEST_DIR)/$(TEST_OUTPUT_FILE) $(TEST_DIR)/output/displayDottedFaces-expected.txt
+	diff -s $(TEST_DIR)/$(TEST_OUTPUT_FILE) $(TEST_DIR)/output/filename.txt
 
 memory: $(PROGRAM_TEST)
 	valgrind --tool=memcheck --leak-check=yes $(PROGRAM_TEST)
