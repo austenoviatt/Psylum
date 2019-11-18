@@ -47,7 +47,7 @@ TEST(TestGame, processCommand) {
 TEST(TestGame, dialogue) {
   Dialogue d;
   //d.talk("patient2");
-  d.talk("forestspirit");
+  //d.talk("forestspirit");
 }
 
 

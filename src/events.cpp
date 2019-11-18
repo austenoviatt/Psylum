@@ -6,10 +6,10 @@
 
  #include "Events.h"
 
- Events::Events(std::string a, std::string b, unsigned int c){
+ Events::Events(std::string a, std::string b){
    name = a;
    eventDescription = b;
-   eventCounter = c;
+   //eventCounter = c;
  }
 
  Events::~Events(){}
@@ -22,6 +22,6 @@
  return eventDescription;
  }
 
- unsigned int Events::getEventCounter() {
-return eventCounter;
- }
+ //unsigned int Events::getEventCounter() {
+//return eventCounter;
+ //}
