@@ -22,7 +22,9 @@ LoadSave::~LoadSave()
 * Loads a game from the specified csv file
 * @param fileName the name of the file the save game is saved to
 */
-void LoadSave::loadGame(std::string filename) {
+void LoadSave::loadGame(std::string filename, std::vector<Item> &itemsVector, std::vector<Room> &roomsVector,
+           std::vector<Character> &charactersVector, std::vector<Events> &eventsVector) {
+
   std::ifstream saveFile;
   saveFile.open(filename);
 
@@ -56,7 +58,10 @@ void LoadSave::loadGame(std::string filename) {
                 } else if (rowVec[2] == "true") {
                   fixed = true;
                 }
+
                 Item tempItem(rowVec[0], rowVec[1], fixed);
+                itemsVector.push_back(tempItem);
+
           } else if (object == "Inventory") {
 
           }

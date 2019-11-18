@@ -13,27 +13,32 @@
 #include <vector>
 #include <sstream>
 
-class LoadSave
-{
-  public:
-    LoadSave();
-    virtual ~LoadSave();
+#include "Item.h"
+#include "Character.h"
+#include "Room.h"
+#include "Events.h"
 
-    /**
-    * Loads a game from the specified csv file
-    * @param fileName the name of the file the save game is saved to
-    */
-    void loadGame(std::string filename);
+class LoadSave {
+ public:
+  LoadSave();
+  virtual ~LoadSave();
 
-    /**
-    * Saves a game to the specified csv file
-    * @param fileName the name of the save file being loaded
-    */
-    void saveGame(std::string filename);
+  /**
+  * Loads a game from the specified csv file
+  * @param fileName the name of the file the save game is saved to
+  */
+void loadGame(std::string filename, std::vector<Item> &, std::vector<Room> &,
+           std::vector<Character> &, std::vector<Events> &);
 
-  protected:
+  /**
+  * Saves a game to the specified csv file
+  * @param fileName the name of the save file being loaded
+  */
+  void saveGame(std::string filename);
 
-  private:
+ protected:
+
+ private:
 };
 
 #endif // LOADSAVE_H

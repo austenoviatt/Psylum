@@ -1,0 +1,4 @@
+Items||||||||||||||||||
+name|description|fixed|useCases|roomLimB|roomLimR|newItemAlone|newItemcomI|newItemComC|combineWithI|combineWithC|useAloneGood|useComIGood|useComCGood|disappears|eventAlone|eventAloneTo|eventComb|eventCombTo
+ratpoison|Half a bag of extremely poisonous substances! Ingredients include arsenic, barium, and thallium.|false|2|false|||poisoncoffee||coffee|||You combine the coffee and rat poison. This doesn’t feel like the healthiest drink.||true||||
+journal|They call it a hospital, but I know better. The pills and the needles keep coming, as does the cold and boring food. There is no rest from the screams of others but at least it keeps me company. Sometimes in my dreams, I hear whispers telling me there's light at the end of the tunnel. Is that where my friends have gone? The doctors and nurses promise they will fix me if I cooperate. HAHAHA! I will show them, I don't need fixing....|||||||||||||||||
