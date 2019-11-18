@@ -13,10 +13,10 @@
 using namespace std;
 
 TEST(TestGame, processCommand) {
-  Item I("magicmushroom", "Will have hallucination when consumed, may die from overdose", true);
-  Item I2("labcoat", "Normal looking lab coat, stolen from the lab", true);
-  Item I3("DECOY ITEM!!", "THIS ITEM DOESN'T EXIST, IT IS A DECOY", false);
-  Item I4("ratpoison", "One sip will kill you", true);
+  Item I("magicmushroom", "Will have hallucination when consumed, may die from overdose", "", true);
+  Item I2("labcoat", "Normal looking lab coat, stolen from the lab", "");
+  Item I3("DECOY ITEM!!", "THIS ITEM DOESN'T EXIST, IT IS A DECOY", "");
+  Item I4("ratpoison", "One sip will kill you", "");
 
   Inventory v;
   v.addItem(I);

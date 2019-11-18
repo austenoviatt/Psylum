@@ -53,8 +53,10 @@ TEST(testRoom, testGetExit){
   Events A("Tree Riddle", "As you walk into the room, a gnarled tree beckons you toward it with a finger-like branch", 0);
   Room NONE("NO DOOR", "", "", true, {}, keycard, {}, A, {});
   Room R;
+
   Room R2("Forest", "It's a huge forest!", "red door", false, {}, noKey, {}, A, {});
   Room R3("Desert", "It looks like it hasn't rained here in years.", "green door", true, {}, claw, {}, A, {});
+
 
   std::vector<Room*> R2Exit= {&R, &NONE, &NONE, &R3};
   std::vector<Room*> R3Exit = {&R, &R2};
@@ -70,9 +72,9 @@ TEST(testRoom, testGetExit){
 TEST(TestRoom, testInventory) {
 
 
-  Item I("Magic Mushroom", "Will have hallucination when consumed, may die from overdose", true);
-  Item I2("Lab Coat", "Normal looking lab coat, stolen from the lab", true);
-  Item I3("DECOY ITEM!!", "THIS ITEM DOESN'T EXIST, IT IS A DECOY", false);
+  Item I("Magic Mushroom", "Will have hallucination when consumed, may die from overdose", "", true);
+  Item I2("Lab Coat", "Normal looking lab coat, stolen from the lab", "", true);
+  Item I3("DECOY ITEM!!", "THIS ITEM DOESN'T EXIST, IT IS A DECOY", "", true);
 
   Inventory v;
   v.addItem(I);
@@ -120,9 +122,9 @@ TEST(TestRoom, Events){
 
 }
 TEST(Room, Inventory){
-  Item I("Magic Mushroom", "Will have hallucination when consumed, may die from overdose", true);
-  Item I2("Lab Coat", "Normal looking lab coat, stolen from the lab", true);
-  Item I3("DECOY ITEM!!", "THIS ITEM DOESN'T EXIST, IT IS A DECOY", false);
+  Item I("Magic Mushroom", "Will have hallucination when consumed, may die from overdose", "");
+  Item I2("Lab Coat", "Normal looking lab coat, stolen from the lab", "");
+  Item I3("DECOY ITEM!!", "THIS ITEM DOESN'T EXIST, IT IS A DECOY", "");
   Inventory v;
   v.addItem(I);
   v.addItem(I2);
