@@ -14,6 +14,7 @@
   */
 
 #include <string>
+#include "Inventory.h"
 
 class Character {
 public:
@@ -40,7 +41,7 @@ public:
 	/**
 	 * This is the dialogue options for the character
 	 */
-	void talk();
+	void talk(std::string charaID);
 
 	/**
 	* returns the character ID
@@ -79,12 +80,16 @@ public:
 	*/
 	void increaseEventCounter();
 
+	/**
+	* determine if the character is still alive
+	*/
+	bool isAlive;
+
 private:
 	std::string charaID;
 	std::string name;
 	std::string description;
 	int eventCounter;
-	bool isAlive;
 	std::string dialogue;
 };
 #endif //CHARACTER_H

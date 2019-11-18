@@ -51,20 +51,25 @@ Game::Game() {
       transform(input.begin(), input.end(), input.begin(), ::tolower);
 
       //separate the input by space and store into vector
-      std::vector<std::string> result;
-      std::istringstream iss(input);
-      for(std::string input; iss >> input; )
-        result.push_back(input);
-
+      std::istringstream ss(input);
+      std::string token;
+      vector<string> result;
+      while(std::getline(ss, token, ' ')) {
+        result.push_back(token);
+      }
+      for (int i = 0; i < result.size(); i++){
+        std::cout << result[i] << std::endl;
+      }
       std::string firstWord = result[0];
 
+      std::cout << "this is working";
       //clean up unnecessary word
       for (int i = 0; i < result.size(); i++) {
-        if (result[i] == "with" || "to" || "at" || "the" || "on" || "door") {
+        if (result[i] == "with" || result[i] == "to" || result[i] == "at" || result[i] == "the" || result[i] == "on" || result[i] == "door") {
           result.erase(result.begin() + i);
         }
       }
-
+      //firstWord = result[1];
       //compare the verb with verb vector
       for (int i = 0; i < command.size(); i++) {
         for (int j = 0; j < command[i].size(); j++) {
@@ -84,6 +89,7 @@ Game::Game() {
                 use(result);
                 break;
               case 4:
+                return firstWord;
                 talk(result);
                 break;
               case 5:
@@ -353,21 +359,41 @@ Game::Game() {
     */
    string Game::talk(vector<string> result) {
      std::string returnStatement;
+     //std::cout << "ok so far";
       //grab player's current location
       Room* currentRoom = player.currentRoom;
 
+
       for (int i = 0; i < currentRoom->characters.size(); i++) {
         if (result[1] == currentRoom->characters[i].getName()) {
-          //npc found
+          //npc found, pass the charaID to the talk function under character class
+          Character chara = currentRoom->characters[i];
+          //currentRoom->characters[i].talk(currentRoom->characters[i].getID());
+
+          //check whether the character is alive or not
+          if (chara.isAlive == false) {
+          std::cout << chara.getName() << " is dead.";
+          }
+          else { //character is alive, decide which character are we talking to
+            if (chara.getID() == "snitch") {
+              std::cout << "found snitch";
+            }
+            else if (chara.getID() == "toiletFisher") {
+              std::cout << "found toilet fisher";
+            }
+          }
+
+          /*
           std::stringstream ss;
           ss << "talk to " << currentRoom->characters[i].getName() << "\n";
           returnStatement = ss.str();
           return returnStatement;
+          */
         }
       }
+      //npc not found
       returnStatement = strcat("Input Invalid","\n");
       return returnStatement;
-
    }
 
     /**
@@ -381,32 +407,34 @@ Game::Game() {
      if (inputSize == 2) {
         for (int i= 0; i < player.inventory.getInvCount(); i++) {
         if (result[1] == player.inventory.getItems()[i].getName()) {
-          return player.inventory.getItems()[i].use(result);
-
+            return 0;
+          //return player.inventory.getItems()[i].use(result);
         }
      }
      }
      else if (inputSize >= 3) {
         for (int i= 0; i < player.inventory.getInvCount(); i++) {
         if (result[1] == player.inventory.getItems()[i].getName()) {
-          return player.inventory.getItems()[i].use(result);
+            return 0;
+            //return player.inventory.getItems()[i].use(result);
         }
         }
         for (int i= 0; i < player.inventory.getInvCount(); i++) {
         if (result[2] == player.inventory.getItems()[i].getName()) {
-          return player.inventory.getItems()[i].use(result);
+            return 0;
+            //return player.inventory.getItems()[i].use(result);
         }
         }
         result[1] = result[1] + result[2];
         //erase the second item name
         result.erase(result.begin() + 2);
-        use(result);
+        //use(result);
      }
      returnStatement = strcat("Input Invalid","\n");
       return returnStatement;
    }
 
-   string Game:displayHelp() {
+   string Game::displayHelp() {
      std::stringstream ss;
       ss << "HELP PAGE" << "\n" << "\n"
       << "Available Commands:" << "\n"
@@ -415,8 +443,8 @@ Game::Game() {
       << "Items: look <Item>, take <Item>, give <Item>, use <Item>, use <Item1> with <Item2>, use <Item> on <npc>, add <Item1> to <Item2>" << "\n"
       << "Talk to npc: talk <npc>" << "\n"
       << "Inventory: inventory, inv, i" << "\n";
-      ss = ss.str();
-      return ss;
+
+      return ss.str();
 
    }
 
