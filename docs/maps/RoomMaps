@@ -1,3 +1,4 @@
+
 Psylum Room Map
 -------------
 |  Level 3  |	Start (Top Floor)
@@ -9,188 +10,305 @@ Psylum Room Map
 |  Level 0  |	End (Basement)
 -------------
 
-Note:
-sdesc (short description)
-ldesc (long description, attached to room)
-exits: north, east, south, west (accessible rooms)
+Attributes:
+//*****************************************************************************
+sdesc = string (short description of room)
+ldesc = string (long description of room)
+exits = string (access to other Room(s): north, east, south, west)
+locked = bool (rooms initial state: false (unlocked) or true (locked))
+key = keyItem (key required to unlock a room)
+inventory = Inventory (items in the room - if (fixed), item belongs to room and can't be picked up)
+characters = Characters (non-player characters in a room)
 
+Note:
+//Event dependent attributes are created, changed or deleted only in the case of an event.
+//This includes moving locations, using an item, completing a challenge etc.
+//*****************************************************************************
+
+-------------------------------------------------------------------
 Level 3 (Top floor of building)
 -------------------------------------------------------------------
 startRoom: Room
 sdesc = "Patient 1's Room"
-lsdesc = " "
+lsdesc = “You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your head is throbbing. Your nostrils fill with a stagnant smell. As you begin to slowly move yours eyes around the room, you notice something strange...there's no windows or natural light. You pull yourself up and notice a small metal rolling tray beside your bed, a chair in the corner and crack of light coming from the hallway. You place your feet on the hard cold floor. You limp out of the bed, holding one hand over the sharp shooting pain in your stomach, and using the other for balance. You push yourself off the wall near the door and suddenly, you feel you're hand is wet...it's a patch of fresh white paint. You take a closer look and notice the words written beneath it..."GET OUT BEFORE YOU LOSE YOURSELF!".
 
 north = l3Hallway1
 -----------------------------------
 l3Hallway1: Room
 sdesc = "Hallway"
-lsdesc = " "
+lsdesc = "You enter a long concrete hallway. There's a door to your left with a key card slot, a door to your right, another door further down the hallway and an elevator at the end. As you're observing the situation, you hear voices from the elevator getting closer and closer. Suddenly a scream and DING! The elevator is about to open."
 
 north = l3Hallway2
 east = closet
 south = startRoom
 west = patient2
+
+locked = false
+
+// events (second visit) = triggerNurse, getCaughtByNurse, robNurse
+// event dependent inventory (second visit) = sedative, patient2Key
+// event dependent characters (second visit) = nurseHilda
 -----------------------------------
 closet: Room
 sdesc = "Closet"
-lsdesc = " "
+lsdesc = "You quickly get in and shut the door behind you. You're in a linens closet. The elevator opens and the screaming stops. The voices reach the door across from you. Swish, click, BEEP. "Thank you for your help, but I'll take it from here." says a female voice. The door slams shut and the footsteps begin to fade. You look around in the closet and find a small bag hidden under one of the shelves. 
 
 west = l3Hallway1
+
+locked = false
+inventory = ratPoison
+
+events = triggerNurse
 -----------------------------------
 patient2: Room
 sdesc = "Annabelle's Room"
-lsdesc = " "
+lsdesc = "You enter a room, no more than ten feet in any dimension. White pale walls covered in harsh lines of overlapping words and pictures. You see a little girl, curled up on the edge of the bed, sleeping and a journal on a small metal beside table."
 
 east = l3Hallway1
+
+locked = true
+key = patient2Key
+fixedInventory = journal
+characters = annabelle
+
+events = unlockPatient2, sedateAnna, annaSnitches
 -----------------------------------
 l3Hallway2: Room
 sdesc = "Hallway"
-lsdesc = " "
+lsdesc = "You're down the hallway. There's a door to your right and an elevator straight ahead. "
 
 north = elevator
 east = storageRoom
 south = l3Hallway1
+
+locked = false
 -----------------------------------
 storage: Room
 sdesc = "Storage Room"
-lsdesc = " "
+lsdesc = "You've found a storage room! You could make use of some these items. Would you like to look around or go back?"
 
 west = l3Hallway2
+
+locked = false 
+inventory = crowBar, button2 
 -----------------------------------
 elevator: Room
 sdesc = "Elevator"
-lsdesc = " "
+lsdesc = "You've entered the elevator and the doors shut behind you. There are four floors: 3, 2, 1 and 0. The buttons are missing for 2 and 1 and a key is required for 0. What do you want to do?"
 
 north = l1Hallway1
-east = skyrimRoom
+east = l0Hallway
 south = 31Hallway2
 west = l2Hallway1
------------------------------------
 
+locked = false
+events = useButton2
+
+-------------------------------------------------------------------
 Level 2 
 -------------------------------------------------------------------
 l2Hallway1: Room
 sdesc = "Hallway"
-lsdesc = " "
+lsdesc = "You're on the second floor. There's a long hallway with a door to your left, a door to your right and two more doors down the hall."
 
 north = forest
 east = elevator
 south = spaceship
 west = l2Hallway2
+
+locked = true
+key = button2
+
+events = unlock2
 -----------------------------------
 spaceship: Room
 sdesc = "Spaceship Room"
-lsdesc = " "
+lsdesc = "Hundreds of flickering lights, buttons, levers, switches and geometric angles. This room looks like the inside of a spaceship!"
 
 north = l2Hallway1
+
+locked = true
+key = spaceCode
+inventory = button1
+
+events = unlockSpaceship
 -----------------------------------
 forest: Room
 sdesc = "Fractal Forest"
-lsdesc = " "
+lsdesc = "You feel a light breeze and mist on your face when you walk in. You begin to feel your bare feet sinking into dirt...Dirt?! Ew! Theres a worm between your toes! You look up to find yourself in a fractal forest like none ever before. Vivid colours bursting in a kaleidoscope and in the middle, a very large tree. Then suddenly...CLICK, CLICK, CLICK, CLICK, CLICK. Hundreds of tiny white faceless creatures with heads that click side to side like mini ticking clocks, begin crawling out from under ground. They're moving away from you! Should you follow or turn back?
 
 south = l2Hallway1
+
+locked = false
+inventory = mushrooms, worm
+characters = spirits, tree
+
+events = completeRiddle
+// event dependent inventory = clawKey
 -----------------------------------
 l2Hallway2: Room
 sdesc = "Hallway"
-lsdesc = " "
+lsdesc = "You're down the hallway. There's sliding doors to your left and a door to your right labeled "Doctor's Office."
 
 north = doctors
 east = l2Hallway1
 south = lounge
+
+locked = false
 -----------------------------------
 doctors: Room
 sdesc = "Doctor's Office"
-lsdesc = " "
+lsdesc = "You've successfully broken in! A grey painted office with only one window and book shelves surrounding it. On the mahogany desk sat a computer, a stack of papers and a pen, and behind it, a swivel leather chair and bookshelves bursting with olds books. In the corner, a lab coat hanging on a coat rack."
 
 south = l2Hallway2
+
+locked = true
+key = crowBar
+inventory = labCoat, computer (fixed) // computer may be NPC
+events = openOffice, unlockComputer, getPassCode
 -----------------------------------
 lounge: Room
 sdesc = "Employee's Lounge"
-lsdesc = " "
+lsdesc = "As the doors open, the smell of a medicine cabinet and coffee comes wafting from what looks like an employees lounge. Brown cracked leather couches pushed against the undecorated walls. An old TV sitting on top of empty shelves. In the back, a small corner kitchen and a few round tables filled with loud chatter. All the employees are wearing nurse uniforms, except for one...the doctor."
 
 north = l2Hallway2
+
+locked = false
+inventory = computerPass	//may not need
+characters = doctor
+events = coffeePuzzle
 -----------------------------------
 elevator: Room
 sdesc = "Elevator"
-lsdesc = " "
+lsdesc = "You've entered the elevator and the doors shut behind you. There are four floors: 3, 2, 1 and 0. The button is missing for 2 and a key is required for 0. Where do you want to go?"
 
 north = l1Hallway1
-east = skyrimRoom
+east = l0Hallway
 south = 31Hallway2
 west = l2Hallway1
------------------------------------
 
+locked = false
+
+-------------------------------------------------------------------
 Level 1
 -------------------------------------------------------------------
 l1Hallway1: Room
 sdesc = "Hallway"
-lsdesc = " "
+lsdesc = "You're on the first floor. There's a long hallway with a door to your left, a door to your right, two more doors down the hall and a window at the end."
 
 north = l1Hallway2
 east = patient3
 south = elevator
 west = kitchen
+
+locked = true
+key = button1
+
+events = unlock1
 -----------------------------------
 patient3: Room
 sdesc = "Bonez's Room"
-lsdesc = " "
+lsdesc = "Another room with white pale walls, a single flickering light bulb hanging from the ceiling, a small mattress on the floor and a young boy crouched over the toilet with a fishing rod."
 
 east = l1Hallway1
+
+locked = true
+key = !labCoat
+characters = bonez
+events = goFishing
+
+// event dependent inventory = fishingRod
 -----------------------------------
 kitchen: Room
 sdesc = "Kitchen"
-lsdesc = " "
+lsdesc = "A dull beige kitchen with aromas of bleach, tea and coffee stained counters, chipped cabinets, large ancient appliances and for sound, a noisy humming refrigerator. "
 
 west = l1Hallway1
+
+locked = false
+inventory = magnet
 -----------------------------------
 l1Hallway2: Room
 sdesc = "Hallway"
-lsdesc = " "
+lsdesc = "You're down the hall on the first floor. There's a main lobby to your left, a door labeled ice room to your right and a window cracked open in front of you."
 
 east = lobby
 south = l1Hallway1
 west = iceRoom
+
+locked = false
+inventory = window (fixed), keyCard
+
+events = getKeyCard
+// event dependent locked = true (second visit)
+// event dependent key = mushrooms (lock hall after moving to ice room, unlock using mushrooms?)
 -----------------------------------
 lobby: Room
 sdesc = "Main Lobby"
-lsdesc = " "
+lsdesc = "You're in the main lobby of the building. There's exit doors in the distance but you've been spotted by security! "That's the patient who was last seen with the doctor! They run over to question you."
 
 east = l1Hallway2
+
+locked = false
+characters = security
+
+events = getCaughtBySecurity
 -----------------------------------
 iceRoom: Room
 sdesc = "Ice Room"
-lsdesc = " "
+lsdesc = "You walk into a dark, bitterly cold room and the door shuts behind you. You turn on the light switch to find walls of metal sheets covered with growing ice crystals over an inch in length. It's not just a room with an ice machine, the entire room itself is an ice machine! You attempt to open the door but your palms stick to the icy handle. It's locked! You hear a low rumble...the coolers have turned on. If you don't get out soon, you'll freeze to death!"
 
 west = l1Hallway2
+
+locked = false
+
+events = lockL1Hallway2, freezeToDeath, mushroomEscape
 -----------------------------------
 elevator: Room
 sdesc = "Elevator"
-lsdesc = " "
+lsdesc = "You've entered the elevator and the doors shut behind you. There are four floors: 3, 2, 1 and 0. A key is required for 0. Where do you want to go?"
 
 north = l1Hallway1
-east = skyrimRoom
+east = l0Hallway
 south = 31Hallway2
 west = l2Hallway1
------------------------------------
 
+locked = false
+
+-------------------------------------------------------------------
 Level 0 (Basement)
 -------------------------------------------------------------------
+
 skyrim: Room
 sdesc = "Skyrim Room"
-lsdesc = " "
+lsdesc = "You step out of the elevator and into a basement. There's two flickering lights at the end of a dark tunnel. You walk towards the lights and find an unusual large iron door surrounded with stone walls and skeletons on the ground. The door is made with ancient designs and carvings and in the middle is what appears to be a space for a claw.
 
-east = sewerEndRoom
+east = sewer
 west = elevator
+
+locked = true
+key = keyCard
+
+events = useClawKey
 -----------------------------------
 sewer: Room
-sdesc = "Sewers"
-lsdesc = " "
+sdesc = "Sewer"
+lsdesc = "The air around you smells of rotten eggs! You step out into filthy sludge. You're in a sewer but there's sunlight at the end of the tunnel!
 
 east = endRoom
-west = skyrimRoom
+west = skyrim
+
+locked = true
+key = clawKey
+characters = farmer
+
+events = helpFarmer
+//event dependent inventory = freedom (earned by completing event?)
 -----------------------------------
 endRoom: Room
 sdesc = "You've escaped!"
-lsdesc = " "
------------------------------------
+lsdesc = "Congratulations! You've have escaped the asylum! Now go and enjoy the fresh air and smell of freedom before you get 'drugged' back in! "
 
+locked = true
+key = freedom
+-----------------------------------
