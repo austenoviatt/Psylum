@@ -8,9 +8,9 @@
 #include "Player.h"
 
 TEST(Player, Inventory){
-  Item I("Magic Mushroom", "Will have hallucination when consumed, may die from overdose", true);
-  Item I2("Lab Coat", "Normal looking lab coat, stolen from the lab", true);
-  Item I3("DECOY ITEM!!", "THIS ITEM DOESN'T EXIST, IT IS A DECOY", false);
+  Item I("Magic Mushroom", "Will have hallucination when consumed, may die from overdose", "", true);
+  Item I2("Lab Coat", "Normal looking lab coat, stolen from the lab", "", true);
+  Item I3("DECOY ITEM!!", "THIS ITEM DOESN'T EXIST, IT IS A DECOY", "", true);
 
   Inventory v;
   v.addItem(I);
