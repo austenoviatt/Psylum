@@ -12,24 +12,27 @@
 
 using namespace std;
 
-Item::Item(std::string name, std::string description, std::string niceName, bool fixed) : name{ name }, description{ description },
-niceName{ niceName }, fixed{ fixed } {
+Item::Item(std::string name, std::string description, std::string niceName,
+           bool fixed) : name{ name }, description{ description },
+  niceName{ niceName }, fixed{ fixed } {
 
 }
 
 string Item::getName() {
-	return name;
+  return name;
 }
 
-bool Item::getFixed(){
-return fixed;}
-
-std::string Item::getItemDesc(){
-return description;
+bool Item::getFixed() {
+  return fixed;
 }
 
-std::string Item::getNiceName(){
-return niceName;}
+std::string Item::getItemDesc() {
+  return description;
+}
+
+std::string Item::getNiceName() {
+  return niceName;
+}
 /*
 //Usage unknown, will come back later
 void Item::use() {

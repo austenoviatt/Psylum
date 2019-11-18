@@ -6,17 +6,17 @@
 #include <string>
 #include <vector>
 
-class Use{
-public:
+class Use {
+ public:
   Use();
   ~Use() {}
 
   void use(std::vector<std::string>, Player);
 
-private:
+ private:
 
   std::string itemName;
 };
 
 
-#endif USE_H
+#endif //USE_H

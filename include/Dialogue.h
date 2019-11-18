@@ -6,15 +6,15 @@
 #include "Room.h"
 
 class Dialogue {
-public:
-Dialogue();
+ public:
+  Dialogue();
 
-~Dialogue() {}
-void talk(std::string chaID);
+  ~Dialogue() {}
+  void talk(std::string chaID);
 
 
-private:
-std::string chaID;
+ private:
+  std::string chaID;
 
 };
 

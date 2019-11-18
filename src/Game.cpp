@@ -46,7 +46,7 @@ void loadGame(string fileName) {
 * @return string of command the program can understand
 */
 string Game::processCommand(string userInput) {
-  std::string returnStatement;
+//  std::string returnStatement;
   string input = userInput;
   //convert userInput into lowercase letters
   transform(input.begin(), input.end(), input.begin(), ::tolower);
@@ -64,7 +64,7 @@ string Game::processCommand(string userInput) {
   std::string firstWord = result[0];
 
   //clean up unnecessary word
-  for (int i = 0; i < result.size(); i++) {
+  for (uint i = 0; i < result.size(); i++) {
     if (result[i] == "with" || result[i] == "to" || result[i] == "at"
         || result[i] == "the" || result[i] == "on" || result[i] == "door") {
       result.erase(result.begin() + i);
@@ -72,8 +72,8 @@ string Game::processCommand(string userInput) {
   }
   //firstWord = result[1];
   //compare the verb with verb vector
-  for (int i = 0; i < command.size(); i++) {
-    for (int j = 0; j < command[i].size(); j++) {
+  for (uint i = 0; i < command.size(); i++) {
+    for (uint j = 0; j < command[i].size(); j++) {
       if (firstWord == command[i][j]) {
         //found the command, return value of set of command
         switch (i) {
@@ -97,7 +97,7 @@ string Game::processCommand(string userInput) {
           return help(result);
           break;
         case 6:
-          return inventory(result);
+          return inventory();
           break;
 
         }
@@ -105,7 +105,9 @@ string Game::processCommand(string userInput) {
     }
   }
   //did not find the corresponding command
-  returnStatement = strcat("Input Invalid", "\n");
+  //returnStatement = strcat("Input Invalid", "\n");    // this works, just trying to see if there is a more efficient way to concatenate the string
+  std::string returnStatement = "Input Invalid";
+  returnStatement += '\n';
   return returnStatement;
 
 }
@@ -127,7 +129,7 @@ string Game::go(vector<string> result) {
   Room* currentRoom = player.currentRoom;
   std::string returnStatement;
 
-  for (int i = 0; i < currentRoom->exits.size(); i++) {
+  for (uint i = 0; i < currentRoom->exits.size(); i++) {
     if (currentRoom->exits[i]->getDoorDesc() == result[1]) {
       if (currentRoom->exits[i]->getLocked() == false) {
         player.moveToRoom(currentRoom->exits[i]);
@@ -141,8 +143,8 @@ string Game::go(vector<string> result) {
       }
     }
   }
-  if (result[1] == "forward" || "front"
-      && currentRoom->exits[0]->getName() != "a wall") {
+  if ((result[1] == "forward" || "front" )
+      && (currentRoom->exits[0]->getName() != "a wall")) {
     if (currentRoom->exits[0]->getLocked() == false) {
       player.moveToRoom(currentRoom->exits[0]);
 
@@ -166,8 +168,8 @@ string Game::go(vector<string> result) {
       return "the room is locked\n";
     }
 
-  } else if (result[1] == "backward" || "back" || "behind"
-             && currentRoom->exits[2]->getName() != "a wall") {
+  } else if ((result[1] == "backward" || "back" || "behind")
+             && (currentRoom->exits[2]->getName() != "a wall")) {
     if (currentRoom->exits[2]->getLocked() == false) {
       player.moveToRoom(currentRoom->exits[2]);
 
@@ -216,19 +218,22 @@ string Game::help(vector<string> result) {
 
 /**
  * prints all items in players inventory
- * @return a string explaining what happened
+ * or else prints that players inventory is empty. a string explaining what happened
  */
-string Game::inventory(vector<string> result) {
-  std::string returnStatement;
+std::string Game::inventory() {
   if (player.inventory.getInvCount() != 0) {
     std::cout << "In your inventory you have: " << "\n";
     for (int i = 0; i < player.inventory.getInvCount(); i++) {
 
       std::cout<< player.inventory.getItems()[i].getName() + ", ";
     }
-    std::cout << "\n";
+    std::string done;
+    done += '\n';
+    return done;
   } else {
-    return "Your inventory is empty.\n";
+    std::string zero = "Your inventory is empty.";
+    zero += '\n';
+    return zero;
   }
 }
 
@@ -250,23 +255,23 @@ string Game::look(vector<string> result) {
     if (result[1] == "around" || "room") {
       return currentRoom->description + "\n" + currentRoom->getDoorDesc() + "\n";
     } else if (result[1] == "inventory") {
-      return inventory(result);
+      return inventory();
     }
     //looping through item on player
-    for (int i = 0; i < player.inventory.items.size(); i++) {
+    for (uint i = 0; i < player.inventory.items.size(); i++) {
       if (result[1] == player.inventory.getItems()[i].getName()) {
         return player.inventory.getItems()[i].getItemDesc() + "\n";
       }
     }
     //looping through item in room
-    for (int i = 0; i < currentRoom->inventory.items.size(); i++) {
+    for (uint i = 0; i < currentRoom->inventory.items.size(); i++) {
       if (result[1] == currentRoom->inventory.getItems()[i].getName()) {
         return currentRoom->inventory.getItems()[i].getItemDesc() + "\n";;
       }
     }
 
     //looping through the npc in the room
-    for (int i = 0; i < currentRoom->characters.size(); i++) {
+    for (uint i = 0; i < currentRoom->characters.size(); i++) {
       if (result[1] == currentRoom->characters[i].getName()) {
         return currentRoom->characters[i].getDescription() + "\n";;
       }
@@ -290,27 +295,34 @@ string Game::look(vector<string> result) {
  */
 string Game::take(vector<string> result) {
   std::string returnStatement;
-  int inputSize = result.size();
+  std::string cantGet = "You can't pick that up.";
+  cantGet += '\n';
+  //int inputSize = result.size();
   //grab player's current location
-  Room* currentRoom = player.currentRoom;
-  if (inputSize == 2) {
-    for (int i = 0; i < currentRoom->inventory.items.size(); i++) {
-      if (result[1] == currentRoom->inventory.items[i].getName()) {
-        //item found, pickup item, remove item from room inventory and add it to player inventory
-        string output = currentRoom->inventory.items[i].getName();
 
-        player.inventory.addItem(currentRoom->inventory.items[i]);
-        currentRoom->inventory.removeItem(currentRoom->inventory.items[i]);
+  if (result.size() == 2) {
+    for (uint i = 0; i < player.currentRoom->inventory.items.size(); i++) {
+      if (result[1] == player.currentRoom->inventory.items[i].getName()) {
+        if (!player.currentRoom->inventory.items[i].getFixed()) {
+          //item found, pickup item, remove item from room inventory and add it to player inventory
+          string output = player.currentRoom->inventory.items[i].getName();
 
-        std::stringstream ss;
-        ss << "You picked up " << output << " and put it into your pocket." << "\n";
-        returnStatement = ss.str();
-        return returnStatement;
+          player.inventory.addItem(player.currentRoom->inventory.items[i]);
+          player.currentRoom->inventory.removeItem(
+            player.currentRoom->inventory.items[i]);
+
+          std::stringstream ss;
+          ss << "You picked up " << output << " and put it into your pocket." << "\n";
+          returnStatement = ss.str();
+          return returnStatement;
+
+        } else
+          return cantGet;
       }
     }
   }
   //concat two item name and see if there is a match
-  else if (inputSize == 3) {
+  else if (result.size() == 3) {
     result[1] = result[1] + result[2];
     //erase the second item name
     result.erase(result.begin() + 2);
@@ -329,7 +341,7 @@ string Game::talk(vector<string> result) {
   //grab player's current location
   Room* currentRoom = player.currentRoom;
 
-  for (int i = 0; i < currentRoom->characters.size(); i++) {
+  for (uint i = 0; i < currentRoom->characters.size(); i++) {
     if (result[1] == currentRoom->characters[i].getName()) {
       //npc found, pass the charaID to the talk function under character class
       Character chara = currentRoom->characters[i];
@@ -364,6 +376,9 @@ string Game::talk(vector<string> result) {
 */
 string Game::use(vector<string> result) {
   std::string returnStatement;
+  returnStatement =+ '\n';
+  std::string invalid = "Input invalid.";
+  invalid =+ '\n';
   int inputSize = result.size();
 
   //return 0 for now because use() is not available.
@@ -371,20 +386,20 @@ string Game::use(vector<string> result) {
   if (inputSize == 2) {
     for (int i= 0; i < player.inventory.getInvCount(); i++) {
       if (result[1] == player.inventory.getItems()[i].getName()) {
-        return 0;
-        //return player.inventory.getItems()[i].use(result, &player);
+        // player.inventory.getItems()[i].use(result, &player);
+        return returnStatement;
       }
     }
   } else if (inputSize >= 3) {
     for (int i= 0; i < player.inventory.getInvCount(); i++) {
       if (result[1] == player.inventory.getItems()[i].getName()) {
-        return 0;
+        return returnStatement;
         //return player.inventory.getItems()[i].use(result);
       }
     }
     for (int i= 0; i < player.inventory.getInvCount(); i++) {
       if (result[2] == player.inventory.getItems()[i].getName()) {
-        return 0;
+        return returnStatement;
         //return player.inventory.getItems()[i].use(result);
       }
     }
@@ -393,7 +408,7 @@ string Game::use(vector<string> result) {
     result.erase(result.begin() + 2);
     //use(result);
   }
-  return "Input Invalid\n";
+  return invalid;
 }
 
 string Game::displayHelp() {
@@ -411,4 +426,3 @@ string Game::displayHelp() {
   return ss.str();
 
 }
-

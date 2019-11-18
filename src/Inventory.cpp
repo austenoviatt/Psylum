@@ -21,26 +21,24 @@ Inventory::Inventory() {
    * @return a bool of whether the item is in the inventory
    */
 bool Inventory::hasItem(Item I) {
-	bool ItemFound = false;
-	// Iterate over all elements in Vector
-	 //store the name of the item
+  bool ItemFound = false;
+  // Iterate over all elements in Vector
+  //store the name of the item
   std::string itemName = I.getName();
 
-	//iterate all items in the inventory
-	for (auto x : items)
-	{
-		//found the item
-		if (x.getName() == itemName)
-		{
-			ItemFound = true;
-			break;
-		}
-	}
-	if (ItemFound)
-		return true;
-	else
-		//did not find the item
-		return false;
+  //iterate all items in the inventory
+  for (auto x : items) {
+    //found the item
+    if (x.getName() == itemName) {
+      ItemFound = true;
+      break;
+    }
+  }
+  if (ItemFound)
+    return true;
+  else
+    //did not find the item
+    return false;
 }
 
 /**
@@ -48,8 +46,8 @@ bool Inventory::hasItem(Item I) {
  * @param The item to be added
  */
 void Inventory::addItem(Item I) {
-	items.push_back(I);
-	invCount++;
+  items.push_back(I);
+  invCount++;
 }
 
 /**
@@ -57,28 +55,26 @@ void Inventory::addItem(Item I) {
  * @param the item to be removed
  */
 bool Inventory::removeItem(Item I) {
-	bool ItemFound = false;
-	int indexTracker = 0;
+  bool ItemFound = false;
+  int indexTracker = 0;
 
-	std::string ItemName = I.getName();
+  std::string ItemName = I.getName();
 
-	for (auto x : items)
-	{
-		//found the item
-		if (x.getName() == ItemName)
-		{
-			//change the status and delete the item from the inventory vector
-			ItemFound = true;
-			items.erase(items.begin() + indexTracker);
+  for (auto x : items) {
+    //found the item
+    if (x.getName() == ItemName) {
+      //change the status and delete the item from the inventory vector
+      ItemFound = true;
+      items.erase(items.begin() + indexTracker);
       invCount--;
-			return true;
-		}
-		indexTracker++;
-	}
-	//did not find the item, deletion failed and throw an error message
-	if (ItemFound == false) {
+      return true;
+    }
+    indexTracker++;
+  }
+  //did not find the item, deletion failed and throw an error message
+  if (ItemFound == false) {
     return false;
-	}
+  }
 
 }
 
@@ -86,16 +82,16 @@ bool Inventory::removeItem(Item I) {
 * @return The items in the inventory
 */
 std::vector<Item> Inventory::getItems() {
-	return items;
+  return items;
 
 }
 
-	/**
-	* @return The num of items in inventory
-	*/
-	int Inventory::getInvCount() {
-    return invCount;
-	}
+/**
+* @return The num of items in inventory
+*/
+int Inventory::getInvCount() {
+  return invCount;
+}
 
 
 
