@@ -25,7 +25,7 @@ class Room
   * Room constructor
   */
   Room(std::string, std::string, std::string, bool, Inventory, keyItem,
-       std::vector<Room*>, std::vector<Events>, std::vector<Character>);
+       std::vector<Room*>, Events, std::vector<Character>);
 
    /**
     * Default room destructor
@@ -89,10 +89,7 @@ class Room
     */
    Inventory inventory;
 
-   /**
-    * State of any events that occur in a room
-    */
-    std::vector<Events> events;
+    Events event;
 
    /**
     * Characters in the room

@@ -32,12 +32,12 @@ Room::Room() {
    inventory = {};
    key = wall;
    exits = {};
-   events = {};
+   event = {};
    characters = {};
 }
 
 Room::Room(std::string a, std::string b, std::string c, bool d, Inventory e,
-           keyItem f, std::vector<Room*> g, std::vector<Events> h,
+           keyItem f, std::vector<Room*> g, Events h,
            std::vector<Character> i){
              name = a;
              description = b;
@@ -46,7 +46,7 @@ Room::Room(std::string a, std::string b, std::string c, bool d, Inventory e,
              inventory = e;
              key = f;
              exits = g;
-             events = h;
+             event = h;
              characters = i;
 }
 
