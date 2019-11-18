@@ -10,6 +10,9 @@
 #include <vector>
 #include <iostream>
 #include "Character.h"
+#include "Inventory.h"
+
+
 
 Character::Character() {
 charaID = "DEFAULT ID";
@@ -65,12 +68,13 @@ void Character::increaseEventCounter() {
 	/**
 	* This is the dialogue options for the character
 	*/
-void Character::talk() {
+void Character::talk(std::string charaID) {
 	if (isAlive == false) {
 		std::cout << name << " is dead.";
+
 	}
-	else {
-		if (charaID == "traitor") {
+	else { //character is alive, decide which character are we talking to
+		if (charaID == "snitch") {
 
 		}
 		else if(charaID == "toiletFisher") {
