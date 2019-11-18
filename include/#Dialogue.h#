@@ -1,0 +1,44 @@
+/**
+ * @author Troy Hatchard
+ * @author Lambee Mangal
+ * @author Austen Oviatt
+ * @author Sarah Ren
+ * @date November 13, 2019
+ */
+
+#ifndef DIALOGUE_H
+#define DIALOGUE_H
+
+/**
+ *This class implements all dialogue in game
+ */
+
+#include "Events.h"
+#include "Characters.h"
+#include <iostream>
+#include <string>
+#include <vector>
+
+class Dialogue {
+  public:
+   /**
+    * default constructor
+    * @param ....
+    * @param ....
+    */
+   Dialogue(std::....);
+
+   /**
+    * Default destructor
+    */
+   ~Dialogue();
+
+
+  private:
+
+
+
+
+};
+
+#endif //DIALOGUE_H
