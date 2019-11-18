@@ -22,8 +22,9 @@ LoadSave::~LoadSave()
 * Loads a game from the specified csv file
 * @param fileName the name of the file the save game is saved to
 */
-void LoadSave::loadGame(std::string filename, std::vector<Item> &itemsVector, std::vector<Room> &roomsVector,
-           std::vector<Character> &charactersVector, std::vector<Events> &eventsVector) {
+void LoadSave::loadGame(std::string filename, std::vector<Item>& itemsVector,
+                        std::vector<Room>& roomsVector, std::vector<Character>& charactersVector,
+                        std::vector<Events>& eventsVector) {
 
   std::ifstream saveFile;
   saveFile.open(filename);
@@ -37,36 +38,35 @@ void LoadSave::loadGame(std::string filename, std::vector<Item> &itemsVector, st
     std::vector<Room> RoomsVec;
     bool skipHeader = false;
 
-    while(!saveFile.eof()) {
+    while (!saveFile.eof()) {
+      if (skipHeader) {
+        std::string discard;
+        getline(saveFile, discard);
+        skipHeader = false;
+      }
       getline(saveFile, line);
       std::stringstream s(line);
       rowVec.clear();
-      if (!skipHeader) {
-        while(s >> std::ws) {
-          getline(s, cell, '|');
-          rowVec.push_back(cell);
-        }
-        if (rowVec[0] == "*") {
-          object = rowVec[1];
-          skipHeader = true;
-        }
-        else {
-          if(object == "Items") {
-                bool fixed;
-                if (rowVec[2] == "false") {
-                  fixed = false;
-                } else if (rowVec[2] == "true") {
-                  fixed = true;
-                }
 
-                Item tempItem(rowVec[0], rowVec[1], fixed);
-                itemsVector.push_back(tempItem);
+      while (s >> std::ws) {
+        getline(s, cell, '|');
+        rowVec.push_back(cell);
+      }
+      if (rowVec[0] == "*") {
+        object = rowVec[1];
+        skipHeader = true;
+      } else {
+        if (object == "Items") {
 
-          } else if (object == "Inventory") {
+          Item tempItem(rowVec[0], rowVec[1], true);
+          //std::cout << "The temp item name: " << tempItem.getName();
+          itemsVector.push_back(tempItem);
 
-          }
+        } else if (object == "Room") {
+
         }
       }
+
 
 
 

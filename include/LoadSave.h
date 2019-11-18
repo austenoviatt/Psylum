@@ -27,8 +27,7 @@ class LoadSave {
   * Loads a game from the specified csv file
   * @param fileName the name of the file the save game is saved to
   */
-void loadGame(std::string filename, std::vector<Item> &, std::vector<Room> &,
-           std::vector<Character> &, std::vector<Events> &);
+void loadGame(std::string filename, std::vector<Item>&, std::vector<Room>&, std::vector<Character>&, std::vector<Events>&);
 
   /**
   * Saves a game to the specified csv file
