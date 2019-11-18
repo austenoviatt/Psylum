@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Events.h"
+#include "Room.h"
 
 class Dialogue {
 public:
