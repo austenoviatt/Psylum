@@ -28,7 +28,7 @@ Room::Room() {
   doorDescription = "";
   locked = true;
   inventory = {};
-  key = wall;
+  key = "wall";
   exits = {};
   event = {};
   characters = {};

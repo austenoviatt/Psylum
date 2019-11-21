@@ -7,19 +7,14 @@ using namespace std;
 Dialogue::Dialogue() {
 }
 
-Events A("Tree Riddle",
-         "As you walk into the room, a gnarled tree beckons you toward it with a finger-like branch",
-         0);
-Room R2("Forest", "It's a huge forest!",
-        "You see a door with a big tree symbol etched into it.", false, {}, noKey, {},
-        A, {});
+
 
 void Dialogue::talk(std::string chaID) {
   unsigned int input;
 
 
 
-  if (A.getEventCounter() == 0) {
+  if (input== 0) {
     cout << "It’s not nice to look through people’s stuff….what are you doing here?"
          << endl;
     cout << "1. Sorry I don’t know how I ended up here and am looking for a way out."
@@ -32,11 +27,11 @@ void Dialogue::talk(std::string chaID) {
     cin >> input;
 
     if (input == 1 || input == 2 || input == 3) {
-      A.addEventCounter();
+      //A.addEventCounter();
 
       talk(chaID);
     }
-  } else if (A.getEventCounter() == 1) {
+  } else if (input == 1) {
     cout << "I can help you, if you’d like?" << endl;
     cout << "1. Okay. Follow Annabelle’s lead" << endl;
     cout << "2. Refuse Annabelle’s help" << endl;
@@ -44,11 +39,11 @@ void Dialogue::talk(std::string chaID) {
     cin >> input;
 
     if (input == 1 || input == 2) {
-      A.addEventCounter();
+      //A.addEventCounter();
 
       talk(chaID);
     }
-  } else if (A.getEventCounter() == 2) {
+  } else if (input== 2) {
     cout << "You reached conversation stage 3!" << endl;
   }
   /*

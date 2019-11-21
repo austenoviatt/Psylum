@@ -41,11 +41,77 @@ void loadGame(string fileName) {
 
 }
 
+void Game::getUserInput() {
+  std::string userInput;
+  std::cout << "enter: ";
+  getline(cin,userInput);
+  std::cout << std::endl;
+  processCommand(userInput);
+}
+
+void Game::testLoadGame() {
+  Item I("Magic Mushroom", "Will have hallucination when consumed, may die from overdose", " ", false);
+  Item I2("Lab Coat", "Normal looking lab coat, stolen from the lab", " ", false);
+  Item I3("Fridge", "Old rusty fridge", " ", true);
+
+  Inventory playerInventory;
+  Inventory roomInventory;
+
+  roomInventory.addItem(I);   //working good
+  roomInventory.addItem(I2);  //working good
+  roomInventory.addItem(I3);
+
+
+  std::cout << roomInventory.getItems()[0].getName()
+            << " "
+            << roomInventory.getItems()[1].getName()
+            << " "
+            << roomInventory.getItems()[2].getName()
+            << std::endl;
+
+  Events E("snitch chara counter"," ", 0);
+  Events E2("greeted doctor"," ", 0);
+
+  Character C("snitch", "Annabelle", "sketchy looking patient who looks like she want to help you", true, 0, " ");
+  Character C2("dummy", "deadDummy", "dummy who looks at you but will never interact with you", false, 0, " ");
+
+  characters.push_back(C);
+  characters.push_back(C2);
+
+  std::cout << characters[0].getName()
+            << " "
+            << characters[1].getName()
+            << std::endl;
+
+  std::cout << "reached before room create" << std::endl;
+  Room R("testRoom", "this is just a test room, nothing to look at", "red", false, roomInventory, " ", {}, E2, characters);
+  std::cout << "reached after room create" << std::endl;
+
+  std::cout << R.getName()
+            << ", "
+            << R.getDoorDesc()
+            << ", "
+            << R.getLocked()
+            << ", "
+            << R.inventory.getItems()[0].getName() << " " << R.inventory.getItems()[1].getName()
+            << ", "
+            << R.event.getName()
+            << ", "
+            << R.characters[0].getName() << " " << R.characters[1].getName()
+            << std::endl;
+
+  //so far so good
+
+
+}
+
+
 /**
 * Processes user input into game commands
 * @return string of command the program can understand
 */
 string Game::processCommand(string userInput) {
+
 //  std::string returnStatement;
   string input = userInput;
   //convert userInput into lowercase letters
@@ -53,14 +119,17 @@ string Game::processCommand(string userInput) {
 
   //separate the input by space and store into vector
   std::istringstream ss(input);
+
   std::string token;
   vector<string> result;
+
   while (std::getline(ss, token, ' ')) {
     result.push_back(token);
   }
   //for (int i = 0; i < result.size(); i++){
   //  std::cout << result[i] << std::endl;
   //}
+
   std::string firstWord = result[0];
 
   //clean up unnecessary word
@@ -70,7 +139,7 @@ string Game::processCommand(string userInput) {
       result.erase(result.begin() + i);
     }
   }
-  //firstWord = result[1];
+
   //compare the verb with verb vector
   for (uint i = 0; i < command.size(); i++) {
     for (uint j = 0; j < command[i].size(); j++) {
@@ -78,25 +147,31 @@ string Game::processCommand(string userInput) {
         //found the command, return value of set of command
         switch (i) {
         case 0:
+          std::cout << "gooooo!!!!" << std::endl;
           return go(result);
           break;
         case 1:
+          std::cout << "look!!!!!!!!" << std::endl;
           return look(result);
           break;
         case 2:
+          std::cout << "take!!!!!!!!!" << std::endl;
           return take(result);
           break;
         case 3:
+          std::cout << "useeeeeeeeee!!!!" << std::endl;
           return use(result);
           break;
         case 4:
-          std::cout << "talk!!!!!!!!!";
+          std::cout << "talk!!!!!!!!!" << std::endl;
           return talk(result);
           break;
         case 5:
+          std::cout << "help!!!!!!!!!" << std::endl;
           return help(result);
           break;
         case 6:
+          std::cout << "inventory!!!!!!" << std::endl;
           return inventory();
           break;
 
@@ -203,17 +278,22 @@ string Game::help(vector<string> result) {
   int inputSize = result.size();
   std::string returnStatement;
   if (inputSize == 1) {
-    return displayHelp();
+    displayHelp();
+     getUserInput();
   } else if (inputSize == 2) {
     if (result[1] == "me") {
-      return displayHelp();
+      displayHelp();
+      getUserInput();
     } else {
-      return "Input Invalid\n";
+      std::cout << "Input Invalid" << std::endl;
+      getUserInput();
     }
   } else {
-    return "Input Invalid\n";
+    std::cout << "Input Invalid" << std::endl;
+      getUserInput();
   }
-  return "Input Invalid\n";
+  std::cout << "Input Invalid" << std::endl;
+      getUserInput();
 }
 
 /**
@@ -411,7 +491,7 @@ string Game::use(vector<string> result) {
   return invalid;
 }
 
-string Game::displayHelp() {
+void Game::displayHelp() {
   std::stringstream ss;
   ss << "HELP PAGE" << "\n" << "\n"
      << "Available Commands:" << "\n"
@@ -421,8 +501,8 @@ string Game::displayHelp() {
      << "Items: look <Item>, take <Item>, give <Item>, use <Item>, use <Item1> with <Item2>, use <Item> on <npc>, add <Item1> to <Item2>"
      << "\n\n"
      << "Talk to npc: talk <npc>" << "\n\n"
-     << "Inventory: inventory, inv, i" << "\n\n";
+     << "Inventory: inventory, inv, i" << "\n";
 
-  return ss.str();
+  std::cout << ss.str() << std::endl;
 
 }

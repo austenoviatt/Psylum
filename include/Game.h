@@ -51,6 +51,7 @@ class Game {
    */
   string processCommand(string userInput);
 
+  void getUserInput();
   /**
    * removes an item from an inventory
    * @return a string explaining what happened
@@ -102,12 +103,16 @@ class Game {
   /**
    * display a page of text to give player all the possible commands in the game
    */
-  string displayHelp();
+  void displayHelp();
+
+  void testLoadGame();
+
 
  private:
 
   std::vector<Room> locations;
   std::vector<Item> items;
+  std::vector<Character> characters;
   std::vector<string> result;
   std::vector<vector<string>> command {
     {"go"},
@@ -118,8 +123,6 @@ class Game {
     {"help"},
     {"inventory", "inv", "i"},
   };
-
-
   Player player;
 
 };
