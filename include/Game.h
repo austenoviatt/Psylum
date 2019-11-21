@@ -68,7 +68,7 @@ class Game {
    * prints the list of actions in case the player gets stuck
    * @return a string explaining what happened
    */
-  string help(vector<string> result);
+  void help(vector<string> result, Room R);
 
   /**
    * prints all items in players inventory

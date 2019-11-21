@@ -50,10 +50,10 @@ void Game::getUserInput(Room R) {
 }
 
 void Game::testLoadGame() {
-  Item I("magicmushroom", "Will have hallucination when consumed, may die from overdose", " ", false);
-  Item I2("labcoat", "Normal looking lab coat, stolen from the lab", " ", false);
-  Item I3("fridge", "Old rusty fridge", " ", true);
-  Item I4("poison", "testing to see if poison is in the room", " ", false);
+  Item I("magicmushroom", "Will have hallucination when consumed, may die from overdose", "magic mushroom", false);
+  Item I2("labcoat", "Normal looking lab coat, stolen from the lab", "lab coat", false);
+  Item I3("fridge", "Old rusty fridge", "fridge", true);
+  Item I4("ratpoison", "testing to see if poison is in the room", "rat poison", false);
 
   Inventory playerInventory;
   Inventory roomInventory;
@@ -177,7 +177,7 @@ string Game::processCommand(string userInput, Room R) {
           break;
         case 5:
           std::cout << "help!!!!!!!!!" << std::endl;
-          return help(result);
+          help(result, R);
           break;
         case 6:
           std::cout << "inventory!!!!!!" << std::endl;
@@ -283,26 +283,26 @@ string Game::go(vector<string> result) {
  * prints the list of actions in case the player gets stuck
  * @return a string explaining what happened
  */
-string Game::help(vector<string> result) {
+void Game::help(vector<string> result, Room R) {
   int inputSize = result.size();
   std::string returnStatement;
   if (inputSize == 1) {
     displayHelp();
-     //getUserInput();
+     getUserInput(R);
   } else if (inputSize == 2) {
     if (result[1] == "me") {
       displayHelp();
-      //getUserInput();
+      getUserInput(R);
     } else {
       std::cout << "Input Invalid" << std::endl;
-      //getUserInput();
+      getUserInput(R);
     }
   } else {
     std::cout << "Input Invalid" << std::endl;
-      //getUserInput();
+      getUserInput(R);
   }
   std::cout << "Input Invalid" << std::endl;
-      //getUserInput();
+      getUserInput(R);
 }
 
 /**
@@ -372,10 +372,10 @@ void Game::look(vector<string> result, Room R) {
   //concat two item name and see if there is a match
   else if (inputSize == 3) {
     result[1] = result[1] + result[2];
-    std::cout << result[1] << std::endl;
+    //std::cout << result[1] << std::endl;
     //erase the second item name
     result.erase(result.begin() + 2);
-    //look(result);
+    look(result, R);
   } else {
     std::cout << "Input Invalid" << std::endl;
     getUserInput(R);
