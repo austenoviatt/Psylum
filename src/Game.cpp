@@ -14,6 +14,7 @@
 #include "Player.h"
 #include "Game.h"
 #include "Use.h"
+#include "Dialogue.h"
 #include<bits/stdc++.h>
 
 Game::Game() {
@@ -50,6 +51,7 @@ void Game::getUserInput(Room R) {
 }
 
 void Game::testLoadGame() {
+
   Item I("magicmushroom", "Will have hallucination when consumed, may die from overdose", "magic mushroom", false);
   Item I2("labcoat", "Normal looking lab coat, stolen from the lab", "lab coat", false);
   Item I3("fridge", "Old rusty fridge", "fridge", true);
@@ -142,12 +144,16 @@ string Game::processCommand(string userInput, Room R) {
   std::string firstWord = result[0];
 
   //clean up unnecessary word
-  for (uint i = 0; i < result.size(); i++) {
-    if (result[i] == "with" || result[i] == "to" || result[i] == "at"
-        || result[i] == "the" || result[i] == "on" || result[i] == "door") {
-      result.erase(result.begin() + i);
-    }
+  int counter = 0;
+  while (counter < result.size()) {
+      if (result[counter] == "with" || result[counter] == "to" || result[counter] == "at" || result[counter] == "the" || result[counter] == "on" || result[counter] == "door") {
+        result.erase(result.begin() + counter);
+      }
+      else {
+        counter++;
+      }
   }
+  counter = 0;
 
   //compare the verb with verb vector
   for (uint i = 0; i < command.size(); i++) {
@@ -172,8 +178,8 @@ string Game::processCommand(string userInput, Room R) {
           return use(result);
           break;
         case 4:
-          std::cout << "talk!!!!!!!!!" << std::endl;
-          return talk(result);
+          //std::cout << "talk!!!!!!!!!" << std::endl;
+          talk(result, R);
           break;
         case 5:
           std::cout << "help!!!!!!!!!" << std::endl;
@@ -190,9 +196,8 @@ string Game::processCommand(string userInput, Room R) {
   }
   //did not find the corresponding command
   //returnStatement = strcat("Input Invalid", "\n");    // this works, just trying to see if there is a more efficient way to concatenate the string
-  std::string returnStatement = "Input Invalid";
-  returnStatement += '\n';
-  return returnStatement;
+  std::cout << "Input Invalid" << std::endl;
+  getUserInput(R);
 
 }
 
@@ -422,40 +427,36 @@ string Game::take(vector<string> result) {
     result.erase(result.begin() + 2);
     take(result);
   }
-  return "Input Invalid\n";
+  return "Input Invalid";
+
 }
 
 /**
  * initiate dialogue options with an NPC
  * @return a string explaining what happened
  */
-string Game::talk(vector<string> result) {
-  std::string returnStatement;
-  //std::cout << "ok so far";
-  //grab player's current location
-  Room* currentRoom = player.currentRoom;
+void Game::talk(vector<string> result, Room R) {
 
-  for (uint i = 0; i < currentRoom->characters.size(); i++) {
-    if (result[1] == currentRoom->characters[i].getName()) {
+  for (unsigned int i = 0; i < R.characters.size(); i++) {
+    if (result[1] == R.characters[i].getName()) {
       //npc found, pass the charaID to the talk function under character class
-      Character chara = currentRoom->characters[i];
-      //currentRoom->characters[i].talk(currentRoom->characters[i].getID());
+      Character chara = R.characters[i];
+      Dialogue d;
 
       //check whether the character is alive or not
       if (chara.isAlive == false) {
-        std::cout << chara.getName() << " is dead.";
+        std::cout << chara.getName() << " is dead." << std::endl;
       } else { //character is alive, decide which character are we talking to
-        if (chara.getID() == "snitch") {
-          std::cout << "found snitch";
-        } else if (chara.getID() == "toiletFisher") {
-          std::cout << "found toilet fisher";
-        }
+        d.talk(&R.characters[i]);
+        std::cout << "talked to the patient" << std::endl;
+        getUserInput(R);
       }
 
     }
   }
-  //npc not found
-  return "Input Invalid\n";
+    //npc not found
+    std::cout << "Input Invalid" << std::endl;
+    getUserInput(R);
 }
 
 /**

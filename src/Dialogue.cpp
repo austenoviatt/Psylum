@@ -7,44 +7,88 @@ using namespace std;
 Dialogue::Dialogue() {
 }
 
-
-
-void Dialogue::talk(std::string chaID) {
+void Dialogue::talk(Character *c) {
   unsigned int input;
+
+  //find out which character we are talking to
+  string charaID = c->getID();
+  bool converOver = false;
+
+  while (converOver == false) {
+    if (charaID == "snitch") {
+      if (c->getEventCounter() == 0) {
+        cout << "Patient: A fellow patient! As you can see, I'm also a patient here, my name is Annabelle btw. You look a little lost, are you ok?" << endl;
+        cout << "1. Sorry I don’t know how I ended up here and am looking for a way out." << endl;
+        cout << "2. Exit conversation" << endl;
+
+        cin >> input;
+        if (input == 1) {
+        cin.ignore();
+        c->increaseEventCounter();
+        continue;
+        }
+        else if (input == 2) {
+          cin.ignore();
+          converOver = true;
+          break;
+        }
+        else {
+          cin.ignore();
+          converOver = true;
+          break;
+        }
+      }
+      else if (c->getEventCounter() == 1) {
+        cout << "Patient: I can help you, if you’d like?" << endl;
+        cout << "1. Okay. Accept Annabelle’s help" << endl;
+        cout << "2. Exit conversation" << endl;
+
+        cin >> input;
+        if (input == 1) {
+          cin.ignore();
+          //bad end, need to change return
+          cout << "Patient: Follow me, I know a way that can get you out of here." << endl;
+          cout << "You followed Annabelle." << endl;
+
+          continue;
+        }
+        else if (input == 2) {
+          cin.ignore();
+          converOver = true;
+          break;
+        }
+        else {
+          cin.ignore();
+          converOver = true;
+          break;
+        }
+      }
+  }
+
+  }
+  return;
 
 
 
   if (input== 0) {
-    cout << "It’s not nice to look through people’s stuff….what are you doing here?"
-         << endl;
-    cout << "1. Sorry I don’t know how I ended up here and am looking for a way out."
-         << endl;
-    cout << "2. I don’t know who you are but we’re in danger and we have to leave now! I’ve locked someone in my room and I’m sure they will be looking for her."
-         << endl;
-    cout << "3. Howdy there! What a surprise! This isn’t the bathroom huh? Well how very awkward. I’ll be leaving now. Good talk, bye!"
-         << endl;
 
-    cin >> input;
 
     if (input == 1 || input == 2 || input == 3) {
       //A.addEventCounter();
 
-      talk(chaID);
+      talk(c);
     }
   } else if (input == 1) {
-    cout << "I can help you, if you’d like?" << endl;
-    cout << "1. Okay. Follow Annabelle’s lead" << endl;
-    cout << "2. Refuse Annabelle’s help" << endl;
 
     cin >> input;
 
     if (input == 1 || input == 2) {
       //A.addEventCounter();
 
-      talk(chaID);
+      talk(c);
     }
   } else if (input== 2) {
-    cout << "You reached conversation stage 3!" << endl;
+
   }
   /*
   switch(input) {

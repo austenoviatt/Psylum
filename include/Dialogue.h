@@ -10,11 +10,11 @@ class Dialogue {
   Dialogue();
 
   ~Dialogue() {}
-  void talk(std::string chaID);
+  void talk(Character *c);
 
 
  private:
-  std::string chaID;
+
 
 };
 

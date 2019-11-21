@@ -92,7 +92,7 @@ class Game {
    * initiate dialogue options with an NPC
    * @return a string explaining what happened
    */
-  string talk(vector<string> result);
+  void talk(vector<string> result, Room R);
 
   /**
    * use an item inside the inventory
