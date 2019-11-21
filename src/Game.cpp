@@ -91,8 +91,12 @@ void Game::testLoadGame() {
             << std::endl;
 
   //std::cout << "reached before room create" << std::endl;
-  Room R("testRoom", "this is just a test room, nothing to look at", "red", false, roomInventory, " ", {}, E2, characters);
+  Room R("testRoom", "There is a fridge on your left. On your right side, there is a patient who is looking at you. A dummy is placed in the center of the room",
+         "red", false, roomInventory, " ", {}, E2, characters);
   //std::cout << "reached after room create" << std::endl;
+  Room R2("testRoom2", "A hallway with flickering lights, you see scratch marks on the wall along the hallway, a whistling can be heard from the end of the hallway.",
+          "hallway", false, {}, " ", {}, {}, {});
+
 
   std::cout << R.getName()
             << ", "
@@ -106,6 +110,9 @@ void Game::testLoadGame() {
             << ", "
             << R.characters[0].getName() << " " << R.characters[1].getName()
             << std::endl;
+
+ // Player P(R, playerInventory, 0);
+
   bool playerIsAlive = true;
 
   while (playerIsAlive) {
@@ -182,7 +189,7 @@ string Game::processCommand(string userInput, Room R) {
           talk(result, R);
           break;
         case 5:
-          std::cout << "help!!!!!!!!!" << std::endl;
+          //std::cout << "help!!!!!!!!!" << std::endl;
           help(result, R);
           break;
         case 6:
