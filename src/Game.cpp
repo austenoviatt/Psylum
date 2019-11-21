@@ -42,12 +42,12 @@ void loadGame(string fileName) {
 
 }
 
-void Game::getUserInput(Room R) {
+void Game::getUserInput(Player P) {
   std::string userInput;
   std::cout << "enter: ";
   getline(cin,userInput);
   std::cout << std::endl;
-  processCommand(userInput, R);
+  processCommand(userInput, P);
 }
 
 void Game::testLoadGame() {
@@ -97,6 +97,16 @@ void Game::testLoadGame() {
   Room R2("testRoom2", "A hallway with flickering lights, you see scratch marks on the wall along the hallway, a whistling can be heard from the end of the hallway.",
           "hallway", false, {}, " ", {}, {}, {});
 
+          //std::vector<Room*> exitR {{},{},R2,{}};// {R2};
+          //std::vector<Room*> exitR2 {{}, {R}, {}, {}};// {R};
+
+          //R.exits.push_back(R2);
+          //R2.exits.push_back(R);
+
+
+          //R2.setExit(exitR);
+          //R.setExit(exitR2);
+
 
   std::cout << R.getName()
             << ", "
@@ -111,12 +121,12 @@ void Game::testLoadGame() {
             << R.characters[0].getName() << " " << R.characters[1].getName()
             << std::endl;
 
- // Player P(R, playerInventory, 0);
+  Player P(&R, playerInventory, 0);
 
   bool playerIsAlive = true;
 
   while (playerIsAlive) {
-    getUserInput(R);
+    getUserInput(P);
   }
 
   //so far so good
@@ -128,7 +138,7 @@ void Game::testLoadGame() {
 * Processes user input into game commands
 * @return string of command the program can understand
 */
-string Game::processCommand(string userInput, Room R) {
+string Game::processCommand(string userInput, Player P) {
 
 //  std::string returnStatement;
   string input = userInput;
@@ -170,15 +180,15 @@ string Game::processCommand(string userInput, Room R) {
         switch (i) {
         case 0:
           std::cout << "gooooo!!!!" << std::endl;
-          return go(result);
+          go(result, P);
           break;
         case 1:
           //std::cout << "look!!!!!!!!" << std::endl;
-          look(result, R);
+          look(result, P);
           break;
         case 2:
-          std::cout << "take!!!!!!!!!" << std::endl;
-          return take(result);
+          //std::cout << "take!!!!!!!!!" << std::endl;
+          take(result, P);
           break;
         case 3:
           std::cout << "useeeeeeeeee!!!!" << std::endl;
@@ -186,15 +196,15 @@ string Game::processCommand(string userInput, Room R) {
           break;
         case 4:
           //std::cout << "talk!!!!!!!!!" << std::endl;
-          talk(result, R);
+          talk(result, P);
           break;
         case 5:
           //std::cout << "help!!!!!!!!!" << std::endl;
-          help(result, R);
+          help(result, P);
           break;
         case 6:
-          std::cout << "inventory!!!!!!" << std::endl;
-          return inventory();
+          //std::cout << "inventory!!!!!!" << std::endl;
+          inventory(P);
           break;
 
         }
@@ -204,7 +214,7 @@ string Game::processCommand(string userInput, Room R) {
   //did not find the corresponding command
   //returnStatement = strcat("Input Invalid", "\n");    // this works, just trying to see if there is a more efficient way to concatenate the string
   std::cout << "Input Invalid" << std::endl;
-  getUserInput(R);
+  getUserInput(P);
 
 }
 
@@ -220,121 +230,117 @@ string Game::processCommand(string userInput, Room R) {
  * moves player to specified room
  * @return a string explaining what happened
  */
-string Game::go(vector<string> result) {
-  //grab player's current location
-  Room* currentRoom = player.currentRoom;
-  std::string returnStatement;
+void Game::go(vector<string> result, Player P) {
 
-  for (uint i = 0; i < currentRoom->exits.size(); i++) {
-    if (currentRoom->exits[i]->getDoorDesc() == result[1]) {
-      if (currentRoom->exits[i]->getLocked() == false) {
-        player.moveToRoom(currentRoom->exits[i]);
+  for (uint i = 0; i < P.currentRoom->exits.size(); i++) {
+      if (P.currentRoom->exits[i]->getDoorDesc() == result[1]) {
 
-        std::stringstream ss;
-        ss << currentRoom->getDoorDesc() << "\n";
-        returnStatement = ss.str();
-        return returnStatement;
-      } else if (currentRoom->exits[i]->getLocked() == true) {
-        return "the room is locked\n";
+      if (P.currentRoom->exits[i]->getLocked() == false) {
+        P.moveToRoom(P.currentRoom->exits[i]);
+
+        std::cout << P.currentRoom->getDoorDesc() << std::endl;
+        getUserInput(P);
+
+      } else if (P.currentRoom->exits[i]->getLocked() == true) {
+        std::cout << "the room is locked" << std::endl;
+        getUserInput(P);
       }
     }
   }
   if ((result[1] == "forward" || "front" )
-      && (currentRoom->exits[0]->getName() != "a wall")) {
-    if (currentRoom->exits[0]->getLocked() == false) {
-      player.moveToRoom(currentRoom->exits[0]);
+      && (P.currentRoom->exits[0]->getName() != "a wall")) {
+    if (P.currentRoom->exits[0]->getLocked() == false) {
+      P.moveToRoom(P.currentRoom->exits[0]);
 
-      std::stringstream ss;
-      ss << currentRoom->getDoorDesc() << "\n";
-      returnStatement = ss.str();
-      return returnStatement;
-    } else if (currentRoom->exits[0]->getLocked() == true) {
-      return "the room is locked\n";
+      std::cout << P.currentRoom->getDoorDesc() << std::endl;
+      getUserInput(P);
+
+    } else if (P.currentRoom->exits[0]->getLocked() == true) {
+      std::cout << "the room is locked" << std::endl;
+      getUserInput(P);
     }
-  } else if (result[1] == "right"
-             && currentRoom->exits[1]->getName() != "a wall") {
-    if (currentRoom->exits[1]->getLocked() == false) {
-      player.moveToRoom(currentRoom->exits[1]);
+  } else if (result[1] == "right" && P.currentRoom->exits[1]->getName() != "a wall") {
+    if (P.currentRoom->exits[1]->getLocked() == false) {
+      P.moveToRoom(P.currentRoom->exits[1]);
 
-      std::stringstream ss;
-      ss << currentRoom->getDoorDesc() << "\n";
-      returnStatement = ss.str();
-      return returnStatement;
-    } else if (currentRoom->exits[1]->getLocked() == true) {
-      return "the room is locked\n";
+      std::cout << P.currentRoom->getDoorDesc() << std::endl;
+      getUserInput(P);
+
+    } else if (P.currentRoom->exits[1]->getLocked() == true) {
+      std::cout << "the room is locked" << std::endl;
+      getUserInput(P);
     }
 
-  } else if ((result[1] == "backward" || "back" || "behind")
-             && (currentRoom->exits[2]->getName() != "a wall")) {
-    if (currentRoom->exits[2]->getLocked() == false) {
-      player.moveToRoom(currentRoom->exits[2]);
+  } else if ((result[1] == "backward" || "back" || "behind") && (P.currentRoom->exits[2]->getName() != "a wall")) {
+    if (P.currentRoom->exits[2]->getLocked() == false) {
+      P.moveToRoom(P.currentRoom->exits[2]);
 
-      std::stringstream ss;
-      ss << currentRoom->getDoorDesc() << "\n";
-      returnStatement = ss.str();
-      return returnStatement;
-    } else if (currentRoom->exits[2]->getLocked() == true) {
-      return "the room is locked\n";
+      std::cout << P.currentRoom->getDoorDesc() << std::endl;
+      getUserInput(P);
+
+    } else if (P.currentRoom->exits[2]->getLocked() == true) {
+      std::cout << "the room is locked" << std::endl;
+      getUserInput(P);
     }
-  } else if (result[1] == "right"
-             && currentRoom->exits[3]->getName() != "a wall") {
-    if (currentRoom->exits[3]->getLocked() == false) {
-      player.moveToRoom(currentRoom->exits[3]);
+  } else if (result[1] == "right" && P.currentRoom->exits[3]->getName() != "a wall") {
+    if (P.currentRoom->exits[3]->getLocked() == false) {
+      P.moveToRoom(P.currentRoom->exits[3]);
 
-      std::stringstream ss;
-      ss << currentRoom->getDoorDesc() << "\n";
-      returnStatement = ss.str();
-      return returnStatement;
-    } else if (currentRoom->exits[3]->getLocked() == true) {
-      return "the room is locked\n";
+      std::cout << P.currentRoom->getDoorDesc() << std::endl;
+      getUserInput(P);
+
+    } else if (P.currentRoom->exits[3]->getLocked() == true) {
+      std::cout << "the room is locked" << std::endl;
+      getUserInput(P);
     }
   }
-  return "Input Invalid\n";
+    std::cout << "Input Invalid" << std::endl;
+    getUserInput(P);
 }
 /**
  * prints the list of actions in case the player gets stuck
  * @return a string explaining what happened
  */
-void Game::help(vector<string> result, Room R) {
+void Game::help(vector<string> result, Player P) {
   int inputSize = result.size();
   std::string returnStatement;
   if (inputSize == 1) {
     displayHelp();
-     getUserInput(R);
+     getUserInput(P);
   } else if (inputSize == 2) {
     if (result[1] == "me") {
       displayHelp();
-      getUserInput(R);
+      getUserInput(P);
     } else {
       std::cout << "Input Invalid" << std::endl;
-      getUserInput(R);
+      getUserInput(P);
     }
   } else {
     std::cout << "Input Invalid" << std::endl;
-      getUserInput(R);
+      getUserInput(P);
   }
   std::cout << "Input Invalid" << std::endl;
-      getUserInput(R);
+      getUserInput(P);
 }
 
 /**
  * prints all items in players inventory
  * or else prints that players inventory is empty. a string explaining what happened
  */
-std::string Game::inventory() {
-  if (player.inventory.getInvCount() != 0) {
-    std::cout << "In your inventory you have: " << "\n";
-    for (int i = 0; i < player.inventory.getInvCount(); i++) {
-
-      std::cout<< player.inventory.getItems()[i].getName() + ", ";
+void Game::inventory(Player P) {
+  if (P.inventory.getItems().size() != 0) {
+    std::cout << "In your inventory you have: " << std::endl;
+    for (int i = 0; i < P.inventory.getItems().size(); i++) {
+      std::cout<< P.inventory.getItems()[i].getNiceName();
+      if ((i + 1) != P.inventory.getItems().size()) {
+        std::cout << ", ";
+      }
     }
-    std::string done;
-    done += '\n';
-    return done;
+    std::cout << endl;
+    getUserInput(P);
   } else {
-    std::string zero = "Your inventory is empty.";
-    zero += '\n';
-    return zero;
+    std::cout << "Your inventory is empty." << std::endl;
+    getUserInput(P);
   }
 }
 
@@ -342,17 +348,17 @@ std::string Game::inventory() {
  * prints out description of a room or item or NPC
  * @return a string explaining what happened
  */
-void Game::look(vector<string> result, Room R) {
+void Game::look(vector<string> result, Player P) {
   int inputSize = result.size();
 
   if (inputSize == 1) {
-      std::cout << R.description << std::endl;
-      getUserInput(R);
+      std::cout << P.currentRoom->description << std::endl;
+      getUserInput(P);
   } else if (inputSize == 2) {
     //index 1 is important here
     if (result[1] == "around" || result[1] == "room") {
-      std::cout << R.description << std::endl;
-       getUserInput(R);
+      std::cout << P.currentRoom->description << std::endl;
+       getUserInput(P);
     } else if (result[1] == "inventory") {
       //return inventory();
     }
@@ -364,22 +370,22 @@ void Game::look(vector<string> result, Room R) {
     //}
    //std::cout << R.inventory.getInvCount() << std::endl;
     //looping through item in room
-    for (unsigned int i = 0; i < R.inventory.getItems().size(); i++) {
-      if (result[1] == R.inventory.getItems()[i].getName()) {
-        std::cout << R.inventory.getItems()[i].getItemDesc() << std::endl;
-         getUserInput(R);
+    for (unsigned int i = 0; i < P.currentRoom->inventory.getItems().size(); i++) {
+      if (result[1] == P.currentRoom->inventory.getItems()[i].getName()) {
+        std::cout << P.currentRoom->inventory.getItems()[i].getItemDesc() << std::endl;
+         getUserInput(P);
       }
     }
 
     //looping through the npc in the room
-    for (unsigned int i = 0; i < R.characters.size(); i++) {
-      if (result[1] == R.characters[i].getName()) {
-        std::cout << R.characters[i].getDescription() << std::endl;
-        getUserInput(R);
+    for (unsigned int i = 0; i < P.currentRoom->characters.size(); i++) {
+      if (result[1] == P.currentRoom->characters[i].getName()) {
+        std::cout << P.currentRoom->characters[i].getDescription() << std::endl;
+        getUserInput(P);
       }
     }
     std::cout << "Input Invalid" << std::endl;
-    getUserInput(R);
+    getUserInput(P);
   }
   //concat two item name and see if there is a match
   else if (inputSize == 3) {
@@ -387,10 +393,10 @@ void Game::look(vector<string> result, Room R) {
     //std::cout << result[1] << std::endl;
     //erase the second item name
     result.erase(result.begin() + 2);
-    look(result, R);
+    look(result, P);
   } else {
     std::cout << "Input Invalid" << std::endl;
-    getUserInput(R);
+    getUserInput(P);
   }
 
 }
@@ -399,31 +405,26 @@ void Game::look(vector<string> result, Room R) {
  * add an item to players inventory
  * @return a string explaining what happened
  */
-string Game::take(vector<string> result) {
-  std::string returnStatement;
-  std::string cantGet = "You can't pick that up.";
-  cantGet += '\n';
+void Game::take(vector<string> result, Player P) {
   //int inputSize = result.size();
   //grab player's current location
 
   if (result.size() == 2) {
-    for (uint i = 0; i < player.currentRoom->inventory.items.size(); i++) {
-      if (result[1] == player.currentRoom->inventory.items[i].getName()) {
-        if (!player.currentRoom->inventory.items[i].getFixed()) {
+    for (uint i = 0; i < P.currentRoom->inventory.items.size(); i++) {
+      if (result[1] == P.currentRoom->inventory.items[i].getName()) {
+        if (!P.currentRoom->inventory.items[i].getFixed()) {
           //item found, pickup item, remove item from room inventory and add it to player inventory
-          string output = player.currentRoom->inventory.items[i].getName();
+          string itemName = P.currentRoom->inventory.items[i].getNiceName();
 
-          player.inventory.addItem(player.currentRoom->inventory.items[i]);
-          player.currentRoom->inventory.removeItem(
-            player.currentRoom->inventory.items[i]);
+          P.inventory.addItem(P.currentRoom->inventory.items[i]);
+          P.currentRoom->inventory.removeItem(P.currentRoom->inventory.items[i]);
 
-          std::stringstream ss;
-          ss << "You picked up " << output << " and put it into your pocket." << "\n";
-          returnStatement = ss.str();
-          return returnStatement;
+          std::cout << "You picked up " << itemName << " and put it into your pocket." << std::endl;
+          getUserInput(P);
 
         } else
-          return cantGet;
+          std::cout << "You can't pick " << P.currentRoom->inventory.items[i].getNiceName() << " up." << std::endl;
+          getUserInput(P);
       }
     }
   }
@@ -432,9 +433,10 @@ string Game::take(vector<string> result) {
     result[1] = result[1] + result[2];
     //erase the second item name
     result.erase(result.begin() + 2);
-    take(result);
+    take(result, P);
   }
-  return "Input Invalid";
+    std::cout << "Input Invalid" << std::endl;
+    getUserInput(P);
 
 }
 
@@ -442,28 +444,28 @@ string Game::take(vector<string> result) {
  * initiate dialogue options with an NPC
  * @return a string explaining what happened
  */
-void Game::talk(vector<string> result, Room R) {
+void Game::talk(vector<string> result, Player P) {
 
-  for (unsigned int i = 0; i < R.characters.size(); i++) {
-    if (result[1] == R.characters[i].getName()) {
+  for (unsigned int i = 0; i < P.currentRoom->characters.size(); i++) {
+    if (result[1] == P.currentRoom->characters[i].getName()) {
       //npc found, pass the charaID to the talk function under character class
-      Character chara = R.characters[i];
+      Character chara = P.currentRoom->characters[i];
       Dialogue d;
 
       //check whether the character is alive or not
       if (chara.isAlive == false) {
         std::cout << chara.getName() << " is dead." << std::endl;
       } else { //character is alive, decide which character are we talking to
-        d.talk(&R.characters[i]);
+        d.talk(&P.currentRoom->characters[i]);
         std::cout << "talked to the patient" << std::endl;
-        getUserInput(R);
+        getUserInput(P);
       }
 
     }
   }
     //npc not found
     std::cout << "Input Invalid" << std::endl;
-    getUserInput(R);
+    getUserInput(P);
 }
 
 /**

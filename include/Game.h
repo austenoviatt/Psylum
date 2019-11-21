@@ -49,9 +49,9 @@ class Game {
    * Processes user input into game commands
    * @return string of command the program can understand
    */
-  string processCommand(string userInput, Room R);
+  string processCommand(string userInput, Player P);
 
-  void getUserInput(Room R);
+  void getUserInput(Player P);
   /**
    * removes an item from an inventory
    * @return a string explaining what happened
@@ -62,37 +62,37 @@ class Game {
    * moves player to specified room
    * @return a string explaining what happened
    */
-  string go(vector<string> result);
+  void go(vector<string> result, Player P);
 
   /**
    * prints the list of actions in case the player gets stuck
    * @return a string explaining what happened
    */
-  void help(vector<string> result, Room R);
+  void help(vector<string> result, Player P);
 
   /**
    * prints all items in players inventory
    * @return a string explaining what happened
    */
-  std::string inventory();
+  void inventory(Player P);
 
   /**
    * prints out description of a room or item or NPC
    * @return a string explaining what happened
    */
-  void look(vector<string> result, Room R);
+  void look(vector<string> result, Player P);
 
   /**
    * add an item to players inventory
    * @return a string explaining what happened
    */
-  string take(vector<string> result);
+  void take(vector<string> result, Player P);
 
   /**
    * initiate dialogue options with an NPC
    * @return a string explaining what happened
    */
-  void talk(vector<string> result, Room R);
+  void talk(vector<string> result, Player P);
 
   /**
    * use an item inside the inventory
