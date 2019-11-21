@@ -85,11 +85,13 @@ class Character {
   */
   bool isAlive;
 
+
  private:
   std::string charaID;
   std::string name;
   std::string description;
   int eventCounter;
   std::string dialogue;
+
 };
 #endif //CHARACTER_H

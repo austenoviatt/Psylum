@@ -54,9 +54,10 @@ class Inventory {
   int getInvCount();
 
   std::vector<Item> items;
+   int invCount = 0;
+
  private:
 
-  int invCount;
 
 };
 

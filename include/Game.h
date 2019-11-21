@@ -49,9 +49,9 @@ class Game {
    * Processes user input into game commands
    * @return string of command the program can understand
    */
-  string processCommand(string userInput);
+  string processCommand(string userInput, Room R);
 
-  void getUserInput();
+  void getUserInput(Room R);
   /**
    * removes an item from an inventory
    * @return a string explaining what happened
@@ -80,7 +80,7 @@ class Game {
    * prints out description of a room or item or NPC
    * @return a string explaining what happened
    */
-  string look(vector<string> result);
+  void look(vector<string> result, Room R);
 
   /**
    * add an item to players inventory
