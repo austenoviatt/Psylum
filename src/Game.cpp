@@ -359,8 +359,8 @@ void Game::look(vector<string> result, Player P) {
     if (result[1] == "around" || result[1] == "room") {
       std::cout << P.currentRoom->description << std::endl;
        getUserInput(P);
-    } else if (result[1] == "inventory") {
-      //return inventory();
+    } else if (result[1] == "inventory"|| result[1] == "i" || result[1] == "inv") {
+      inventory(P);
     }
     //looping through item on player
     //for (uint i = 0; i < player.inventory.items.size(); i++) {
