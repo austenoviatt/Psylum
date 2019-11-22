@@ -85,6 +85,10 @@ class Room {
 
   std::string getKey();
 
+  int charaIndex(std::string c);
+
+  int charaNum();
+
   /**
    * Inventory of the room
    */

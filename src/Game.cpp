@@ -149,7 +149,9 @@ void Game::testLoadGame() {
 * @return string of command the program can understand
 */
 string Game::processCommand(string userInput, Player P) {
-
+  if (userInput == "") {
+    getUserInput(P);
+  }
 //  std::string returnStatement;
   string input = userInput;
   //convert userInput into lowercase letters
@@ -390,8 +392,14 @@ void Game::look(vector<string> result, Player P) {
     //looping through the npc in the room
     for (unsigned int i = 0; i < P.currentRoom->characters.size(); i++) {
       if (result[1] == P.currentRoom->characters[i].getName()) {
-        std::cout << P.currentRoom->characters[i].getDescription() << std::endl;
-        getUserInput(P);
+        if (P.currentRoom->characters[i].isAlive == false) {
+          std::cout << P.currentRoom->characters[i].getName() << " past out on the ground." << std::endl;
+          getUserInput(P);
+        }
+        else {
+          std::cout << P.currentRoom->characters[i].getDescription() << std::endl;
+          getUserInput(P);
+        }
       }
     }
     std::cout << "Input Invalid" << std::endl;
@@ -455,27 +463,33 @@ void Game::take(vector<string> result, Player P) {
  * @return a string explaining what happened
  */
 void Game::talk(vector<string> result, Player P) {
+  if (result.size() == 2) {
+    for (int i = 0; i < P.currentRoom->charaNum(); i++) {
+      if (result[1] == P.currentRoom->characters[i].getName()) {
+        //npc found, pass the charaID to the talk function under character class
+        Character chara = P.currentRoom->characters[i];
+        Dialogue d;
 
-  for (unsigned int i = 0; i < P.currentRoom->characters.size(); i++) {
-    if (result[1] == P.currentRoom->characters[i].getName()) {
-      //npc found, pass the charaID to the talk function under character class
-      Character chara = P.currentRoom->characters[i];
-      Dialogue d;
-
-      //check whether the character is alive or not
-      if (chara.isAlive == false) {
-        std::cout << chara.getName() << " past out on the ground." << std::endl;
-      } else { //character is alive, decide which character are we talking to
-        d.talk(&P.currentRoom->characters[i]);
-        std::cout << "talked to the patient" << std::endl;
-        getUserInput(P);
+        //check whether the character is alive or not
+        if (chara.isAlive == false) {
+          std::cout << chara.getName() << " past out on the ground." << std::endl;
+          getUserInput(P);
+        } else { //character is alive, decide which character are we talking to
+          d.talk(&P.currentRoom->characters[i]);
+          //std::cout << "talked to the patient" << std::endl;
+          getUserInput(P);
+        }
       }
-
+      //std::cout << "reached here!!" << std::endl;
     }
-  }
-    //npc not found
     std::cout << "Input Invalid" << std::endl;
     getUserInput(P);
+  }
+  else {
+    std::cout << "Input Invalid" << std::endl;
+    getUserInput(P);
+  }
+
 }
 
 /**
@@ -483,40 +497,38 @@ void Game::talk(vector<string> result, Player P) {
 * @return a string explaining what happened
 */
 void Game::use(vector<string> result, Player P) {
-  std::string returnStatement;
-  returnStatement =+ '\n';
-  std::string invalid = "Input invalid.";
-  invalid =+ '\n';
+
   int inputSize = result.size();
 
-  //return 0 for now because use() is not available.
-
   if (inputSize == 2) {
-    for (int i= 0; i < player.inventory.getInvCount(); i++) {
-      if (result[1] == player.inventory.getItems()[i].getName()) {
-        // player.inventory.getItems()[i].use(result, &player);
-        //return returnStatement;
+    for (int i= 0; i < P.inventory.getItems().size(); i++) {
+      if (result[1] == P.inventory.getItems()[i].getName()) {
+        //if result 1 is sedative
+        int charaIndex = P.currentRoom->charaIndex("snitch");
+        if (charaIndex != 100) {
+          //character exist
+          P.currentRoom->characters[charaIndex].killChara();
+          std::cout << "You injected " << P.currentRoom->characters[charaIndex].getName() << " with "
+          << P.inventory.getItems()[i].getNiceName() << ". She past out on the ground." << std::endl;
+          std::cout << P.inventory.getItems()[i].getNiceName() << " is removed from your pocket." << std::endl;
+          P.inventory.removeItem(P.inventory.getItems()[i]);
+          getUserInput(P);
+        }
+        else {
+          //character does not exist
+          std::cout << "Input Invalid" << std::endl;
+          getUserInput(P);
+        }
       }
     }
-  } else if (inputSize >= 3) {
-    for (int i= 0; i < player.inventory.getInvCount(); i++) {
-      if (result[1] == player.inventory.getItems()[i].getName()) {
-        //return returnStatement;
-        //return player.inventory.getItems()[i].use(result);
-      }
-    }
-    for (int i= 0; i < player.inventory.getInvCount(); i++) {
-      if (result[2] == player.inventory.getItems()[i].getName()) {
-        //return returnStatement;
-        //return player.inventory.getItems()[i].use(result);
-      }
-    }
+  } else if (inputSize == 3) {
     result[1] = result[1] + result[2];
     //erase the second item name
     result.erase(result.begin() + 2);
-    //use(result);
+    use(result, P);
   }
-  //return invalid;
+    std::cout << "Input Invalid" << std::endl;
+    getUserInput(P);
 }
 
 void Game::displayHelp() {

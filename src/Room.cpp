@@ -129,3 +129,21 @@ std::string Room::getName() {
 std::string Room::getDoorDesc() {
   return doorDescription;
 }
+
+int Room::charaIndex(std::string C) {
+  for (int i = 0; i < characters.size(); i++) {
+    if (C == characters[i].getID()) {
+      return i;
+    }
+  }
+  return 100;
+}
+
+int Room::charaNum() {
+  int charaCounter = 0;
+  for (int i = 0; i < characters.size();i++) {
+    charaCounter++;
+  }
+  return charaCounter;
+}
+

@@ -59,6 +59,7 @@ void Character::killChara() {
   isAlive = false;
 }
 
+
 /**
 * move the conversation of the character forward by increasing the eventCounter by 1
 */

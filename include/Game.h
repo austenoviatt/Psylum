@@ -107,6 +107,11 @@ class Game {
 
   void testLoadGame();
 
+  /**
+  * determine if the character is still alive
+  */
+  bool isAlive;
+
 
  private:
 
