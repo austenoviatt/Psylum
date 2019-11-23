@@ -135,7 +135,7 @@ void Game::testLoadGame() {
     Character C3("evildoctor", "doctor", "he is working at his desk, and he is too busy to care about you", true, 0, " ");
 
   std::string startDesc =
-    "You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your head is throbbing. Your nostrils fill with a stagnant smell. As you begin to slowly move yours eyes around the room, you notice something strange...there's no windows or natural light. You pull yourself up and notice a small metal rolling tray beside your bed, a chair in the corner, a crack of light coming from the hallway and something written on the wall beside the door...'GET OUT'";
+    "There's no windows or natural light. You noticed a small metal rolling tray beside your bed, a chair in the corner, a crack of light coming from the hallway and something written on the wall beside the door...'GET OUT'";
   std::string l3Hall1Desc =
     "You enter a long concrete hallway. There's a door to your left with a key card slot, a door to your right, another door further down the hallway and an elevator at the end. As you're observing the situation, you hear voices from the elevator getting closer and closer. Suddenly a scream and DING! The elevator is about to open.";
   std::string annabelleDesc =
@@ -428,6 +428,10 @@ void Game::testLoadGame() {
   Player P(&startRoom, playerInventory, 0, true);
 
   bool playerIsAlive = true;
+
+  std::cout << "You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your head is throbbing. Your nostrils fill with a stagnant smell. As you begin to slowly move yours eyes around the room, you notice something strange...there's no windows or natural light. You pull yourself up and notice a small metal rolling tray beside your bed, a chair in the corner, a crack of light coming from the hallway and something written on the wall beside the door...'GET OUT'"
+            << std::endl;
+
 
   while (playerIsAlive) {
     getUserInput(P);
