@@ -14,10 +14,11 @@ Player::Player() {
   currentRoom = {};
   inventory = {};
   roomCount = 0;
+  isAlive = true;
 }
 
 Player::Player(Room* currentRoom, Inventory inventory,
-               int roomCount) : currentRoom{ currentRoom }, inventory {inventory}, roomCount{ roomCount } {
+               int roomCount, bool isAlive) : currentRoom{ currentRoom }, inventory {inventory}, roomCount{ roomCount }, isAlive {isAlive} {
 
 
 }

@@ -33,16 +33,4 @@ std::string Item::getItemDesc() {
 std::string Item::getNiceName() {
   return niceName;
 }
-/*
-//Usage unknown, will come back later
-void Item::use() {
-
-
-}
-
-
-
-
-
-*/
 

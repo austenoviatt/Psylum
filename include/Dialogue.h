@@ -10,6 +10,7 @@ class Dialogue {
   Dialogue();
 
   ~Dialogue() {}
+
   void talk(Character *c);
 
 

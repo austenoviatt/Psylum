@@ -11,42 +11,12 @@
 #include <iostream>
 #include <fstream>
 #include<bits/stdc++.h>
+#include "../../include/mainMenu.h"
 
 using namespace std;
 
 int main() {
 
-  int option = 3;
-  Game g;
-  ifstream infile("logo.txt");
-  string line;
-
-  while (infile) {
-     getline(infile, line);
-     cout << line << endl;
-  }
-  infile.close();
-  cout << "Welcome to Pyslum, a mind-bending text-based adventure!" << endl;
-  while (option != 3){
-     cout << "What would you like to do?" << endl;
-     cout << endl;
-     cout << "(1) New Game" << endl;
-     cout << "(2) Load Game" << endl;
-     cout << "(3) Exit" << endl;
-     cout << endl;
-     cin >> option;
-     
-     switch (option) {
-	case 0:
-	case 1:
-	   g.create();
-	case 2:
-	   g.loadGame("testSave.csv");
-	case 3:
-	   return 0;
-     }
-  }
-  
-  return 0;
-  
+  mainMenu m;
+  m.showMenu();
 }

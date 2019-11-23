@@ -28,7 +28,7 @@ class Player {
   /**
   * Constructor
   */
-  Player(Room* currentRoom, Inventory inventory, int roomCount);
+  Player(Room* currentRoom, Inventory inventory, int roomCount, bool isAlive);
 
   /**
    * Default destructor
@@ -57,6 +57,7 @@ class Player {
  private:
 
   int roomCount;
+  bool isAlive;
 
 
 

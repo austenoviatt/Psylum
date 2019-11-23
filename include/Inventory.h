@@ -31,7 +31,8 @@ class Inventory {
    * Checks to see if an item exists in the inventory
    * @return a bool of whether the item is in the inventory
    */
-  bool hasItem(Item I);
+
+  bool hasItem(std::string s);
 
   /**
    * Adds an item to the inventory
@@ -42,6 +43,8 @@ class Inventory {
    * Removes an item from the inventory
    */
   bool removeItem(Item I);
+
+  bool removeItem(std::string s);
 
   /**
   * @return The item in the inventory

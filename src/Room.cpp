@@ -140,10 +140,6 @@ int Room::charaIndex(std::string C) {
 }
 
 int Room::charaNum() {
-  int charaCounter = 0;
-  for (int i = 0; i < characters.size();i++) {
-    charaCounter++;
-  }
-  return charaCounter;
+  return characters.size();
 }
 

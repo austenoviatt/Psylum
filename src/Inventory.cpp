@@ -20,16 +20,16 @@ Inventory::Inventory() {
    * @param the item to be searched for
    * @return a bool of whether the item is in the inventory
    */
-bool Inventory::hasItem(Item I) {
+bool Inventory::hasItem(std::string s) {
   bool ItemFound = false;
   // Iterate over all elements in Vector
   //store the name of the item
-  std::string itemName = I.getName();
+  //std::string itemName = I.getName();
 
   //iterate all items in the inventory
   for (auto x : items) {
     //found the item
-    if (x.getName() == itemName) {
+    if (x.getName() == s) {
       ItemFound = true;
       break;
     }
@@ -78,6 +78,22 @@ bool Inventory::removeItem(Item I) {
 
 }
 
+bool Inventory::removeItem(std::string s) {
+int indexTracker =0;
+
+for (auto x : items ){
+
+  if (x.getName() == s){
+
+    items.erase(items.begin() + indexTracker);
+    invCount--;
+    return true;
+  }
+  indexTracker++;
+}
+return false;
+}
+
 /**
 * @return The items in the inventory
 */
@@ -92,6 +108,9 @@ std::vector<Item> Inventory::getItems() {
 int Inventory::getInvCount() {
   return invCount;
 }
+
+
+
 
 
 
