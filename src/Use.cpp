@@ -110,8 +110,8 @@ void Use::use(std::vector<std::string> result, Player player) {
   } else if (item == "coffeemaker") {
     if (result.size() > 2) {
       std::cout << "You can't combine those things." << endl;
-    } else if (player.currentRoom->inventory.hasItem(/*coffeemaker*/)) {
-      if (player.inventory.hasItem(/*coffee*/)) {
+    } else if (player.currentRoom->inventory.hasItem("coffeemaker")) {
+      if (player.inventory.hasItem("coffee")) {
         std::cout << "You already have a coffee, you don't need another." << endl;
       } else
         std::cout <<
@@ -122,7 +122,7 @@ void Use::use(std::vector<std::string> result, Player player) {
   } else if (item == "window") {
     std::cout << "You can't do that." << endl;
   } else if (item == "journal") {
-    if (!player.currentRoom->inventory.hasItem(/*journal*/)) {
+    if (!player.currentRoom->inventory.hasItem("journal")) {
       std::cout << "You can't do that." << endl;
     } else if (result.size() > 2)
       std::cout << "You can't combine those things." << endl;
@@ -134,7 +134,7 @@ void Use::use(std::vector<std::string> result, Player player) {
           std::cout << "You can't combine those things." << std::endl;
         } else {
           player.currentRoom->exits[i]->setLock(false);
-          player.inventory.removeItem(/*roomkey*/);
+          player.inventory.removeItem("roomkey");
           std::cout <<
                     "The card slides through the card reader and a red light flickers to green above the patients door. It looks like you can go in there now. None of the other doors on this floor have card readers, so you throw the key card away."
                     << endl;
@@ -147,7 +147,7 @@ void Use::use(std::vector<std::string> result, Player player) {
           std::cout << "You can't combine those things." << std::endl;
         } else {
           player.currentRoom->exits[i]->setLock(false);
-          player.inventory.removeItem(/*button2*/);
+          player.inventory.removeItem("button2");
           std::cout <<
                     "You press the number 2 button into the spot right below the 3 button on the elevator panel. The metal connections seem to snap right in place and the button lights up. You should be able to visit the second floor now."
                     << endl;
@@ -160,7 +160,7 @@ void Use::use(std::vector<std::string> result, Player player) {
           std::cout << "You can't combine those things." << std::endl;
         } else {
           player.currentRoom->exits[i]->setLock(false);
-          player.inventory.removeItem(/*button1*/);
+          player.inventory.removeItem("button1");
           std::cout <<
                     "Like with the number 2 button, the number 1 button snaps into place and lights up. You can now visit the first floor."
                     << endl;
@@ -173,7 +173,7 @@ void Use::use(std::vector<std::string> result, Player player) {
           std::cout << "You can't combine those things." << std::endl;
         } else {
           player.currentRoom->exits[i]->setLock(false);
-          player.inventory.removeItem(/*keycard*/);
+          player.inventory.removeItem("keycard");
           std::cout <<
                     "The keycard slides smoothly into the card slot. You don’t hear anything happen, but the basement button lights up. You can now visit the basement."
                     << endl;
@@ -186,7 +186,7 @@ void Use::use(std::vector<std::string> result, Player player) {
           std::cout << "You can't combine those things." << std::endl;
         } else {
           player.currentRoom->exits[i]->setLock(false);
-          player.inventory.removeItem(/*claw*/);
+          player.inventory.removeItem("claw");
           std::cout <<
                     "As you lift the claw towards the slot in the wall, it almost jumps out of your hand and into the wall of its own accord. The designs on the wall start to rotate until they all align and a doorway opens up into the room beyond."
                     << endl;
@@ -199,7 +199,7 @@ void Use::use(std::vector<std::string> result, Player player) {
           std::cout << "You can't combine those things." << std::endl;
         } else {
           player.currentRoom->exits[i]->setLock(false);
-          player.inventory.removeItem(/*magicmushroom*/);
+          player.inventory.removeItem("magicmushroom");
           std::cout <<
                     "You pop the mushrooms into you mouth and chew. They have an earthy taste, with a strange lingering heat, like you just ate a habenero pepper. The mushrooms also see to have another lingering effect, and the room starts to swirl around you. You feel like you’re losing touch with reality and feel yourself transform into a dragon, wings, scales, fire breath and all. This is not how you expected your day to go. As you explore the room and your new dragon body, every fiery exhale seems to melt more and more of the ice. And then, as suddenly as it came on, you are back in your own body, and the ice is all melted. You aren’t entirely sure what just happened."
                     << endl;
@@ -212,7 +212,7 @@ void Use::use(std::vector<std::string> result, Player player) {
           std::cout << "You can't combine those things." << std::endl;
         } else {
           player.currentRoom->exits[i]->setLock(false);
-          player.inventory.removeItem(/*crowbar*/);
+          player.inventory.removeItem("crowbar");
           std::cout <<
                     "You use the crowbar to pry open the closet door. You can now go into the closet."
                     << endl;
