@@ -358,8 +358,6 @@ void Game::testLoadGame() {
 
   Player P(&startRoom, playerInventory, 0, true, allItems);
 
-
-
   std::cout << "You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your head is throbbing. Your nostrils fill with a stagnant smell. As you begin to slowly move yours eyes around the room, you notice something strange...there's no windows or natural light. You pull yourself up and notice a small metal rolling tray beside your bed, a chair in the corner, a crack of light coming from the hallway and something written on the wall beside the door...'Type Help'"
             << std::endl << endl;
 
@@ -385,8 +383,6 @@ string Game::processCommand(string userInput, Player P) {
 
   std::string token;
   vector<string> result;
-
-  //std::cout << "reached here " << std::endl;
 
   while (std::getline(ss, token, ' ')) {
     result.push_back(token);
@@ -466,11 +462,14 @@ string Game::processCommand(string userInput, Player P) {
  */
 void Game::go(vector<string> result, Player P) {
 
+
+
   if (result.size() == 2) {
       if (P.currentRoom->getName() == "Elevator") {
           if ((result[1] == "floor3") || (result[1] == "floorthree") || (result[1] == "thirdfloor") || (result[1] == "3")){
             P.moveToRoom(P.currentRoom->exits[0]);
-
+            if(P.currentRoom->getName() == "End of Game!")
+              P.win();
             std::cout << P.currentRoom->description << std::endl;
             std::cout << P.currentRoom->getExit() << std::endl;
             getUserInput(P);
@@ -518,7 +517,6 @@ void Game::go(vector<string> result, Player P) {
             std::cout << "Input Invalid" << std::endl << endl;
             getUserInput(P);
           }
-
       }
     //travel using door name
     for (uint i = 0; i < P.currentRoom->exits.size(); i++) {
@@ -528,6 +526,8 @@ void Game::go(vector<string> result, Player P) {
 
         if (P.currentRoom->exits[i]->getLocked() == false) {
           P.moveToRoom(P.currentRoom->exits[i]);
+          if(P.currentRoom->getName() == "End of Game!")
+              P.win();
 
           std::cout << P.currentRoom->description << std::endl;
           std::cout << P.currentRoom->getExit() << std::endl;
@@ -543,6 +543,8 @@ void Game::go(vector<string> result, Player P) {
         && (P.currentRoom->exits[0]->getName() != "a wall")) {
       if (P.currentRoom->exits[0]->getLocked() == false) {
         P.moveToRoom(P.currentRoom->exits[0]);
+        if(P.currentRoom->getName() == "End of Game!")
+              P.win();
 
         std::cout << P.currentRoom->description << std::endl;
         std::cout << P.currentRoom->getExit() << std::endl;
@@ -556,6 +558,8 @@ void Game::go(vector<string> result, Player P) {
                && (P.currentRoom->exits[1]->getName() != "a wall")) {
       if (P.currentRoom->exits[1]->getLocked() == false) {
         P.moveToRoom(P.currentRoom->exits[1]);
+        if(P.currentRoom->getName() == "End of Game!")
+              P.win();
 
         std::cout << P.currentRoom->description << std::endl;
         std::cout << P.currentRoom->getExit() << std::endl;
@@ -570,6 +574,8 @@ void Game::go(vector<string> result, Player P) {
                 || result[1] == "behind") && (P.currentRoom->exits[2]->getName() != "a wall")) {
       if (P.currentRoom->exits[2]->getLocked() == false) {
         P.moveToRoom(P.currentRoom->exits[2]);
+        if(P.currentRoom->getName() == "End of Game!")
+              P.win();
 
         std::cout << P.currentRoom->description << std::endl;
         std::cout << P.currentRoom->getExit() << std::endl;
@@ -583,6 +589,8 @@ void Game::go(vector<string> result, Player P) {
                && (P.currentRoom->exits[3]->getName() != "a wall")) {
       if (P.currentRoom->exits[3]->getLocked() == false) {
         P.moveToRoom(P.currentRoom->exits[3]);
+        if(P.currentRoom->getName() == "End of Game!")
+              P.win();
 
         std::cout << P.currentRoom->description << std::endl;
         std::cout << P.currentRoom->getExit() << std::endl;
