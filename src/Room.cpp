@@ -25,7 +25,7 @@ Room::~Room() {
 Room::Room() {
   name = "a wall";
   description = "It's a wall.";
-  doorDescription = "";
+  doorDescription = "wall";
   locked = true;
   inventory = {};
   key = "wall";
@@ -69,12 +69,13 @@ bool Room::getLocked() {
   return locked;
 }
 
-
 std::string Room::getExit() {
   std::string allDoorDesc;
   for (uint i = 0; i < exits.size(); i++) {
 
-    if (i == 0 && (exits[i]->getDoorDesc() != "" || "elevator" || "hallway")) {
+    if (i == 0 && (exits[i]->getDoorDesc() != "wall")
+        && (exits[i]->getDoorDesc() != "elevator")
+        && (exits[i]->getDoorDesc() != "hallway")) {
       allDoorDesc += "There is a ";
       allDoorDesc += exits[i]->getDoorDesc();
       allDoorDesc += " door in front of you. ";
@@ -86,13 +87,19 @@ std::string Room::getExit() {
       allDoorDesc += "The ";
       allDoorDesc += exits[i]->getDoorDesc();
       allDoorDesc += " is in front of you. ";
-    } else if (i == 1 && (exits[i]->getDoorDesc() != "" || "elevator"
-                          || "hallway")) {
+    } else if (i == 1 && (exits[i]->getDoorDesc() != "wall")
+               && (exits[i]->getDoorDesc() != "elevator")
+               && (exits[i]->getDoorDesc() != "hallway")) {
       allDoorDesc += "There is a ";
       allDoorDesc += exits[i]->getDoorDesc();
       allDoorDesc += " door to your right. ";
-    } else if (i == 2 && (exits[i]->getDoorDesc() != "" || "elevator"
-                          || "hallway")) {
+    } else if (i == 1 && (exits[i]->getDoorDesc() == "hallway")) {
+      allDoorDesc += "The ";
+      allDoorDesc += exits[i] ->getDoorDesc();
+      allDoorDesc += " is to your right. ";
+    } else if (i == 2 && (exits[i]->getDoorDesc() != "wall")
+               && (exits[i]->getDoorDesc() != "elevator")
+               && (exits[i]->getDoorDesc() != "hallway")) {
       allDoorDesc += "There is a ";
       allDoorDesc += exits[i]->getDoorDesc();
       allDoorDesc += " door behind you. ";
@@ -104,18 +111,19 @@ std::string Room::getExit() {
       allDoorDesc += "The ";
       allDoorDesc += exits[i]->getDoorDesc();
       allDoorDesc += " is behind you. ";
-    } else if (i == 3 && (exits[i]->getDoorDesc() != "" || "elevator"
-                          || "hallway")) {
+    } else if (i == 3 && (exits[i]->getDoorDesc() != "wall")
+               && (exits[i]->getDoorDesc() != "elevator")
+               && (exits[i]->getDoorDesc() != "hallway")) {
       allDoorDesc += "There is a ";
       allDoorDesc += exits[i]->getDoorDesc();
       allDoorDesc += " door to your left. ";
+    } else if (i == 3 && (exits[i]->getDoorDesc() == "hallway")) {
+      allDoorDesc += "The ";
+      allDoorDesc += exits[i] ->getDoorDesc();
+      allDoorDesc += " is to your left. ";
     }
-
-
-    //allDoorDesc += exits[i]->getDoorDesc();//Room R3("Desert", "It looks like it hasn't rained here in years.", "You see a door with a sign that says 'Water required'", true, {}, claw, {}, {}, {});
   }
   return allDoorDesc;
-
 }
 
 void Room::setExit(std::vector<Room*> A) {
@@ -131,15 +139,14 @@ std::string Room::getDoorDesc() {
 }
 
 int Room::charaIndex(std::string C) {
-  for (int i = 0; i < characters.size(); i++) {
+  for (uint i = 0; i < characters.size(); i++) {
     if (C == characters[i].getID()) {
       return i;
     }
   }
   return 100;
-}
+  }
 
 int Room::charaNum() {
   return characters.size();
 }
-

@@ -286,7 +286,7 @@ void Use::use(std::vector<std::string> result, Player* player) {
           player->inventory.removeItem("magicmushroom");
           roomFound = true;
           std::cout <<
-                    "You pop the mushrooms into you mouth and chew. They have an earthy taste, with a strange lingering heat, like you just ate a habenero pepper. The mushrooms also see to have another lingering effect, and the room starts to swirl around you. You feel like you’re losing touch with reality and feel yourself transform into a dragon, wings, scales, fire breath and all. This is not how you expected your day to go. As you explore the room and your new dragon body, every fiery exhale seems to melt more and more of the ice. And then, as suddenly as it came on, you are back in your own body, and the ice is all melted. You aren’t entirely sure what just happened."
+                    "You pop the mushrooms into you mouth and chew. They have an earthy taste, with a strange lingering heat, like you just ate a habenero pepper. The mushrooms also seems to have another lingering effect, and the room starts to swirl around you. You feel like you’re losing touch with reality and feel yourself transform into a dragon, wings, scales, fire breath and all. This is not how you expected your day to go. As you explore the room and your new dragon body, every fiery exhale seems to melt more and more of the ice. And then, as suddenly as it came on, you are back in your own body, and the ice is all melted. You aren’t entirely sure what just happened."
                     << endl;
         }
       }
@@ -314,6 +314,11 @@ void Use::use(std::vector<std::string> result, Player* player) {
         std::cout << "You can't use that here." << std::endl;
     } else
       std::cout << "Inventory does not contain this item." << std::endl;
+  } else if (result.size() == 3) {
+    result[1] = result[1] + result[2];
+    //erase the second item name
+    result.erase(result.begin() + 2);
+    use(result, player);
   }
 }
 

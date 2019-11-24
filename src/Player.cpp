@@ -55,3 +55,15 @@ void Player::killPlayer() {
   mainMenu m;
   m.showMenu();
 }
+
+void Player::win() {
+  cout << "Congratulations! You've have escaped the asylum! Now go and enjoy the fresh air and smell of freedom before you get 'drugged' back in!" << endl << endl;
+  cout << "(press enter to go back to the main menu)" << endl << endl;
+  string userInput;
+  getline(cin, userInput);
+  cout << endl;
+
+  mainMenu m;
+  m.showMenu();
+
+}

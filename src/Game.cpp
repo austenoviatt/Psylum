@@ -105,28 +105,6 @@ void Game::testLoadGame() {
            "There are three animals on the claw, a wolf, a goat and? a cabbage?. It looks like it might fit in somewhere.",
            "Claw", false);
 
-  std::map<std::string, Item> itemMap = {
-    {"ratpoison", i1},
-    {"journal", i2},
-    {"sedative", i3},
-    {"crowbar", i4},
-    {"magicmushroom", i5},
-    {"worm", i6},
-    {"labcoat", i7},
-    {"window", i8},
-    {"magnet", i9},
-    {"fishingrod", i10},
-    {"magnetrod", i11},
-    {"coffeemaker", i12},
-    {"coffee", i13},
-    {"poisoncoffee", i14},
-    {"roomkey", i15},
-    {"button2", i16},
-    {"button1", i17},
-    {"keycard", i18},
-    {"claw", i19}
-  };
-
 
   Inventory allItems;
   allItems.addItem(i1);
@@ -148,9 +126,6 @@ void Game::testLoadGame() {
   allItems.addItem(i17);
   allItems.addItem(i18);
   allItems.addItem(i19);
-
-    Inventory hallInv;
-  hallInv.addItem(i3);
 
     Character snitch("snitch", "patient", "sketchy looking patient who looks like she want's to help you", true, 0, " ");
     //Character dummy("dummy", "dummy", "dummy who looks at you but will never interact with you", false, 0, " ");
@@ -175,13 +150,11 @@ void Game::testLoadGame() {
   std::string elevatorDesc =
     "You've entered the elevator and the doors shut behind you. There are four floors: 3, 2, 1 and 0. The buttons are missing for 2 and 1 and a key is required for 0. What do you want to do?";
 
-
-
   Room R;
   Room startRoom ("Patient Room", startDesc, "black", false, {}, "", {}, {}, {});
 // ldesc = "You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your head is throbbing. Your nostrils fill with a stagnant smell. As you begin to slowly move yours eyes around the room, you notice something strange...there's no windows or natural light. You pull yourself up and notice a small metal rolling tray beside your bed, a chair in the corner, a crack of light coming from the hallway and something written on the wall beside the door...'GET OUT'".
 
-  Room l3Hall1 ("Hallway 1", l3Hall1Desc, "hallway", false, hallInv, "", {}, {}, {});
+  Room l3Hall1 ("Hallway 1", l3Hall1Desc, "hallway", false, {}, "", {}, {}, {});
 // ldesc = "You enter a long concrete hallway. There's a door to your left with a key card slot, a door to your right, another door further down the hallway and an elevator at the end. As you're observing the situation, you hear voices from the elevator getting closer and closer. Suddenly a scream and DING! The elevator is about to open."
 
   Room patient2("Annabelle's Room", annabelleDesc, "red", true, {/*journal*/},
@@ -251,7 +224,7 @@ void Game::testLoadGame() {
 // ldesc = "You're down the hallway. There's sliding doors to your left and a door to your right labeled "Doctor's Office."
 
   Room doctors("Doctor's Office", doctorDesc, "green", true, {/*labCoat*/},
-               "crowBar", {}, {/*unlockOffice, getSpaceCode*/}, {computer});
+               "crowbar", {}, {/*unlockOffice, getSpaceCode*/}, {computer});
 // ldesc = "You've successfully broken in! A grey painted office with only one window and book shelves surrounding it. On the mahogany desk sat a computer, a stack of papers and a pen, and behind it, a swivel leather chair and bookshelves bursting with olds books. In the corner, a lab coat hanging on a coat rack."
 
   Room lounge("Employee's Lounge", loungeDesc, "pink", false, {}, "", {}, {/*coffeePuzzle, killDoctor*/}, {evildoctor});
@@ -338,13 +311,13 @@ void Game::testLoadGame() {
     "Congratulations! You've have escaped the asylum! Now go and enjoy the fresh air and smell of freedom before you get 'drugged' back in!";
 
 
-  Room skyrim("Basement", skyrimDesc, "green", true, {}, "keyCard", {}, {/*unlockSkyrim*/}, {});
+  Room skyrim("Basement", skyrimDesc, "green", true, {}, "keycard", {}, {/*unlockSkyrim*/}, {});
 // ldesc = "You step out of the elevator and into a basement. There's two flickering lights at the end of a dark tunnel. You walk towards the lights and find an unusual large iron door surrounded with stone walls and skeletons on the ground. The door is made with ancient designs and carvings and in the middle is what appears to be a space for a claw."
 
-  Room sewer("Sewer", sewerDesc, "white", true, {}, "clawKey", {}, {/*unlockSewer*/}, {});
+  Room sewer("Sewer", sewerDesc, "white", true, {}, "claw", {}, {/*unlockSewer*/}, {});
 // ldesc = "The air around you smells of rotten eggs! You step out into filthy sludge. You're in a sewer but there's sunlight at the end of the tunnel!"
 
-  Room endRoom("End of Game!", endDesc, "door", true, {}, "", {}, {/*completeGame*/}, {});
+  Room endRoom("End of Game!", endDesc, "iron", false, {}, "", {}, {/*completeGame*/}, {});
 // ldesc = "Congratulations! You've have escaped the asylum! Now go and enjoy the fresh air and smell of freedom before you get 'drugged' back in!"
 
   std::vector<Room*> skyrimExits{&sewer, &R, &elevator, &R};
@@ -357,90 +330,6 @@ void Game::testLoadGame() {
   endRoom.setExit(endRoomExits);
   elevator.setExit(elevatorExits);
 
-
-  /*
-    Item I("magicmushroom", "Will have hallucination when consumed, may die from overdose", "magic mushroom", false);
-    Item I2("labcoat", "Normal looking lab coat, stolen from the lab", "lab coat", false);
-    Item I3("fridge", "Old rusty fridge", "fridge", true);
-    Item I4("ratpoison", "testing to see if poison is in the room", "rat poison", false);
-    Item I5("sedative", "has a label on it says it can knock out any person after injection", "sedative", false);
-
-    Inventory roomInventory;
-    Inventory room2Inventory;
-
-
-    roomInventory.addItem(I);   //working good
-    roomInventory.addItem(I2);  //working good
-    roomInventory.addItem(I3);
-    roomInventory.addItem(I4);
-    room2Inventory.addItem(I5);
-
-
-     //std::cout << playerInventory.getInvCount() << std::endl;
-
-    std::cout << roomInventory.getItems()[0].getName()
-              << " "
-              << roomInventory.getItems()[1].getName()
-              << " "
-              << roomInventory.getItems()[2].getName()
-              << std::endl;
-
-    Events E("snitch chara counter"," ", 0);
-    Events E2("greeted doctor"," ", 0);
-
-    Character C("snitch", "patient", "sketchy looking patient who looks like she want's to help you", true, 0, " ");
-    Character C2("dummy", "dummy", "dummy who looks at you but will never interact with you", false, 0, " ");
-    Character C3("evildoctor", "doctor", "he is working at his desk, and he is too busy to care about you", true, 0, " ");
-
-    //need work for now
-    characters.push_back(C);
-    characters.push_back(C2);
-    characters.push_back(C3);
-
-    std::cout << characters[0].getName()
-              << " "
-              << characters[1].getName()
-              << " "
-              << characters[2].getName()
-              << std::endl;
-
-    //std::cout << "reached before room create" << std::endl;
-    Room R("testRoom", "There is a fridge on your left. On your right side, there is a patient who is looking at you. A dummy is placed in the center of the room",
-           "red", false, roomInventory, " ", {}, E, characters);
-    //std::cout << "reached after room create" << std::endl;
-    Room R2("testRoom2", "A hallway with flickering lights, you see scratch marks on the wall along the hallway, a whistling can be heard from the end of the hallway.",
-            "hallway", false, room2Inventory, " ", {}, {}, {});
-    Room NONE("a wall", "", "", true, {}, "keycardd", {}, {}, {});
-            //std::vector<Room*> exitR {{},{},R2,{}};// {R2};
-            //std::vector<Room*> exitR2 {{}, {R}, {}, {}};// {R};
-
-            std::vector<Room*> RExit {&NONE, &NONE, &R2, &NONE};
-            std::vector<Room*> R2Exit {&R, &NONE, &NONE, &NONE};
-
-            //std::cout << RExit[0]->getName() << " testing this one!"<< std::endl;
-
-            //std::vector<Room*> RExit= {&R, &NONE, &NONE, &R3};
-            //std::vector<Room*> R2Exit = {&R, &R2};
-            //std::vector<Room*> R3Exit = {&R2, &R, &R, &R3};
-
-            R.setExit(RExit);
-            R2.setExit(R2Exit);
-
-    std::cout << R.getName()
-              << ", "
-              << R.getDoorDesc()
-              << ", "
-              << R.getLocked()
-              << ", "
-              << R.inventory.getItems()[0].getName() << " " << R.inventory.getItems()[1].getName()
-              << ", "
-              << R.event.getName()
-              << ", "
-              << R.characters[0].getName() << " " << R.characters[1].getName()
-              << ", "
-              << R.exits[0]->getDoorDesc()
-              << std::endl;
-  */
   Inventory playerInventory;
   playerInventory.addItem(i19);
   playerInventory.addItem(i18);
@@ -453,9 +342,22 @@ void Game::testLoadGame() {
   playerInventory.addItem(i10);
   playerInventory.addItem(i13);
 
+  patient2.inventory.addItem(i2);
+  l3Hall1.inventory.addItem(i3);
+  l3Hall1.inventory.addItem(i15);
+  storage.inventory.addItem(i4);
+  forest.inventory.addItem(i5);
+  forest.inventory.addItem(i6);
+  doctors.inventory.addItem(i7);
+  l1Hall2.inventory.addItem(i8);
+  kitchen.inventory.addItem(i9);
+  lounge.inventory.addItem(i12);
+  closet.inventory.addItem(i16);
+  spaceship.inventory.addItem(i17);
+  l1Hall2.inventory.addItem(i18);
+  forest.inventory.addItem(i19);
 
-
-  Player P(&startRoom, playerInventory, 0, true, allItems);
+  Player P(&skyrim, playerInventory, 0, true, allItems);
 
 
 
@@ -466,8 +368,6 @@ void Game::testLoadGame() {
   //so far so good
 
 }
-
-
 /**
 * Processes user input into game commands
 * @return string of command the program can understand
@@ -567,15 +467,59 @@ string Game::processCommand(string userInput, Player P) {
  */
 void Game::go(vector<string> result, Player P) {
 
+
+
   if (result.size() == 2) {
+      if (P.currentRoom->getName() == "Elevator") {
+          if ((result[1] == "floor3") || (result[1] == "floorthree") || (result[1] == "thirdfloor") || (result[1] == "3")){
+            P.moveToRoom(P.currentRoom->exits[0]);
+            if(P.currentRoom->getName() == "End of Game!")
+              P.win();
+            std::cout << P.currentRoom->description << std::endl;
+            std::cout << P.currentRoom->getExit() << std::endl;
+            getUserInput(P);
+          }
+          else if ((result[1] == "floor2") || (result[1] == "floortwo") || (result[1] == "secondfloor") || (result[1] == "2")){
+            P.moveToRoom(P.currentRoom->exits[1]);
+            if(P.currentRoom->getName() == "End of Game!")
+              P.win();
+            std::cout << P.currentRoom->description << std::endl;
+            std::cout << P.currentRoom->getExit() << std::endl;
+            getUserInput(P);
+          }
+          else if ((result[1] == "floor1") || (result[1] == "floorone") || (result[1] == "firstfloor") || (result[1] == "1")){
+            P.moveToRoom(P.currentRoom->exits[2]);
+            if(P.currentRoom->getName() == "End of Game!")
+              P.win();
+            std::cout << P.currentRoom->description << std::endl;
+            std::cout << P.currentRoom->getExit() << std::endl;
+            getUserInput(P);
+          }
+          else if ((result[1] == "basement") || (result[1] == "floor0") || (result[1] == "basementfloor") || (result[1] == "floorzero") || (result[1] == "0")){
+            P.moveToRoom(P.currentRoom->exits[3]);
+            if(P.currentRoom->getName() == "End of Game!")
+              P.win();
+            std::cout << P.currentRoom->description << std::endl;
+            std::cout << P.currentRoom->getExit() << std::endl;
+            getUserInput(P);
+          }
+          else {
+            std::cout << "Input Invalid" << std::endl;
+            getUserInput(P);
+          }
+
+
+      }
     //travel using door name
     for (uint i = 0; i < P.currentRoom->exits.size(); i++) {
+
 
       if (P.currentRoom->exits[i]->getDoorDesc() == result[1]) {
 
         if (P.currentRoom->exits[i]->getLocked() == false) {
           P.moveToRoom(P.currentRoom->exits[i]);
-
+          if(P.currentRoom->getName() == "End of Game!")
+              P.win();
 
           std::cout << P.currentRoom->description << std::endl;
           std::cout << P.currentRoom->getExit() << std::endl;
@@ -592,7 +536,8 @@ void Game::go(vector<string> result, Player P) {
       if (P.currentRoom->exits[0]->getLocked() == false) {
         std::cout << "gooooooooooo forward" << std::endl;
         P.moveToRoom(P.currentRoom->exits[0]);
-
+        if(P.currentRoom->getName() == "End of Game!")
+              P.win();
 
         std::cout << P.currentRoom->description << std::endl;
         std::cout << P.currentRoom->getExit() << std::endl;
@@ -607,7 +552,8 @@ void Game::go(vector<string> result, Player P) {
       if (P.currentRoom->exits[1]->getLocked() == false) {
         std::cout << "gooooooooooo right" << std::endl;
         P.moveToRoom(P.currentRoom->exits[1]);
-
+        if(P.currentRoom->getName() == "End of Game!")
+              P.win();
 
         std::cout << P.currentRoom->description << std::endl;
         std::cout << P.currentRoom->getExit() << std::endl;
@@ -623,7 +569,8 @@ void Game::go(vector<string> result, Player P) {
       if (P.currentRoom->exits[2]->getLocked() == false) {
         std::cout << "gooooooooooo back" << std::endl;
         P.moveToRoom(P.currentRoom->exits[2]);
-
+        if(P.currentRoom->getName() == "End of Game!")
+              P.win();
 
         std::cout << P.currentRoom->description << std::endl;
         std::cout << P.currentRoom->getExit() << std::endl;
@@ -638,7 +585,8 @@ void Game::go(vector<string> result, Player P) {
       if (P.currentRoom->exits[3]->getLocked() == false) {
         std::cout << "gooooooooooo left" << std::endl;
         P.moveToRoom(P.currentRoom->exits[3]);
-
+        if(P.currentRoom->getName() == "End of Game!")
+              P.win();
 
         std::cout << P.currentRoom->description << std::endl;
         std::cout << P.currentRoom->getExit() << std::endl;
@@ -657,7 +605,13 @@ void Game::go(vector<string> result, Player P) {
       getUserInput(P);
     }
 
-  } else {
+  } else if (result.size() == 3) {
+    result[1] = result[1] + result[2];
+    //erase the second item name
+    result.erase(result.begin() + 2);
+    go(result, P);
+  }
+  else {
     std::cout << "Input Invalid" << std::endl;
     getUserInput(P);
   }
@@ -833,14 +787,7 @@ void Game::talk(vector<string> result, Player P) {
           getUserInput(P);
         } else { //character is alive, decide which character are we talking to
           d.talk(&P.currentRoom->characters[i], P);
-          if (P.getIsAlive() != false) {
-            getUserInput(P);
-          }
-          else {
-              std::cout << "reached hereeeeeeeeeeee!!!!!!!!!!!!!!!!!!!" << std::endl;
-            mainMenu m;
-            m.showMenu();
-          }
+          getUserInput(P);
         }
       }
     }

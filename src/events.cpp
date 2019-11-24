@@ -8,7 +8,6 @@
 
 Events::Events(std::string name, std::string eventDescription,
                int eventCounter) : name{name}, eventDescription{eventDescription}, eventCounter{eventCounter} {
-
 }
 
 Events::~Events() {}

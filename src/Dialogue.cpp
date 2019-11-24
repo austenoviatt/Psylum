@@ -83,10 +83,16 @@ void Dialogue::talk(Character *c, Player P) {
           transform(userInput.begin(), userInput.end(), userInput.begin(), ::tolower);
           if (userInput == "i love my mom") {
             c->increaseEventCounter();
-            cout << "password correct!" << endl;
+            cout << "Password correct! You have been granted access to the control room." << endl << endl;
             //unlock space room
+            P.currentRoom->exits[3]->exits[2]->exits[3]->setLock(false);
+            //cout << P.currentRoom->getExit()[3].getExit()[2].getExit()[3].getLocked() << endl;
+            //P.currentRoom->getExit()
+            converOver = true;
+            break;
           }
           else {
+              std::cout << "Password incorrect. Please try again." << endl << endl;
             converOver = true;
             break;
           }
