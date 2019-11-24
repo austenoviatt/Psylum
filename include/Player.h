@@ -66,6 +66,7 @@ class Player {
    */
   void killPlayer();
 
+  void win();
 
   Room* currentRoom;
  private:

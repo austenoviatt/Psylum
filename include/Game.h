@@ -112,6 +112,8 @@ class Game {
   */
   bool isAlive;
 
+  string stringBold (std::string s);
+
 
  private:
 
