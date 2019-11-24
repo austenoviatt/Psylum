@@ -11,7 +11,7 @@ class Use {
   Use();
   ~Use() {}
 
-  void use(std::vector<std::string>, Player);
+  void use(std::vector<std::string>, Player*);
 
  private:
 

@@ -1,4 +1,4 @@
-#ifndef USE_H
+ifndef USE_H
 #define USE_H
 
 #include "Player.h"

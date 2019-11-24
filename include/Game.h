@@ -123,7 +123,7 @@ class Game {
     {"go"},
     {"look", "check", "inspect", "see"},
     {"take", "get", "grab"},
-    {"use", "eat", "drink", "consume"},
+    {"use", "eat", "drink", "consume", "add"},
     {"talk", "speak"},
     {"help"},
     {"inventory", "inv", "i"},

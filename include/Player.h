@@ -28,7 +28,7 @@ class Player {
   /**
   * Constructor
   */
-  Player(Room* currentRoom, Inventory inventory, int roomCount, bool isAlive);
+  Player(Room* currentRoom, Inventory inventory, int roomCount, bool isAlive, Inventory allInv);
 
   /**
    * Default destructor
@@ -40,6 +40,10 @@ class Player {
     */
   Inventory inventory;
 
+  /**
+    * Entire inventory for game
+    */
+  Inventory allInv;
 
   /**
    * changes the room the player is in, increments roomCount
@@ -51,6 +55,16 @@ class Player {
   * @return int number of rooms visited
   */
   int getRoomCount();
+
+  /**
+   * determine whether the player is alive or not
+   */
+  bool getIsAlive();
+
+  /**
+   * change the alive status for player to false
+   */
+  void killPlayer();
 
 
   Room* currentRoom;

@@ -15,6 +15,7 @@
 #include "Game.h"
 #include "Use.h"
 #include "Dialogue.h"
+#include "mainMenu.h"
 #include<bits/stdc++.h>
 
 Game::Game() {
@@ -51,8 +52,7 @@ void Game::getUserInput(Player P) {
 }
 
 void Game::testLoadGame() {
-
-  Item i1("ratpoison",
+    Item i1("ratpoison",
           "Half a bag of extremely poisonous substances! Ingredients include arsenic, barium, and thallium.",
           "Rat Poison", false);
   Item i2("journal",
@@ -127,19 +127,45 @@ void Game::testLoadGame() {
     {"claw", i19}
   };
 
+
+  Inventory allItems;
+  allItems.addItem(i1);
+  allItems.addItem(i2);
+  allItems.addItem(i3);
+  allItems.addItem(i4);
+  allItems.addItem(i5);
+  allItems.addItem(i6);
+  allItems.addItem(i7);
+  allItems.addItem(i8);
+  allItems.addItem(i9);
+  allItems.addItem(i10);
+  allItems.addItem(i11);
+  allItems.addItem(i12);
+  allItems.addItem(i13);
+  allItems.addItem(i14);
+  allItems.addItem(i15);
+  allItems.addItem(i16);
+  allItems.addItem(i17);
+  allItems.addItem(i18);
+  allItems.addItem(i19);
+
     Inventory hallInv;
   hallInv.addItem(i3);
 
-  Character C("snitch", "patient", "sketchy looking patient who looks like she want's to help you", true, 0, " ");
-    Character C2("dummy", "dummy", "dummy who looks at you but will never interact with you", false, 0, " ");
-    Character C3("evildoctor", "doctor", "he is working at his desk, and he is too busy to care about you", true, 0, " ");
+    Character snitch("snitch", "patient", "sketchy looking patient who looks like she want's to help you", true, 0, " ");
+    //Character dummy("dummy", "dummy", "dummy who looks at you but will never interact with you", false, 0, " ");
+    Character evildoctor("evildoctor", "doctor", "he is working at his desk, and he is too busy to care about you", true, 0, " ");
+    Character bonez("bonez", "patient", "he is standing beside a toilet, fishing road in hand, it looks like he wants to fish something from the toilet", true, 0, " ");
+    Character computer("computer", "computer", "old, bulky looking computers that's still functional", true, 0, " ");
+    //Character petowner();
+
 
   std::string startDesc =
-    "There's no windows or natural light. You noticed a small metal rolling tray beside your bed, a chair in the corner, a crack of light coming from the hallway and something written on the wall beside the door...'GET OUT'";
+    "There's no windows or natural light. You noticed a small metal rolling tray beside your bed, a chair in the corner, a crack of light coming from the hallway and something written on the wall beside the door...'Type Help'";
   std::string l3Hall1Desc =
     "You enter a long concrete hallway. There's a door to your left with a key card slot, a door to your right, another door further down the hallway and an elevator at the end. As you're observing the situation, you hear voices from the elevator getting closer and closer. Suddenly a scream and DING! The elevator is about to open.";
   std::string annabelleDesc =
-    "You enter a room, no more than ten feet in any dimension. White pale walls covered in harsh lines of overlapping words and pictures. You see a little girl, curled up on the edge of the bed, sleeping and a journal on a small metal beside table.";
+    "You enter a room, no more than ten feet in any dimension. White pale walls covered in harsh lines of overlapping words and pictures. You see a patient, curled up on the edge of the bed, sleeping. There is a journal on the bedside table.";
   std::string closetDesc =
     "You quickly get in and shut the door behind you. You're in a linens closet. The elevator opens and the screaming stops. The voices reach the door across from you. Swish, click, BEEP. 'Thank you for your help, but I'll take it from here.' says a female voice. The door slams shut and the footsteps begin to fade. You look around in the closet and find a small bag hidden under one of the shelves.";
   std::string l3Hall2Desc =
@@ -159,7 +185,7 @@ void Game::testLoadGame() {
 // ldesc = "You enter a long concrete hallway. There's a door to your left with a key card slot, a door to your right, another door further down the hallway and an elevator at the end. As you're observing the situation, you hear voices from the elevator getting closer and closer. Suddenly a scream and DING! The elevator is about to open."
 
   Room patient2("Annabelle's Room", annabelleDesc, "red", true, {/*journal*/},
-                "roomkey", {}, {/*sedateAnna, annaSnitches*/}, {C});
+                "roomkey", {}, {/*sedateAnna, annaSnitches*/}, {snitch});
 // lsdesc = "You enter a room, no more than ten feet in any dimension. White pale walls covered in harsh lines of overlapping words and pictures. You see a little girl, curled up on the edge of the bed, sleeping and a journal on a small metal beside table."
 
   Room closet("Closet", closetDesc, "purple", false, {/*ratPoison*/}, "", {}, {/*triggerNurse*/}, {});
@@ -225,10 +251,10 @@ void Game::testLoadGame() {
 // ldesc = "You're down the hallway. There's sliding doors to your left and a door to your right labeled "Doctor's Office."
 
   Room doctors("Doctor's Office", doctorDesc, "green", true, {/*labCoat*/},
-               "crowBar", {}, {/*unlockOffice, getSpaceCode*/}, {/*computer*/});
+               "crowBar", {}, {/*unlockOffice, getSpaceCode*/}, {computer});
 // ldesc = "You've successfully broken in! A grey painted office with only one window and book shelves surrounding it. On the mahogany desk sat a computer, a stack of papers and a pen, and behind it, a swivel leather chair and bookshelves bursting with olds books. In the corner, a lab coat hanging on a coat rack."
 
-  Room lounge("Employee's Lounge", loungeDesc, "pink", false, {}, "", {}, {/*coffeePuzzle, killDoctor*/}, {/*doctor*/});
+  Room lounge("Employee's Lounge", loungeDesc, "pink", false, {}, "", {}, {/*coffeePuzzle, killDoctor*/}, {evildoctor});
 // ldesc = "As the doors open, the smell of a medicine cabinet and coffee comes wafting from what looks like an employees lounge. Brown cracked leather couches pushed against the undecorated walls. An old TV sitting on top of empty shelves. In the back, a small corner kitchen and a few round tables filled with loud chatter. All the employees are wearing nurse uniforms, except for one...the doctor."
 
 //Room elevator("Elevator", "ldesc", "elevator", false, {}, "", {}, {}, {});
@@ -269,7 +295,7 @@ void Game::testLoadGame() {
 // ldesc = "You're on the first floor. There's a long hallway with a door to your left, a door to your right, two more doors down the hall and a window at the end."
 
   Room patient3("Bonez's Room", patient3Desc, "cyan", false, {/*fishingRod*/},
-                "", {}, {/*goFishing*/}, {/*bonez*/});
+                "", {}, {/*goFishing*/}, {bonez});
 // ldesc = "Another room with white pale walls, a single flickering light bulb hanging from the ceiling, a small mattress on the floor and a young boy crouched over the toilet with a fishing rod."
 
   Room kitchen("Kitchen", kitchenDesc, "blue", false, {/*magnet*/}, "", {}, {}, {});
@@ -422,21 +448,21 @@ void Game::testLoadGame() {
   playerInventory.addItem(i15);
   playerInventory.addItem(i4);
   playerInventory.addItem(i5);
+  playerInventory.addItem(i16);
+  playerInventory.addItem(i9);
+  playerInventory.addItem(i10);
+  playerInventory.addItem(i13);
 
 
 
-  Player P(&startRoom, playerInventory, 0, true);
+  Player P(&startRoom, playerInventory, 0, true, allItems);
 
-  bool playerIsAlive = true;
 
-  std::cout << "You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your head is throbbing. Your nostrils fill with a stagnant smell. As you begin to slowly move yours eyes around the room, you notice something strange...there's no windows or natural light. You pull yourself up and notice a small metal rolling tray beside your bed, a chair in the corner, a crack of light coming from the hallway and something written on the wall beside the door...'GET OUT'"
+
+  std::cout << "You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your head is throbbing. Your nostrils fill with a stagnant smell. As you begin to slowly move yours eyes around the room, you notice something strange...there's no windows or natural light. You pull yourself up and notice a small metal rolling tray beside your bed, a chair in the corner, a crack of light coming from the hallway and something written on the wall beside the door...'Type Help'"
             << std::endl;
 
-
-  while (playerIsAlive) {
-    getUserInput(P);
-  }
-
+  getUserInput(P);
   //so far so good
 
 }
@@ -460,6 +486,8 @@ string Game::processCommand(string userInput, Player P) {
 
   std::string token;
   vector<string> result;
+
+  std::cout << "reached here " << std::endl;
 
   while (std::getline(ss, token, ' ')) {
     result.push_back(token);
@@ -804,9 +832,15 @@ void Game::talk(vector<string> result, Player P) {
           std::cout << chara.getName() << " past out on the ground." << std::endl;
           getUserInput(P);
         } else { //character is alive, decide which character are we talking to
-          d.talk(&P.currentRoom->characters[i]);
-          //std::cout << "talked to the patient" << std::endl;
-          getUserInput(P);
+          d.talk(&P.currentRoom->characters[i], P);
+          if (P.getIsAlive() != false) {
+            getUserInput(P);
+          }
+          else {
+              std::cout << "reached hereeeeeeeeeeee!!!!!!!!!!!!!!!!!!!" << std::endl;
+            mainMenu m;
+            m.showMenu();
+          }
         }
       }
     }
@@ -824,7 +858,8 @@ void Game::talk(vector<string> result, Player P) {
 */
 void Game::use(vector<string> result, Player P) {
   Use u;
-  u.use(result, P);
+  u.use(result, &P);
+  getUserInput(P);
 }
 
 void Game::displayHelp() {

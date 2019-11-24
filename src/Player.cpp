@@ -9,16 +9,18 @@ using namespace std;
 
 #include "Inventory.h"
 #include "Player.h"
+#include "mainMenu.h"
 
 Player::Player() {
   currentRoom = {};
   inventory = {};
   roomCount = 0;
   isAlive = true;
+  //allInv = {};
 }
 
 Player::Player(Room* currentRoom, Inventory inventory,
-               int roomCount, bool isAlive) : currentRoom{ currentRoom }, inventory {inventory}, roomCount{ roomCount }, isAlive {isAlive} {
+               int roomCount, bool isAlive, Inventory allInv) : currentRoom{ currentRoom }, inventory {inventory}, roomCount{ roomCount }, isAlive {isAlive}, allInv {allInv} {
 
 
 }
@@ -39,3 +41,17 @@ int Player::getRoomCount() {
   return roomCount;
 }
 
+bool Player::getIsAlive() {
+  return isAlive;
+}
+
+void Player::killPlayer() {
+  isAlive = false;
+  cout << "GAME OVER (press enter to go back to the main menu)" << endl;
+  string userInput;
+  getline(cin, userInput);
+  cout << endl;
+
+  mainMenu m;
+  m.showMenu();
+}

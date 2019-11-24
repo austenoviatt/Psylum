@@ -4,6 +4,7 @@
 #include <string>
 #include "Events.h"
 #include "Room.h"
+#include "Player.h"
 
 class Dialogue {
  public:
@@ -11,7 +12,7 @@ class Dialogue {
 
   ~Dialogue() {}
 
-  void talk(Character *c);
+  void talk(Character *c, Player P);
 
 
  private:
