@@ -95,11 +95,19 @@ return false;
 }
 
 /**
-* @return The items in the inventory
+* @return The items in the player inventory
 */
 std::vector<Item> Inventory::getItems() {
   return items;
 
+}
+
+Item Inventory::returnItem(std::string s) {
+  for (auto x: items) {
+    if (x.getName() == s) {
+      return x;
+    }
+  }
 }
 
 /**
@@ -109,7 +117,17 @@ int Inventory::getInvCount() {
   return invCount;
 }
 
+Item Inventory::findItem(std::string s) {
+  for (auto x : items) {
 
+     if (s == x.getName()) {
+        return x;
+  }
+
+  }
+
+
+}
 
 
 

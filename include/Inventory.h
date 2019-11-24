@@ -59,6 +59,10 @@ class Inventory {
   std::vector<Item> items;
    int invCount = 0;
 
+   Item findItem(std::string s);
+
+   Item returnItem(std::string s);
+
  private:
 
 

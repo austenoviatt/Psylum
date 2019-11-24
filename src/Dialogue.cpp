@@ -1,13 +1,14 @@
 #include "Dialogue.h"
 
 #include <iostream>
+#include<bits/stdc++.h>
 
 using namespace std;
 
 Dialogue::Dialogue() {
 }
 
-void Dialogue::talk(Character *c) {
+void Dialogue::talk(Character *c, Player P) {
   unsigned int input;
 
   //find out which character we are talking to
@@ -17,6 +18,7 @@ void Dialogue::talk(Character *c) {
   while (converOver == false) {
     if (charaID == "snitch") {
       if (c->getEventCounter() == 0) {
+        cout << "The patient was woken up by you, she looks surprised to see you standing over there" << endl;
         cout << "Patient: A fellow patient! As you can see, I'm also a patient here, my name is Annabelle btw. You look a little lost, are you ok?" << endl;
         cout << "1. Sorry I don’t know how I ended up here and am looking for a way out." << endl;
         cout << "2. Exit conversation" << endl;
@@ -48,9 +50,11 @@ void Dialogue::talk(Character *c) {
           cin.ignore();
           //bad end, need to change return
           cout << "Patient: Follow me, I know a way that can get you out of here." << endl;
-          cout << "You followed Annabelle." << endl;
-
-          continue;
+          cout << "You followed Annabelle to the elevator. As the elevator dings and the doors open, you see two security guards and a doctor. Annabelle quickly stands back with a nasty smile on her face. You've been tricked!" << endl;
+          cout << "Security guards took you back to your room and locked you good this time, you never made it out of that room again......" << endl;
+          P.killPlayer();
+          converOver = true;
+          break;
         }
         else if (input == 2) {
           cin.ignore();
@@ -64,32 +68,51 @@ void Dialogue::talk(Character *c) {
         }
       }
   }
+  else if (charaID == "computer") {
+    cout << "There is nothing on the computer except a text input that takes 8 english characters, it looks like some sort of password" << endl;
+    cout << "1. Enter password" << endl;
+    cout << "2. Leave" << endl;
+    if (c->getEventCounter() == 0) {
+        cin >> input;
+        if (input == 1) {
+          cin.ignore();
+          cout << "Enter Password: " << endl;
+          string userInput;
+          getline(cin, userInput);
+          cout << endl;
+          transform(userInput.begin(), userInput.end(), userInput.begin(), ::tolower);
+          if (userInput == "i love my mom") {
+            c->increaseEventCounter();
+            cout << "Password correct! You have been granted access to the control room." << endl << endl;
+            //unlock space room
+            P.currentRoom->exits[3]->exits[2]->exits[3]->setLock(false);
+            //cout << P.currentRoom->getExit()[3].getExit()[2].getExit()[3].getLocked() << endl;
+            //P.currentRoom->getExit()
+            converOver = true;
+            break;
+          }
+          else {
+              std::cout << "Password incorrect. Please try again." << endl << endl;
+            converOver = true;
+            break;
+          }
+
+        }
+        else if (input == 2) {
+          cin.ignore();
+          converOver = true;
+          break;
+        }
+    }
+    else if (c->getEventCounter() == 1) {
+
+    }
+
+  }
 
   }
   return;
 
-
-
-  if (input== 0) {
-
-
-    if (input == 1 || input == 2 || input == 3) {
-      //A.addEventCounter();
-
-      talk(c);
-    }
-  } else if (input == 1) {
-
-    cin >> input;
-
-    if (input == 1 || input == 2) {
-      //A.addEventCounter();
-
-      talk(c);
-    }
-  } else if (input== 2) {
-
-  }
   /*
   switch(input) {
     case 1:
