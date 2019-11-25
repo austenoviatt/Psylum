@@ -13,8 +13,8 @@
 using namespace std;
 
 Item::Item(std::string name, std::string description, std::string niceName,
-           bool fixed) : name{ name }, description{ description },
-  niceName{ niceName }, fixed{ fixed } {
+           bool fixed, int eventCounter): name{ name }, description{ description },
+  niceName{ niceName }, fixed{ fixed }, eventCounter{eventCounter} {
 
 }
 
@@ -32,5 +32,16 @@ std::string Item::getItemDesc() {
 
 std::string Item::getNiceName() {
   return niceName;
+}
+
+/**
+  * increase the event status of the item by one
+  */
+void Item::increaseEventCounter() {
+  eventCounter = eventCounter + 1;
+}
+
+int Item::getEventCounter() {
+  return eventCounter;
 }
 

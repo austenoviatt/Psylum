@@ -21,7 +21,7 @@ class Item {
    * @param pickupable whether the item is able to be picked up or not
    */
   Item(std::string name = "DEFAULT NAME", std::string description =
-         "DEFAULT DESCRIPTION", std::string niceName = "NICE NAME", bool fixed = false);
+         "DEFAULT DESCRIPTION", std::string niceName = "NICE NAME", bool fixed = false, int eventCounter = 0);
 
   /**
    * Default destructor
@@ -54,6 +54,16 @@ class Item {
 
   bool getFixed();
 
+  /**
+  * increase the event status of the item by one
+  */
+  void increaseEventCounter();
+
+  /**
+  * returns event counter
+  * @return int event counter
+  */
+  int getEventCounter();
 
  private:
 
@@ -61,6 +71,7 @@ class Item {
   std::string niceName;
   std::string description;
   bool fixed;
+  int eventCounter;
 
 };
 

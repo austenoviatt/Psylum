@@ -152,7 +152,7 @@ void Use::use(std::vector<std::string> result, Player* player) {
   }
   else if (item == "coffeemaker") {
     if (player->currentRoom->inventory.hasItem("coffeemaker")){
-      if (result.size() > 2) {
+      if (result.size() == 2) {
       std::cout << "You can't use the coffee maker like that." << endl;
     } else if (player->inventory.hasItem("coffee")) {
         std::cout << "You already have a coffee, you don't need another." << endl;
@@ -177,7 +177,7 @@ void Use::use(std::vector<std::string> result, Player* player) {
   }
   else if (item == "roomkey") {
     if (player->inventory.hasItem("roomkey") == true) {
-      if (result.size() > 2) {
+      if (result.size() == 2) {
         std::cout << "You can't use the room key like that." << std::endl;
       }
       for (uint i = 0; i < player->currentRoom->exits.size(); i++) {
@@ -197,7 +197,7 @@ void Use::use(std::vector<std::string> result, Player* player) {
   }
   else if (item == "button2") {
     if (player->inventory.hasItem("button2") == true) {
-      if (result.size() > 2) {
+      if (result.size() == 2) {
         std::cout << "You can't use button 2 like that." << std::endl;
       }
       for (uint i = 0; i < player->currentRoom->exits.size(); i++) {
@@ -217,7 +217,7 @@ void Use::use(std::vector<std::string> result, Player* player) {
   }
   else if (item == "button1") {
     if (player->inventory.hasItem("button1") == true) {
-      if (result.size() > 2) {
+      if (result.size() == 2) {
         std::cout << "You can't use button 1 like that." << std::endl;
       }
       for (uint i = 0; i < player->currentRoom->exits.size(); i++) {
@@ -237,7 +237,7 @@ void Use::use(std::vector<std::string> result, Player* player) {
   }
   else if (item == "keycard") {
     if (player->inventory.hasItem("keycard") == true) {
-      if (result.size() > 2) {
+      if (result.size() == 2) {
         std::cout << "You can't use the key card like that." << std::endl;
       }
       for (uint i = 0; i < player->currentRoom->exits.size(); i++) {
@@ -257,7 +257,7 @@ void Use::use(std::vector<std::string> result, Player* player) {
   }
   else if (item == "claw") {
     if (player->inventory.hasItem("claw") == true) {
-      if (result.size() > 2) {
+      if (result.size() == 2) {
         std::cout << "You can't use the claw like that." << std::endl;
       }
       for (uint i = 0; i < player->currentRoom->exits.size(); i++) {
@@ -277,7 +277,7 @@ void Use::use(std::vector<std::string> result, Player* player) {
   }
   else if (item == "magicmushroom") {
     if (player->inventory.hasItem("magicmushroom") == true) {
-      if (result.size() > 2) {
+      if (result.size() == 2) {
         std::cout << "You can't use the magic mushroom like that." << std::endl;
       }
       for (uint i = 0; i < player->currentRoom->exits.size(); i++) {
@@ -297,7 +297,7 @@ void Use::use(std::vector<std::string> result, Player* player) {
   }
   else if (item == "crowbar") {
     if (player->inventory.hasItem("crowbar") == true) {
-      if (result.size() > 2) {
+      if (result.size() == 2) {
         std::cout << "You can't use the crowbar like that." << std::endl;
       }
       for (uint i = 0; i < player->currentRoom->exits.size(); i++) {

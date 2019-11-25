@@ -29,6 +29,13 @@ Player::Player(Room* currentRoom, Inventory inventory,
  * changes the room the player is in
  */
 void Player::moveToRoom(Room* nextRoom) {
+  if (nextRoom->getName() == "End of Game!") {
+      Player p;
+      p.win();
+  }
+  else if (nextRoom->getName() == "Sewer") {
+
+  }
   currentRoom = nextRoom;
   roomCount++;
 }
