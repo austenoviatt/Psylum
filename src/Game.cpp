@@ -15,7 +15,6 @@
 #include "Game.h"
 #include "Use.h"
 #include "Dialogue.h"
-#include "Inventory.h"
 #include "mainMenu.h"
 #include<bits/stdc++.h>
 
@@ -55,60 +54,56 @@ void Game::getUserInput(Player P) {
 void Game::testLoadGame() {
     Item i1("ratpoison",
           "Half a bag of extremely poisonous substances! Ingredients include arsenic, barium, and thallium.",
-          "Rat Poison", false, 0);
+          "Rat Poison", false);
   Item i2("journal",
           "A journal, looks like there is a lot of private information written in it.",
-          "Journal", true, 0);
+          "Journal", true);
   Item i3("sedative", "An injectable drug to knock out patients.", "Sedative",
-          false, 0);
+          false);
   Item i4("crowbar",
           "A metal bar with a single curve end and flattened points with a small fissure for removing nails on the other.",
-          "Crowbar", false, 0);
+          "Crowbar", false);
   Item i5("magicmushroom",
           "These mushrooms contain hallucinogens such as psilocybin and psilocin and an extra special ingredient to spice things up.",
-          "Magic Mushroom", false, 0);
+          "Magic Mushroom", false);
   Item i6("worm",
           "A soft, slender and tube-like insect with no limbs or eyes. Yum!", "Worm",
-          false, 0);
+          false);
   Item i7("labcoat",
           "A loose-fitting white coat worn by doctors in a laboratory or medical facility.",
-          "Lab Coat", false, 0);
+          "Lab Coat", false);
   Item i8("window",
-          "A small window at the end of the hallway. It's cracked open and you can see a metal key card on the ground outside!",
-          "Window", true, 0);
+          "A small window at the end of the hallway. It's cracked open and you can see a key card on the ground outside!",
+          "Window", true);
   Item i9("magnet",
           "A small refrigerator magnet which attracts iron and some other materials.",
-          "Magnet", false, 0);
+          "Magnet", false);
   Item i10("fishingrod",
            "A makeshift fishing rod, seemingly made out of part of the bed frame, a thread from someone's clothing, and a paper clip.",
-           "Fishing Rod", false, 0);
+           "Fishing Rod", false);
   Item i11("magnetrod",
            "A make shit fishing rod with a fridge magnet in place of the hook",
-           "Magnet Rod", false, 0);
+           "Magnet Rod", false);
   Item i12("coffeemaker", "An old, barely functioning instant coffee maker",
-           "Coffee Maker", true, 0);
+           "Coffee Maker", true);
   Item i13("coffee", "A piping hot cup of coffee. Mmmmm!", "Coffee", false);
   Item i14("poisoncoffee", "A cup of poison coffee. Better not drink this!",
-           "Poison Coffee", false, 0);
+           "Poison Coffee", false);
   Item i15("roomkey",
            "An employee key card. This looks like it could get you into some secured rooms.",
-           "Room Key", false, 0);
+           "Room Key", false);
   Item i16("button2",
            "A button with the number 2 on it. There are some exposed metal connections on the back.",
-           "Button 2", false, 0);
+           "Button 2", false);
   Item i17("button1",
            "A button with the number 1 on it. There are some exposed metal connections on the back.",
-           "Button 1", false, 0);
+           "Button 1", false);
   Item i18("keycard",
            "A key card with the word 'CLASSIFIED' plastered on the back. I wonder what this will open?",
-           "Key Card", false, 0);
+           "Key Card", false);
   Item i19("claw",
            "There are three animals on the claw, a wolf, a goat and? a cabbage?. It looks like it might fit in somewhere.",
-           "Claw", false, 0);
-
-  Item i21("cart", "regular hospital cart, there is a \e[1mbox\e[0m on the cart, a \e[1mred key\e[0m is hanging on the edge of the cart.", "Cart", true, 0);
-
-  Item i20("box", "the box contain a single syringe inside that says " + stringBold(i3.getNiceName()) + " on the label.|the box is empty.", "Box", true, 0);
+           "Claw", false);
 
 
   Inventory allItems;
@@ -131,10 +126,9 @@ void Game::testLoadGame() {
   allItems.addItem(i17);
   allItems.addItem(i18);
   allItems.addItem(i19);
-  allItems.addItem(i20);
-  allItems.addItem(i21);
 
     Character snitch("snitch", "patient", "sketchy looking patient who looks like she want's to help you", true, 0, " ");
+    //Character dummy("dummy", "dummy", "dummy who looks at you but will never interact with you", false, 0, " ");
     Character evildoctor("evildoctor", "doctor", "he is working at his desk, and he is too busy to care about you", true, 0, " ");
     Character bonez("bonez", "patient", "he is standing beside a toilet, fishing road in hand, it looks like he wants to fish something from the toilet", true, 0, " ");
     Character computer("computer", "computer", "old, bulky looking computers that's still functional", true, 0, " ");
@@ -144,7 +138,7 @@ void Game::testLoadGame() {
   std::string startDesc =
     "There's no windows or natural light. You noticed a small metal rolling tray beside your bed, a chair in the corner, a crack of light coming from the hallway and something written on the wall beside the door...'Type Help'";
   std::string l3Hall1Desc =
-    "You enter a long concrete hallway. There is a " + stringBold(i21.getNiceName() )+ " at the middle of the hallway with a " + stringBold(i20.getNiceName()) + " on the top.";
+    "You enter a long concrete hallway. There's a door to your left with a key card slot, a door to your right, another door further down the hallway and an elevator at the end. As you're observing the situation, you hear voices from the elevator getting closer and closer. Suddenly a scream and DING! The elevator is about to open.";
   std::string annabelleDesc =
     "You enter a room, no more than ten feet in any dimension. White pale walls covered in harsh lines of overlapping words and pictures. You see a patient, curled up on the edge of the bed, sleeping. There is a journal on the bedside table.";
   std::string closetDesc =
@@ -349,34 +343,21 @@ void Game::testLoadGame() {
   playerInventory.addItem(i13);
 
   patient2.inventory.addItem(i2);
-
   l3Hall1.inventory.addItem(i3);
   l3Hall1.inventory.addItem(i15);
-  l3Hall1.inventory.addItem(i20);
-  l3Hall1.inventory.addItem(i21);
-
   storage.inventory.addItem(i4);
-
   forest.inventory.addItem(i5);
   forest.inventory.addItem(i6);
+  doctors.inventory.addItem(i7);
+  l1Hall2.inventory.addItem(i8);
+  kitchen.inventory.addItem(i9);
+  lounge.inventory.addItem(i12);
+  closet.inventory.addItem(i16);
+  spaceship.inventory.addItem(i17);
+  l1Hall2.inventory.addItem(i18);
   forest.inventory.addItem(i19);
 
-  doctors.inventory.addItem(i7);
-
-  l1Hall2.inventory.addItem(i8);
-
-  kitchen.inventory.addItem(i9);
-
-  lounge.inventory.addItem(i12);
-
-  closet.inventory.addItem(i16);
-
-  spaceship.inventory.addItem(i17);
-
-  l1Hall2.inventory.addItem(i18);
-
-
-  Player P(&startRoom, playerInventory, 0, true, allItems);
+  Player P(&skyrim, playerInventory, 0, true, allItems);
 
 
 
@@ -406,7 +387,7 @@ string Game::processCommand(string userInput, Player P) {
   std::string token;
   vector<string> result;
 
-  //std::cout << "reached here " << std::endl;
+  std::cout << "reached here " << std::endl;
 
   while (std::getline(ss, token, ' ')) {
     result.push_back(token);
@@ -486,32 +467,38 @@ string Game::processCommand(string userInput, Player P) {
  */
 void Game::go(vector<string> result, Player P) {
 
+
+
   if (result.size() == 2) {
       if (P.currentRoom->getName() == "Elevator") {
           if ((result[1] == "floor3") || (result[1] == "floorthree") || (result[1] == "thirdfloor") || (result[1] == "3")){
             P.moveToRoom(P.currentRoom->exits[0]);
-
+            if(P.currentRoom->getName() == "End of Game!")
+              P.win();
             std::cout << P.currentRoom->description << std::endl;
             std::cout << P.currentRoom->getExit() << std::endl;
             getUserInput(P);
           }
           else if ((result[1] == "floor2") || (result[1] == "floortwo") || (result[1] == "secondfloor") || (result[1] == "2")){
             P.moveToRoom(P.currentRoom->exits[1]);
-
+            if(P.currentRoom->getName() == "End of Game!")
+              P.win();
             std::cout << P.currentRoom->description << std::endl;
             std::cout << P.currentRoom->getExit() << std::endl;
             getUserInput(P);
           }
           else if ((result[1] == "floor1") || (result[1] == "floorone") || (result[1] == "firstfloor") || (result[1] == "1")){
             P.moveToRoom(P.currentRoom->exits[2]);
-
+            if(P.currentRoom->getName() == "End of Game!")
+              P.win();
             std::cout << P.currentRoom->description << std::endl;
             std::cout << P.currentRoom->getExit() << std::endl;
             getUserInput(P);
           }
           else if ((result[1] == "basement") || (result[1] == "floor0") || (result[1] == "basementfloor") || (result[1] == "floorzero") || (result[1] == "0")){
             P.moveToRoom(P.currentRoom->exits[3]);
-
+            if(P.currentRoom->getName() == "End of Game!")
+              P.win();
             std::cout << P.currentRoom->description << std::endl;
             std::cout << P.currentRoom->getExit() << std::endl;
             getUserInput(P);
@@ -520,6 +507,7 @@ void Game::go(vector<string> result, Player P) {
             std::cout << "Input Invalid" << std::endl;
             getUserInput(P);
           }
+
 
       }
     //travel using door name
@@ -530,6 +518,8 @@ void Game::go(vector<string> result, Player P) {
 
         if (P.currentRoom->exits[i]->getLocked() == false) {
           P.moveToRoom(P.currentRoom->exits[i]);
+          if(P.currentRoom->getName() == "End of Game!")
+              P.win();
 
           std::cout << P.currentRoom->description << std::endl;
           std::cout << P.currentRoom->getExit() << std::endl;
@@ -544,8 +534,10 @@ void Game::go(vector<string> result, Player P) {
     if ((result[1] == "forward" || result[1] == "front" )
         && (P.currentRoom->exits[0]->getName() != "a wall")) {
       if (P.currentRoom->exits[0]->getLocked() == false) {
-        //std::cout << "gooooooooooo forward" << std::endl;
+        std::cout << "gooooooooooo forward" << std::endl;
         P.moveToRoom(P.currentRoom->exits[0]);
+        if(P.currentRoom->getName() == "End of Game!")
+              P.win();
 
         std::cout << P.currentRoom->description << std::endl;
         std::cout << P.currentRoom->getExit() << std::endl;
@@ -558,8 +550,10 @@ void Game::go(vector<string> result, Player P) {
     } else if ((result[1] == "right")
                && (P.currentRoom->exits[1]->getName() != "a wall")) {
       if (P.currentRoom->exits[1]->getLocked() == false) {
-        //std::cout << "gooooooooooo right" << std::endl;
+        std::cout << "gooooooooooo right" << std::endl;
         P.moveToRoom(P.currentRoom->exits[1]);
+        if(P.currentRoom->getName() == "End of Game!")
+              P.win();
 
         std::cout << P.currentRoom->description << std::endl;
         std::cout << P.currentRoom->getExit() << std::endl;
@@ -573,8 +567,10 @@ void Game::go(vector<string> result, Player P) {
     } else if ((result[1] == "backward" || result[1] == "back"
                 || result[1] == "behind") && (P.currentRoom->exits[2]->getName() != "a wall")) {
       if (P.currentRoom->exits[2]->getLocked() == false) {
-        //std::cout << "gooooooooooo back" << std::endl;
+        std::cout << "gooooooooooo back" << std::endl;
         P.moveToRoom(P.currentRoom->exits[2]);
+        if(P.currentRoom->getName() == "End of Game!")
+              P.win();
 
         std::cout << P.currentRoom->description << std::endl;
         std::cout << P.currentRoom->getExit() << std::endl;
@@ -587,8 +583,10 @@ void Game::go(vector<string> result, Player P) {
     } else if ((result[1] == "left")
                && (P.currentRoom->exits[3]->getName() != "a wall")) {
       if (P.currentRoom->exits[3]->getLocked() == false) {
-        //sstd::cout << "gooooooooooo left" << std::endl;
+        std::cout << "gooooooooooo left" << std::endl;
         P.moveToRoom(P.currentRoom->exits[3]);
+        if(P.currentRoom->getName() == "End of Game!")
+              P.win();
 
         std::cout << P.currentRoom->description << std::endl;
         std::cout << P.currentRoom->getExit() << std::endl;
@@ -744,18 +742,12 @@ void Game::take(vector<string> result, Player P) {
         if (!P.currentRoom->inventory.items[i].getFixed()) {
           //item found, pickup item, remove item from room inventory and add it to player inventory
           string itemName = P.currentRoom->inventory.items[i].getNiceName();
-          string itemID = P.currentRoom->inventory.items[i].getName();
 
           P.inventory.addItem(P.currentRoom->inventory.items[i]);
           P.currentRoom->inventory.removeItem(P.currentRoom->inventory.items[i]);
 
-          std::cout << "You picked up " << itemName << " and put it into your pocket." << std::endl;
-          for (int i = 0; i < P.allInv.getItems().size(); i++) {
-            if (P.allInv.getItems()[i].getName() == itemID) {
-              P.allInv.getItems()[i].increaseEventCounter();
-              std::cout << P.allInv.getItems()[i].getEventCounter() << std::endl;
-            }
-          }
+          std::cout << "You picked up " << itemName << " and put it into your pocket." <<
+                    std::endl;
           getUserInput(P);
 
         } else
@@ -831,8 +823,4 @@ void Game::displayHelp() {
 
   std::cout << ss.str() << std::endl;
 
-}
-
-std::string Game::stringBold(std::string s) {
-  return "\e[1m" + s + "\e[0m";
 }
