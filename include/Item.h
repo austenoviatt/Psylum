@@ -21,7 +21,7 @@ class Item {
    * @param pickupable whether the item is able to be picked up or not
    */
   Item(std::string name = "DEFAULT NAME", std::string description =
-         "DEFAULT DESCRIPTION", std::string niceName = "NICE NAME", bool fixed = false);
+         "DEFAULT DESCRIPTION", std::string niceName = "NICE NAME", bool fixed = false, int itemState = 0);
 
   /**
    * Default destructor
@@ -54,14 +54,16 @@ class Item {
 
   bool getFixed();
 
+  void increaseItemState();
 
+  int getItemState();
  private:
 
   std::string name;
   std::string niceName;
   std::string description;
   bool fixed;
-
+  int itemState;
 };
 
 #endif //ITEM_H

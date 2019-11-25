@@ -13,8 +13,8 @@
 using namespace std;
 
 Item::Item(std::string name, std::string description, std::string niceName,
-           bool fixed) : name{ name }, description{ description },
-  niceName{ niceName }, fixed{ fixed } {
+           bool fixed, int itemState) : name{ name }, description{ description },
+  niceName{ niceName }, fixed{ fixed }, itemState{itemState} {
 
 }
 
@@ -32,5 +32,13 @@ std::string Item::getItemDesc() {
 
 std::string Item::getNiceName() {
   return niceName;
+}
+
+void Item::increaseItemState() {
+  itemState = itemState + 1;
+}
+
+int Item::getItemState() {
+  return itemState;
 }
 

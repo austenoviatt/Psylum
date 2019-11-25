@@ -22,7 +22,6 @@ Player::Player() {
 Player::Player(Room* currentRoom, Inventory inventory,
                int roomCount, bool isAlive, Inventory allInv) : currentRoom{ currentRoom }, inventory {inventory}, roomCount{ roomCount }, isAlive {isAlive}, allInv {allInv} {
 
-
 }
 
 /**

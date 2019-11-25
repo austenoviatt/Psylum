@@ -112,7 +112,7 @@ class Game {
   */
   bool isAlive;
 
-  string stringBold (std::string s);
+  string boldText(std::string s);
 
 
  private:

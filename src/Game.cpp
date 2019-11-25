@@ -14,6 +14,8 @@
 #include "Player.h"
 #include "Game.h"
 #include "Use.h"
+#include "Look.h"
+#include "Take.h"
 #include "Dialogue.h"
 #include "mainMenu.h"
 #include "Bold.h"
@@ -55,56 +57,60 @@ void Game::getUserInput(Player P) {
 void Game::testLoadGame() {
     Item i1("ratpoison",
           "Half a bag of extremely poisonous substances! Ingredients include arsenic, barium, and thallium.",
-          "Rat Poison", false);
+          "Rat Poison", false, 0);
   Item i2("journal",
           "A journal, looks like there is a lot of private information written in it.",
-          "Journal", true);
+          "Journal", true, 0);
   Item i3("sedative", "An injectable drug to knock out patients.", "Sedative",
-          false);
+          false, 0);
   Item i4("crowbar",
           "A metal bar with a single curve end and flattened points with a small fissure for removing nails on the other.",
-          "Crowbar", false);
+          "Crowbar", false, 0);
   Item i5("magicmushroom",
           "These mushrooms contain hallucinogens such as psilocybin and psilocin and an extra special ingredient to spice things up.",
-          "Magic Mushroom", false);
+          "Magic Mushroom", false, 0);
   Item i6("worm",
           "A soft, slender and tube-like insect with no limbs or eyes. Yum!", "Worm",
-          false);
+          false, 0);
   Item i7("labcoat",
           "A loose-fitting white coat worn by doctors in a laboratory or medical facility.",
-          "Lab Coat", false);
+          "Lab Coat", false, 0);
   Item i8("window",
           "A small window at the end of the hallway. It's cracked open and you can see a metal key card on the ground outside!",
-          "Window", true);
+          "Window", true, 0);
   Item i9("magnet",
           "A small refrigerator magnet which attracts iron and some other materials.",
-          "Magnet", false);
+          "Magnet", false, 0);
   Item i10("fishingrod",
            "A makeshift fishing rod, seemingly made out of part of the bed frame, a thread from someone's clothing, and a paper clip.",
-           "Fishing Rod", false);
+           "Fishing Rod", false, 0);
   Item i11("magnetrod",
            "A make shit fishing rod with a fridge magnet in place of the hook",
-           "Magnet Rod", false);
+           "Magnet Rod", false, 0);
   Item i12("coffeemaker", "An old, barely functioning instant coffee maker",
-           "Coffee Maker", true);
-  Item i13("coffee", "A piping hot cup of coffee. Mmmmm!", "Coffee", false);
+           "Coffee Maker", true, 0);
+  Item i13("coffee", "A piping hot cup of coffee. Mmmmm!", "Coffee", false, 0);
   Item i14("poisoncoffee", "A cup of poison coffee. Better not drink this!",
-           "Poison Coffee", false);
+           "Poison Coffee", false, 0);
   Item i15("roomkey",
            "An employee key card. This looks like it could get you into some secured rooms.",
-           "Room Key", false);
+           "Room Key", false, 0);
   Item i16("button2",
            "A button with the number 2 on it. There are some exposed metal connections on the back.",
-           "Button 2", false);
+           "Button 2", false, 0);
   Item i17("button1",
            "A button with the number 1 on it. There are some exposed metal connections on the back.",
-           "Button 1", false);
+           "Button 1", false, 0);
   Item i18("keycard",
            "A key card with the word 'CLASSIFIED' plastered on the back. I wonder what this will open?",
-           "Key Card", false);
+           "Key Card", false, 0);
   Item i19("claw",
            "There are three animals on the claw, a wolf, a goat and? a cabbage?. It looks like it might fit in somewhere.",
-           "Claw", false);
+           "Claw", false, 0);
+  Item i20("box", "a box that contain a single syringe that says " + boldText(i3.getNiceName()) + " on the label|the box is empty", "Box", true, 0);
+  Item i21("cart", "a standard hospital cart with a " + boldText(i20.getNiceName()) + " on the top, with a " + boldText(i15.getNiceName()) + " hanging on the edge", "Cart", true, 0);
+  Item i22("chair", "a cheap looking plastic chair", "Chair", true, 0);
+  //Item i23();
 
   Inventory allItems;
   allItems.addItem(i1);
@@ -126,18 +132,22 @@ void Game::testLoadGame() {
   allItems.addItem(i17);
   allItems.addItem(i18);
   allItems.addItem(i19);
+  allItems.addItem(i20);
+  allItems.addItem(i21);
+  allItems.addItem(i22);
+
 
     Character snitch("snitch", "patient", "sketchy looking patient who looks like she want's to help you", true, 0, " ");
-    Character evildoctor("evildoctor", "doctor", "he is working at his desk, and he is too busy to care about you", true, 0, " ");
-    Character bonez("bonez", "patient", "he is standing beside a toilet, fishing road in hand, it looks like he wants to fish something from the toilet", true, 0, " ");
+    Character evildoctor("evildoctor", "doctor", "he is reading a newpaper, and he is too busy to care about you", true, 0, " ");
+    Character bonez("bonez", "patient", "he is standing beside a toilet, fishing rod in hand, it looks like he wants to fish something from the toilet", true, 0, " ");
     Character computer("computer", "computer", "old, bulky looking computers that's still functional", true, 0, " ");
     //Character petowner();
 
 
   std::string startDesc =
-    "There's no windows or natural light. You noticed a small metal rolling tray beside your bed, a chair in the corner, a crack of light coming from the hallway and something written on the wall beside the door...'Type Help'";
+    "There's no windows or natural light. You noticed a rolling tray beside your bed, a " + boldText(i22.getNiceName()) + " in the corner, a crack of light coming from the hallway and something written on the wall beside the door...'Type Help'";
   std::string l3Hall1Desc =
-    "You enter a long concrete hallway. There's a door to your left with a key card slot, a door to your right, another door further down the hallway and an elevator at the end. As you're observing the situation, you hear voices from the elevator getting closer and closer. Suddenly a scream and DING! The elevator is about to open.";
+    "You enter a long concrete hallway, there is a " + boldText(i21.getNiceName()) + " in front of you, a " + boldText(i20.getNiceName()) + " is placed on the top and a pair of " + boldText(i15.getNiceName()) + " is hanging on the edge";
   std::string annabelleDesc =
     "You enter a room, no more than ten feet in any dimension. White pale walls covered in harsh lines of overlapping words and pictures. You see a patient, curled up on the edge of the bed, sleeping. There is a journal on the bedside table.";
   std::string closetDesc =
@@ -341,24 +351,40 @@ void Game::testLoadGame() {
   playerInventory.addItem(i10);
   playerInventory.addItem(i13);
 
+  startRoom.inventory.addItem(i22);
+
   patient2.inventory.addItem(i2);
+
   l3Hall1.inventory.addItem(i3);
   l3Hall1.inventory.addItem(i15);
+  l3Hall1.inventory.addItem(i20);
+  l3Hall1.inventory.addItem(i21);
+
   storage.inventory.addItem(i4);
+
   forest.inventory.addItem(i5);
   forest.inventory.addItem(i6);
-  doctors.inventory.addItem(i7);
-  l1Hall2.inventory.addItem(i8);
-  kitchen.inventory.addItem(i9);
-  lounge.inventory.addItem(i12);
-  closet.inventory.addItem(i16);
-  spaceship.inventory.addItem(i17);
-  l1Hall2.inventory.addItem(i18);
   forest.inventory.addItem(i19);
+
+  doctors.inventory.addItem(i7);
+
+  l1Hall2.inventory.addItem(i8);
+  l1Hall2.inventory.addItem(i18);
+
+  kitchen.inventory.addItem(i9);
+
+  lounge.inventory.addItem(i12);
+
+  closet.inventory.addItem(i16);
+
+  spaceship.inventory.addItem(i17);
 
   Player P(&startRoom, playerInventory, 0, true, allItems);
 
-  std::cout << "You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your head is throbbing. Your nostrils fill with a stagnant smell. As you begin to slowly move yours eyes around the room, you notice something strange...there's no windows or natural light. You pull yourself up and notice a small metal rolling tray beside your bed, a chair in the corner, a crack of light coming from the hallway and something written on the wall beside the door...'Type Help'"
+  std::cout << "You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your"
+            << "head is throbbing. As you begin to slowly move yours eyes around the room, you notice something strange...\n"
+            << "There's no windows or natural light. You noticed a rolling tray beside your bed, a " + boldText(i22.getNiceName()) +
+            " in the corner, a crack of light coming from the hallway and something written on the wall beside the door...'" + boldText("Type Help") + "'"
             << std::endl << endl;
 
   getUserInput(P);
@@ -689,9 +715,11 @@ void Game::look(vector<string> result, Player P) {
     }
 
     //looping through item on player
-    for (uint i = 0; i < player.inventory.getItems().size(); i++) {
-      if (result[1] == player.inventory.getItems()[i].getName()) {
-        std::cout << P.inventory.getItems()[i].getItemDesc() << std::endl << endl;
+    for (uint i = 0; i < P.inventory.getItems().size(); i++) {
+      if (result[1] == P.inventory.getItems()[i].getName()) {
+        //std::cout << P.inventory.getItems()[i].getItemDesc() << std::endl << endl;
+        Look k;
+        k.look(P.inventory.getItems()[i], P);
         getUserInput(P);
       }
     }
@@ -699,7 +727,9 @@ void Game::look(vector<string> result, Player P) {
     //looping through item in room
     for (unsigned int i = 0; i < P.currentRoom->inventory.getItems().size(); i++) {
       if (result[1] == P.currentRoom->inventory.getItems()[i].getName()) {
-        std::cout << P.currentRoom->inventory.getItems()[i].getItemDesc() << std::endl << endl;
+        //std::cout << P.currentRoom->inventory.getItems()[i].getItemDesc() << std::endl << endl;
+        Look k;
+        k.look(P.currentRoom->inventory.getItems()[i], P);
         getUserInput(P);
       }
     }
@@ -746,12 +776,21 @@ void Game::take(vector<string> result, Player P) {
         if (!P.currentRoom->inventory.items[i].getFixed()) {
           //item found, pickup item, remove item from room inventory and add it to player inventory
           string itemName = P.currentRoom->inventory.items[i].getNiceName();
+          Item item = P.currentRoom->inventory.items[i];
 
           P.inventory.addItem(P.currentRoom->inventory.items[i]);
           P.currentRoom->inventory.removeItem(P.currentRoom->inventory.items[i]);
 
-          std::cout << "You picked up " << itemName << " and put it into your pocket." <<
-                    std::endl << endl;
+          std::cout << "You picked up " << itemName << " and put it into your pocket." << std::endl << endl;
+          Take t;
+          t.take(item, &P);
+
+          //for (int i = 0; i < P.allInv.items.size(); i++) {
+          //  if ("box" == P.allInv.items[i].getName()) {
+          //    std::cout << P.allInv.items[i].getItemState() << std::endl;
+          //  }
+          //}
+          //std::cout << P.allInv.items[] << std::endl;
           getUserInput(P);
 
         } else
@@ -828,4 +867,8 @@ void Game::displayHelp() {
 
   std::cout << ss.str() << std::endl << endl;
 
+}
+
+std::string Game::boldText(std::string s) {
+  return "\e[1m" + s +"\e[0m";
 }
