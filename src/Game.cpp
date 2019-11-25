@@ -379,7 +379,7 @@ void Game::testLoadGame() {
 
   spaceship.inventory.addItem(i17);
 
-  Player P(&startRoom, playerInventory, 0, true, allItems);
+  Player P(&skyrim, playerInventory, 0, true, allItems);
 
   std::cout << "You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your"
             << "head is throbbing. As you begin to slowly move yours eyes around the room, you notice something strange...\n"

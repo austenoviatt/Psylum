@@ -32,6 +32,9 @@ void Player::moveToRoom(Room* nextRoom) {
       Player p;
       p.win();
   }
+  else if (nextRoom->getName() == "Sewer") {
+    currentRoom->setLock(true);
+  }
   currentRoom = nextRoom;
   roomCount++;
 }
