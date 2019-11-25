@@ -71,6 +71,7 @@ bool Room::getLocked() {
 
 std::string Room::getExit() {
   std::string allDoorDesc;
+  allDoorDesc += '\n';
   for (uint i = 0; i < exits.size(); i++) {
 
     if (i == 0 && (exits[i]->getDoorDesc() != "wall")
@@ -123,6 +124,7 @@ std::string Room::getExit() {
       allDoorDesc += " is to your left. ";
     }
   }
+  allDoorDesc += '\n';
   return allDoorDesc;
 }
 

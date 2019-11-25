@@ -16,6 +16,7 @@
 #include "Use.h"
 #include "Dialogue.h"
 #include "mainMenu.h"
+#include "Bold.h"
 #include<bits/stdc++.h>
 
 Game::Game() {
@@ -73,7 +74,7 @@ void Game::testLoadGame() {
           "A loose-fitting white coat worn by doctors in a laboratory or medical facility.",
           "Lab Coat", false);
   Item i8("window",
-          "A small window at the end of the hallway. It's cracked open and you can see a key card on the ground outside!",
+          "A small window at the end of the hallway. It's cracked open and you can see a metal key card on the ground outside!",
           "Window", true);
   Item i9("magnet",
           "A small refrigerator magnet which attracts iron and some other materials.",
@@ -105,7 +106,6 @@ void Game::testLoadGame() {
            "There are three animals on the claw, a wolf, a goat and? a cabbage?. It looks like it might fit in somewhere.",
            "Claw", false);
 
-
   Inventory allItems;
   allItems.addItem(i1);
   allItems.addItem(i2);
@@ -128,7 +128,6 @@ void Game::testLoadGame() {
   allItems.addItem(i19);
 
     Character snitch("snitch", "patient", "sketchy looking patient who looks like she want's to help you", true, 0, " ");
-    //Character dummy("dummy", "dummy", "dummy who looks at you but will never interact with you", false, 0, " ");
     Character evildoctor("evildoctor", "doctor", "he is working at his desk, and he is too busy to care about you", true, 0, " ");
     Character bonez("bonez", "patient", "he is standing beside a toilet, fishing road in hand, it looks like he wants to fish something from the toilet", true, 0, " ");
     Character computer("computer", "computer", "old, bulky looking computers that's still functional", true, 0, " ");
@@ -293,7 +292,7 @@ void Game::testLoadGame() {
   std::vector<Room*> lobbyExits{&R, &l1Hall2, &R, &R};
   std::vector<Room*> iceRoomExits{&R, &R, &R, &l1Hall2};
 
-  l1Hall2.setExit(l1Hall1Exits);
+  l1Hall1.setExit(l1Hall1Exits);
   patient3.setExit(patient3Exits);
   kitchen.setExit(kitchenExits);
   l1Hall2.setExit(l1Hall2Exits);
@@ -357,12 +356,10 @@ void Game::testLoadGame() {
   l1Hall2.inventory.addItem(i18);
   forest.inventory.addItem(i19);
 
-  Player P(&skyrim, playerInventory, 0, true, allItems);
-
-
+  Player P(&startRoom, playerInventory, 0, true, allItems);
 
   std::cout << "You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your head is throbbing. Your nostrils fill with a stagnant smell. As you begin to slowly move yours eyes around the room, you notice something strange...there's no windows or natural light. You pull yourself up and notice a small metal rolling tray beside your bed, a chair in the corner, a crack of light coming from the hallway and something written on the wall beside the door...'Type Help'"
-            << std::endl;
+            << std::endl << endl;
 
   getUserInput(P);
   //so far so good
@@ -386,8 +383,6 @@ string Game::processCommand(string userInput, Player P) {
 
   std::string token;
   vector<string> result;
-
-  std::cout << "reached here " << std::endl;
 
   while (std::getline(ss, token, ' ')) {
     result.push_back(token);
@@ -448,7 +443,7 @@ string Game::processCommand(string userInput, Player P) {
     }
   }
   //did not find the corresponding command
-  std::cout << "Input Invalid" << std::endl;
+  std::cout << "Input Invalid" << std::endl << endl;
   getUserInput(P);
 
 }
@@ -480,35 +475,48 @@ void Game::go(vector<string> result, Player P) {
             getUserInput(P);
           }
           else if ((result[1] == "floor2") || (result[1] == "floortwo") || (result[1] == "secondfloor") || (result[1] == "2")){
+            if (P.currentRoom->exits[1]->getLocked() == true){
+              cout << "That button for that floor is missing!" << endl << endl;
+              getUserInput(P);
+            }
+            else{
             P.moveToRoom(P.currentRoom->exits[1]);
-            if(P.currentRoom->getName() == "End of Game!")
-              P.win();
+
             std::cout << P.currentRoom->description << std::endl;
             std::cout << P.currentRoom->getExit() << std::endl;
             getUserInput(P);
+            }
           }
           else if ((result[1] == "floor1") || (result[1] == "floorone") || (result[1] == "firstfloor") || (result[1] == "1")){
+                          if (P.currentRoom->exits[2]->getLocked() == true){
+              cout << "That button for that floor is missing!" << endl << endl;
+              getUserInput(P);
+                          }
+                          else{
             P.moveToRoom(P.currentRoom->exits[2]);
-            if(P.currentRoom->getName() == "End of Game!")
-              P.win();
+
             std::cout << P.currentRoom->description << std::endl;
             std::cout << P.currentRoom->getExit() << std::endl;
             getUserInput(P);
+                          }
           }
           else if ((result[1] == "basement") || (result[1] == "floor0") || (result[1] == "basementfloor") || (result[1] == "floorzero") || (result[1] == "0")){
+                          if (P.currentRoom->exits[3]->getLocked() == true){
+              cout << "It looks like access to the basement requires some sort of key card." << endl << endl;
+              getUserInput(P);
+                          }
+                          else{
             P.moveToRoom(P.currentRoom->exits[3]);
-            if(P.currentRoom->getName() == "End of Game!")
-              P.win();
+
             std::cout << P.currentRoom->description << std::endl;
             std::cout << P.currentRoom->getExit() << std::endl;
             getUserInput(P);
+                          }
           }
           else {
-            std::cout << "Input Invalid" << std::endl;
+            std::cout << "Input Invalid" << std::endl << endl;
             getUserInput(P);
           }
-
-
       }
     //travel using door name
     for (uint i = 0; i < P.currentRoom->exits.size(); i++) {
@@ -526,7 +534,7 @@ void Game::go(vector<string> result, Player P) {
           getUserInput(P);
 
         } else if (P.currentRoom->exits[i]->getLocked() == true) {
-          std::cout << "the room is locked" << std::endl;
+          std::cout << "the room is locked" << std::endl << endl;
           getUserInput(P);
         }
       }
@@ -534,7 +542,6 @@ void Game::go(vector<string> result, Player P) {
     if ((result[1] == "forward" || result[1] == "front" )
         && (P.currentRoom->exits[0]->getName() != "a wall")) {
       if (P.currentRoom->exits[0]->getLocked() == false) {
-        std::cout << "gooooooooooo forward" << std::endl;
         P.moveToRoom(P.currentRoom->exits[0]);
         if(P.currentRoom->getName() == "End of Game!")
               P.win();
@@ -544,13 +551,12 @@ void Game::go(vector<string> result, Player P) {
         getUserInput(P);
 
       } else if (P.currentRoom->exits[0]->getLocked() == true) {
-        std::cout << "the room is locked" << std::endl;
+        std::cout << "the room is locked" << std::endl << endl;
         getUserInput(P);
       }
     } else if ((result[1] == "right")
                && (P.currentRoom->exits[1]->getName() != "a wall")) {
       if (P.currentRoom->exits[1]->getLocked() == false) {
-        std::cout << "gooooooooooo right" << std::endl;
         P.moveToRoom(P.currentRoom->exits[1]);
         if(P.currentRoom->getName() == "End of Game!")
               P.win();
@@ -560,14 +566,13 @@ void Game::go(vector<string> result, Player P) {
         getUserInput(P);
 
       } else if (P.currentRoom->exits[1]->getLocked() == true) {
-        std::cout << "the room is locked" << std::endl;
+        std::cout << "the room is locked" << std::endl << endl;
         getUserInput(P);
       }
 
     } else if ((result[1] == "backward" || result[1] == "back"
                 || result[1] == "behind") && (P.currentRoom->exits[2]->getName() != "a wall")) {
       if (P.currentRoom->exits[2]->getLocked() == false) {
-        std::cout << "gooooooooooo back" << std::endl;
         P.moveToRoom(P.currentRoom->exits[2]);
         if(P.currentRoom->getName() == "End of Game!")
               P.win();
@@ -577,13 +582,12 @@ void Game::go(vector<string> result, Player P) {
         getUserInput(P);
 
       } else if (P.currentRoom->exits[2]->getLocked() == true) {
-        std::cout << "the room is locked" << std::endl;
+        std::cout << "the room is locked" << std::endl << endl;
         getUserInput(P);
       }
     } else if ((result[1] == "left")
                && (P.currentRoom->exits[3]->getName() != "a wall")) {
       if (P.currentRoom->exits[3]->getLocked() == false) {
-        std::cout << "gooooooooooo left" << std::endl;
         P.moveToRoom(P.currentRoom->exits[3]);
         if(P.currentRoom->getName() == "End of Game!")
               P.win();
@@ -594,14 +598,14 @@ void Game::go(vector<string> result, Player P) {
         getUserInput(P);
 
       } else if (P.currentRoom->exits[3]->getLocked() == true) {
-        std::cout << "the room is locked" << std::endl;
+        std::cout << "the room is locked" << std::endl << endl;
         getUserInput(P);
       } else {
-        std::cout << "you can't go that way" << std::endl;
+        std::cout << "you can't go that way" << std::endl << endl;
         getUserInput(P);
       }
     } else {
-      std::cout << "Input Invalid" << std::endl;
+      std::cout << "Input Invalid" << std::endl << endl;
       getUserInput(P);
     }
 
@@ -612,10 +616,10 @@ void Game::go(vector<string> result, Player P) {
     go(result, P);
   }
   else {
-    std::cout << "Input Invalid" << std::endl;
+    std::cout << "Input Invalid" << std::endl << endl;
     getUserInput(P);
   }
-  std::cout << "Input Invalid" << std::endl;
+  std::cout << "Input Invalid" << std::endl << endl;
   getUserInput(P);
 }
 /**
@@ -633,14 +637,14 @@ void Game::help(vector<string> result, Player P) {
       displayHelp();
       getUserInput(P);
     } else {
-      std::cout << "Input Invalid" << std::endl;
+      std::cout << "Input Invalid" << std::endl << endl;
       getUserInput(P);
     }
   } else {
-    std::cout << "Input Invalid" << std::endl;
+    std::cout << "Input Invalid" << std::endl << endl;
     getUserInput(P);
   }
-  std::cout << "Input Invalid" << std::endl;
+  std::cout << "Input Invalid" << std::endl << endl;
   getUserInput(P);
 }
 
@@ -657,10 +661,10 @@ void Game::inventory(Player P) {
         std::cout << ", ";
       }
     }
-    std::cout << endl;
+    std::cout << endl << endl;
     getUserInput(P);
   } else {
-    std::cout << "Your inventory is empty." << std::endl;
+    std::cout << "Your inventory is empty." << std::endl << endl;
     getUserInput(P);
   }
 }
@@ -673,12 +677,12 @@ void Game::look(vector<string> result, Player P) {
   int inputSize = result.size();
 
   if (inputSize == 1) {
-    std::cout << P.currentRoom->description << std::endl;
+    std::cout << P.currentRoom->description << std::endl << endl;
     getUserInput(P);
   } else if (inputSize == 2) {
     //index 1 is important here
     if (result[1] == "around" || result[1] == "room") {
-      std::cout << P.currentRoom->description << std::endl;
+      std::cout << P.currentRoom->description << std::endl << endl;
       getUserInput(P);
     } else if (result[1] == "inventory"|| result[1] == "i" || result[1] == "inv") {
       inventory(P);
@@ -687,7 +691,7 @@ void Game::look(vector<string> result, Player P) {
     //looping through item on player
     for (uint i = 0; i < player.inventory.getItems().size(); i++) {
       if (result[1] == player.inventory.getItems()[i].getName()) {
-        std::cout << P.inventory.getItems()[i].getItemDesc() << std::endl;
+        std::cout << P.inventory.getItems()[i].getItemDesc() << std::endl << endl;
         getUserInput(P);
       }
     }
@@ -695,7 +699,7 @@ void Game::look(vector<string> result, Player P) {
     //looping through item in room
     for (unsigned int i = 0; i < P.currentRoom->inventory.getItems().size(); i++) {
       if (result[1] == P.currentRoom->inventory.getItems()[i].getName()) {
-        std::cout << P.currentRoom->inventory.getItems()[i].getItemDesc() << std::endl;
+        std::cout << P.currentRoom->inventory.getItems()[i].getItemDesc() << std::endl << endl;
         getUserInput(P);
       }
     }
@@ -705,15 +709,15 @@ void Game::look(vector<string> result, Player P) {
       if (result[1] == P.currentRoom->characters[i].getName()) {
         if (P.currentRoom->characters[i].isAlive == false) {
           std::cout << P.currentRoom->characters[i].getName() <<
-                    " past out on the ground." << std::endl;
+                    " past out on the ground." << std::endl << endl;
           getUserInput(P);
         } else {
-          std::cout << P.currentRoom->characters[i].getDescription() << std::endl;
+          std::cout << P.currentRoom->characters[i].getDescription() << std::endl << endl;
           getUserInput(P);
         }
       }
     }
-    std::cout << "Input Invalid" << std::endl;
+    std::cout << "Input Invalid" << std::endl << endl;
     getUserInput(P);
   }
   //concat two item name and see if there is a match
@@ -724,7 +728,7 @@ void Game::look(vector<string> result, Player P) {
     result.erase(result.begin() + 2);
     look(result, P);
   } else {
-    std::cout << "Input Invalid" << std::endl;
+    std::cout << "Input Invalid" << std::endl << endl;
     getUserInput(P);
   }
 }
@@ -747,12 +751,12 @@ void Game::take(vector<string> result, Player P) {
           P.currentRoom->inventory.removeItem(P.currentRoom->inventory.items[i]);
 
           std::cout << "You picked up " << itemName << " and put it into your pocket." <<
-                    std::endl;
+                    std::endl << endl;
           getUserInput(P);
 
         } else
           std::cout << "You can't pick " <<
-                    P.currentRoom->inventory.items[i].getNiceName() << " up." << std::endl;
+                    P.currentRoom->inventory.items[i].getNiceName() << " up." << std::endl << endl;
         getUserInput(P);
       }
     }
@@ -764,7 +768,7 @@ void Game::take(vector<string> result, Player P) {
     result.erase(result.begin() + 2);
     take(result, P);
   }
-  std::cout << "Input Invalid" << std::endl;
+  std::cout << "Input Invalid" << std::endl << endl;
   getUserInput(P);
 
 }
@@ -783,7 +787,7 @@ void Game::talk(vector<string> result, Player P) {
 
         //check whether the character is alive or not
         if (chara.isAlive == false) {
-          std::cout << chara.getName() << " past out on the ground." << std::endl;
+          std::cout << chara.getName() << " past out on the ground." << std::endl << endl;
           getUserInput(P);
         } else { //character is alive, decide which character are we talking to
           d.talk(&P.currentRoom->characters[i], P);
@@ -791,10 +795,10 @@ void Game::talk(vector<string> result, Player P) {
         }
       }
     }
-    std::cout << "Input Invalid" << std::endl;
+    std::cout << "Input Invalid" << std::endl << endl;
     getUserInput(P);
   } else {
-    std::cout << "Input Invalid" << std::endl;
+    std::cout << "Input Invalid" << std::endl << endl;
     getUserInput(P);
   }
 }
@@ -816,11 +820,12 @@ void Game::displayHelp() {
      << "Move around: go forward, go right, go left, go back OR go red door, go blue door……"
      << "\n\n"
      << "Look around: look, look <npc>" << "\n\n"
-     << "Items: look <Item>, take <Item>, give <Item>, use <Item>, use <Item1> with <Item2>, use <Item> on <npc>, add <Item1> to <Item2>"
+     << "Items: look <Item>, take <Item>, give <Item>, use <Item>, use <Item1> with <Item2>, use <Item> on <npc>, add <Item1> to <Item2>." "\n\n"
+     <<  "Be aware, sometimes the order that you combine items in affects how they are used!"
      << "\n\n"
      << "Talk to npc: talk <npc>" << "\n\n"
      << "Inventory: inventory, inv, i" << "\n";
 
-  std::cout << ss.str() << std::endl;
+  std::cout << ss.str() << std::endl << endl;
 
 }
