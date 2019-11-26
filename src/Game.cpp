@@ -394,7 +394,7 @@ void Game::testLoadGame() {
   sewer.inventory.addItem(i25);
   sewer.inventory.addItem(i26);
 
-  Player P(&patient3, playerInventory, 0, true, allItems);
+  Player P(&sewer, playerInventory, 0, true, allItems);
 
   std::cout << "You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your"
             << "head is throbbing. As you begin to slowly move yours eyes around the room, you notice something strange...\n"
@@ -820,6 +820,20 @@ void Game::take(vector<string> result, Player P) {
   if (result.size() == 2) {
     for (uint i = 0; i < P.currentRoom->inventory.items.size(); i++) {
       if (result[1] == P.currentRoom->inventory.items[i].getName()) {
+          //check whether player is on the same platform as the pet they want to take
+          if (result[1] == "wolf" && (P.allInv.returnItem("wolf").getItemState() != P.allInv.returnItem("boat").getItemState())) {
+            std::cout << "You can't take stuff on the other side of the platform!" << std::endl << endl;
+            getUserInput(P);
+          }
+          else if (result[1] == "goat" && (P.allInv.returnItem("goat").getItemState() != P.allInv.returnItem("boat").getItemState())) {
+            std::cout << "You can't take stuff on the other side of the platform!" << std::endl << endl;
+            getUserInput(P);
+          }
+          else if (result[1] == "cabbage" && (P.allInv.returnItem("cabbage").getItemState() != P.allInv.returnItem("boat").getItemState())) {
+            std::cout << "You can't take stuff on the other side of the platform!" << std::endl << endl;
+            getUserInput(P);
+          }
+
         if (!P.currentRoom->inventory.items[i].getFixed()) {
           //item found, pickup item, remove item from room inventory and add it to player inventory
           string itemName = P.currentRoom->inventory.items[i].getNiceName();
@@ -829,15 +843,10 @@ void Game::take(vector<string> result, Player P) {
           P.currentRoom->inventory.removeItem(P.currentRoom->inventory.items[i]);
 
           std::cout << "You picked up " << itemName << " and put it into your pocket." << std::endl << endl;
+          // check if item is related to an event
           Take t;
           t.take(item, &P);
 
-          //for (int i = 0; i < P.allInv.items.size(); i++) {
-          //  if ("box" == P.allInv.items[i].getName()) {
-          //    std::cout << P.allInv.items[i].getItemState() << std::endl;
-          //  }
-          //}
-          //std::cout << P.allInv.items[] << std::endl;
           getUserInput(P);
 
         } else

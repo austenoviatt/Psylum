@@ -16,9 +16,6 @@ class Use {
 
  private:
 
-  Item wolf;
-  Item cabbage;
-  Item goat;
   std::string itemName;
 };
 

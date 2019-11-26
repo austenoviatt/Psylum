@@ -111,13 +111,19 @@ void Dialogue::talk(Character *c, Player P) {
 
   }
   else if (charaID == "bonez") {
+    if (P.inventory.hasItem("labcoat")) {
+      cout << "Patient: Ahhhhh! A doctor! No doctor! No doctor! Bonez scared of doctor!" << endl;
+      converOver = true;
+      break;
+    }
+
     if (c->getEventCounter() == 0) {
         cout << "A patient is standing beside a toilet with a fishing rod in hand." << endl << endl;
         cout << "1. Ask him what is he doing" << endl;
         cout << "2. Leave" << endl << endl;
 
         getline(cin, input);
-        std::cout << std::endl;
+        cout << endl;
 
         if (input == "1") {
           c->increaseEventCounter();
@@ -135,7 +141,7 @@ void Dialogue::talk(Character *c, Player P) {
         cout << "2. No way. Get it yourself. I don’t need a fishing rod" << endl << endl;
 
         getline(cin, input);
-        std::cout << std::endl;
+        cout << endl;
 
         if (input == "1") {
           cout << "Patient: Really? Thank you sooooooo much, I'll be waiting here for the bait then" << endl << endl;
@@ -150,13 +156,50 @@ void Dialogue::talk(Character *c, Player P) {
 
     }
     else if (c->getEventCounter() == 2) {
-      cout << "Patient: Do you have me bait yet?" << endl << endl;
+      cout << "Patient: Do you haveDeal! I’ll see what I can fi me bait yet?" << endl << endl;
       converOver = true;
       break;
     }
   }
   else if (charaID == "evildoctor") {
+    if (P.inventory.hasItem("labcoat")) {
 
+      if (c->getEventCounter() == 0) {
+        cout << "Doctor: YOU there! I've never seen you around here, are you a new employee here?" << endl << endl;
+        cout << "1. No, I don't know how I ended up in this place, I woke up on a bed and I don't know where am I." << endl;
+        cout << "2. Yes, this is my first day working here. I'm still trying to get used to my new job." << endl << endl;
+
+        getline(cin, input);
+        cout << endl;
+
+        if (input == "1") {
+            cout << "Doctor: Well, well, well, look what we got here, an escapee. Security! Take him back to his room!" << endl;
+            cout << "Security guards took you back to your room and locked you good this time, you never made it out of that room again......" << endl << endl;
+            P.killPlayer();
+            converOver = true;
+            break;
+        }
+        else if (input == "2") {
+            cout << "" << endl << endl;
+            c->increaseEventCounter();
+            continue;
+        }
+      }
+      else if (c->getEventCounter() == 1) {
+
+
+
+      }
+
+    }
+    else {
+      cout << "Doctor: Well, well, well, look what we got here, an escapee. Security! Take him back to his room!" << endl;
+      cout << "Security guards took you back to your room and locked you good this time, you never made it out of that room again......" << endl << endl;
+      P.killPlayer();
+      converOver = true;
+      break;
+
+    }
 
   }
 
@@ -168,6 +211,3 @@ void Dialogue::talk(Character *c, Player P) {
 
   }
 }
-
-
-

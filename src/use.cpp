@@ -315,9 +315,132 @@ void Use::use(std::vector<std::string> result, Player* player) {
       std::cout << "Inventory does not contain this item." << std::endl << endl;
   }
   else if (item == "boat") {
-      unsigned int input;
       std::vector<string> pets;
+      uint wolfIndex;
+      uint goatIndex;
+      uint cabbageIndex;
+      uint boatIndex;
+      uint numOfPets = 0;
+      std::string input;
+      //get the index of 3 pets in AllInv and boat
+      for (int i = 0; i < player->allInv.getItems().size(); i++) {
+        if (player->allInv.getItems()[i].getName() == "wolf") {
+          wolfIndex = i;
+        }
+        else if (player->allInv.getItems()[i].getName() == "goat") {
+          goatIndex = i;
+        }
+        else if (player->allInv.getItems()[i].getName() == "cabbage") {
+          cabbageIndex = i;
+        }
+        else if (player->allInv.getItems()[i].getName() == "boat") {
+          boatIndex = i;
+        }
+      }
 
+      //check how many pets are in player inventory
+      for (int i = 0; i < player->inventory.getItems().size(); i++) {
+        if (player->inventory.getItems()[i].getName() == "wolf" || player->inventory.getItems()[i].getName() == "goat" || player->inventory.getItems()[i].getName() == "cabbage") {
+          numOfPets++;
+        }
+      }
+      if (numOfPets > 1) {
+        std::cout << "You can only carry 1 pet onto the boat at a time, try dropping off a pet by using the \e[1mDrop\e[0m command." << std::endl;
+        return;
+      }
+
+      //numOfPets ok, count the pets that's going to be left on the platform.
+      if ((player->allInv.getItems()[wolfIndex].getItemState() == player->allInv.getItems()[boatIndex].getItemState()) && (player->inventory.hasItem("wolf") == false)) {
+        std::cout << "You will be leaving \e[1mWolf\e[0m on the platform unattended" << std::endl;
+        //cout << "state of wolf is " << player->allInv.getItems()[wolfIndex].getItemState() << endl;
+        pets.push_back("wolf");
+      }
+      if ((player->allInv.getItems()[goatIndex].getItemState() == player->allInv.getItems()[boatIndex].getItemState()) && (player->inventory.hasItem("goat") == false)) {
+        std::cout << "You will be leaving \e[1mGoat\e[0m on the platform unattended" << std::endl;
+        //cout << "state of goat is " << player->allInv.getItems()[goatIndex].getItemState() << endl;
+        pets.push_back("goat");
+      }
+      if ((player->allInv.getItems()[cabbageIndex].getItemState() == player->allInv.getItems()[boatIndex].getItemState()) && (player->inventory.hasItem("cabbage") == false)) {
+        std::cout << "You will be leaving \e[1mCabbage\e[0m on the platform unattended" << std::endl;
+        //cout << "state of cabbage is " << player->allInv.getItems()[cabbageIndex].getItemState() << endl;
+        pets.push_back("cabbage");
+      }
+      //cout << "state of boat is " << player->allInv.getItems()[boatIndex].getItemState() << endl;
+      std::cout << std::endl;
+      std::cout << "Everything ok and travel to the other side of the platform?" << std::endl << endl;
+      std::cout << "1. Yes, I'm ready to go" << endl;
+      std::cout << "2. No, I have to make some changes" << endl << endl;
+
+      getline(cin, input);
+      cout << endl;
+
+      if (input == "1") {
+        //player decided to cross the platform, check the animals on the platform are ok or not
+        for (auto x : pets) {
+          if (x == "wolf") {
+            for (auto y : pets) {
+              if (y == "goat") {
+                std::cout << "As you made your way to the other side of the platform, due to being unattended, the \e[1mWolf\e[0m ate the \e[1mGoat\e[0m" << std::endl << endl;
+                std::cout << "The pet owner let out a horrifying scream, he couldn't handle the loss of his beloved \e[1mGoat\e[0m. He jumped into the dark, murky sewage water and drowned." << std::endl << endl;
+                std::cout << "You never figured out the password for the iron door and died in the sewage....." << std::endl << endl;
+                player->killPlayer();
+                return;
+              }
+            }
+          }
+          else if (x == "goat") {
+            for (auto y : pets) {
+              if (y == "cabbage") {
+                std::cout << "As you made your way to the other side of the platform, due to being unattended, the \e[1mGoat\e[0m ate the \e[1mCabbage\e[0m" << std::endl << endl;
+                std::cout << "The pet owner let out a horrifying scream, he couldn't handle the loss of his beloved \e[1mCabbage\e[0m. He jumped into the dark, murky sewage water and drowned." << std::endl << endl;
+                std::cout << "You never figured out the password for the iron door and died in the sewage....." << std::endl << endl;
+                player->killPlayer();
+                return;
+              }
+            }
+          }
+        }
+        pets.clear();
+
+        //pets on the platform are all ok, change the item state for boat, and the pets in the inventory
+        if (player->allInv.getItems()[boatIndex].getItemState() == 0) {
+          player->allInv.items[boatIndex].increaseItemState();   //increase for boat
+          //increase for pet
+          if (player->inventory.hasItem("wolf") == true) {
+            player->allInv.items[wolfIndex].increaseItemState();
+          }
+          else if (player->inventory.hasItem("goat") == true) {
+            player->allInv.items[goatIndex].increaseItemState();
+          }
+          else if (player->inventory.hasItem("cabbage") == true) {
+            player->allInv.items[cabbageIndex].increaseItemState();
+          }
+        }
+        else if (player->allInv.getItems()[boatIndex].getItemState() == 1) {
+          player->allInv.items[boatIndex].decreaseItemState();   //decrease for boat
+          //decrease for pet
+          if (player->inventory.hasItem("wolf") == true) {
+            player->allInv.items[wolfIndex].decreaseItemState();
+          }
+          else if (player->inventory.hasItem("goat") == true) {
+            player->allInv.items[goatIndex].decreaseItemState();
+          }
+          else if (player->inventory.hasItem("cabbage") == true) {
+            player->allInv.items[cabbageIndex].decreaseItemState();
+          }
+        }
+        //puzzle solving condition check
+        if (player->allInv.getItems()[wolfIndex].getItemState() == 1 && player->allInv.getItems()[goatIndex].getItemState() == 1 && player->allInv.getItems()[cabbageIndex].getItemState() == 1) {
+          std::cout << "You finally moved all 3 pets to the other side of the platform. The pet owner is sooooooo happy he swam across the sewage water and unlocked the iron door for you." << std::endl << endl;
+          player->currentRoom->exits[0]->setLock(false);
+          std::cout << "The iron door is now open" << endl << endl;
+          return;
+        }
+        std::cout << "You made it to other side of the platform" << std::endl;
+      }
+      else {
+        return;
+      }
 
   }
   else if (result.size() == 3) {
@@ -327,4 +450,3 @@ void Use::use(std::vector<std::string> result, Player* player) {
     use(result, player);
   }
 }
-
