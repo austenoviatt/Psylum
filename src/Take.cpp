@@ -12,8 +12,8 @@ Take::Take() {}
 
 void Take::take(Item I, Player* P) {
 
-      if (I.getName() == "wolf") {
-          increaseItself(I, P);
+      if (I.getName() == "coffee") {
+         // increaseItself(I, P);
       }
       else if (I.getName() == "sedative") {
           increaseOther(I, P);

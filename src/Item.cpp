@@ -38,7 +38,15 @@ void Item::increaseItemState() {
   itemState = itemState + 1;
 }
 
-int Item::getItemState() {
+void Item::decreaseItemState() {
+  itemState = itemState - 1;
+}
+
+unsigned int Item::getItemState() {
   return itemState;
+}
+
+void Item::setItemState(Item I) {
+  itemState = I.getItemState();
 }
 

@@ -56,14 +56,18 @@ class Item {
 
   void increaseItemState();
 
-  int getItemState();
+  void decreaseItemState();
+
+  unsigned int getItemState();
+
+  void setItemState(Item I);
  private:
 
   std::string name;
   std::string niceName;
   std::string description;
   bool fixed;
-  int itemState;
+  unsigned int itemState;
 };
 
 #endif //ITEM_H

@@ -110,7 +110,12 @@ void Game::testLoadGame() {
   Item i20("box", "a box that contain a single syringe that says " + boldText(i3.getNiceName()) + " on the label|the box is empty", "Box", true, 0);
   Item i21("cart", "a standard hospital cart with a " + boldText(i20.getNiceName()) + " on the top, with a " + boldText(i15.getNiceName()) + " hanging on the edge", "Cart", true, 0);
   Item i22("chair", "a cheap looking plastic chair", "Chair", true, 0);
-  //Item i23();
+  Item i23("boat", "an old boat that's barely floating, it look's like is going to sink anytime, better not put too much weight on it", "Boat", true, 0);
+  Item i24("wolf", "the wolf looks back at you with puppy eyes", "Wolf", false, 0);
+  Item i25("cabbage", "a huge cabbage, other than that, nothing special", "Cabbage", false, 0);
+  Item i26("goat", "the goat just can't keep it's eyes off of the huge cabbage", "Goat", false, 0);
+
+
 
   Inventory allItems;
   allItems.addItem(i1);
@@ -135,13 +140,17 @@ void Game::testLoadGame() {
   allItems.addItem(i20);
   allItems.addItem(i21);
   allItems.addItem(i22);
+  allItems.addItem(i23);
+  allItems.addItem(i24);
+  allItems.addItem(i25);
+  allItems.addItem(i26);
 
 
     Character snitch("snitch", "patient", "sketchy looking patient who looks like she want's to help you", true, 0, " ");
     Character evildoctor("evildoctor", "doctor", "he is reading a newpaper, and he is too busy to care about you", true, 0, " ");
     Character bonez("bonez", "patient", "he is standing beside a toilet, fishing rod in hand, it looks like he wants to fish something from the toilet", true, 0, " ");
     Character computer("computer", "computer", "old, bulky looking computers that's still functional", true, 0, " ");
-    //Character petowner();
+    Character petowner("petowner", "patient", "desperate pet owner who are stuck with his 3 pets, it looks like he want's you to help him get out of there", true, 0 ," ");
 
 
   std::string startDesc =
@@ -323,10 +332,10 @@ void Game::testLoadGame() {
   Room skyrim("Basement", skyrimDesc, "green", true, {}, "keycard", {}, {/*unlockSkyrim*/}, {});
 // ldesc = "You step out of the elevator and into a basement. There's two flickering lights at the end of a dark tunnel. You walk towards the lights and find an unusual large iron door surrounded with stone walls and skeletons on the ground. The door is made with ancient designs and carvings and in the middle is what appears to be a space for a claw."
 
-  Room sewer("Sewer", sewerDesc, "white", true, {}, "claw", {}, {/*unlockSewer*/}, {});
+  Room sewer("Sewer", sewerDesc, "white", true, {}, "claw", {}, {/*unlockSewer*/}, {petowner});
 // ldesc = "The air around you smells of rotten eggs! You step out into filthy sludge. You're in a sewer but there's sunlight at the end of the tunnel!"
 
-  Room endRoom("End of Game!", endDesc, "iron", false, {}, "", {}, {/*completeGame*/}, {});
+  Room endRoom("End of Game!", endDesc, "iron", true, {}, "", {}, {/*completeGame*/}, {});
 // ldesc = "Congratulations! You've have escaped the asylum! Now go and enjoy the fresh air and smell of freedom before you get 'drugged' back in!"
 
   std::vector<Room*> skyrimExits{&sewer, &R, &elevator, &R};
@@ -350,6 +359,7 @@ void Game::testLoadGame() {
   playerInventory.addItem(i9);
   playerInventory.addItem(i10);
   playerInventory.addItem(i13);
+  playerInventory.addItem(i7);
 
   startRoom.inventory.addItem(i22);
 
@@ -379,7 +389,12 @@ void Game::testLoadGame() {
 
   spaceship.inventory.addItem(i17);
 
-  Player P(&skyrim, playerInventory, 0, true, allItems);
+  sewer.inventory.addItem(i23);
+  sewer.inventory.addItem(i24);
+  sewer.inventory.addItem(i25);
+  sewer.inventory.addItem(i26);
+
+  Player P(&patient3, playerInventory, 0, true, allItems);
 
   std::cout << "You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your"
             << "head is throbbing. As you begin to slowly move yours eyes around the room, you notice something strange...\n"
@@ -464,6 +479,9 @@ string Game::processCommand(string userInput, Player P) {
           //std::cout << "inventory!!!!!!" << std::endl;
           inventory(P);
           break;
+        case 7:
+          drop(result, P);
+          break;
         }
       }
     }
@@ -478,17 +496,46 @@ string Game::processCommand(string userInput, Player P) {
  * removes an item from an inventory
  * @return a string explaining what happened
  */
-//string Game::drop(vector<string> result) {
+void Game::drop(vector<string> result, Player P) {
+  if (result.size() == 2) {
+    if (result[1] == "labcoat" || result[1] == "wolf" || result[1] == "cabbage" || result[1] == "goat") {
+      //drop the item
+      //std::cout << "reached heerrrrrrr" << std::endl;
+      for (int i = 0; i < P.inventory.getItems().size(); i++) {
+        if (result[1] == P.inventory.getItems()[i].getName()) {
+            std::string droppedItem = P.inventory.getItems()[i].getNiceName();
+          P.currentRoom->inventory.addItem(P.inventory.getItems()[i]);
+          P.inventory.removeItem(P.inventory.getItems()[i]);
+          std::cout << "You dropped " << boldText(droppedItem) << " on the ground" << std::endl << endl;
+          getUserInput(P);
+        }
+      }
+      std::cout << "You don't have this item in your inventory" << std::endl << endl;
+      getUserInput(P);
+    }
+    else {
+      //the item is undroppable
+      std::cout << "You can't drop this item" << std::endl << endl;
+      getUserInput(P);
+    }
 
-//}
+  } else if (result.size() == 3) {
+    result[1] = result[1] + result[2];
+    //erase the second item name
+    result.erase(result.begin() + 2);
+    drop(result, P);
+  }
+  else {
+    std::cout << "Input Invalid" << std::endl << endl;
+    getUserInput(P);
+  }
+}
 
 /**
  * moves player to specified room
  * @return a string explaining what happened
  */
 void Game::go(vector<string> result, Player P) {
-
-
 
   if (result.size() == 2) {
       if (P.currentRoom->getName() == "Elevator") {
@@ -849,6 +896,7 @@ void Game::talk(vector<string> result, Player P) {
 void Game::use(vector<string> result, Player P) {
   Use u;
   u.use(result, &P);
+  //std::cout << "Came back fine " << std::endl;
   getUserInput(P);
 }
 

@@ -313,7 +313,14 @@ void Use::use(std::vector<std::string> result, Player* player) {
         std::cout << "You can't use that here." << std::endl << endl;
     } else
       std::cout << "Inventory does not contain this item." << std::endl << endl;
-  } else if (result.size() == 3) {
+  }
+  else if (item == "boat") {
+      unsigned int input;
+      std::vector<string> pets;
+
+
+  }
+  else if (result.size() == 3) {
     result[1] = result[1] + result[2];
     //erase the second item name
     result.erase(result.begin() + 2);

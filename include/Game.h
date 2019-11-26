@@ -52,11 +52,12 @@ class Game {
   string processCommand(string userInput, Player P);
 
   void getUserInput(Player P);
+
   /**
    * removes an item from an inventory
-   * @return a string explaining what happened
+   *
    */
-  //string drop();
+  void drop(vector<string> result, Player P);
 
   /**
    * moves player to specified room
@@ -129,6 +130,8 @@ class Game {
     {"talk", "speak"},
     {"help"},
     {"inventory", "inv", "i"},
+    {"drop"}
+
   };
   Player player;
 
