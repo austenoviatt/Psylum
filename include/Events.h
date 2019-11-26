@@ -4,55 +4,58 @@
  * @date November 15, 2019
  */
 
- #ifndef EVENTS_H
- #define EVENTS_H
+#ifndef EVENTS_H
+#define EVENTS_H
 
- /**
- * This class is for room events
- */
+/**
+* This class is for room events
+*/
 
- #include <string>
+#include <string>
+#include <vector>
 
- class Events{
+class Events {
  public:
-   /**
-   * default constructor
-   * @param name the name of the event
-   * @param stage what stage in the event the player is
-   */
-   Events(std::string name = "DEFAULT EVENT NAME", std::string eventDescription = "DEFAULT EVENT DESCRIPTION", uint stage = 0);
+  /**
+  * default constructor
+  * @param name the name of the event
+  * @param stage what stage in the event the player is
+  */
+  Events(std::string name = "DEFAULT EVENT NAME",
+         std::string eventDescription = "DEFAULT EVENT DESCRIPTION",
+         int eventCounter = 0);
 
-   /**
-   * Default destructor
-   */
-   ~Events();
+  /**
+  * Default destructor
+  */
+  ~Events();
 
-   /**
-   * returns name of the event
-   * @return string name of event
-   */
-   std::string getName();
+  /**
+  * returns name of the event
+  * @return string name of event
+  */
+  std::string getName();
 
-   /**
-   * returns what point in the event the player is current at
-   * @return uint the stage of the event
-   */
-   uint getStage();
+  /**
+  * prints the description of the event
+  */
+  std::string getDesc();
 
-   /**
-   * prints the description of the event
-   */
-   std::string getDesc();
+  /**
+  * returns status of the event
+  * @return event status of event
+  */
+  int getEventCounter();
 
-   /**
-   * increments stage by 1
-   */
-   void increaseStageCounter();
+  /**
+  * increase eventCounter by 1
+  */
+  void addEventCounter();
 
  private:
-   std::string name;
-   std::string eventDescription;
-   uint stage;
- };
+  std::string name;
+  std::string eventDescription;
+  int eventCounter;
+};
 
- #endif // EVENTS_H
+#endif // EVENTS_H

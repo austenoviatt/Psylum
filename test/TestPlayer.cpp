@@ -7,10 +7,11 @@
 #include "gtest/gtest.h"
 #include "Player.h"
 
-TEST(Player, Inventory){
-  Item I("Magic Mushroom", "Will have hallucination when consumed, may die from overdose", true);
-  Item I2("Lab Coat", "Normal looking lab coat, stolen from the lab", true);
-  Item I3("DECOY ITEM!!", "THIS ITEM DOESN'T EXIST, IT IS A DECOY", false);
+TEST(Player, Inventory) {
+  Item I("Magic Mushroom",
+         "Will have hallucination when consumed, may die from overdose", "", true);
+  Item I2("Lab Coat", "Normal looking lab coat, stolen from the lab", "", true);
+  Item I3("DECOY ITEM!!", "THIS ITEM DOESN'T EXIST, IT IS A DECOY", "", true);
 
   Inventory v;
   v.addItem(I);
@@ -19,7 +20,8 @@ TEST(Player, Inventory){
   Inventory v2;
   v2.addItem(I3);
 
-  Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, v, noKey, {}, {}, {});
+  Room R2("Forest", "It's a huge forest!",
+          "You see a door with a big tree symbol etched into it.", false, v, noKey, {}, {}, {});
 
   Player P(&R2, v2, 0);
 
@@ -30,10 +32,13 @@ TEST(Player, Inventory){
   EXPECT_EQ("Lab Coat", P.inventory.getItems()[0].getName());
 }
 
-TEST(Player, Room){
+TEST(Player, Room) {
 
-  Room R2("Forest", "It's a huge forest!", "You see a door with a big tree symbol etched into it.", false, {}, noKey, {}, {}, {});
-  Room R3("Desert", "It looks like it hasn't rained here in years.", "You see a door with a sign that says 'Water required'", true, {}, claw, {}, {}, {});
+  Room R2("Forest", "It's a huge forest!",
+          "You see a door with a big tree symbol etched into it.", false, {}, noKey, {}, {}, {});
+
+  Room R3("Desert", "It looks like it hasn't rained here in years.",
+          "You see a door with a sign that says 'Water required'", true, {}, claw, {}, {}, {});
   std::string nameR2 = "Forest";
   std::string nameR3 = "Desert";
 
@@ -42,7 +47,7 @@ TEST(Player, Room){
   EXPECT_EQ(nameR2, P.currentRoom->getName());
   P.moveToRoom(&R3);
   EXPECT_EQ(nameR3, P.currentRoom->getName());
-  std::cout<<P.getRoomCount();
+  //std::cout<<P.getRoomCount();
   EXPECT_EQ(1, P.getRoomCount());
 
 }

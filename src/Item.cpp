@@ -12,31 +12,41 @@
 
 using namespace std;
 
-Item::Item(std::string name, std::string description, bool pickupable) : name{ name }, description{ description }, pickupable{ pickupable } {
+Item::Item(std::string name, std::string description, std::string niceName,
+           bool fixed, int itemState) : name{ name }, description{ description },
+  niceName{ niceName }, fixed{ fixed }, itemState{itemState} {
 
 }
 
 string Item::getName() {
-	return name;
+  return name;
 }
 
-bool Item::isPickup(){
-return pickupable;
+bool Item::getFixed() {
+  return fixed;
 }
 
-std::string Item::getItemDesc(){
-return description;
+std::string Item::getItemDesc() {
+  return description;
 }
 
-//Usage unknown, will come back later
-void Item::use() {
-
-
+std::string Item::getNiceName() {
+  return niceName;
 }
 
+void Item::increaseItemState() {
+  itemState = itemState + 1;
+}
 
+void Item::decreaseItemState() {
+  itemState = itemState - 1;
+}
 
+unsigned int Item::getItemState() {
+  return itemState;
+}
 
-
-
+void Item::setItemState(Item I) {
+  itemState = I.getItemState();
+}
 

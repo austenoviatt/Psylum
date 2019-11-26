@@ -1,0 +1,69 @@
+***************************************************************************************
+***************************************************************************************
+PSYLUM USER MANUAL
+***************************************************************************************
+***************************************************************************************
+About
+***************************************************************************************
+Welcome to Pyslum, a mind-bending text-based adventure! You've woken up in an unsual place and have no idea how you got there. The more you find out, the less you know and the less you know, the more you feel the need to escape. But are you certain that's the mission? Pay close attention.
+
+***************************************************************************************
+About the Authors/Programmers
+***************************************************************************************
+Troy Hatchard, Lambee Mangal, Austen Oviatt and Sarah Ren (University of Lethbridge)
+
+***************************************************************************************
+Communication with Interactive Fiction
+***************************************************************************************
+---------------------------------------------------------------------------------------
+With interactive fiction
+---------------------------------------------------------------------------------------
+To interact, type a command when prompted. Most interactive commands that the STORY understands are of numerical value. A STORY will be shown on the screen and below it will be response options. You type in the number associated with your response choice and the game will then process it. For example, Story Text:"Do you like cheese?", "1. Absolutely! 2. No way hosay! 3. I'm indifferent." The GAME will accept 1, 2 or 3.
+
+---------------------------------------------------------------------------------------
+Moving around
+---------------------------------------------------------------------------------------
+You can move around by specifying the direction you'd like to go or object as specified by game text. Directions include FORWARD, RIGHT, LEFT, BACK, or RED DOOR, BLUE DOO etc. These are used in conjuction with the GO command. See sentence examples below for more details.
+
+---------------------------------------------------------------------------------------
+Sentence examples:
+---------------------------------------------------------------------------------------
+Sentences are written in plain English text and are understood by key words. Some examples
+include:
+
+GO FORWARD
+GO TO BLUE DOOR
+LOOK AT APPLE
+USE BRUSH WITH PAINT
+USE THE PERFUME ON THE PRINCESS
+ADD MILK TO CEREAL
+GIVE TOY TO BABY
+
+---------------------------------------------------------------------------------------
+If it doesn't work:
+---------------------------------------------------------------------------------------
+If all else fails or you're having troubles with commands, you can ask for HELP at any time.
+
+---------------------------------------------------------------------------------------
+Basic Commands
+---------------------------------------------------------------------------------------
+GO: Used to move to around to different locations in the game. This can be used in conjunction with directions or objects. Refer to "Moving Around" for more details.
+
+LOOK: This will give you a full description of your location, items and non-player characters. You can also use "CHECK", "INSPECT" and "SEE".
+
+TAKE: Allows you to pick up items and add to your inventory. You can also use "GET" and "GRAB".
+
+USE: Allows you to use items in your inventory on objects, non-player characters, as well as in combination with other items. You can also use "GIVE" and "ADD".
+
+TALK: Allows you to interact with non-player characters. You can also use "SPEAK'.
+
+HELP: This opens up a basic commands reference.
+
+INVENTORY: This will give you a list of all the items you are carrying or wearing. This can be abbreviated to "i".
+
+QUIT: This lets you stop the game. To save your current position, you must also use the SAVE command.
+
+SAVE: This saves your current position in the game. You can later restore you
+
+LOAD: This restores your previously saved position. 
+
