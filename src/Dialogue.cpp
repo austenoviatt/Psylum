@@ -50,7 +50,7 @@ void Dialogue::talk(Character *c, Player P) {
         if (input == "1") {
           //bad end, need to change return
           cout << "Patient: Follow me, I know a way that can get you out of here." << endl << endl;
-          cout << "You followed Annabelle to the elevator. As the elevator dings and the doors open, you see two security guards and a doctor. Annabelle quickly stands back with a nasty smile on her face. You've been tricked!" << endl;
+          cout << "You followed Annabelle to the elevator. As the elevator dings and the doors open, you see two security guards and a doctor. Annabelle quickly stands back with a nasty smile on her face. You've been tricked!" << endl << endl;
           cout << "Security guards took you back to your room and locked you good this time, you never made it out of that room again......" << endl;
           P.killPlayer();
           converOver = true;
@@ -135,7 +135,7 @@ void Dialogue::talk(Character *c, Player P) {
         }
   }
   else if (c->getEventCounter() == 1) {
-        cout << "Patient: I’m trying to catch a fish but it never seems to work!" << endl;
+        cout << "Patient: I’m trying to catch a fish but it never seems to work!" << endl << endl;
         cout << "Patient: Wait, I know…I’m in need of bait! I’ll tell you what…you get me bait for my fish and i’ll give you an awesome fishing rod. Do we have a deal?" << endl << endl;
         cout << "1. Deal! I’ll see what I can find" << endl;
         cout << "2. No way. Get it yourself. I don’t need a fishing rod" << endl << endl;
@@ -144,7 +144,7 @@ void Dialogue::talk(Character *c, Player P) {
         cout << endl;
 
         if (input == "1") {
-          cout << "Patient: Really? Thank you sooooooo much, I'll be waiting here for the bait then" << endl << endl;
+          cout << "Patient: Really? Thank you sooooooo much, I'll be waiting here for the bait then." << endl << endl;
           c->increaseEventCounter();
           converOver = true;
           break;
@@ -156,7 +156,7 @@ void Dialogue::talk(Character *c, Player P) {
 
     }
     else if (c->getEventCounter() == 2) {
-      cout << "Patient: Do you haveDeal! I’ll see what I can fi me bait yet?" << endl << endl;
+      cout << "Patient: Do you have me bait yet?" << endl << endl;
       converOver = true;
       break;
     }
@@ -166,39 +166,62 @@ void Dialogue::talk(Character *c, Player P) {
 
       if (c->getEventCounter() == 0) {
         cout << "Doctor: YOU there! I've never seen you around here, are you a new employee here?" << endl << endl;
-        cout << "1. No, I don't know how I ended up in this place, I woke up on a bed and I don't know where am I." << endl;
-        cout << "2. Yes, this is my first day working here. I'm still trying to get used to my new job." << endl << endl;
+        cout << "1. No. I woke up in this strange place and have no idea how I got here." << endl;
+        cout << "2. Yes. This is my first day on the job. I thought I’d come join my fellow coworkers for a coffee." << endl << endl;
 
         getline(cin, input);
         cout << endl;
 
         if (input == "1") {
-            cout << "Doctor: Well, well, well, look what we got here, an escapee. Security! Take him back to his room!" << endl;
-            cout << "Security guards took you back to your room and locked you good this time, you never made it out of that room again......" << endl << endl;
+            cout << "Doctor: Well, well, well…looks like we have an escapee on our hands! Guards! Take this patient back to their room immediately!" << endl << endl;
+            cout << "You turn around to make an escape but suddenly, a sharp prick and tingling sensation radiate through your arms and the rest of your body. The doctor has injected you with sedatives!" << endl << endl;
+            cout << "Two guards burst through the doors towards. As your eyes begin to close and your body hits the ground…the sound of handcuffs and a deep voice 'Back to the drawing table you go.'" << endl << endl;
             P.killPlayer();
             converOver = true;
             break;
         }
         else if (input == "2") {
-            cout << "" << endl << endl;
             c->increaseEventCounter();
             continue;
         }
       }
       else if (c->getEventCounter() == 1) {
+            cout << "Doctor: Ah, nice lab coat. You must be my new assistance." << endl << endl;
+            cout << "Doctor: Well, I could use a cup of coffee myself and seeing as your about to go make one, can you make me one too?" << endl << endl;
+            cout << "1. Absolutely not. Go make it yourself" << endl;
+	       	  cout << "2. The best cup of coffee, coming right up!" << endl << endl;
 
+	       	  getline(cin, input);
+            cout << endl;
 
-
+            if (input == "1") {
+              cout << "Doctor: That’s no way to speak to your boss. It makes me wonder, who are you really?" << endl << endl;
+              cout << "Doctor: No need to answer that, we’ll find out. Guards! I think it’s time our ‘new assistant’ learns some manners." << endl << endl;
+              cout << "You look at the exit and see two security guards walking toward you. You’ve be detained and taken in for questioning! This doctor doesn’t like to play games, this doctor likes to use truth serum!" << endl << endl;
+              P.killPlayer();
+              converOver = true;
+              break;
+            }
+            else if (input == "2") {
+              cout << "You make your way over to the coffee machine. Beside it, a clean chipped coffee mug. Here’s your opportunity to make the best cup of coffee, ever!" << endl << endl;
+              c->increaseEventCounter();
+              converOver = true;
+              break;
+            }
+      }
+      else if (c->getEventCounter() == 2) {
+            cout << "Doctor: Where is my coffee?" << endl << endl;
+            break;
       }
 
     }
     else {
-      cout << "Doctor: Well, well, well, look what we got here, an escapee. Security! Take him back to his room!" << endl;
-      cout << "Security guards took you back to your room and locked you good this time, you never made it out of that room again......" << endl << endl;
+      cout << "Doctor: Well, well, well…looks like we have an escapee on our hands! Guards! Take this patient back to their room immediately!" << endl << endl;
+      cout << "You turn around to make an escape but suddenly, a sharp prick and tingling sensation radiate through your arms and the rest of your body. The doctor has injected you with sedatives!" << endl << endl;
+      cout << "Two guards burst through the doors towards. As your eyes begin to close and your body hits the ground…the sound of handcuffs and a deep voice 'Back to the drawing table you go.'" << endl << endl;
       P.killPlayer();
       converOver = true;
       break;
-
     }
 
   }

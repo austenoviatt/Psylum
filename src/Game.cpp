@@ -394,7 +394,7 @@ void Game::testLoadGame() {
   sewer.inventory.addItem(i25);
   sewer.inventory.addItem(i26);
 
-  Player P(&sewer, playerInventory, 0, true, allItems);
+  Player P(&lounge, playerInventory, 0, true, allItems);
 
   std::cout << "You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your"
             << "head is throbbing. As you begin to slowly move yours eyes around the room, you notice something strange...\n"
