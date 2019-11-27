@@ -81,6 +81,11 @@ class Character {
   void increaseEventCounter();
 
   /**
+  * move the conversation of the character backward by decreasing the eventCounter by 1
+  */
+  void decreaseEventCounter();
+
+  /**
   * determine if the character is still alive
   */
   bool isAlive;

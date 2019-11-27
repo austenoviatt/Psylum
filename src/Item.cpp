@@ -46,7 +46,7 @@ unsigned int Item::getItemState() {
   return itemState;
 }
 
-void Item::setItemState(Item I) {
-  itemState = I.getItemState();
+void Item::setItemState(int i) {
+  itemState = i;
 }
 

@@ -20,10 +20,11 @@ mainMenu::mainMenu() {
 
 int mainMenu::showMenu() {
 
-  char option;
+  string option;
   Game g;
   ifstream infile("logo.txt");
   string line;
+  infile.open("logo.txt");
 
   while (infile) {
      getline(infile, line);
@@ -39,18 +40,18 @@ int mainMenu::showMenu() {
      cout << "(2) Load Game" << endl;
      cout << "(3) Exit" << endl;
      cout << endl;
-     cin >> option;
-     cin.ignore();
+     getline(cin, option);
+      cout << endl;
 
-     if (option == '1') {
+     if (option == "1") {
         choosedOption = true;
         g.testLoadGame();
      }
-     else if (option == '2') {
+     else if (option == "2") {
        choosedOption = true;
         //g.loadGame("testSave.csv");
      }
-     else if (option == '3') {
+     else if (option == "3") {
        choosedOption = true;
         return 0;
      }

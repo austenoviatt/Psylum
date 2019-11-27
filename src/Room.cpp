@@ -82,11 +82,11 @@ std::string Room::getExit() {
       allDoorDesc += " door in front of you. ";
     } else if (i == 0 && exits[i]->getDoorDesc() == "elevator") {
       allDoorDesc += "The ";
-      allDoorDesc += exits[i]->getDoorDesc();
+      allDoorDesc += boldText(exits[i]->getDoorDesc());
       allDoorDesc += " is in front of you. ";
     } else if (i == 0 && (exits[i]->getDoorDesc() == "hallway")) {
       allDoorDesc += "The ";
-      allDoorDesc += exits[i]->getDoorDesc();
+      allDoorDesc += boldText(exits[i]->getDoorDesc());
       allDoorDesc += " is in front of you. ";
     } else if (i == 1 && (exits[i]->getDoorDesc() != "wall")
                && (exits[i]->getDoorDesc() != "elevator")
@@ -96,7 +96,7 @@ std::string Room::getExit() {
       allDoorDesc += " door to your right. ";
     } else if (i == 1 && (exits[i]->getDoorDesc() == "hallway")) {
       allDoorDesc += "The ";
-      allDoorDesc += exits[i] ->getDoorDesc();
+      allDoorDesc += boldText(exits[i]->getDoorDesc());
       allDoorDesc += " is to your right. ";
     } else if (i == 2 && (exits[i]->getDoorDesc() != "wall")
                && (exits[i]->getDoorDesc() != "elevator")
@@ -106,11 +106,11 @@ std::string Room::getExit() {
       allDoorDesc += " door behind you. ";
     } else if (i == 2 && (exits[i]->getDoorDesc() == "elevator")) {
       allDoorDesc += "The ";
-      allDoorDesc += exits[i]->getDoorDesc();
+      allDoorDesc += boldText(exits[i]->getDoorDesc());
       allDoorDesc += " is behind you. ";
     } else if (i == 2 && exits[i]->getDoorDesc() == "hallway") {
       allDoorDesc += "The ";
-      allDoorDesc += exits[i]->getDoorDesc();
+      allDoorDesc += boldText(exits[i]->getDoorDesc());
       allDoorDesc += " is behind you. ";
     } else if (i == 3 && (exits[i]->getDoorDesc() != "wall")
                && (exits[i]->getDoorDesc() != "elevator")
@@ -120,7 +120,7 @@ std::string Room::getExit() {
       allDoorDesc += " door to your left. ";
     } else if (i == 3 && (exits[i]->getDoorDesc() == "hallway")) {
       allDoorDesc += "The ";
-      allDoorDesc += exits[i] ->getDoorDesc();
+      allDoorDesc += boldText(exits[i]->getDoorDesc());
       allDoorDesc += " is to your left. ";
     }
   }
@@ -137,7 +137,11 @@ std::string Room::getName() {
 }
 
 std::string Room::getDoorDesc() {
-  return doorDescription;
+  if (doorDescription == "hallway" || doorDescription == "elevator" || doorDescription == "wall") {
+    return (doorDescription);
+  }
+  else
+  return boldText(doorDescription);
 }
 
 int Room::charaIndex(std::string C) {
@@ -151,4 +155,8 @@ int Room::charaIndex(std::string C) {
 
 int Room::charaNum() {
   return characters.size();
+}
+
+std::string Room::boldText(std::string s) {
+  return "\e[1m" + s +"\e[0m";
 }

@@ -126,7 +126,7 @@ class Game {
     {"go"},
     {"look", "check", "inspect", "see"},
     {"take", "get", "grab"},
-    {"use", "eat", "drink", "consume", "add"},
+    {"use", "eat", "drink", "consume", "add", "give"},
     {"talk", "speak"},
     {"help"},
     {"inventory", "inv", "i"},

@@ -67,3 +67,9 @@ void Character::increaseEventCounter() {
   eventCounter = eventCounter + 1;
 }
 
+/**
+* move the conversation of the character backward by decreasing the eventCounter by 1
+*/
+void Character::decreaseEventCounter() {
+  eventCounter = eventCounter - 1;
+}

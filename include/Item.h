@@ -60,7 +60,7 @@ class Item {
 
   unsigned int getItemState();
 
-  void setItemState(Item I);
+  void setItemState(int i);
  private:
 
   std::string name;

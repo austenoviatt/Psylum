@@ -51,12 +51,18 @@ void Use::use(std::vector<std::string> result, Player* player) {
           if (result.size() == 2){
             std::cout << "You can't use the worm like that." << std::endl << endl;
           }
-    else if (result[2] == "bonez"
-        && result[2] == player->currentRoom->characters[0].getName()) {
+    else if (result[2] == "bonez" || result[2] == player->currentRoom->characters[0].getName()) {
 
-      cout << "'This is exactly what I need to catch that fish!’ shouts Bonez. You watch as he starts to put the worm on the hook of the fishing rod. He pauses, looking between the toilet and the worm and the hook. After a minute of contemplating, Bonez tosses the fishing rod at you and exclaims ‘Ah! You know, I only wanted to catch that fish so I could have a friend to keep me company. I don’t need to catch him now because you brought me a different friend, and this one is even better because he fits in my pocket! Keep the fishing rod pal, I don’t need it any more!’ You stick the fishing rod into your pocket." << endl << endl;
+      cout << "'This is exactly what I need to catch that fish!’ shouts Bonez. You watch as he starts to put the worm on the hook of the fishing rod.";
+      cout << " He pauses, looking between the toilet and the worm and the hook. ";
+      cout << "After a minute of contemplating, Bonez tosses the fishing rod at you and exclaims ‘Ah! You know, ";
+      cout << "I only wanted to catch that fish so I could have a friend to keep me company. ";
+      cout << "I don’t need to catch him now because you brought me a different friend, and this one is even better because he fits in my pocket! ";
+      cout << "Keep the fishing rod pal, I don’t need it any more!’" << endl << endl;
+      cout << "You stick the \e[1mFishing Rod\e[0m into your pocket." << endl << endl;
       player->inventory.removeItem("worm");
       player->inventory.addItem(player->allInv.returnItem("fishingrod"));
+      player->currentRoom->characters[0].increaseEventCounter();
 
     } else
       cout << "You can't use that here." << endl << endl;
@@ -214,15 +220,15 @@ void Use::use(std::vector<std::string> result, Player* player) {
     } else
       std::cout << "Inventory does not contain this item." << std::endl << endl;
   }
-  else if (item == "button1") {
-    if (player->inventory.hasItem("button1") == true) {
+  else if (item == "button") {
+    if (player->inventory.hasItem("button") == true) {
       if (result.size() > 2) {
         std::cout << "You can't use button 1 like that." << std::endl << endl;
       }
       for (uint i = 0; i < player->currentRoom->exits.size(); i++) {
-        if ( player->currentRoom->exits[i]->getKey() == "button1") {
+        if ( player->currentRoom->exits[i]->getKey() == "button") {
           player->currentRoom->exits[i]->setLock(false);
-          player->inventory.removeItem("button1");
+          player->inventory.removeItem("button");
           roomFound = true;
           std::cout <<
                     "Like with the number 2 button, the number 1 button snaps into place and lights up. You can now visit the first floor."
@@ -313,6 +319,10 @@ void Use::use(std::vector<std::string> result, Player* player) {
         std::cout << "You can't use that here." << std::endl << endl;
     } else
       std::cout << "Inventory does not contain this item." << std::endl << endl;
+  }
+  else if (item == "computer") {
+    Game g;
+    g.talk({"talk","computer"}, *player);
   }
   else if (item == "boat") {
       std::vector<string> pets;

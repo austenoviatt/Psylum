@@ -9,7 +9,7 @@ using namespace std;
 Dialogue::Dialogue() {
 }
 
-void Dialogue::talk(Character *c, Player P) {
+void Dialogue::talk(Character *c, Player *P) {
   string input;
 
   //find out which character we are talking to
@@ -52,7 +52,7 @@ void Dialogue::talk(Character *c, Player P) {
           cout << "Patient: Follow me, I know a way that can get you out of here." << endl << endl;
           cout << "You followed Annabelle to the elevator. As the elevator dings and the doors open, you see two security guards and a doctor. Annabelle quickly stands back with a nasty smile on her face. You've been tricked!" << endl << endl;
           cout << "Security guards took you back to your room and locked you good this time, you never made it out of that room again......" << endl;
-          P.killPlayer();
+          P->killPlayer();
           converOver = true;
           break;
         }
@@ -66,7 +66,7 @@ void Dialogue::talk(Character *c, Player P) {
         }
       }
   }
-  else if (charaID == "computer") {
+  else if (charaID == "Computer") {
 
     if (c->getEventCounter() == 0) {
         cout << "There is nothing on the computer except a text input that takes 8 english characters, it looks like some sort of password" << endl << endl;
@@ -86,7 +86,7 @@ void Dialogue::talk(Character *c, Player P) {
             c->increaseEventCounter();
             cout << "Password correct! You have been granted access to the control room." << endl << endl;
             //unlock space room
-            P.currentRoom->exits[3]->exits[2]->exits[3]->setLock(false);
+            P->currentRoom->exits[3]->exits[2]->exits[3]->setLock(false);
             c->increaseEventCounter();
             converOver = true;
             break;
@@ -111,7 +111,7 @@ void Dialogue::talk(Character *c, Player P) {
 
   }
   else if (charaID == "bonez") {
-    if (P.inventory.hasItem("labcoat")) {
+    if (P->inventory.hasItem("labcoat")) {
       cout << "Patient: Ahhhhh! A doctor! No doctor! No doctor! Bonez scared of doctor!" << endl;
       converOver = true;
       break;
@@ -160,9 +160,14 @@ void Dialogue::talk(Character *c, Player P) {
       converOver = true;
       break;
     }
+    else if (c->getEventCounter() == 3) {
+      cout << "Patient: Thanks pal, me and 'Mr wormington the 3rd' have become friends now all thanks to you!" << endl << endl;
+      converOver = true;
+      break;
+    }
   }
   else if (charaID == "evildoctor") {
-    if (P.inventory.hasItem("labcoat")) {
+    if (P->inventory.hasItem("labcoat")) {
 
       if (c->getEventCounter() == 0) {
         cout << "Doctor: YOU there! I've never seen you around here, are you a new employee here?" << endl << endl;
@@ -176,7 +181,7 @@ void Dialogue::talk(Character *c, Player P) {
             cout << "Doctor: Well, well, well…looks like we have an escapee on our hands! Guards! Take this patient back to their room immediately!" << endl << endl;
             cout << "You turn around to make an escape but suddenly, a sharp prick and tingling sensation radiate through your arms and the rest of your body. The doctor has injected you with sedatives!" << endl << endl;
             cout << "Two guards burst through the doors towards. As your eyes begin to close and your body hits the ground…the sound of handcuffs and a deep voice 'Back to the drawing table you go.'" << endl << endl;
-            P.killPlayer();
+            P->killPlayer();
             converOver = true;
             break;
         }
@@ -198,7 +203,7 @@ void Dialogue::talk(Character *c, Player P) {
               cout << "Doctor: That’s no way to speak to your boss. It makes me wonder, who are you really?" << endl << endl;
               cout << "Doctor: No need to answer that, we’ll find out. Guards! I think it’s time our ‘new assistant’ learns some manners." << endl << endl;
               cout << "You look at the exit and see two security guards walking toward you. You’ve be detained and taken in for questioning! This doctor doesn’t like to play games, this doctor likes to use truth serum!" << endl << endl;
-              P.killPlayer();
+              P->killPlayer();
               converOver = true;
               break;
             }
@@ -219,18 +224,148 @@ void Dialogue::talk(Character *c, Player P) {
       cout << "Doctor: Well, well, well…looks like we have an escapee on our hands! Guards! Take this patient back to their room immediately!" << endl << endl;
       cout << "You turn around to make an escape but suddenly, a sharp prick and tingling sensation radiate through your arms and the rest of your body. The doctor has injected you with sedatives!" << endl << endl;
       cout << "Two guards burst through the doors towards. As your eyes begin to close and your body hits the ground…the sound of handcuffs and a deep voice 'Back to the drawing table you go.'" << endl << endl;
-      P.killPlayer();
+      P->killPlayer();
       converOver = true;
       break;
     }
 
   }
+  else if (charaID == "petowner") {
 
 
+  }
+  else if (charaID == "treespirit") {
+      unsigned int riddleCounterIndex;
+    //get the index of the riddle counter item
+    for (int i = 0; i < P->currentRoom->inventory.getItems().size(); i++) {
+      if (P->currentRoom->inventory.items[i].getName() == "forestcounter") {
+        riddleCounterIndex = i;
+      }
+    }
 
+       if (c->getEventCounter() == 0) {
+          cout << "Tree Spirit: Good day young Padawan. I am the spirit of the forest. It’s not very often I find people stumble across here. ";
+          cout << "My creatures tell me you spirit is strong and that you’re in great danger. ";
+          cout << "Know we cannot fix things but we can most certainly help those worthy. Are you worthy Padawan?" << endl << endl;
+          cout << "1. Absolutely" << endl;
+          cout << "2. On second thought, I gotta get going." << endl << endl;
+
+          getline(cin, input);
+          cout << endl;
+
+          if (input == "1") {
+            c->increaseEventCounter();
+            continue;
+          }
+          else if (input == "2") {
+            converOver = true;
+            break;
+          }
+      }
+      else if (c->getEventCounter() == 1) {
+        cout << "Tree Spirit: To prove you are worthy, I'm going to give you 3 riddles, solve any one of those and I'll give you a reward." << endl << endl;
+        cout << "Tree Spirit: Here is the first riddle." << endl << endl;
+        cout << "Tree Spirit: With marble walls as white as milk, an inner skin as soft as silk, Inside a fountain crystal clear, a golden apple does appear.";
+        cout << "There are no doors to this stronghold, yet thieves break in and steal the gold. " << endl;
+        cout << "What is it?" << endl << endl;
+
+        getline(cin, input);
+        cout << endl << endl;
+
+        if (input == "egg") {
+          P->currentRoom->inventory.items[riddleCounterIndex].increaseItemState();
+        }
+        c->increaseEventCounter();
+        continue;
+
+      }
+      else if (c->getEventCounter() == 2) {
+        cout << "Tree Spirit: Let us continue with the second one." << endl << endl;
+        cout << "Tree Spirit: It can not be seen whenever it's there. It fills up a room, it's much like the air. ";
+        cout << "It can not be touched, there's nothing to hear. It is quite harmless, there's nothing to fear." << endl;
+        cout << "What is it?" << endl << endl;
+
+        getline(cin, input);
+        cout << endl << endl;
+
+        if (input == "darkness") {
+          P->currentRoom->inventory.items[riddleCounterIndex].increaseItemState();
+        }
+        c->increaseEventCounter();
+        continue;
+      }
+      else if (c->getEventCounter() == 3) {
+        cout << "Tree Spirit: We are almost done, young Padawan. Let's see if you can answer the 3rd riddle." << endl << endl;
+        cout << "Tree Spirit: Turn me upside down and I’m right side up. ";
+        cout << "Empty my glass and you fill up my cup, I’m always on time and I’m never late, I never go backwards at any rate." << endl;
+        cout << "What am I?" << endl << endl;
+
+        getline(cin, input);
+        cout << endl << endl;
+
+        if (input == "hourglass") {
+          P->currentRoom->inventory.items[riddleCounterIndex].increaseItemState();
+        }
+        c->increaseEventCounter();
+        continue;
+      }
+      else if (c->getEventCounter() == 4) {
+        cout << "Tree Spirit: That's all the riddle I have for you, young Padawan. You have answered ";
+
+        if (P->currentRoom->inventory.items[riddleCounterIndex].getItemState() == 0) {
+          cout << "0 riddles";
+        }
+        else if (P->currentRoom->inventory.items[riddleCounterIndex].getItemState() == 1) {
+          cout << "1 riddle";
+        }
+        else if (P->currentRoom->inventory.items[riddleCounterIndex].getItemState() == 2) {
+          cout << "2 riddles";
+        }
+        else if (P->currentRoom->inventory.items[riddleCounterIndex].getItemState() == 3) {
+          cout << "3 riddles";
+        }
+
+         cout << " correctly!" << endl << endl;
+
+        if (P->currentRoom->inventory.returnItem("forestcounter").getItemState() > 0) {
+          cout << "Tree Spirit: Splendid! You have proven yourself worthy! As promised, I'll give you this ";
+          cout << P->currentRoom->inventory.returnItem("claw").getNiceName() << " as a reward. " << endl;
+          cout << "Tree Spirit: I'm sure it will come in handy soon. Now, go. Is time for you to be on your path. Take care young Padawan." << endl << endl;
+          for (int i = 0; i < P->currentRoom->inventory.getItems().size(); i++) {
+            if (P->currentRoom->inventory.getItems()[i].getName() == "claw") {
+
+              string itemName = P->currentRoom->inventory.getItems()[i].getName();
+              P->inventory.addItem(P->currentRoom->inventory.getItems()[i]);
+              P->currentRoom->inventory.removeItem(P->currentRoom->inventory.getItems()[i]);
+
+              cout << "The tree spirit put a weird looking \e[1m" << itemName << "\e[0m into your pocket." << std::endl << endl;
+            }
+          }
+
+          c->increaseEventCounter();
+          converOver = true;
+          break;
+        }
+        else {
+          cout << "Tree Spirit: Unfortunately I can't give you the reward, but it doesn't hurt to give you a second chance.";
+          cout << "Tree Spirit: Think about the riddles again and talk to me whenever you are ready." << endl << endl;
+          c->decreaseEventCounter();
+          c->decreaseEventCounter();
+          c->decreaseEventCounter();
+          P->currentRoom->inventory.items[riddleCounterIndex].setItemState(0);
+          converOver = true;
+          break;
+        }
+
+      }
+      else if (c->getEventCounter() == 5) {
+        cout << "The tree spirit fall silent and did not answer your call." << endl << endl;
+        converOver = true;
+        break;
+      }
+
+  }
   return;
-
-
 
   }
 }

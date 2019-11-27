@@ -12,7 +12,7 @@ class Dialogue {
 
   ~Dialogue() {}
 
-  void talk(Character *c, Player P);
+  void talk(Character *c, Player *P);
 
 
  private:

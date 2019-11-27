@@ -89,6 +89,8 @@ class Room {
 
   int charaNum();
 
+  std::string boldText(std::string s);
+
   /**
    * Inventory of the room
    */
