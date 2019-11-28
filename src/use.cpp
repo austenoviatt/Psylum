@@ -465,6 +465,12 @@ void Use::use(std::vector<std::string> result, Player* player) {
         if (player->allInv.getItems()[wolfIndex].getItemState() == 1 && player->allInv.getItems()[goatIndex].getItemState() == 1 && player->allInv.getItems()[cabbageIndex].getItemState() == 1) {
           std::cout << "You finally moved all 3 pets to the other side of the platform. The pet owner is sooooooo happy he swam across the sewage water and unlocked the iron door for you." << std::endl << endl;
           player->currentRoom->exits[0]->setLock(false);
+          for (int i = 0; i < player->currentRoom->inventory.getItems().size(); i++) {
+            if (player->currentRoom->inventory.items[i].getName() == "itemcounter") {
+              player->currentRoom->inventory.items[i].increaseItemState();
+            }
+          }
+          player->currentRoom->increaseRoomState();
           std::cout << "The iron door is now open" << endl << endl;
           return;
         }

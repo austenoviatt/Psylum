@@ -231,16 +231,84 @@ void Dialogue::talk(Character *c, Player *P) {
 
   }
   else if (charaID == "petowner") {
+      if (c->getEventCounter() == 0) {
+          cout << "Why hello th...oh wow..what is that putrid smell! Did you just come out of a sewer mate?!" << endl << endl;
+          cout << "1. Sure did!" << endl;
+          cout << "2. Are you sure that isn’t you?" << endl << endl;
+
+          getline(cin, input);
+          cout << endl;
+
+          if (input == "1") {
+            cout << "I’m sorry to hear. In fact, you owe me help for smelling this bad." << endl << endl;
+            cout << "1. Fair enough. What do you need help with?" << endl;
+            cout << "2. I don’t owe you nothing old man!" << endl << endl;
+
+            getline(cin, input);
+            cout << endl;
+
+            if (input == "1") {
+              c->increaseEventCounter();
+              continue;
+            }
+            else {
+              converOver = true;
+              break;
+            }
 
 
+          }
+          else if (input == "2") {
+            cout << "Oye, you think you’re clever? Well if you’re so clever then why don’t you help me solve a little problem." << endl << endl;
+            cout << "1. I like puzzles, let’s give it a try." << endl;
+            cout << "2. No thanks." << endl << endl;
 
+            getline(cin, input);
+            cout << endl;
 
+            if (input == "1") {
+              c->increaseEventCounter();
+              continue;
+            }
+            else {
+              converOver = true;
+              break;
+            }
 
+          }
+      }
+      else if (c->getEventCounter() == 1) {
+        cout << "As you can see, I’m an owner of three pets: a wolf, a goat and a cabbage. Yes, you heard me right…a talking cabbage. ";
+        cout << "My pets and I need to get across to the other side of the platform but here’s the dilemma: " << endl << endl;
+        cout << "- My boat only has space for one person and one pet." << endl;
+        cout << "- If I take the cabbage with me, the wolf will eat the goat. If I take the wolf with me, the goat will eat the cabbage. ";
+        cout << "Hence, I can’t leave the goat alone with the wolf nor with the cabbage or something will get eaten!" << endl << endl;
+        cout << "1. I'll move the pets for you." << endl;
+        cout << "2. Sorry, I can't help you." << endl << endl;
 
+        getline(cin, input);
+        cout << endl;
 
+        if (input == "1") {
+          cout << "Available Commands: Take <pet>, Drop <pet>, Use boat. The Help menu are updated with the available commands." << endl << endl;
+          c->increaseEventCounter();
+          break;
+        }else {
+          converOver = true;
+          break;
+        }
 
-
-
+      }
+      else if (c->getEventCounter() == 2) {
+        cout << "I'll be counting on you." << endl << endl;
+        converOver = true;
+        break;
+      }
+      else if (c->getEventCounter() == 3) {
+        cout << "I'm so glad you saved my 3 pets! We've been stuck in here for 3 years!" << endl << endl;
+        converOver = true;
+        break;
+      }
 
 
   }

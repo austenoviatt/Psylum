@@ -112,7 +112,7 @@ void Game::testLoadGame() {
   Item i22("chair", "a cheap looking plastic chair", "Chair", true, 0);
   Item i23("boat", "an old boat that's barely floating, it look's like is going to sink anytime, better not put too much weight on it", "Boat", true, 0);
   Item i24("wolf", "the wolf looks back at you with puppy eyes", "Wolf", false, 0);
-  Item i25("cabbage", "a huge cabbage, other than that, nothing special", "Huge Cabbage", false, 0);
+  Item i25("cabbage", "a huge cabbage, other than that, nothing special", "Cabbage", false, 0);
   Item i26("goat", "the goat just can't keep it's eyes off of the huge cabbage", "Goat", false, 0);
   Item i27("machine", "the machine has hundreds of buttons on it|the machine has hundreds of buttons on it, the first button is missing", "Machine", true, 0);
   Item i28("fridge", "noisy humming fridge looks like it came out of a classic film. A " + boldText(i9.getNiceName()) + " is attached to the fridge door.|noisy humming fridge looks like it came out of a classic film.", "Fridge", true, 0);
@@ -158,7 +158,7 @@ void Game::testLoadGame() {
     Character evildoctor("evildoctor", "doctor", "he is reading a newspaper, and he is too busy to care about you", true, 0, " ");
     Character bonez("bonez", "patient", "he is standing beside a toilet, fishing rod in hand, it looks like he wants to fish something from the toilet|he is sitting on the mattress, playing with his new friend 'Mr wormington the 3rd'", true, 0, " ");
     Character computer("Computer", "computer", "old, bulky looking computers that's still functional", true, 0, " ");
-    Character petowner("petowner", "patient", "desperate pet owner who are stuck with his 3 pets, it looks like he want's you to help him get out of there", true, 0 ," ");
+    Character petowner("petowner", "patient", "desperate pet owner who are stuck with his 3 pets, it looks like he want's you to help him get out of there|the pet owner is standing by the exit with his 3 pets", true, 0 ," ");
     Character treespirit("treespirit", "treespirit", "the tree spirit takes the form of a tree, it looks like is possible to communicate with him", true, 0, " ");
 
 
@@ -373,7 +373,8 @@ void Game::testLoadGame() {
     "There is another platform on the far end of the tunnel, but is separated from you by the sewage water. A " + boldText(i23.getNiceName()) +
     " lies on the edge of your side of the platform. There is a " + boldText(petowner.getName()) + " standing beside the boat. " +
     "You looked beside the " + boldText(petowner.getName()) + " and saw a " + boldText(i24.getNiceName()) + ", a " + boldText(i26.getNiceName()) +
-    " and a " + boldText(i25.getNiceName()) + ". The iron door shuts behind you, there is no way to go back now.";
+    " and a " + boldText(i25.getNiceName()) + ". The iron door shuts behind you, there is no way to go back now.|The " + boldText(petowner.getName())
+    + " is standing beside the exit with his 3 pets. The exit door is open.";
   std::string endDesc =
     "Congratulations! You've have escaped the asylum! Now go and enjoy the fresh air and smell of freedom before you get 'drugged' back in!";
 
@@ -455,7 +456,7 @@ void Game::testLoadGame() {
   sewer.inventory.addItem(i26);
   sewer.inventory.addItem(i31);
 
-  Player P(&skyrim, playerInventory, 0, true, allItems);
+  Player P(&sewer, playerInventory, 0, true, allItems);
 
   std::cout << "You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your"
             << "head is throbbing. As you begin to slowly move yours eyes around the room, you notice something strange...\n"
@@ -559,7 +560,6 @@ void Game::drop(vector<string> result, Player P) {
   if (result.size() == 2) {
     if (result[1] == "labcoat" || result[1] == "wolf" || result[1] == "cabbage" || result[1] == "goat") {
       //drop the item
-      //std::cout << "reached heerrrrrrr" << std::endl;
       for (uint i = 0; i < P.inventory.getItems().size(); i++) {
         if (result[1] == P.inventory.getItems()[i].getName()) {
             std::string droppedItem = P.inventory.getItems()[i].getNiceName();
@@ -859,7 +859,7 @@ void Game::look(vector<string> result, Player P) {
           while (std::getline(ss, token, '|')) {
             desVector.push_back(token);
           }
-          //std::cout << "counter is " << P.currentRoom->characters[i].getEventCounter() << std::endl;
+
           std::cout << desVector[P.currentRoom->inventory.returnItem("itemcounter").getItemState()] << std::endl << endl;
 
           getUserInput(P);
