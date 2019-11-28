@@ -118,7 +118,7 @@ void Game::testLoadGame() {
   Item i28("fridge", "noisy humming fridge looks like it came out of a classic film. A " + boldText(i9.getNiceName()) + " is attached to the fridge door.|noisy humming fridge looks like it came out of a classic film.", "Fridge", true, 0);
   Item i29("bag", "you opened the bag to see what's in there, there is a round metal object that says " + boldText(i16.getNiceName()) + " on it|the bag is empty", "Bag", true, 0);
   Item i30("shelf", "spider webs almost entirely covered the shelf, there is a bag of " + boldText(i1.getNiceName()) + " placed on top of the shelf|spider webs almost entirely covered the shelf", "Shelf", true, 0);
-  Item i31("forestcounter", "", "", true, 0);
+  Item i31("itemcounter", "", "", true, 0);
 
   Inventory allItems;
   allItems.addItem(i1);
@@ -261,25 +261,25 @@ void Game::testLoadGame() {
     " sitting on a sofa, busy reading his newspaper.";
 
 
-  Room l2Hall1("Floor 2 Hallway", l2Hall1Desc, "hallway", true, {}, "button2", {}, {/*unlock2*/}, {});
+  Room l2Hall1("Floor 2 Hallway", l2Hall1Desc, "hallway", true, {}, "button2", {}, 0, {});
 // ldesc = "You're on the second floor. There's a long hallway with a door to your left, a door to your right and two more doors down the hall."
 
   Room spaceship("Spaceship Room", spaceshipDesc, "rainbow", true, {/*button1*/},
-                 "", {}, {}, {});
+                 "", {}, 0, {});
 // ldesc = "Hundreds of flickering lights, buttons, levers, switches and geometric angles. This room looks like the inside of a spaceship!"
 
   Room forest("Fractal Forest", forestDesc, "yellow", false, {/*mushrooms, worm, claw*/},
-              "", {}, {/*treeRiddle*/}, {treespirit});
+              "", {}, 0, {treespirit});
 // ldesc = "You feel a light breeze and mist on your face when you walk in. You begin to feel your bare feet sinking into dirt...Dirt?! Ew! Theres a worm between your toes! You look up to find yourself in a fractal forest like none ever before. Vivid colours bursting in a kaleidoscope and in the middle, a very large tree. Then suddenly...CLICK, CLICK, CLICK, CLICK, CLICK. Hundreds of tiny white faceless creatures with heads that click side to side like mini ticking clocks, begin crawling out from under ground. They're moving away from you! Should you follow or turn back?"
 
-  Room l2Hall2("Hallway", l2Hall2Desc, "hallway", false, {}, "", {}, {}, {});
+  Room l2Hall2("Hallway", l2Hall2Desc, "hallway", false, {}, "", {}, 0, {});
 // ldesc = "You're down the hallway. There's sliding doors to your left and a door to your right labeled "Doctor's Office."
 
   Room doctors("Doctor's Office", doctorDesc, "green", true, {/*labCoat*/},
-               "crowbar", {}, {/*unlockOffice, getSpaceCode*/}, {computer});
+               "crowbar", {}, 0, {computer});
 // ldesc = "You've successfully broken in! A grey painted office with only one window and book shelves surrounding it. On the mahogany desk sat a computer, a stack of papers and a pen, and behind it, a swivel leather chair and bookshelves bursting with olds books. In the corner, a lab coat hanging on a coat rack."
 
-  Room lounge("Employee's Lounge", loungeDesc, "pink", false, {}, "", {}, {/*coffeePuzzle, killDoctor*/}, {evildoctor});
+  Room lounge("Employee's Lounge", loungeDesc, "pink", false, {}, "", {}, 0, {evildoctor});
 // ldesc = "As the doors open, the smell of a medicine cabinet and coffee comes wafting from what looks like an employees lounge. Brown cracked leather couches pushed against the undecorated walls. An old TV sitting on top of empty shelves. In the back, a small corner kitchen and a few round tables filled with loud chatter. All the employees are wearing nurse uniforms, except for one...the doctor."
 
 //Room elevator("Elevator", "ldesc", "elevator", false, {}, "", {}, {}, {});
@@ -323,23 +323,23 @@ void Game::testLoadGame() {
     "If you don't get out soon, you'll freeze to death!";
 
 
-  Room l1Hall1("Floor 1 Hallway", l1Hall1Desc, "hallway", true, {}, "button", {}, {/*unlock1*/}, {});
+  Room l1Hall1("Floor 1 Hallway", l1Hall1Desc, "hallway", true, {}, "button", {}, 0, {});
 // ldesc = "You're on the first floor. There's a long hallway with a door to your left, a door to your right, two more doors down the hall and a window at the end."
 
   Room patient3("Bonez's Room", patient3Desc, "cyan", false, {/*fishingRod*/},
-                "", {}, {/*goFishing*/}, {bonez});
+                "", {}, 0, {bonez});
 // ldesc = "Another room with white pale walls, a single flickering light bulb hanging from the ceiling, a small mattress on the floor and a young boy crouched over the toilet with a fishing rod."
 
-  Room kitchen("Kitchen", kitchenDesc, "blue", false, {/*magnet*/}, "", {}, {}, {});
+  Room kitchen("Kitchen", kitchenDesc, "blue", false, {/*magnet*/}, "", {}, 0, {});
 // ldesc = "A dull beige kitchen with aromas of bleach, tea and coffee stained counters, chipped cabinets, large ancient appliances and for sound, a noisy humming refrigerator. "
 
-  Room l1Hall2("Hallway", l1Hall2Desc, "hallway", false, {/*keycard*/}, "", {}, {}, {/*getKeyCard*/});
+  Room l1Hall2("Hallway", l1Hall2Desc, "hallway", false, {/*keycard*/}, "", {}, 0, {/*getKeyCard*/});
 // ldesc = "You're down the hall on the first floor. There's a main lobby to your left, a door labeled ice room to your right and a window cracked open in front of you."
 
-  Room lobby("Main Lobby", lobbyDesc, "magenta", false, {}, "", {}, {/*getCaughtBySecurity*/}, {});
+  Room lobby("Main Lobby", lobbyDesc, "magenta", false, {}, "", {}, 0, {});
 // ldesc = "You're in the main lobby of the building. There's exit doors in the distance but you've been spotted by security! "That's the patient who was last seen with the doctor! They run over to question you."
 
-  Room iceRoom("Ice Room", iceDesc, "orange", false, {}, "", {}, {/*lockl1Hall2, escapeIceRoom*/}, {});
+  Room iceRoom("Ice Room", iceDesc, "orange", false, {}, "", {}, 0, {});
 // ldesc = "You walk into a dark, bitterly cold room and the door shuts behind you. You turn on the light switch to find walls of metal sheets covered with growing ice crystals over an inch in length. It's not just a room with an ice machine, the entire room itself is an ice machine! You attempt to open the door but your palms stick to the icy handle. It's locked! You hear a low rumble...the coolers have turned on. If you don't get out soon, you'll freeze to death!"
 
 //Room elevator("Elevator", "ldesc", "elevator", false, {}, "", {}, {}, {});
@@ -364,8 +364,10 @@ void Game::testLoadGame() {
 //***********************************************************
   std::string skyrimDesc = std::string(
     "You step out of the elevator and into a basement. There's two flickering lights at the end of a dark tunnel. ")
-    + "You walk towards the lights and find an unusual large iron door surrounded with stone walls and skeletons on the ground."
-    + "The door is made with ancient designs and carvings and in the middle is what appears to be a space for a " + boldText(i19.getNiceName());
+    + "You walk towards the lights and find an unusual large iron door surrounded with stone walls and skeletons on the ground. "
+    + "The door is made with ancient designs and carvings and in the middle is what appears to be a space for a " + boldText(i19.getNiceName()) +
+    ".|There's two flickering lights at the end of a dark tunnel. You walk towards the lights and find an unusual large iron door surrounded " +
+    "with stone walls and skeletons on the ground. The door is made with ancient designs and carvings and is currently wide open.";
   std::string sewerDesc = std::string(
     "The air around you smells of rotten eggs! You step out into filthy sludge and noticed you are standing on a metal platform. ") +
     "There is another platform on the far end of the tunnel, but is separated from you by the sewage water. A " + boldText(i23.getNiceName()) +
@@ -376,13 +378,13 @@ void Game::testLoadGame() {
     "Congratulations! You've have escaped the asylum! Now go and enjoy the fresh air and smell of freedom before you get 'drugged' back in!";
 
 
-  Room skyrim("Basement", skyrimDesc, "green", true, {}, "keycard", {}, {/*unlockSkyrim*/}, {});
+  Room skyrim("Basement", skyrimDesc, "green", true, {}, "keycard", {}, 0, {});
 // ldesc = "You step out of the elevator and into a basement. There's two flickering lights at the end of a dark tunnel. You walk towards the lights and find an unusual large iron door surrounded with stone walls and skeletons on the ground. The door is made with ancient designs and carvings and in the middle is what appears to be a space for a claw."
 
-  Room sewer("Sewer", sewerDesc, "white", true, {}, "claw", {}, {/*unlockSewer*/}, {petowner});
+  Room sewer("Sewer", sewerDesc, "white", true, {}, "claw", {}, 0, {petowner});
 // ldesc = "The air around you smells of rotten eggs! You step out into filthy sludge. You're in a sewer but there's sunlight at the end of the tunnel!"
 
-  Room endRoom("End of Game!", endDesc, "iron", true, {}, "", {}, {/*completeGame*/}, {});
+  Room endRoom("End of Game!", endDesc, "iron", true, {}, "", {}, 0, {});
 // ldesc = "Congratulations! You've have escaped the asylum! Now go and enjoy the fresh air and smell of freedom before you get 'drugged' back in!"
 
   std::vector<Room*> skyrimExits{&sewer, &R, &elevator, &R};
@@ -409,10 +411,13 @@ void Game::testLoadGame() {
   //playerInventory.addItem(i13);
   playerInventory.addItem(i7);
   playerInventory.addItem(i6);
+  playerInventory.addItem(i11);
 
   startRoom.inventory.addItem(i22);
 
   patient2.inventory.addItem(i2);
+
+  patient3.inventory.addItem(i31);
 
   l3Hall1.inventory.addItem(i3);
   l3Hall1.inventory.addItem(i15);
@@ -436,6 +441,7 @@ void Game::testLoadGame() {
   kitchen.inventory.addItem(i28);
 
   lounge.inventory.addItem(i12);
+  lounge.inventory.addItem(i31);
 
   closet.inventory.addItem(i16);
   closet.inventory.addItem(i29);
@@ -447,8 +453,9 @@ void Game::testLoadGame() {
   sewer.inventory.addItem(i24);
   sewer.inventory.addItem(i25);
   sewer.inventory.addItem(i26);
+  sewer.inventory.addItem(i31);
 
-  Player P(&patient3, playerInventory, 0, true, allItems);
+  Player P(&skyrim, playerInventory, 0, true, allItems);
 
   std::cout << "You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your"
             << "head is throbbing. As you begin to slowly move yours eyes around the room, you notice something strange...\n"
@@ -852,8 +859,8 @@ void Game::look(vector<string> result, Player P) {
           while (std::getline(ss, token, '|')) {
             desVector.push_back(token);
           }
-
-          std::cout << desVector[P.currentRoom->characters[i].getEventCounter()] << std::endl << endl;
+          //std::cout << "counter is " << P.currentRoom->characters[i].getEventCounter() << std::endl;
+          std::cout << desVector[P.currentRoom->inventory.returnItem("itemcounter").getItemState()] << std::endl << endl;
 
           getUserInput(P);
         }

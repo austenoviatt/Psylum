@@ -65,7 +65,14 @@ void Use::use(std::vector<std::string> result, Player* player) {
       cout << "You stick the \e[1mFishing Rod\e[0m into your pocket." << endl << endl;
       player->inventory.removeItem("worm");
       player->inventory.addItem(player->allInv.returnItem("fishingrod"));
-      //player->currentRoom->characters[0].increaseEventCounter();
+
+      //get the index of the counter item
+      for (int i = 0; i < player->currentRoom->inventory.getItems().size(); i++) {
+        if (player->currentRoom->inventory.items[i].getName() == "itemcounter") {
+          player->currentRoom->inventory.items[i].increaseItemState();
+        }
+      }
+
       player->currentRoom->increaseRoomState();
 
     } else
@@ -155,7 +162,13 @@ void Use::use(std::vector<std::string> result, Player* player) {
         player->inventory.removeItem("magnetrod");
         player->inventory.addItem(player->allInv.returnItem("keycard"));
         player->currentRoom->inventory.removeItem("keycard");
-        //player->allInv.returnItem("window").increaseItemState();
+
+        for (int i = 0; i < player->allInv.getItems().size(); i++) {
+          if (player->allInv.items[i].getName() == "window") {
+
+            player->allInv.items[i].increaseItemState();
+          }
+        }
       }
     } else
       std::cout << "Inventory does not contain that item." << std::endl << endl;
@@ -277,6 +290,7 @@ void Use::use(std::vector<std::string> result, Player* player) {
         if ( player->currentRoom->exits[i]->getKey() == "claw") {
           player->currentRoom->exits[i]->setLock(false);
           player->inventory.removeItem("claw");
+          player->currentRoom->increaseRoomState();
           roomFound = true;
           std::cout <<
                     "As you lift the claw towards the slot in the wall, it almost jumps out of your hand and into the wall of its own accord. The designs on the wall start to rotate until they all align and a doorway opens up into the room beyond."

@@ -248,7 +248,7 @@ void Dialogue::talk(Character *c, Player *P) {
       unsigned int riddleCounterIndex;
     //get the index of the riddle counter item
     for (int i = 0; i < P->currentRoom->inventory.getItems().size(); i++) {
-      if (P->currentRoom->inventory.items[i].getName() == "forestcounter") {
+      if (P->currentRoom->inventory.items[i].getName() == "itemcounter") {
         riddleCounterIndex = i;
       }
     }
@@ -281,6 +281,7 @@ void Dialogue::talk(Character *c, Player *P) {
 
         getline(cin, input);
         cout << endl << endl;
+        transform(input.begin(), input.end(), input.begin(), ::tolower);
 
         if (input == "egg") {
           P->currentRoom->inventory.items[riddleCounterIndex].increaseItemState();
@@ -297,6 +298,7 @@ void Dialogue::talk(Character *c, Player *P) {
 
         getline(cin, input);
         cout << endl << endl;
+        transform(input.begin(), input.end(), input.begin(), ::tolower);
 
         if (input == "darkness") {
           P->currentRoom->inventory.items[riddleCounterIndex].increaseItemState();
@@ -312,6 +314,7 @@ void Dialogue::talk(Character *c, Player *P) {
 
         getline(cin, input);
         cout << endl << endl;
+        transform(input.begin(), input.end(), input.begin(), ::tolower);
 
         if (input == "hourglass") {
           P->currentRoom->inventory.items[riddleCounterIndex].increaseItemState();
@@ -332,12 +335,12 @@ void Dialogue::talk(Character *c, Player *P) {
           cout << "2 riddles";
         }
         else if (P->currentRoom->inventory.items[riddleCounterIndex].getItemState() == 3) {
-          cout << "3 riddles";
+          cout << "all 3 riddles";
         }
 
          cout << " correctly!" << endl << endl;
 
-        if (P->currentRoom->inventory.returnItem("forestcounter").getItemState() > 0) {
+        if (P->currentRoom->inventory.returnItem("itemcounter").getItemState() > 0) {
           cout << "Tree Spirit: Splendid! You have proven yourself worthy! As promised, I'll give you this ";
           cout << P->allInv.returnItem("claw").getNiceName() << " as a reward. " << endl;
           cout << "Tree Spirit: I'm sure it will come in handy soon. Now, go. Is time for you to be on your path. Take care young Padawan." << endl << endl;
