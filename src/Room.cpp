@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <sstream>
 
 Room::~Room() {
 //  for (uint i = 0; i < events.size(); i++){
@@ -30,12 +31,12 @@ Room::Room() {
   inventory = {};
   key = "wall";
   exits = {};
-  event = {};
+  event = 0;
   characters = {};
 }
 
 Room::Room(std::string a, std::string b, std::string c, bool d, Inventory e,
-           std::string f, std::vector<Room*> g, Events h,
+           std::string f, std::vector<Room*> g, unsigned int h,
            std::vector<Character> i) {
   name = a;
   description = b;
@@ -70,6 +71,11 @@ bool Room::getLocked() {
 }
 
 std::string Room::getExit() {
+
+  if (name == "Elevator") {
+    return "";
+  }
+
   std::string allDoorDesc;
   allDoorDesc += '\n';
   for (uint i = 0; i < exits.size(); i++) {
@@ -128,6 +134,20 @@ std::string Room::getExit() {
   return allDoorDesc;
 }
 
+std::string Room::displayRoomDesc() {
+  //break current room description into vectors
+  std::istringstream ss(description);
+
+  std::string token;
+  std::vector<std::string> desVector;
+
+  while (std::getline(ss, token, '|')) {
+    desVector.push_back(token);
+  }
+
+  return desVector[getRoomState()];
+}
+
 void Room::setExit(std::vector<Room*> A) {
   exits.insert(exits.begin(), A.begin(), A.end());
 }
@@ -155,6 +175,14 @@ int Room::charaIndex(std::string C) {
 
 int Room::charaNum() {
   return characters.size();
+}
+
+void Room::increaseRoomState() {
+  event = event + 1;
+}
+
+unsigned int Room::getRoomState() {
+  return event;
 }
 
 std::string Room::boldText(std::string s) {

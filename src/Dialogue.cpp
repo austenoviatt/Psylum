@@ -233,6 +233,16 @@ void Dialogue::talk(Character *c, Player *P) {
   else if (charaID == "petowner") {
 
 
+
+
+
+
+
+
+
+
+
+
   }
   else if (charaID == "treespirit") {
       unsigned int riddleCounterIndex;
@@ -245,7 +255,7 @@ void Dialogue::talk(Character *c, Player *P) {
 
        if (c->getEventCounter() == 0) {
           cout << "Tree Spirit: Good day young Padawan. I am the spirit of the forest. It’s not very often I find people stumble across here. ";
-          cout << "My creatures tell me you spirit is strong and that you’re in great danger. ";
+          cout << "My creatures tell me your spirit is strong and that you’re in great danger. ";
           cout << "Know we cannot fix things but we can most certainly help those worthy. Are you worthy Padawan?" << endl << endl;
           cout << "1. Absolutely" << endl;
           cout << "2. On second thought, I gotta get going." << endl << endl;
@@ -329,18 +339,11 @@ void Dialogue::talk(Character *c, Player *P) {
 
         if (P->currentRoom->inventory.returnItem("forestcounter").getItemState() > 0) {
           cout << "Tree Spirit: Splendid! You have proven yourself worthy! As promised, I'll give you this ";
-          cout << P->currentRoom->inventory.returnItem("claw").getNiceName() << " as a reward. " << endl;
+          cout << P->allInv.returnItem("claw").getNiceName() << " as a reward. " << endl;
           cout << "Tree Spirit: I'm sure it will come in handy soon. Now, go. Is time for you to be on your path. Take care young Padawan." << endl << endl;
-          for (int i = 0; i < P->currentRoom->inventory.getItems().size(); i++) {
-            if (P->currentRoom->inventory.getItems()[i].getName() == "claw") {
+          P->inventory.addItem(P->allInv.returnItem("claw"));
 
-              string itemName = P->currentRoom->inventory.getItems()[i].getName();
-              P->inventory.addItem(P->currentRoom->inventory.getItems()[i]);
-              P->currentRoom->inventory.removeItem(P->currentRoom->inventory.getItems()[i]);
-
-              cout << "The tree spirit put a weird looking \e[1m" << itemName << "\e[0m into your pocket." << std::endl << endl;
-            }
-          }
+          cout << "The tree spirit put a weird looking \e[1m" << P->allInv.returnItem("claw").getNiceName() << "\e[0m into your pocket." << std::endl << endl;
 
           c->increaseEventCounter();
           converOver = true;

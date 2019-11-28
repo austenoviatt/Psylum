@@ -12,22 +12,41 @@ Take::Take() {}
 
 void Take::take(Item I, Player* P) {
 
-      if (I.getName() == "coffee") {
-         // increaseItself(I, P);
+      if (I.getName() == "crowbar") {
+         increaseRoom(P);
       }
       else if (I.getName() == "sedative") {
           increaseOther(I, P);
       }
+      else if (I.getName() == "ratpoison") {
+        increaseOther(I, P);
+      }
+      else if (I.getName() == "button2") {
+        increaseOther(I, P);
+      }
+      else if (I.getName() == "roomkey") {
+        increaseRoom(P);
+      }
+      else if (I.getName() == "labcoat") {
+        increaseRoom(P);
+      }
+      else if (I.getName() == "worm") {
+        increaseRoom(P);
+      }
+      else if (I.getName() == "button") {
+        increaseOther(I, P);
+      }
+      else if (I.getName() == "magnet") {
+        increaseOther(I, P);
+      }
+
+
+
+
 }
 
-void Take::increaseItself(Item I, Player* P) {
-  for (int i = 0; i < P->allInv.items.size(); i++) {
-    if (I.getName() == P->allInv.items[i].getName()) {
-      P->allInv.items[i].increaseItemState();
-      //cout << P->allInv.items[i].getItemState() << endl;
-      return;
-    }
-  }
+void Take::increaseRoom(Player* P) {
+  P->currentRoom->increaseRoomState();
 }
 
 void Take::increaseOther(Item I, Player* P) {
@@ -38,6 +57,37 @@ void Take::increaseOther(Item I, Player* P) {
       }
     }
   }
+  else if (I.getName() == "ratpoison") {
+    for (int i = 0; i < P->allInv.items.size(); i++) {
+      if (P->allInv.items[i].getName() == "shelf") {
+        P->allInv.items[i].increaseItemState();
+      }
+    }
+  }
+  else if (I.getName() == "button2") {
+    for (int i = 0; i < P->allInv.items.size(); i++) {
+      if (P->allInv.items[i].getName() == "bag") {
+        P->allInv.items[i].increaseItemState();
+      }
+    }
+  }
+  else if (I.getName() == "button") {
+    for (int i = 0; i < P->allInv.items.size(); i++) {
+      if (P->allInv.items[i].getName() == "machine") {
+        P->allInv.items[i].increaseItemState();
+      }
+    }
+  }
+  else if (I.getName() == "magnet") {
+    for (int i = 0; i < P->allInv.items.size(); i++) {
+      if (P->allInv.items[i].getName() == "fridge") {
+        P->allInv.items[i].increaseItemState();
+      }
+    }
+  }
+
+
+
 
 
 }

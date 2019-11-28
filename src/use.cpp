@@ -17,12 +17,15 @@ void Use::use(std::vector<std::string> result, Player* player) {
   std::string item = result[1];
   if ( item == "poisoncoffee") {
       if (player->inventory.hasItem("poisoncoffee") == true) {
-    if (result.size() > 2) {
-      cout << "You know you put poison into the coffee. You did it yourself. But you decide to drink the coffee anyways. I guess that’s one way to escape." << std::endl;
+    if (result.size() == 2) {
+      cout << "You know you put poison into the coffee. You did it yourself. But you decide to drink the coffee anyways. I guess that’s one way to escape." << std::endl << endl;
       player->killPlayer();
     } else if (result[2] == "doctor"
                && result[2] == player->currentRoom->characters[0].getName()) {
-      cout << "You extend the cup of coffee to the doctor. He takes it impatiently and quickly downs the whole cup. You’re not sure how he didn’t burn himself, it was very hot. You also aren’t sure how he didn’t taste all the chemicals you mixed into the coffee. He starts to convulse and begins to bleed profusely from most of his orifices. You look away in horror. Quickly the noises he is making subsides and when you look back, he is dead." << std::endl;
+      cout << "You extend the cup of coffee to the doctor. He takes it impatiently and quickly downs the whole cup. ";
+      cout << "You’re not sure how he didn’t burn himself, it was very hot. You also aren’t sure how he didn’t taste all ";
+      cout << "the chemicals you mixed into the coffee. He starts to convulse and begins to bleed profusely from most of his orifices. ";
+      cout << "You look away in horror. Quickly the noises he is making subsides and when you look back, he is dead." << std::endl << endl;
       player->inventory.removeItem("poisoncoffee");
       player->currentRoom->characters[0].killChara();
     } else
@@ -38,7 +41,7 @@ void Use::use(std::vector<std::string> result, Player* player) {
              << std::endl << endl;
         player->killPlayer();
       } else if ((player->currentRoom->characters[0].getName()== "patient") && ((result[2] == "patient") || (result[2] == "annabelle") || (result[2] == "girl") || result[2] == "person")) {
-        cout << "Annabelle’s screams slowly get quieter. When they finally stop, you sigh with relief, she won’t be causing you problems any time soon.";
+        cout << "Annabelle’s screams slowly get quieter. When they finally stop, you sigh with relief, she won’t be causing you problems any time soon." << std::endl << endl;
         player->inventory.removeItem("sedative");
         player->currentRoom->characters[0].killChara();
       } else
@@ -62,7 +65,8 @@ void Use::use(std::vector<std::string> result, Player* player) {
       cout << "You stick the \e[1mFishing Rod\e[0m into your pocket." << endl << endl;
       player->inventory.removeItem("worm");
       player->inventory.addItem(player->allInv.returnItem("fishingrod"));
-      player->currentRoom->characters[0].increaseEventCounter();
+      //player->currentRoom->characters[0].increaseEventCounter();
+      player->currentRoom->increaseRoomState();
 
     } else
       cout << "You can't use that here." << endl << endl;
@@ -151,6 +155,7 @@ void Use::use(std::vector<std::string> result, Player* player) {
         player->inventory.removeItem("magnetrod");
         player->inventory.addItem(player->allInv.returnItem("keycard"));
         player->currentRoom->inventory.removeItem("keycard");
+        //player->allInv.returnItem("window").increaseItemState();
       }
     } else
       std::cout << "Inventory does not contain that item." << std::endl << endl;
@@ -209,6 +214,7 @@ void Use::use(std::vector<std::string> result, Player* player) {
         if ( player->currentRoom->exits[i]->getKey() == "button2") {
           player->currentRoom->exits[i]->setLock(false);
           player->inventory.removeItem("button2");
+          player->currentRoom->increaseRoomState();
           roomFound = true;
           std::cout <<
                     "You press the number 2 button into the spot right below the 3 button on the elevator panel. The metal connections seem to snap right in place and the button lights up. You should be able to visit the second floor now."
@@ -229,6 +235,7 @@ void Use::use(std::vector<std::string> result, Player* player) {
         if ( player->currentRoom->exits[i]->getKey() == "button") {
           player->currentRoom->exits[i]->setLock(false);
           player->inventory.removeItem("button");
+          player->currentRoom->increaseRoomState();
           roomFound = true;
           std::cout <<
                     "Like with the number 2 button, the number 1 button snaps into place and lights up. You can now visit the first floor."
@@ -249,6 +256,7 @@ void Use::use(std::vector<std::string> result, Player* player) {
         if ( player->currentRoom->exits[i]->getKey() == "keycard") {
           player->currentRoom->exits[i]->setLock(false);
           player->inventory.removeItem("keycard");
+          player->currentRoom->increaseRoomState();
           roomFound = true;
           std::cout <<
                     "The keycard slides smoothly into the card slot. You don’t hear anything happen, but the basement button lights up. You can now visit the basement."

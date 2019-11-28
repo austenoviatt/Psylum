@@ -24,7 +24,7 @@ class Room {
   * Room constructor
   */
   Room(std::string, std::string, std::string, bool, Inventory, std::string,
-       std::vector<Room*>, Events, std::vector<Character>);
+       std::vector<Room*>, unsigned int, std::vector<Character>);
 
   /**
    * Default room destructor
@@ -91,18 +91,23 @@ class Room {
 
   std::string boldText(std::string s);
 
+  unsigned int getRoomState();
+
+  std::string displayRoomDesc();
+
+  void increaseRoomState();
+
   /**
    * Inventory of the room
    */
   Inventory inventory;
-
-  Events event;
 
   /**
    * Characters in the room
    */
   std::vector<Character> characters;
   std::vector<Room*> exits;
+
  private:
   /**
    * Description of the doorway leading into the room
@@ -118,6 +123,11 @@ class Room {
    * The name of the room
    */
   std::string name;
+
+  /**
+   * event counter of the room
+   */
+   unsigned int event;
 };
 
 #endif // ROOM_H

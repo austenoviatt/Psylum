@@ -13,7 +13,7 @@ class Take {
 
   void take(Item I, Player* P);
 
-  void increaseItself(Item I, Player* P);
+  void increaseRoom(Player* P);
 
   void increaseOther(Item I, Player* P);
 

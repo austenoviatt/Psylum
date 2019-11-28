@@ -13,12 +13,6 @@ Look::Look() {}
 
 void Look::look(Item I, Player P) {
   int itemStateCounter;
-  /*
-  need to add in a look for room too!!!!!!!!!!!!!!!!!
-
-
-
-  */
 
   //find the item in the allInv vector
   for (int i = 0; i < P.allInv.items.size(); i++) {

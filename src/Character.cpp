@@ -9,10 +9,9 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <sstream>
 #include "Character.h"
 #include "Inventory.h"
-
-
 
 Character::Character() {
   charaID = "DEFAULT ID";
@@ -22,7 +21,7 @@ Character::Character() {
   eventCounter = 0;
   dialogue = "DEFAULT DIALOGUE";
 }
-Character::Character(std::string a, std::string b, std::string c, bool d, int e,
+Character::Character(std::string a, std::string b, std::string c, bool d, unsigned int e,
                      std::string f) {
   charaID = a;
   name = b;
@@ -48,7 +47,7 @@ bool Character::getIsAlive() {
   return isAlive;
 }
 
-int Character::getEventCounter() {
+unsigned int Character::getEventCounter() {
   return eventCounter;
 }
 

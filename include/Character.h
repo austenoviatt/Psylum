@@ -14,6 +14,7 @@
  */
 
 #include <string>
+#include <vector>
 #include "Inventory.h"
 
 class Character {
@@ -31,7 +32,7 @@ class Character {
   * @param bool whether character is alive or not
   * @param int event stage for character
   */
-  Character(std::string, std::string, std::string, bool, int, std::string);
+  Character(std::string, std::string, std::string, bool, unsigned int, std::string);
 
   /**
    * Default destructor
@@ -63,7 +64,7 @@ class Character {
   * returns event counter
   * @return int event counter
   */
-  int getEventCounter();
+  unsigned int getEventCounter();
 
   /**
   * @return the alive status of the Character
@@ -95,7 +96,7 @@ class Character {
   std::string charaID;
   std::string name;
   std::string description;
-  int eventCounter;
+  unsigned int eventCounter;
   std::string dialogue;
 
 };
