@@ -104,6 +104,10 @@ int showMenu();
    */
   void use(vector<string> result, Player P);
 
+  void save(Player P);
+
+  void load(Player P);
+
   /**
    * display a page of text to give player all the possible commands in the game
    */
@@ -133,7 +137,9 @@ int showMenu();
     {"talk", "speak"},
     {"help"},
     {"inventory", "inv", "i"},
-    {"drop"}
+    {"drop"},
+    {"save"},
+    {"load"}
 
   };
   Player player;

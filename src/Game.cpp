@@ -18,6 +18,8 @@
 #include "Take.h"
 #include "Dialogue.h"
 #include "mainMenu.h"
+#include "Save.h"
+#include "Load.h"
 #include "Bold.h"
 #include<bits/stdc++.h>
 #include <stdlib.h>
@@ -106,11 +108,10 @@ void Game::getUserInput(Player P) {
   std::string userInput;
   std::cout << "enter: ";
   getline(cin, userInput);
-  std::cout << std::endl<< std::endl<< std::endl<< std::endl<< std::endl;
+  std::cout << std::endl<< std::endl<< std::endl<< std::endl;
   processCommand(userInput, P);
   }
-  else
-    ;
+
 }
 
 void Game::testLoadGame() {
@@ -528,7 +529,7 @@ void Game::testLoadGame() {
   sewer.inventory.addItem(i26);
   sewer.inventory.addItem(i31);
 
-  Player P(&l1Hall1, playerInventory, 0, true, allItems);
+  Player P(&sewer, playerInventory, 0, true, allItems);
 
 
   std::cout << "You have woken up in an unusual place, eyes slowly coming to focus on the naked bulb above you. Your body feels heavy and your"
@@ -618,6 +619,12 @@ void Game::processCommand(string userInput, Player P) {
           break;
         case 7:
           drop(result, P);
+          break;
+        case 8:
+          save(P);
+          break;
+        case 9:
+          load(P);
           break;
         }
       }
@@ -1075,6 +1082,22 @@ void Game::displayHelp() {
   std::cout << ss.str() << std::endl << endl;
 
 }
+
+void Game::save(Player P) {
+  std::cout << "resdddddddddddddddddddddd" << std::endl;
+  Save v;
+  v.save(&P);
+  getUserInput(P);
+}
+
+void Game::load(Player P) {
+  std::cout << "loaaaaaaaaaaaaaaaaaaaaaad" << std::endl;
+  Load l;
+  l.load(&P);
+  getUserInput(P);
+}
+
+
 
 std::string Game::boldText(std::string s) {
   return "\e[1m" + s +"\e[0m";
