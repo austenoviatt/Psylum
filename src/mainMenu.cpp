@@ -22,7 +22,7 @@ int mainMenu::showMenu() {
 
   string option;
   Game g;
-  ifstream infile("logo.txt");
+  ifstream infile;
   string line;
   infile.open("logo.txt");
 
@@ -31,6 +31,7 @@ int mainMenu::showMenu() {
      cout << line << endl;
   }
   infile.close();
+cin.ignore();
   cout << "Welcome to Pyslum, a mind-bending text-based adventure!" << endl;
   bool choosedOption = false;
   while (choosedOption == false){
@@ -40,23 +41,29 @@ int mainMenu::showMenu() {
      cout << "(2) Load Game" << endl;
      cout << "(3) Exit" << endl;
      cout << endl;
+
      getline(cin, option);
       cout << endl;
 
      if (option == "1") {
         choosedOption = true;
+        std::cout << "OPTION 1";
         g.testLoadGame();
+        getline(cin, option);
      }
      else if (option == "2") {
+        std::cout << "OPtion 2";
        choosedOption = true;
+       getline(cin, option);
         //g.loadGame("testSave.csv");
      }
      else if (option == "3") {
        choosedOption = true;
-        return 0;
+     std::cout << "option 3";
+
      }
 
   }
 
-
+return 0;
 }

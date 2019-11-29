@@ -16,7 +16,8 @@ void Dialogue::talk(Character *c, Player *P) {
   string charaID = c->getID();
   bool converOver = false;
 
-  while (converOver == false) {
+  while (converOver == false) {  int rand1 = rand() % 6;
+  std::vector<std::string> tatName = {"Mom", "Dad", "Teddy", "Lucy", "Annabelle", "Mittens"};
     if (charaID == "snitch") {
       if (c->getEventCounter() == 0) {
         cout << "The patient was woken up by you, she looks surprised to see you standing over there" << endl << endl;
@@ -82,7 +83,7 @@ void Dialogue::talk(Character *c, Player *P) {
           getline(cin, userInput);
           cout << endl;
           transform(userInput.begin(), userInput.end(), userInput.begin(), ::tolower);
-          if (userInput == "i love my mom") {
+          if (userInput == "annabelle") {
             c->increaseEventCounter();
             cout << "Password correct! You have been granted access to the control room." << endl << endl;
             //unlock space room

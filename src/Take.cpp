@@ -51,14 +51,14 @@ void Take::increaseRoom(Player* P) {
 
 void Take::increaseOther(Item I, Player* P) {
   if (I.getName() == "sedative") {
-    for (int i = 0; i < P->allInv.items.size(); i++) {
+    for (uint i = 0; i < P->allInv.items.size(); i++) {
       if (P->allInv.items[i].getName() == "box") {
         P->allInv.items[i].increaseItemState();
       }
     }
   }
   else if (I.getName() == "ratpoison") {
-    for (int i = 0; i < P->allInv.items.size(); i++) {
+    for (uint i = 0; i < P->allInv.items.size(); i++) {
       if (P->allInv.items[i].getName() == "shelf") {
         P->allInv.items[i].increaseItemState();
       }

@@ -7,9 +7,12 @@
  */
 using namespace std;
 
+#include <iostream>
 #include "Inventory.h"
 #include "Player.h"
-#include "mainMenu.h"
+#include "Game.h"
+
+
 
 Player::Player() {
   currentRoom = {};
@@ -29,11 +32,24 @@ Player::Player(Room* currentRoom, Inventory inventory,
  */
 void Player::moveToRoom(Room* nextRoom) {
   if (nextRoom->getName() == "End of Game!") {
-      Player p;
-      p.win();
+      win();
   }
   else if (nextRoom->getName() == "Sewer") {
     currentRoom->setLock(true);
+  }
+  else if (nextRoom->getName() == "Main Lobby"){
+    std::cout<< "You're in the main lobby of the building. There's exit doors in the distance but you've been spotted by security! 'That's the patient who was last seen with the doctor!' They run over and grab you by the arm and roughly escort you back up to your room. They lock you up much more securely than before, there is no way to get out now. "
+    << std::endl << std::endl;
+    killPlayer();
+  }
+  else if (nextRoom->getName() == "Ice Room") {
+    if (inventory.hasItem("magicmushroom") == false) {
+      cout << "You tried everything you can, but you couldn't get out of the room, as you slowly froze to death, you can't stop wondering: Did you forgot to bring something with you along the way?" << endl << endl;
+      killPlayer();
+    }
+    else {
+      currentRoom->setLock(true);
+    }
   }
   currentRoom = nextRoom;
   roomCount++;
@@ -58,18 +74,14 @@ void Player::killPlayer() {
   getline(cin, userInput);
   cout << endl;
 
-  mainMenu m;
-  m.showMenu();
 }
 
 void Player::win() {
+  isAlive = false;
   cout << "Congratulations! You've have escaped the asylum! Now go and enjoy the fresh air and smell of freedom before you get 'drugged' back in!" << endl << endl;
   cout << "(press enter to go back to the main menu)" << endl << endl;
   string userInput;
   getline(cin, userInput);
   cout << endl;
-
-  mainMenu m;
-  m.showMenu();
 
 }

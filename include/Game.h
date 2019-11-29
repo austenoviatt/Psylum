@@ -33,6 +33,9 @@ class Game {
    */
   void create();
 
+
+int showMenu();
+
   /**
    * Saves game at current state and location
    * @param fileName the name of the file the save game is saved to
@@ -49,7 +52,7 @@ class Game {
    * Processes user input into game commands
    * @return string of command the program can understand
    */
-  string processCommand(string userInput, Player P);
+  void processCommand(string userInput, Player P);
 
   void getUserInput(Player P);
 

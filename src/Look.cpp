@@ -45,6 +45,8 @@ void Look::look(Item I, Player P) {
   else if (itemStateCounter == 3) {
     std::cout << result[3] << std::endl << endl;
   }
+
+
   else {
     return;
   }

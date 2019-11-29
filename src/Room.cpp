@@ -84,7 +84,7 @@ std::string Room::getExit() {
         && (exits[i]->getDoorDesc() != "elevator")
         && (exits[i]->getDoorDesc() != "hallway")) {
       allDoorDesc += "There is a ";
-      allDoorDesc += exits[i]->getDoorDesc();
+      allDoorDesc += boldText(exits[i]->getDoorDesc());
       allDoorDesc += " door in front of you. ";
     } else if (i == 0 && exits[i]->getDoorDesc() == "elevator") {
       allDoorDesc += "The ";
@@ -98,7 +98,7 @@ std::string Room::getExit() {
                && (exits[i]->getDoorDesc() != "elevator")
                && (exits[i]->getDoorDesc() != "hallway")) {
       allDoorDesc += "There is a ";
-      allDoorDesc += exits[i]->getDoorDesc();
+      allDoorDesc += boldText(exits[i]->getDoorDesc());
       allDoorDesc += " door to your right. ";
     } else if (i == 1 && (exits[i]->getDoorDesc() == "hallway")) {
       allDoorDesc += "The ";
@@ -108,7 +108,7 @@ std::string Room::getExit() {
                && (exits[i]->getDoorDesc() != "elevator")
                && (exits[i]->getDoorDesc() != "hallway")) {
       allDoorDesc += "There is a ";
-      allDoorDesc += exits[i]->getDoorDesc();
+      allDoorDesc += boldText(exits[i]->getDoorDesc());
       allDoorDesc += " door behind you. ";
     } else if (i == 2 && (exits[i]->getDoorDesc() == "elevator")) {
       allDoorDesc += "The ";
@@ -122,7 +122,7 @@ std::string Room::getExit() {
                && (exits[i]->getDoorDesc() != "elevator")
                && (exits[i]->getDoorDesc() != "hallway")) {
       allDoorDesc += "There is a ";
-      allDoorDesc += exits[i]->getDoorDesc();
+      allDoorDesc += boldText(exits[i]->getDoorDesc());
       allDoorDesc += " door to your left. ";
     } else if (i == 3 && (exits[i]->getDoorDesc() == "hallway")) {
       allDoorDesc += "The ";
@@ -158,10 +158,12 @@ std::string Room::getName() {
 
 std::string Room::getDoorDesc() {
   if (doorDescription == "hallway" || doorDescription == "elevator" || doorDescription == "wall") {
+    //if (doorDescription == "hallway")
+      //return boldText(doorDescription);
     return (doorDescription);
   }
   else
-  return boldText(doorDescription);
+  return (doorDescription);
 }
 
 int Room::charaIndex(std::string C) {

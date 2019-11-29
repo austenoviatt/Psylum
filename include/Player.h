@@ -69,6 +69,7 @@ class Player {
   void win();
 
   Room* currentRoom;
+
  private:
 
   int roomCount;

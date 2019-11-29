@@ -30,6 +30,10 @@ std::string Item::getItemDesc() {
   return description;
 }
 
+void Item::setItemDesc(std::string s){
+description = s;
+}
+
 std::string Item::getNiceName() {
   return niceName;
 }

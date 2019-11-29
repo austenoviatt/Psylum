@@ -61,6 +61,9 @@ class Item {
   unsigned int getItemState();
 
   void setItemState(int i);
+
+  void setItemDesc(std::string s);
+
  private:
 
   std::string name;

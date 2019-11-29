@@ -17,6 +17,6 @@ using namespace std;
 
 int main() {
 
-  mainMenu m;
-  m.showMenu();
+  Game G;
+  G.showMenu();
 }
