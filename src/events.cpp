@@ -4,28 +4,28 @@
  * @date November 15, 2019
  */
 
- #include "Events.h"
+#include "Events.h"
 
- Events::Events(std::string name, std::string eventDescription, int eventCounter) : name{name}, eventDescription{eventDescription}, eventCounter{eventCounter}{
+Events::Events(std::string name, std::string eventDescription,
+               int eventCounter) : name{name}, eventDescription{eventDescription}, eventCounter{eventCounter} {
+}
 
- }
+Events::~Events() {}
 
- Events::~Events(){}
+std::string Events::getName() {
+  return name;
+}
 
- std::string Events::getName(){
- return name;
- }
-
- std::string Events::getDesc(){
- return eventDescription;
- }
+std::string Events::getDesc() {
+  return eventDescription;
+}
 
 int Events::getEventCounter() {
-return eventCounter;
- }
+  return eventCounter;
+}
 
- void Events::addEventCounter() {
- eventCounter++;
- }
+void Events::addEventCounter() {
+  eventCounter++;
+}
 
 

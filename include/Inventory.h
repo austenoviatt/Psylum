@@ -9,54 +9,62 @@
 #ifndef INVENTORY_H_INCLUDED
 #define INVENTORY_H_INCLUDED
 
- /**
-  * This class implements an inventory for the player and the rooms
-  */
+/**
+ * This class implements an inventory for the player and the rooms
+ */
 #include <vector>
 #include "Item.h"
 
 class Inventory {
-public:
-	/**
-	 * Default constructor
-	 */
-	Inventory();
+ public:
+  /**
+   * Default constructor
+   */
+  Inventory();
 
-	/**
-	 * Default destructor
-	 */
-	virtual ~Inventory() {}
+  /**
+   * Default destructor
+   */
+  virtual ~Inventory() {}
 
-	/**
-	 * Checks to see if an item exists in the inventory
-	 * @return a bool of whether the item is in the inventory
-	 */
-	bool hasItem(Item I);
+  /**
+   * Checks to see if an item exists in the inventory
+   * @return a bool of whether the item is in the inventory
+   */
 
-	/**
-	 * Adds an item to the inventory
-	 */
-	void addItem(Item I);
+  bool hasItem(std::string s);
 
-	/**
-	 * Removes an item from the inventory
-	 */
-	bool removeItem(Item I);
+  /**
+   * Adds an item to the inventory
+   */
+  void addItem(Item I);
 
-	/**
-	* @return The item in the inventory
-	*/
-	std::vector<Item> getItems();
+  /**
+   * Removes an item from the inventory
+   */
+  bool removeItem(Item I);
 
-	/**
-	* @return The num of items in inventory
-	*/
-	int getInvCount();
+  bool removeItem(std::string s);
 
-std::vector<Item> items;
-private:
+  /**
+  * @return The item in the inventory
+  */
+  std::vector<Item> getItems();
 
-	int invCount;
+  /**
+  * @return The num of items in inventory
+  */
+  int getInvCount();
+
+  std::vector<Item> items;
+   int invCount = 0;
+
+   Item findItem(std::string s);
+
+   Item returnItem(std::string s);
+
+ private:
+
 
 };
 

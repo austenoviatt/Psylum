@@ -4,17 +4,19 @@
 #include <string>
 #include "Events.h"
 #include "Room.h"
+#include "Player.h"
 
 class Dialogue {
-public:
-Dialogue();
+ public:
+  Dialogue();
 
-~Dialogue() {}
-void talk(std::string chaID);
+  ~Dialogue() {}
+
+  void talk(Character *c, Player *P);
 
 
-private:
-std::string chaID;
+ private:
+
 
 };
 
