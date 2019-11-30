@@ -56,8 +56,8 @@ void Use::use(std::vector<std::string> result, Player* player) {
     if (player->inventory.hasItem("worm") == true) {
       if (result.size() == 2) {
         std::cout << "You can't use the worm like that." << std::endl << endl;
-      } else if (result[2] == "bonez"
-                 || result[2] == player->currentRoom->characters[0].getName()) {
+      } else if (result[2] == "patient"
+                 && result[2] == player->currentRoom->characters[0].getName()) {
 
         cout << "'This is exactly what I need to catch that fish!’ shouts Bonez. You watch as he starts to put the worm on the hook of the fishing rod.";
         cout << " He pauses, looking between the toilet and the worm and the hook. ";
@@ -178,12 +178,12 @@ void Use::use(std::vector<std::string> result, Player* player) {
       } else if (player->inventory.hasItem("coffee")) {
         std::cout << "You already have a coffee, you don't need another." << endl <<
                   endl;
-      } else
+      } else{
         std::cout <<
                   "You start the keurig and quickly a cup is filled with boiling hot coffee. You pick up the coffee."
                   << endl << endl;
       player->inventory.addItem(player->allInv.returnItem("coffee"));
-    } else
+    } }else
       std::cout << "You can't use that." << endl << endl;
   } else if (item == "window") {
     std::cout << "You can't do that." << endl << endl;

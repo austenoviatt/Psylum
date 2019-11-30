@@ -105,7 +105,7 @@ void Dialogue::talk(Character *c, Player *P) {
         }
     }
     else if (c->getEventCounter() == 1) {
-      cout << "Password correct! You have been granted access to the control room." << endl;
+      cout << "Password correct! You have been granted access to the rainbow room." << endl;
       converOver = true;
       break;
     }

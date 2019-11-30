@@ -69,19 +69,20 @@ bool Player::getIsAlive() {
 
 void Player::killPlayer() {
   isAlive = false;
-  cout << "GAME OVER (press enter to go back to the main menu)" << endl;
+  cout << "GAME OVER" << endl;
   string userInput;
   getline(cin, userInput);
   cout << endl;
+  exit(0);
 
 }
 
 void Player::win() {
   isAlive = false;
   cout << "Congratulations! You've have escaped the asylum! Now go and enjoy the fresh air and smell of freedom before you get 'drugged' back in!" << endl << endl;
-  cout << "(press enter to go back to the main menu)" << endl << endl;
+  //cout << "(press enter to go back to the main menu)" << endl << endl;
   string userInput;
   getline(cin, userInput);
   cout << endl;
-
+exit(0);
 }

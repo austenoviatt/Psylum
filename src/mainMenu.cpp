@@ -47,19 +47,16 @@ cin.ignore();
 
      if (option == "1") {
         choosedOption = true;
-        std::cout << "OPTION 1";
         g.testLoadGame();
         getline(cin, option);
      }
      else if (option == "2") {
-        std::cout << "OPtion 2";
        choosedOption = true;
        getline(cin, option);
         //g.loadGame("testSave.csv");
      }
      else if (option == "3") {
        choosedOption = true;
-     std::cout << "option 3";
 
      }
 
