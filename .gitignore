@@ -5,6 +5,8 @@
 *.xml
 *.o
 *.gcno
-html
+docs/html
 *#
+html
+.html
 bin
