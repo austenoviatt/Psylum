@@ -109,26 +109,34 @@ $(document).ready(function(){initNavTree('class_game.html','');});
 
 <p>This is the complete list of members for <a class="el" href="class_game.html">Game</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_game.html#a089dac799134ffbcd2fd171193828e6c">create</a>()</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_game.html#a656d03b3003b359dfdfbbea45df925cc">displayHelp</a>()</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_game.html#a56598c3ff7dba587a3723c574ede5f96">boldText</a>(std::string s)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_game.html#a089dac799134ffbcd2fd171193828e6c">create</a>()</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_game.html#a50d15da8c4db298483bc62d6008da754">displayHelp</a>()</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_game.html#afd8bea2547e5dd567d02491d1f137efc">drop</a>(vector&lt; string &gt; result, Player P)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_game.html#ad59df6562a58a614fda24622d3715b65">Game</a>()</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_game.html#a67cf485d30c4213eb90beac917134805">go</a>(vector&lt; string &gt; result)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_game.html#aca2d953d105c0d3a880052798fe71b73">help</a>(vector&lt; string &gt; result)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_game.html#ac438833721acc0caf075290c4679d7ee">inventory</a>(vector&lt; string &gt; result)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_game.html#a598a2c75f6dd3e896cfd05e47ea07205">loadGame</a>(string fileName)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_game.html#ac961a0aba76c857f43c061b862ebe149">look</a>(vector&lt; string &gt; result)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_game.html#a8a13d5bf16c075213305feeb5895d274">processCommand</a>(string userInput)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_game.html#a983d7e2d87347bc4985cbc4be22b4cb1">getUserInput</a>(Player P)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_game.html#a3eb4e94e81510953272543853cdc203f">go</a>(vector&lt; string &gt; result, Player P)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_game.html#aed0b1ff3774358f8194bf7e3ac4d9372">help</a>(vector&lt; string &gt; result, Player P)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_game.html#ad1311c4aa860b2035f0d2d3d83a40749">inventory</a>(Player P)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_game.html#abec037b8ba3edde47b517b53272f9e39">isAlive</a></td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_game.html#ae3a4a5e2e154d7817b59ca6dd831225e">load</a>(Player P)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_game.html#a598a2c75f6dd3e896cfd05e47ea07205">loadGame</a>(string fileName)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_game.html#abe22a578bc6a593a98df7fc6ab99f9df">look</a>(vector&lt; string &gt; result, Player P)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_game.html#ace503130151c8ae71b1d163582ffa37a">processCommand</a>(string userInput, Player P)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_game.html#ada7f3d8764936809238b743be41306de">save</a>(Player P)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_game.html#a959a86788e91dc369705c208ca003aba">saveGame</a>(string fileName)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_game.html#ad2dcc19fd9551cb1206197105e63dbd1">take</a>(vector&lt; string &gt; result)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_game.html#a47b2ba09bccf412796a8ccfb153ed7e8">talk</a>(vector&lt; string &gt; result)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_game.html#aa980a4fb468c818c949711282422f3fb">use</a>(vector&lt; string &gt; result)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_game.html#a038d87cad32c28e59c6a9db771b17764">showMenu</a>()</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_game.html#a6292093129af6da211ed33843b7a97ee">take</a>(vector&lt; string &gt; result, Player P)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_game.html#a04e2dcb5f99ef15105d014644fc87172">talk</a>(vector&lt; string &gt; result, Player P)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_game.html#a76117253651a60871bfd3c15031ad979">testLoadGame</a>()</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_game.html#a3fadcda6b40c59a95b42b4e481f42e64">use</a>(vector&lt; string &gt; result, Player P)</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_game.html#a72772b628443c3675976d6b5e6c9ec2a">~Game</a>()</td><td class="entry"><a class="el" href="class_game.html">Game</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Nov 17 2019 23:46:47 for GUI-Assignment #1 by
+    <li class="footer">Generated on Fri Nov 29 2019 18:01:10 for GUI-Assignment #1 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

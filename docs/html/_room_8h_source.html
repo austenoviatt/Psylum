@@ -117,80 +117,98 @@ $(document).ready(function(){initNavTree('_room_8h_source.html','');});
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">//nicole made suggestion to include Events in Room</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="class_room.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_room.html">Room</a></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; <a class="code" href="class_room.html#ac6ef93a7d9c3e1d624e025058d5f16ff">Room</a>();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <a class="code" href="class_room.html#ac6ef93a7d9c3e1d624e025058d5f16ff">Room</a>(std::string, std::string, std::string, <span class="keywordtype">bool</span>, <a class="code" href="class_inventory.html">Inventory</a>, <a class="code" href="_key_item_8h.html#a663d2b9a64299a98dda2b3bd4316484c">keyItem</a>,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;       std::vector&lt;Room*&gt;, <a class="code" href="class_events.html">Events</a>, std::vector&lt;Character&gt;);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;   <a class="code" href="class_room.html#a67d5da09983cc53097807fd43ba5481a">~Room</a>();</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="class_room.html#a7d1c69d12f2fe191ad142be4fec461d4">   39</a></span>&#160;   <span class="keywordtype">bool</span> <a class="code" href="class_room.html#a7d1c69d12f2fe191ad142be4fec461d4">locked</a>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;   <span class="keywordtype">bool</span> <a class="code" href="class_room.html#ad16db040c7b40c471ddd7c5c57e3973a">setLock</a>(<span class="keywordtype">bool</span> lockedState);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;   <span class="keywordtype">void</span> <a class="code" href="class_room.html#a69c85a5d4a1e0a9316e0414a2f2ec72c">setExit</a>(std::vector&lt;Room*&gt;);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;   <span class="keywordtype">bool</span> <a class="code" href="class_room.html#a51148bd47c283f8622c3d0fea766996c">hasExit</a>(std::string desiredRoom);</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="class_room.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_room.html">Room</a> {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  <a class="code" href="class_room.html#ac6ef93a7d9c3e1d624e025058d5f16ff">Room</a>();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <a class="code" href="class_room.html#ac6ef93a7d9c3e1d624e025058d5f16ff">Room</a>(std::string, std::string, std::string, <span class="keywordtype">bool</span>, <a class="code" href="class_inventory.html">Inventory</a>, std::string,</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;       std::vector&lt;Room*&gt;, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>, std::vector&lt;Character&gt;);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <a class="code" href="class_room.html#a67d5da09983cc53097807fd43ba5481a">~Room</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_room.html#a7d1c69d12f2fe191ad142be4fec461d4">   38</a></span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="class_room.html#a7d1c69d12f2fe191ad142be4fec461d4">locked</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="class_room.html#ad16db040c7b40c471ddd7c5c57e3973a">setLock</a>(<span class="keywordtype">bool</span> lockedState);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="class_room.html#a69c85a5d4a1e0a9316e0414a2f2ec72c">setExit</a>(std::vector&lt;Room*&gt;);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="class_room.html#a51148bd47c283f8622c3d0fea766996c">hasExit</a>(std::string desiredRoom);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;   std::string <a class="code" href="class_room.html#ac2b8241fa8d837f17eb31ba34d6aeca0">getDoorDesc</a>();</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;   std::string <a class="code" href="class_room.html#a1ac7cd7fd865784d3db3f4fdd0340031">getExit</a>();</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;   <span class="keywordtype">bool</span> <a class="code" href="class_room.html#a4f32519b83db60e3780ed04c6743f827">getLocked</a>();</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;   std::string <a class="code" href="class_room.html#ae6a3be5861b657a2cbbada8e67ab7fde">getName</a>();</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="class_room.html#a5d44431df3c5438309dd6fe50844dc4b">   85</a></span>&#160;   std::string <a class="code" href="class_room.html#a5d44431df3c5438309dd6fe50844dc4b">description</a>;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="class_room.html#acade4c0e8d566f08516117d0a8d68383">   90</a></span>&#160;   <a class="code" href="class_inventory.html">Inventory</a> <a class="code" href="class_room.html#acade4c0e8d566f08516117d0a8d68383">inventory</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  std::string <a class="code" href="class_room.html#ac2b8241fa8d837f17eb31ba34d6aeca0">getDoorDesc</a>();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  std::string <a class="code" href="class_room.html#a1ac7cd7fd865784d3db3f4fdd0340031">getExit</a>();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="class_room.html#a4f32519b83db60e3780ed04c6743f827">getLocked</a>();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  std::string <a class="code" href="class_room.html#ae6a3be5861b657a2cbbada8e67ab7fde">getName</a>();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="class_room.html#a5d44431df3c5438309dd6fe50844dc4b">   84</a></span>&#160;  std::string <a class="code" href="class_room.html#a5d44431df3c5438309dd6fe50844dc4b">description</a>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  std::string <a class="code" href="class_room.html#a2fe83971b8e8e8293454306df1cf5a91">getKey</a>();</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="class_room.html#aadea03e6fd8891373c26a434493aac8a">charaIndex</a>(std::string c);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="class_room.html#ad5342e0f69d03490c4e148a42362e567">charaNum</a>();</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="class_room.html#a120a6c4a4d55d92104bef144fa56025f">   92</a></span>&#160;    <a class="code" href="class_events.html">Events</a> <a class="code" href="class_room.html#a120a6c4a4d55d92104bef144fa56025f">event</a>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  std::string <a class="code" href="class_room.html#a39fc2a5f505f4bbddfb427f3b3eff9e4">boldText</a>(std::string s);</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="class_room.html#a7852df5264e7e5a1d907e3f632e2fd30">   97</a></span>&#160;   std::vector&lt;Character&gt; <a class="code" href="class_room.html#a7852df5264e7e5a1d907e3f632e2fd30">characters</a>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="class_room.html#a243c73959c12bd4025ea750fed6ddac3">   98</a></span>&#160;    std::vector&lt;Room*&gt; <a class="code" href="class_room.html#a243c73959c12bd4025ea750fed6ddac3">exits</a>;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;   std::string doorDescription;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_room.html#a9e7189d8f5c28ece77285748e1723a27">getRoomState</a>();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  std::string <a class="code" href="class_room.html#a2739a6eb4071b330a5bb9fba29b589f1">displayRoomDesc</a>();</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="class_room.html#a7bfab9f269252418744342d18b2986bc">increaseRoomState</a>();</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="class_room.html#acade4c0e8d566f08516117d0a8d68383">  103</a></span>&#160;  <a class="code" href="class_inventory.html">Inventory</a> <a class="code" href="class_room.html#acade4c0e8d566f08516117d0a8d68383">inventory</a>;</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;   <a class="code" href="_key_item_8h.html#a663d2b9a64299a98dda2b3bd4316484c">keyItem</a> key;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;   std::string name;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;};</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#endif // ROOM_H</span></div>
-<div class="ttc" id="class_room_html_ae6a3be5861b657a2cbbada8e67ab7fde"><div class="ttname"><a href="class_room.html#ae6a3be5861b657a2cbbada8e67ab7fde">Room::getName</a></div><div class="ttdeci">std::string getName()</div><div class="ttdef"><b>Definition:</b> Room.cpp:129</div></div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="class_room.html#a7852df5264e7e5a1d907e3f632e2fd30">  108</a></span>&#160;  std::vector&lt;Character&gt; <a class="code" href="class_room.html#a7852df5264e7e5a1d907e3f632e2fd30">characters</a>;</div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="class_room.html#a243c73959c12bd4025ea750fed6ddac3">  109</a></span>&#160;  std::vector&lt;Room*&gt; <a class="code" href="class_room.html#a243c73959c12bd4025ea750fed6ddac3">exits</a>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  std::string doorDescription;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;  std::string key;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  std::string name;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> event;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;};</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#endif // ROOM_H</span></div>
+<div class="ttc" id="class_room_html_ae6a3be5861b657a2cbbada8e67ab7fde"><div class="ttname"><a href="class_room.html#ae6a3be5861b657a2cbbada8e67ab7fde">Room::getName</a></div><div class="ttdeci">std::string getName()</div><div class="ttdef"><b>Definition:</b> Room.cpp:155</div></div>
 <div class="ttc" id="_inventory_8h_html"><div class="ttname"><a href="_inventory_8h.html">Inventory.h</a></div></div>
 <div class="ttc" id="_character_8h_html"><div class="ttname"><a href="_character_8h.html">Character.h</a></div></div>
-<div class="ttc" id="class_room_html_a4f32519b83db60e3780ed04c6743f827"><div class="ttname"><a href="class_room.html#a4f32519b83db60e3780ed04c6743f827">Room::getLocked</a></div><div class="ttdeci">bool getLocked()</div><div class="ttdef"><b>Definition:</b> Room.cpp:67</div></div>
-<div class="ttc" id="class_room_html_ac6ef93a7d9c3e1d624e025058d5f16ff"><div class="ttname"><a href="class_room.html#ac6ef93a7d9c3e1d624e025058d5f16ff">Room::Room</a></div><div class="ttdeci">Room()</div><div class="ttdef"><b>Definition:</b> Room.cpp:27</div></div>
-<div class="ttc" id="class_room_html_a51148bd47c283f8622c3d0fea766996c"><div class="ttname"><a href="class_room.html#a51148bd47c283f8622c3d0fea766996c">Room::hasExit</a></div><div class="ttdeci">bool hasExit(std::string desiredRoom)</div><div class="ttdef"><b>Definition:</b> Room.cpp:57</div></div>
-<div class="ttc" id="class_room_html_a7852df5264e7e5a1d907e3f632e2fd30"><div class="ttname"><a href="class_room.html#a7852df5264e7e5a1d907e3f632e2fd30">Room::characters</a></div><div class="ttdeci">std::vector&lt; Character &gt; characters</div><div class="ttdef"><b>Definition:</b> Room.h:97</div></div>
-<div class="ttc" id="class_room_html_a5d44431df3c5438309dd6fe50844dc4b"><div class="ttname"><a href="class_room.html#a5d44431df3c5438309dd6fe50844dc4b">Room::description</a></div><div class="ttdeci">std::string description</div><div class="ttdef"><b>Definition:</b> Room.h:85</div></div>
-<div class="ttc" id="class_room_html_ad16db040c7b40c471ddd7c5c57e3973a"><div class="ttname"><a href="class_room.html#ad16db040c7b40c471ddd7c5c57e3973a">Room::setLock</a></div><div class="ttdeci">bool setLock(bool lockedState)</div><div class="ttdef"><b>Definition:</b> Room.cpp:53</div></div>
+<div class="ttc" id="class_room_html_a4f32519b83db60e3780ed04c6743f827"><div class="ttname"><a href="class_room.html#a4f32519b83db60e3780ed04c6743f827">Room::getLocked</a></div><div class="ttdeci">bool getLocked()</div><div class="ttdef"><b>Definition:</b> Room.cpp:69</div></div>
+<div class="ttc" id="class_room_html_ac6ef93a7d9c3e1d624e025058d5f16ff"><div class="ttname"><a href="class_room.html#ac6ef93a7d9c3e1d624e025058d5f16ff">Room::Room</a></div><div class="ttdeci">Room()</div><div class="ttdef"><b>Definition:</b> Room.cpp:26</div></div>
+<div class="ttc" id="class_room_html_a51148bd47c283f8622c3d0fea766996c"><div class="ttname"><a href="class_room.html#a51148bd47c283f8622c3d0fea766996c">Room::hasExit</a></div><div class="ttdeci">bool hasExit(std::string desiredRoom)</div><div class="ttdef"><b>Definition:</b> Room.cpp:60</div></div>
+<div class="ttc" id="class_room_html_a7852df5264e7e5a1d907e3f632e2fd30"><div class="ttname"><a href="class_room.html#a7852df5264e7e5a1d907e3f632e2fd30">Room::characters</a></div><div class="ttdeci">std::vector&lt; Character &gt; characters</div><div class="ttdef"><b>Definition:</b> Room.h:108</div></div>
+<div class="ttc" id="class_room_html_a5d44431df3c5438309dd6fe50844dc4b"><div class="ttname"><a href="class_room.html#a5d44431df3c5438309dd6fe50844dc4b">Room::description</a></div><div class="ttdeci">std::string description</div><div class="ttdef"><b>Definition:</b> Room.h:84</div></div>
+<div class="ttc" id="class_room_html_a2fe83971b8e8e8293454306df1cf5a91"><div class="ttname"><a href="class_room.html#a2fe83971b8e8e8293454306df1cf5a91">Room::getKey</a></div><div class="ttdeci">std::string getKey()</div><div class="ttdef"><b>Definition:</b> Room.cpp:56</div></div>
+<div class="ttc" id="class_room_html_a39fc2a5f505f4bbddfb427f3b3eff9e4"><div class="ttname"><a href="class_room.html#a39fc2a5f505f4bbddfb427f3b3eff9e4">Room::boldText</a></div><div class="ttdeci">std::string boldText(std::string s)</div><div class="ttdef"><b>Definition:</b> Room.cpp:190</div></div>
+<div class="ttc" id="class_room_html_aadea03e6fd8891373c26a434493aac8a"><div class="ttname"><a href="class_room.html#aadea03e6fd8891373c26a434493aac8a">Room::charaIndex</a></div><div class="ttdeci">int charaIndex(std::string c)</div><div class="ttdef"><b>Definition:</b> Room.cpp:169</div></div>
+<div class="ttc" id="class_room_html_ad16db040c7b40c471ddd7c5c57e3973a"><div class="ttname"><a href="class_room.html#ad16db040c7b40c471ddd7c5c57e3973a">Room::setLock</a></div><div class="ttdeci">bool setLock(bool lockedState)</div><div class="ttdef"><b>Definition:</b> Room.cpp:52</div></div>
 <div class="ttc" id="class_inventory_html"><div class="ttname"><a href="class_inventory.html">Inventory</a></div><div class="ttdef"><b>Definition:</b> Inventory.h:18</div></div>
-<div class="ttc" id="class_room_html_acade4c0e8d566f08516117d0a8d68383"><div class="ttname"><a href="class_room.html#acade4c0e8d566f08516117d0a8d68383">Room::inventory</a></div><div class="ttdeci">Inventory inventory</div><div class="ttdef"><b>Definition:</b> Room.h:90</div></div>
+<div class="ttc" id="class_room_html_acade4c0e8d566f08516117d0a8d68383"><div class="ttname"><a href="class_room.html#acade4c0e8d566f08516117d0a8d68383">Room::inventory</a></div><div class="ttdeci">Inventory inventory</div><div class="ttdef"><b>Definition:</b> Room.h:103</div></div>
 <div class="ttc" id="_key_item_8h_html"><div class="ttname"><a href="_key_item_8h.html">KeyItem.h</a></div></div>
-<div class="ttc" id="class_room_html_a67d5da09983cc53097807fd43ba5481a"><div class="ttname"><a href="class_room.html#a67d5da09983cc53097807fd43ba5481a">Room::~Room</a></div><div class="ttdeci">~Room()</div><div class="ttdef"><b>Definition:</b> Room.cpp:12</div></div>
-<div class="ttc" id="class_room_html_a243c73959c12bd4025ea750fed6ddac3"><div class="ttname"><a href="class_room.html#a243c73959c12bd4025ea750fed6ddac3">Room::exits</a></div><div class="ttdeci">std::vector&lt; Room * &gt; exits</div><div class="ttdef"><b>Definition:</b> Room.h:98</div></div>
+<div class="ttc" id="class_room_html_a67d5da09983cc53097807fd43ba5481a"><div class="ttname"><a href="class_room.html#a67d5da09983cc53097807fd43ba5481a">Room::~Room</a></div><div class="ttdeci">~Room()</div><div class="ttdef"><b>Definition:</b> Room.cpp:11</div></div>
+<div class="ttc" id="class_room_html_a243c73959c12bd4025ea750fed6ddac3"><div class="ttname"><a href="class_room.html#a243c73959c12bd4025ea750fed6ddac3">Room::exits</a></div><div class="ttdeci">std::vector&lt; Room * &gt; exits</div><div class="ttdef"><b>Definition:</b> Room.h:109</div></div>
 <div class="ttc" id="_events_8h_html"><div class="ttname"><a href="_events_8h.html">Events.h</a></div></div>
 <div class="ttc" id="class_room_html"><div class="ttname"><a href="class_room.html">Room</a></div><div class="ttdef"><b>Definition:</b> Room.h:16</div></div>
-<div class="ttc" id="class_room_html_ac2b8241fa8d837f17eb31ba34d6aeca0"><div class="ttname"><a href="class_room.html#ac2b8241fa8d837f17eb31ba34d6aeca0">Room::getDoorDesc</a></div><div class="ttdeci">std::string getDoorDesc()</div><div class="ttdef"><b>Definition:</b> Room.cpp:133</div></div>
-<div class="ttc" id="_key_item_8h_html_a663d2b9a64299a98dda2b3bd4316484c"><div class="ttname"><a href="_key_item_8h.html#a663d2b9a64299a98dda2b3bd4316484c">keyItem</a></div><div class="ttdeci">keyItem</div><div class="ttdef"><b>Definition:</b> KeyItem.h:15</div></div>
-<div class="ttc" id="class_room_html_a1ac7cd7fd865784d3db3f4fdd0340031"><div class="ttname"><a href="class_room.html#a1ac7cd7fd865784d3db3f4fdd0340031">Room::getExit</a></div><div class="ttdeci">std::string getExit()</div><div class="ttdef"><b>Definition:</b> Room.cpp:72</div></div>
-<div class="ttc" id="class_room_html_a69c85a5d4a1e0a9316e0414a2f2ec72c"><div class="ttname"><a href="class_room.html#a69c85a5d4a1e0a9316e0414a2f2ec72c">Room::setExit</a></div><div class="ttdeci">void setExit(std::vector&lt; Room * &gt;)</div><div class="ttdef"><b>Definition:</b> Room.cpp:124</div></div>
-<div class="ttc" id="class_room_html_a7d1c69d12f2fe191ad142be4fec461d4"><div class="ttname"><a href="class_room.html#a7d1c69d12f2fe191ad142be4fec461d4">Room::locked</a></div><div class="ttdeci">bool locked</div><div class="ttdef"><b>Definition:</b> Room.h:39</div></div>
-<div class="ttc" id="class_room_html_a120a6c4a4d55d92104bef144fa56025f"><div class="ttname"><a href="class_room.html#a120a6c4a4d55d92104bef144fa56025f">Room::event</a></div><div class="ttdeci">Events event</div><div class="ttdef"><b>Definition:</b> Room.h:92</div></div>
-<div class="ttc" id="class_events_html"><div class="ttname"><a href="class_events.html">Events</a></div><div class="ttdef"><b>Definition:</b> Events.h:17</div></div>
+<div class="ttc" id="class_room_html_a2739a6eb4071b330a5bb9fba29b589f1"><div class="ttname"><a href="class_room.html#a2739a6eb4071b330a5bb9fba29b589f1">Room::displayRoomDesc</a></div><div class="ttdeci">std::string displayRoomDesc()</div><div class="ttdef"><b>Definition:</b> Room.cpp:137</div></div>
+<div class="ttc" id="class_room_html_ac2b8241fa8d837f17eb31ba34d6aeca0"><div class="ttname"><a href="class_room.html#ac2b8241fa8d837f17eb31ba34d6aeca0">Room::getDoorDesc</a></div><div class="ttdeci">std::string getDoorDesc()</div><div class="ttdef"><b>Definition:</b> Room.cpp:159</div></div>
+<div class="ttc" id="class_room_html_a9e7189d8f5c28ece77285748e1723a27"><div class="ttname"><a href="class_room.html#a9e7189d8f5c28ece77285748e1723a27">Room::getRoomState</a></div><div class="ttdeci">unsigned int getRoomState()</div><div class="ttdef"><b>Definition:</b> Room.cpp:186</div></div>
+<div class="ttc" id="class_room_html_a1ac7cd7fd865784d3db3f4fdd0340031"><div class="ttname"><a href="class_room.html#a1ac7cd7fd865784d3db3f4fdd0340031">Room::getExit</a></div><div class="ttdeci">std::string getExit()</div><div class="ttdef"><b>Definition:</b> Room.cpp:73</div></div>
+<div class="ttc" id="class_room_html_a69c85a5d4a1e0a9316e0414a2f2ec72c"><div class="ttname"><a href="class_room.html#a69c85a5d4a1e0a9316e0414a2f2ec72c">Room::setExit</a></div><div class="ttdeci">void setExit(std::vector&lt; Room * &gt;)</div><div class="ttdef"><b>Definition:</b> Room.cpp:151</div></div>
+<div class="ttc" id="class_room_html_ad5342e0f69d03490c4e148a42362e567"><div class="ttname"><a href="class_room.html#ad5342e0f69d03490c4e148a42362e567">Room::charaNum</a></div><div class="ttdeci">int charaNum()</div><div class="ttdef"><b>Definition:</b> Room.cpp:178</div></div>
+<div class="ttc" id="class_room_html_a7d1c69d12f2fe191ad142be4fec461d4"><div class="ttname"><a href="class_room.html#a7d1c69d12f2fe191ad142be4fec461d4">Room::locked</a></div><div class="ttdeci">bool locked</div><div class="ttdef"><b>Definition:</b> Room.h:38</div></div>
+<div class="ttc" id="class_room_html_a7bfab9f269252418744342d18b2986bc"><div class="ttname"><a href="class_room.html#a7bfab9f269252418744342d18b2986bc">Room::increaseRoomState</a></div><div class="ttdeci">void increaseRoomState()</div><div class="ttdef"><b>Definition:</b> Room.cpp:182</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="_room_8h.html">Room.h</a></li>
-    <li class="footer">Generated on Sun Nov 17 2019 23:46:46 for GUI-Assignment #1 by
+    <li class="footer">Generated on Fri Nov 29 2019 18:01:09 for GUI-Assignment #1 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

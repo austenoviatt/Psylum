@@ -115,35 +115,44 @@ $(document).ready(function(){initNavTree('_player_8h_source.html','');});
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_room_8h.html">Room.h</a>&quot;</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
 <div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="class_player.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_player.html">Player</a> {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;         <a class="code" href="class_player.html">Player</a>();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <a class="code" href="class_player.html">Player</a>();</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="class_player.html">Player</a>(<a class="code" href="class_room.html">Room</a>* currentRoom, <a class="code" href="class_inventory.html">Inventory</a> inventory, <span class="keywordtype">int</span> roomCount);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  <a class="code" href="class_player.html">Player</a>(<a class="code" href="class_room.html">Room</a>* currentRoom, <a class="code" href="class_inventory.html">Inventory</a> inventory, <span class="keywordtype">int</span> roomCount, <span class="keywordtype">bool</span> isAlive, <a class="code" href="class_inventory.html">Inventory</a> allInv);</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="class_player.html#a8981c201ffb2270c0b6dbd467b627376">   36</a></span>&#160;        <span class="keyword">virtual</span> <a class="code" href="class_player.html#a8981c201ffb2270c0b6dbd467b627376">~Player</a>() {}</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="class_player.html#a8981c201ffb2270c0b6dbd467b627376">   36</a></span>&#160;  <span class="keyword">virtual</span> <a class="code" href="class_player.html#a8981c201ffb2270c0b6dbd467b627376">~Player</a>() {}</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="class_player.html#ab8d436b5727749f7be05ffdf744d1041">   41</a></span>&#160;        <a class="code" href="class_inventory.html">Inventory</a> <a class="code" href="class_player.html#ab8d436b5727749f7be05ffdf744d1041">inventory</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="class_player.html#ab8d436b5727749f7be05ffdf744d1041">   41</a></span>&#160;  <a class="code" href="class_inventory.html">Inventory</a> <a class="code" href="class_player.html#ab8d436b5727749f7be05ffdf744d1041">inventory</a>;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">void</span> moveToRoom(<a class="code" href="class_room.html">Room</a>* nextRoom);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">int</span> getRoomCount();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_player.html#ad9c761eb74396548337a2abe38d79857">   56</a></span>&#160;  <a class="code" href="class_room.html">Room</a>* <a class="code" href="class_player.html#ad9c761eb74396548337a2abe38d79857">currentRoom</a>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="class_player.html#acb75340aca876e309872eabf2f038101">   46</a></span>&#160;  <a class="code" href="class_inventory.html">Inventory</a> <a class="code" href="class_player.html#acb75340aca876e309872eabf2f038101">allInv</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="keywordtype">void</span> moveToRoom(<a class="code" href="class_room.html">Room</a>* nextRoom);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <span class="keywordtype">int</span> getRoomCount();</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">int</span> roomCount;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;};</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#endif // PLAYER_H</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keywordtype">bool</span> getIsAlive();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keywordtype">void</span> killPlayer();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="keywordtype">void</span> win();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="class_player.html#ad9c761eb74396548337a2abe38d79857">   71</a></span>&#160;  <a class="code" href="class_room.html">Room</a>* <a class="code" href="class_player.html#ad9c761eb74396548337a2abe38d79857">currentRoom</a>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <span class="keywordtype">int</span> roomCount;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <span class="keywordtype">bool</span> isAlive;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif // PLAYER_H</span></div>
 <div class="ttc" id="_inventory_8h_html"><div class="ttname"><a href="_inventory_8h.html">Inventory.h</a></div></div>
+<div class="ttc" id="class_player_html_acb75340aca876e309872eabf2f038101"><div class="ttname"><a href="class_player.html#acb75340aca876e309872eabf2f038101">Player::allInv</a></div><div class="ttdeci">Inventory allInv</div><div class="ttdef"><b>Definition:</b> Player.h:46</div></div>
 <div class="ttc" id="class_player_html_ab8d436b5727749f7be05ffdf744d1041"><div class="ttname"><a href="class_player.html#ab8d436b5727749f7be05ffdf744d1041">Player::inventory</a></div><div class="ttdeci">Inventory inventory</div><div class="ttdef"><b>Definition:</b> Player.h:41</div></div>
 <div class="ttc" id="class_inventory_html"><div class="ttname"><a href="class_inventory.html">Inventory</a></div><div class="ttdef"><b>Definition:</b> Inventory.h:18</div></div>
-<div class="ttc" id="class_player_html_ad9c761eb74396548337a2abe38d79857"><div class="ttname"><a href="class_player.html#ad9c761eb74396548337a2abe38d79857">Player::currentRoom</a></div><div class="ttdeci">Room * currentRoom</div><div class="ttdef"><b>Definition:</b> Player.h:56</div></div>
+<div class="ttc" id="class_player_html_ad9c761eb74396548337a2abe38d79857"><div class="ttname"><a href="class_player.html#ad9c761eb74396548337a2abe38d79857">Player::currentRoom</a></div><div class="ttdeci">Room * currentRoom</div><div class="ttdef"><b>Definition:</b> Player.h:71</div></div>
 <div class="ttc" id="class_room_html"><div class="ttname"><a href="class_room.html">Room</a></div><div class="ttdef"><b>Definition:</b> Room.h:16</div></div>
 <div class="ttc" id="class_player_html"><div class="ttname"><a href="class_player.html">Player</a></div><div class="ttdef"><b>Definition:</b> Player.h:21</div></div>
 <div class="ttc" id="_room_8h_html"><div class="ttname"><a href="_room_8h.html">Room.h</a></div></div>
@@ -154,7 +163,7 @@ $(document).ready(function(){initNavTree('_player_8h_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="_player_8h.html">Player.h</a></li>
-    <li class="footer">Generated on Sun Nov 17 2019 23:46:46 for GUI-Assignment #1 by
+    <li class="footer">Generated on Fri Nov 29 2019 18:01:09 for GUI-Assignment #1 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

@@ -114,8 +114,8 @@ $(document).ready(function(){initNavTree('class_item.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa8ba35f90c7129f699145dfe536a0bfa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#aa8ba35f90c7129f699145dfe536a0bfa">Item</a> (std::string name=&quot;DEFAULT NAME&quot;, std::string description=&quot;DEFAULT DESCRIPTION&quot;, std::string niceName=&quot;NICE NAME&quot;, bool fixed=false)</td></tr>
-<tr class="separator:aa8ba35f90c7129f699145dfe536a0bfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26998890e499d6c00e832ab7056108db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a26998890e499d6c00e832ab7056108db">Item</a> (std::string name=&quot;DEFAULT NAME&quot;, std::string description=&quot;DEFAULT DESCRIPTION&quot;, std::string niceName=&quot;NICE NAME&quot;, bool fixed=false, int itemState=0)</td></tr>
+<tr class="separator:a26998890e499d6c00e832ab7056108db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33cc9c0bc556b5a33a9d0d58d37c602b"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a33cc9c0bc556b5a33a9d0d58d37c602b">~Item</a> ()</td></tr>
 <tr class="separator:a33cc9c0bc556b5a33a9d0d58d37c602b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63d7f2148b699e539aae354b01559811"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a63d7f2148b699e539aae354b01559811">getName</a> ()</td></tr>
@@ -126,12 +126,22 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab4608d5fb1c29068971da669befcc0a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3d151b7f9897fb6523305ffe59dda22"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#ab3d151b7f9897fb6523305ffe59dda22">getFixed</a> ()</td></tr>
 <tr class="separator:ab3d151b7f9897fb6523305ffe59dda22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb02c5bc1706c93bacb7c99cb090022f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#aeb02c5bc1706c93bacb7c99cb090022f">increaseItemState</a> ()</td></tr>
+<tr class="separator:aeb02c5bc1706c93bacb7c99cb090022f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab301329737368270e21e5655c80e2f98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#ab301329737368270e21e5655c80e2f98">decreaseItemState</a> ()</td></tr>
+<tr class="separator:ab301329737368270e21e5655c80e2f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01048b859ac32647b8cac2b3c67e306b"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a01048b859ac32647b8cac2b3c67e306b">getItemState</a> ()</td></tr>
+<tr class="separator:a01048b859ac32647b8cac2b3c67e306b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3435585b02dbf1f63a99185c56177f54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a3435585b02dbf1f63a99185c56177f54">setItemState</a> (int i)</td></tr>
+<tr class="separator:a3435585b02dbf1f63a99185c56177f54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d2b77fba3d67bf54504a60ed9518270"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_item.html#a3d2b77fba3d67bf54504a60ed9518270">setItemDesc</a> (std::string s)</td></tr>
+<tr class="separator:a3d2b77fba3d67bf54504a60ed9518270"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Troy Hatchard, Lambee Mangal, Austen Oviatt, Sarah Ren </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>November 13, 2019 This class is for all items in the game </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aa8ba35f90c7129f699145dfe536a0bfa"></a>
+<a class="anchor" id="a26998890e499d6c00e832ab7056108db"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -157,7 +167,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>fixed</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>fixed</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>itemState</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -203,6 +219,21 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ab301329737368270e21e5655c80e2f98"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Item::decreaseItemState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ab3d151b7f9897fb6523305ffe59dda22"></a>
 <div class="memitem">
 <div class="memproto">
@@ -234,6 +265,21 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>can pickup or not returns description of item </dd>
 <dd>
 <a class="el" href="class_item.html">Item</a> description </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a01048b859ac32647b8cac2b3c67e306b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Item::getItemState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -269,6 +315,53 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="aeb02c5bc1706c93bacb7c99cb090022f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Item::increaseItemState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3d2b77fba3d67bf54504a60ed9518270"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Item::setItemDesc </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3435585b02dbf1f63a99185c56177f54"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Item::setItemState </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_item_8h_source.html">Item.h</a></li>
 <li><a class="el" href="_item_8cpp.html">Item.cpp</a></li>
@@ -279,7 +372,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_item.html">Item</a></li>
-    <li class="footer">Generated on Sun Nov 17 2019 23:46:47 for GUI-Assignment #1 by
+    <li class="footer">Generated on Fri Nov 29 2019 18:01:10 for GUI-Assignment #1 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

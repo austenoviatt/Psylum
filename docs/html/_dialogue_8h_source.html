@@ -111,26 +111,31 @@ $(document).ready(function(){initNavTree('_dialogue_8h_source.html','');});
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_events_8h.html">Events.h</a>&quot;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_room_8h.html">Room.h</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="class_dialogue.html">    8</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_dialogue.html">Dialogue</a> {</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<a class="code" href="class_dialogue.html#a19d148eafc73a01c0d9a919517da0811">Dialogue</a>();</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_dialogue.html#acb3283150c33481ca39af4800ceff3d1">   12</a></span>&#160;<a class="code" href="class_dialogue.html#acb3283150c33481ca39af4800ceff3d1">~Dialogue</a>() {}</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_dialogue.html#a0f2446e442b9207f6c41101add439e51">talk</a>(std::string chaID);</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_player_8h.html">Player.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="class_dialogue.html">    9</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_dialogue.html">Dialogue</a> {</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;  <a class="code" href="class_dialogue.html#a19d148eafc73a01c0d9a919517da0811">Dialogue</a>();</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="class_dialogue.html#acb3283150c33481ca39af4800ceff3d1">   13</a></span>&#160;  <a class="code" href="class_dialogue.html#acb3283150c33481ca39af4800ceff3d1">~Dialogue</a>() {}</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;std::string chaID;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;};</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="class_dialogue.html#ae79124fb58b9dfab148f1c3527d94884">talk</a>(<a class="code" href="class_character.html">Character</a> *c, <a class="code" href="class_player.html">Player</a> *P);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#endif //CHARACTER_H</span></div>
-<div class="ttc" id="class_dialogue_html_a0f2446e442b9207f6c41101add439e51"><div class="ttname"><a href="class_dialogue.html#a0f2446e442b9207f6c41101add439e51">Dialogue::talk</a></div><div class="ttdeci">void talk(std::string chaID)</div><div class="ttdef"><b>Definition:</b> Dialogue.cpp:14</div></div>
-<div class="ttc" id="class_dialogue_html"><div class="ttname"><a href="class_dialogue.html">Dialogue</a></div><div class="ttdef"><b>Definition:</b> Dialogue.h:8</div></div>
-<div class="ttc" id="class_dialogue_html_acb3283150c33481ca39af4800ceff3d1"><div class="ttname"><a href="class_dialogue.html#acb3283150c33481ca39af4800ceff3d1">Dialogue::~Dialogue</a></div><div class="ttdeci">~Dialogue()</div><div class="ttdef"><b>Definition:</b> Dialogue.h:12</div></div>
-<div class="ttc" id="class_dialogue_html_a19d148eafc73a01c0d9a919517da0811"><div class="ttname"><a href="class_dialogue.html#a19d148eafc73a01c0d9a919517da0811">Dialogue::Dialogue</a></div><div class="ttdeci">Dialogue()</div><div class="ttdef"><b>Definition:</b> Dialogue.cpp:8</div></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;};</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif //CHARACTER_H</span></div>
+<div class="ttc" id="_player_8h_html"><div class="ttname"><a href="_player_8h.html">Player.h</a></div></div>
+<div class="ttc" id="class_dialogue_html_ae79124fb58b9dfab148f1c3527d94884"><div class="ttname"><a href="class_dialogue.html#ae79124fb58b9dfab148f1c3527d94884">Dialogue::talk</a></div><div class="ttdeci">void talk(Character *c, Player *P)</div><div class="ttdef"><b>Definition:</b> Dialogue.cpp:12</div></div>
+<div class="ttc" id="class_dialogue_html"><div class="ttname"><a href="class_dialogue.html">Dialogue</a></div><div class="ttdef"><b>Definition:</b> Dialogue.h:9</div></div>
+<div class="ttc" id="class_dialogue_html_acb3283150c33481ca39af4800ceff3d1"><div class="ttname"><a href="class_dialogue.html#acb3283150c33481ca39af4800ceff3d1">Dialogue::~Dialogue</a></div><div class="ttdeci">~Dialogue()</div><div class="ttdef"><b>Definition:</b> Dialogue.h:13</div></div>
+<div class="ttc" id="class_dialogue_html_a19d148eafc73a01c0d9a919517da0811"><div class="ttname"><a href="class_dialogue.html#a19d148eafc73a01c0d9a919517da0811">Dialogue::Dialogue</a></div><div class="ttdeci">Dialogue()</div><div class="ttdef"><b>Definition:</b> Dialogue.cpp:9</div></div>
 <div class="ttc" id="_events_8h_html"><div class="ttname"><a href="_events_8h.html">Events.h</a></div></div>
+<div class="ttc" id="class_character_html"><div class="ttname"><a href="class_character.html">Character</a></div><div class="ttdef"><b>Definition:</b> Character.h:20</div></div>
+<div class="ttc" id="class_player_html"><div class="ttname"><a href="class_player.html">Player</a></div><div class="ttdef"><b>Definition:</b> Player.h:21</div></div>
 <div class="ttc" id="_room_8h_html"><div class="ttname"><a href="_room_8h.html">Room.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -138,7 +143,7 @@ $(document).ready(function(){initNavTree('_dialogue_8h_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="_dialogue_8h.html">Dialogue.h</a></li>
-    <li class="footer">Generated on Sun Nov 17 2019 23:46:46 for GUI-Assignment #1 by
+    <li class="footer">Generated on Fri Nov 29 2019 18:01:09 for GUI-Assignment #1 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>
