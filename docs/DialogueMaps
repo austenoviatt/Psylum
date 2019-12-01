@@ -1,0 +1,163 @@
+CharacterDialogueMap
+
+-------------------------------------------------------------------
+location = patient2
+-------------------------------------------------------------------
+
+int option;
+
+cout << “It’s not nice to look through people’s stuff….what are you doing here?” << endl;
+cout << “1. Sorry I don’t know how I ended up here and am looking for a way out. << endl;
+cout << “2. I don’t know who you are but we’re in danger and we have to leave now! I’ve locked someone in my room and I’m sure they will be looking for her. << endl;
+cout << “3. Howdy there! What a surprise! This isn’t the bathroom huh? Well how very awkward. I’ll be leaving now. Good talk, bye!” << endl;
+
+cin >> option;
+
+switch (option) {
+case 0:
+case 1:
+     cout << “I can help you, if you’d like?” << endl;
+     break;
+     1. Okay. Follow Annabelle’s lead
+     event = annaSnitches
+     2. Refuse Annabelle’s help but don’t leave lose ends
+     event = sedateAnna
+
+case 2: 
+     cout << “No no no no no! You’ve done something veeeeeery bad. Very bad I tell you! They’ll take me with you! I have to tell them. I have to!” << endl;
+     1. Knock her out.
+     event = sedateAnna
+     2. Run!
+     event = annaSnitches
+
+case 3: 
+cout << “If you’re leaving, you’re taking me with you. I don’t think you’ll make it very far without my help anyway.” << endl;
+     1. Accept the negotiation
+     event = annaSnitches
+     2. Find a way to leave without her.
+     event = sedateAnna
+}
+
+-------------------------------------------------------------------
+location = forest
+-------------------------------------------------------------------
+int option;
+
+cout << “Good day young Padawan. We, are the Spirits of the Forest. Do you need me to explain or should we skip the chatter?” << endl;
+cout << “1. Yes, please explain.” << endl;
+cout << “2. Skip the chatter, let’s get at er.” << endl;
+
+cin >> option;
+
+switch (option) {
+case 0:
+case 1:
+cout << “It’s not very often we find people stumble across here. In fact, I’m surprised you can see us at all. My creatures tell me you spirit is strong and that you’re in great danger. Know we cannot fix things but we can most certainly help those worthy. Are you worthy Padawan?” << endl;
+     1. Absolutely
+     case 1: 
+The challenge is to solve a riddle. The riddle will be provided to you in 3 parts. At the end of each part, you will get a guess -  meaning you will get a total of three guesses. Guess correctly and you will receive a gift. Guess all three 3 times incorrectly and you will be lost forever. Just say ready and we will begin.
+    	      start puzzle;
+
+	      2. On second thought, I gotta get going
+	      case 2:
+	      	   exit forest;
+
+case 2:
+cout << “Then we shall begin! Do you remember how to play?” << endl;
+     1. Yes
+     	case 1: Just say ready and we will begin
+	     start puzzle;
+	     2. Mm, no but I’m getting a little impatient.
+	     	case 2: then let’s not make you wait! Let’s save you some time. You will be given a riddle and you get one guess. Just say ready and we will  begin.
+		     start puzzle;
+
+
+cin >> “ready”
+I can be cold as the bluest, hottest ice And hot as the bluest, fiercest fire. . . I’m a false reflection of a conceptional misconception Whatever your limited or infinite mind’s desire
+You listen to my loud, yet gentle vibration You believe me fully with no hesitation . . . You see me with all colors of the beautiful rainbow Is that really all the colors? Will you ever know? Only if you can let me go. . .
+
+cin >> guess1
+if(guess1 == “perception”)
+	  event = completeRiddle;
+ I’m young and younger, black and blacker Smart and wise. A genius. A true catalytic cracker Beautiful, and most beautiful – is there really such a thing? Breath in the melody that I most wonderfully sing!
+I can be red, yellow, or indigo blue Although I’m real in essence, I’m never the truth, I’m at your worst, completely false; Incomplete at your best; a simple impulse.
+I can be joyfully sorrowful and sorrowfully glee, too. But, whatever I am, I’m always completely real to you. Do you feel me! Do you get my point! Do you smell my noise? Can you hear my funk! Can you see my darkness? Can you touch my light! Can you smell my vision? Can you taste my sight!
+Can you smell the painful pleasure,  Can you taste the agony of the estasy? No matter what, I’m always YOUR reality; I am in you and you are in me. If you change your perspective. I’ll change mine– as your’s reflective.
+
+cin >> guess2;
+if(guess2 == “perception”)
+	  event = completeRiddle;
+ I am oh so evil, and yet so kind The world would be nothingness if I were blind. But, maybe not-how dare I say? And now I lay me down to pray . . .
+I pray that you free me every then and now From your dear self, for this I vow . . . Will free you from hypocrisies And all the false analogies. . . From judgements, prejudices, anger and hatred … These no longer exist, once I am emancipated.
+My negation gives you insight, free and clear Of a far away place that is yet so near If you could release my blessed curse and damned grace And move beyond object, time and space For that brief moment in that sphere You’ll sense a unity so crystal clear Even beyond your limited, infinite imagination Who am I, I am simply . . .
+
+cin >> guess3
+if(guess3 == “perception”)
+	  event = completeRiddle;
+
+-------------------------------------------------------------------
+location = patient3
+-------------------------------------------------------------------
+int option;
+
+cout << “ You’re probably asking yourself, what’s he doing right? Well, would you like to come see?” << endl;
+cout << “1. Sure!” << endl;
+cout << “2. No thanks” << end;
+
+
+switch (option) {
+case 0:
+case 1: 
+     cout << “I’m trying to catch a fish but it never seems to work!
+     cout << “Wait, I know…I’m in need of bait! I’ll tell you what…you get me bait for my fish and i’ll give you an awesome fishing rod. Do we have a deal?” << end;
+     1. Deal! I’ll see what I can find.
+     2. No way. Get it yourself kid. I don’t need a fishing rod.
+case 2:
+     cout << “It’s okay, I understand. Well you have yourself a great day! I’m sure I’ll see you around again.” << end;
+
+
+-------------------------------------------------------------------
+location = sewer
+-------------------------------------------------------------------
+int option;
+
+cout << “Why hello th…..oh wow….what is that putrid smell! Did you just come out of a sewer mate?!” << end;
+cout << “1. Sure did!” << endl;
+cout << “2. Are you sure that isn’t you?” << endl;
+cout << “3. I can’t smell a thing” << endl;
+
+cin >> option;
+
+switch (option) {
+case 0:
+case 1: 
+     cout << “I’m sorry to hear. In fact, you owe me help for smelling this bad” << end;	1. Fair enough. What do you need help with?
+     2. I don’t owe you nothing old man!
+case 2: 
+     cout << “Oye, you think you’re clever? Well if you’re so clever then why don’t you help me solve a little problem.” << endl;
+     1. I like puzzles, let’s give it a try.
+     2. No thanks
+
+case 3: 
+     cout << “Well, pardon me manners, I shouldn’t be so rude. I best be on my way now now, I have a puzzle to solve.” << endl;
+     1. What’s the puzzle?
+     2. Okay, take care!
+
+
+-------------------------------------------------------------------
+location = doctors
+-------------------------------------------------------------------
+int option;
+string pass;
+
+cout << "Password:______________" << endl;
+cin >> pass;
+
+if(pass == 'xxxx')
+	events = computerUnlocked;
+cout << "Documents/work/accessCodes";
+
+
+// DIALOGUES NAAAT COMPLETE: computer and doctor
+
+
